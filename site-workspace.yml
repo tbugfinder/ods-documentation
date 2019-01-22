@@ -8,7 +8,8 @@ content:
     - url: ../ods-core
       start_path: docs
       branches: HEAD
-
+output:
+  dir: ./docs
 ui:
   bundle:
     url: ./ui-bundle.zip
