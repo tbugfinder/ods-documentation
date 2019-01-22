@@ -1,0 +1,15 @@
+site:
+  title: OpenDevStack Documentation
+  start_page: guides::index.adoc
+content:
+  sources:
+    - url: ../ods-guides
+      branches: HEAD
+    - url: ../ods-core
+      start_path: docs
+      branches: HEAD
+
+ui:
+  bundle:
+    url: ./ui-bundle.zip
+    snapshot: true
