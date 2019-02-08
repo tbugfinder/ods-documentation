@@ -1,0 +1,23 @@
+dist: xenial
+
+services:
+  - docker
+
+addons:
+  apt:
+    source:
+      - git-core
+    packages:
+      - git
+
+before_install:
+  - docker pull antora/antora:2.0.0
+
+script:
+  - docker run -v $TRAVIS_BUILD_DIR:/antora --rm -t antora/antora:2.0.0 --pull --stacktrace site.yml
+
+after_success:
+  - cd docs;
+    touch .nojekyll;
+    git commit -m "Publishing new documentation";
+    git push --quiet "${GH_REF}" origin master
