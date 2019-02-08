@@ -20,8 +20,8 @@ after_success:
   - cd docs;
     touch .nojekyll;
     git add .;
-    git config --global user.email "travis@travis-ci.org"
-    git config --global user.name "Travis CI"
-    git commit -m "Travis Build: $TRAVIS_BUILD_NUMBER"
-    git remote add origin-pages https://${GH_TOKEN}@github.com/rattermeyer/ods-documentation.git > /dev/null 2>&1
+    git config --global user.email "travis@travis-ci.org";
+    git config --global user.name "Travis CI";
+    git commit -m "Travis Build: $TRAVIS_BUILD_NUMBER";
+    git remote add origin-pages https://${GH_TOKEN}@github.com/rattermeyer/ods-documentation.git > /dev/null 2>&1;
     git push origin-pages master
