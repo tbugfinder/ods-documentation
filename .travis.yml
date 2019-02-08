@@ -19,5 +19,6 @@ script:
 after_success:
   - cd docs;
     touch .nojekyll;
+    git add .
     git commit -m "Publishing new documentation";
     git push --quiet "${GH_REF}" origin master
