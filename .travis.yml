@@ -17,11 +17,4 @@ script:
   - docker run -v $TRAVIS_BUILD_DIR:/antora --rm -t antora/antora:2.0.0 --fetch --stacktrace site.yml
 
 after_success:
-  - cd docs;
-  - touch .nojekyll;
-  - git add .;
-  - git config --global user.email "travis@travis-ci.org";
-  - git config --global user.name "Travis CI";
-  - git commit -am "Travis Build ${TRAVIS_BUILD_NUMBER}";
-  - git remote add origin-pages "https://${GH_TOKEN}@github.com/rattermeyer/ods-documentation.git" > /dev/null 2>&1;
-  - git push origin-pages master
+  - ./travis/push.sh
