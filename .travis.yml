@@ -21,4 +21,4 @@ after_success:
     touch .nojekyll;
     git add .;
     git commit -m "Publishing new documentation";
-    git push --quiet "${GH_REF}" origin master
+    git push origin master
