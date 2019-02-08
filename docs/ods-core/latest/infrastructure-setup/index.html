@@ -136,12 +136,79 @@
     <li class="crumb"><a href="index.html">Intro</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="https://github.com/rattermeyer/ods-core/edit/master/docs/modules/infrastructure-setup/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///home/richard/git/ods-documentation-poc/ods-core/docs/modules/infrastructure-setup/pages/index.adoc">Edit this Page</a></div>
 </div>
 <article class="doc">
 <h1>Infrastructure Setup</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+<p>The infrastructure setup part contains the scripts to setup OpenDevstack.
+It uses <a href="https://www.ansible.com">Ansible</a> for installing the Atlassian tools and the provisioning app (including <a href="https://www.rundeck.com/open-source">Rundeck</a>.
+Setting up an <a href="https://docs.ansible.com/ansible/latest/network/getting_started/basic_concepts.html#id2">Ansible control host</a> is beyond the scope of this document.</p>
+</div>
+<div class="paragraph">
+<p>Each individual component is set-up using a seperate playbook. So you can decide which playbooks to run, depending on your current environment.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_different_playbooks"><a class="anchor" href="#_the_different_playbooks"></a>The different playbooks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We have different playbooks depending on the environment in which you install the Atlassian tools and Rundeck.
+The playbooks depend on roles. The roles provide variables for customization. The different variables can be looked up under each role at <code>default/main.yml</code>.</p>
+</div>
+<div class="dlist">
+<div class="title">General Playbooks</div>
+<dl>
+<dt class="hdlist1">postgresql.yml</dt>
+<dd>
+<p>Sets up a (local) PostgreSQL for use with Atlassian tools.</p>
+</dd>
+<dt class="hdlist1">schemas.yml</dt>
+<dd>
+<p>Sets up the required schemas for Atlassian tools</p>
+</dd>
+<dt class="hdlist1">crowd.yml</dt>
+<dd>
+<p>Sets up Atlassian Crowd as an Identity and SSO provider</p>
+</dd>
+<dt class="hdlist1">bitbucket.yml</dt>
+<dd>
+<p>Sets up Atlassian Bitbucket</p>
+</dd>
+<dt class="hdlist1">jira.yml</dt>
+<dd>
+<p>Sets up Atlassian Jira</p>
+</dd>
+<dt class="hdlist1">jira_enable_sso.yml</dt>
+<dd>
+<p>After basic setup of Crowd and Jira setup, enable SSO functionality.</p>
+</dd>
+<dt class="hdlist1">confluence.yml</dt>
+<dd>
+<p>Sets up Atlassian Confluence</p>
+</dd>
+<dt class="hdlist1">confluence_enable_sso.yml</dt>
+<dd>
+<p>After basic setup of Crowd and Confluence setup, enable SSO functionality.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Beside the basic playbooks, it might be required to run additional playbooks if you setup the Atlassian tools on AWS.</p>
+</div>
+<div class="dlist">
+<div class="title">Special Plabyooks</div>
+<dl>
+<dt class="hdlist1">crowd_post_setup.yml</dt>
+<dd>
+<p>Takes care that login to crowd is possible by inserting the AWS LB IP addresses into the database tables.</p>
+</dd>
+</dl>
+</div>
+</div>
 </div>
 </article>
   </main>
