@@ -25,6 +25,10 @@
           <div class="navbar-dropdown">
             <a class="navbar-item" href="index.html">Jenkins Shared Library</a>
             <a class="navbar-item" href="../../ods-core/latest/infrastructure-setup/index.html">ODS Core</a>
+            <a class="navbar-item" href="../../ods-common-keycloak/latest/index.html">ODS Keycloak</a>
+            <a class="navbar-item" href="../../ods-bitbucket-keycloak/latest/index.html">ODS Keycloak for Bitbucket</a>
+            <a class="navbar-item" href="../../ods-confluence-keycloak/latest/index.html">ODS Keycloak for Confluence</a>
+            <a class="navbar-item" href="../../ods-jira-keycloak/latest/index.html">ODS Keycloak for JIRA</a>
             <a class="navbar-item" href="../../common/latest/index.html">OpenDevStack</a>
             <a class="navbar-item" href="../../ods-provisioning-app/latest/index.html">Provisioning App</a>
           </div>
@@ -57,6 +61,38 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../../ods-core/latest/infrastructure-setup/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">ODS Keycloak</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../ods-common-keycloak/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">ODS Keycloak for Bitbucket</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../ods-bitbucket-keycloak/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">ODS Keycloak for Confluence</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../ods-confluence-keycloak/latest/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">ODS Keycloak for JIRA</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../ods-jira-keycloak/latest/index.html">latest</a>
         </li>
       </ul>
     </li>
@@ -331,7 +367,9 @@ a <code>Jenkinsfile</code> on branch <code>0.1.x</code> points to <code>0.1.x</c
 <h2 id="_background"><a class="anchor" href="#_background"></a>Background</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The implementation is largely based on <a href="https://www.relaxdiego.com/2018/02/jenkins-on-jenkins-shared-libraries.html" class="bare">https://www.relaxdiego.com/2018/02/jenkins-on-jenkins-shared-libraries.html</a>. The scripted pipeline syntax was chosen because it is a better fit for a shared library. The declarative pipeline syntax is targeted for newcomers and/or simple pipelines (see <a href="https://jenkins.io/doc/book/pipeline/syntax/#scripted-pipeline" class="bare">https://jenkins.io/doc/book/pipeline/syntax/#scripted-pipeline</a>). If you try to use it e.g. within a Groovy class you&#8217;ll end up with lots of <code>script</code> blocks.</p>
+<p>The implementation is largely based on <a href="https://www.relaxdiego.com/2018/02/jenkins-on-jenkins-shared-libraries.html" class="bare">https://www.relaxdiego.com/2018/02/jenkins-on-jenkins-shared-libraries.html</a>.
+The scripted pipeline syntax was chosen because it is a better fit for a shared library.
+The declarative pipeline syntax is targeted for newcomers and/or simple pipelines (see <a href="https://jenkins.io/doc/book/pipeline/syntax/#scripted-pipeline" class="bare">https://jenkins.io/doc/book/pipeline/syntax/#scripted-pipeline</a>). If you try to use it e.g. within a Groovy class you&#8217;ll end up with lots of <code>script</code> blocks.</p>
 </div>
 </div>
 </div>
