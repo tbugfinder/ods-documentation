@@ -14,6 +14,18 @@ content:
     - url: ../ods-provisioning-app
       start_path: docs
       branches: HEAD
+    - url: ../ods-common-keycloak
+      start_path: docs
+      branches: HEAD
+    - url: ../ods-jira-keycloak
+      start_path: docs
+      branches: HEAD
+    - url: ../ods-confluence-keycloak
+      start_path: docs
+      branches: HEAD
+    - url: ../ods-bitbucket-keycloak
+      start_path: docs
+      branches: HEAD
 output:
   dir: ./docs
 ui:

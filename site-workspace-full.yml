@@ -1,0 +1,19 @@
+site:
+  title: OpenDevStack
+  start_page: common::index.adoc
+content:
+  branches: master,1.*
+  sources:
+    - url: ../ods-guides
+    - url: ../ods-core
+      start_path: docs
+    - url: ../ods-jenkins-shared-library
+      start_path: docs
+    - url: ../ods-provisioning-app
+      start_path: docs
+output:
+  dir: ./docs
+ui:
+  bundle:
+    url: ./ui-bundle.zip
+    snapshot: true
