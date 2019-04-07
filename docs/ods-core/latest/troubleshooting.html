@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width, initial-scale=1.0">
-    <title>Overview :: OpenDevStack</title>
+    <title>Troubleshooting :: OpenDevStack</title>
     <meta name="generator" content="Antora 2.0.0">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -139,15 +139,83 @@
 <nav class="crumbs" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="infrastructure-setup/index.html">ODS Core</a></li>
-    <li class="crumb"><a href="index.html">Overview</a></li>
+    <li class="crumb"><a href="troubleshooting.html">Troubleshooting</a></li>
   </ul>
 </nav>
-  <div class="edit-this-page"><a href="file:///home/richard/git/ods-documentation-poc/ods-core/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="file:///home/richard/git/ods-documentation-poc/ods-core/docs/modules/ROOT/pages/troubleshooting.adoc">Edit this Page</a></div>
 </div>
 <article class="doc">
-<h1>Overview</h1>
+<h1>Troubleshooting</h1>
+<div class="sect1">
+<h2 id="_the_terminal_is_empty_when_using_vagrant_ssh_in_cygwin"><a class="anchor" href="#_the_terminal_is_empty_when_using_vagrant_ssh_in_cygwin"></a>The terminal is empty when using vagrant ssh in cygwin</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet. Lorem ipsum dolor sit amet, consetetur sadipscing elitr, sed diam nonumy eirmod tempor invidunt ut labore et dolore magna aliquyam erat, sed diam voluptua. At vero eos et accusam et justo duo dolores et ea rebum. Stet clita kasd gubergren, no sea takimata sanctus est Lorem ipsum dolor sit amet.</p>
+<p>By default cygwin uses the ssh client from it&#8217;s msys environment
+Use "VAGRANT_PREFER_SYSTEM_BIN=1 vagrant ssh " on Windows 10 to tell cygwin to use windows&#8217;s ssh-client</p>
+</div>
+<div class="paragraph">
+<p>Source: <a href="https://github.com/hashicorp/vagrant/issues/9143#issuecomment-343311263" class="bare">https://github.com/hashicorp/vagrant/issues/9143#issuecomment-343311263</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_error_the_role_was_not_found_in_vagrantansibleplaybooksroles"><a class="anchor" href="#_error_the_role_was_not_found_in_vagrantansibleplaybooksroles"></a>ERROR! the role '&#8230;&#8203;' was not found in /vagrant/ansible/playbooks/roles &#8230;&#8203;</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This error can happen on windows when the shared folder between windows and the vm doesn&#8217;t have the right permissions. Then Ansible will ignore the ansible.cfg config-file in this folder which will cause it to use the wrong directory to search for roles.
+To fix this you can modify the ansible.cfg file in /etc/ansible and change the roles_path to</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>roles_path = /vagrant/ansible/roles</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_fatal_atlassian1_unreachable_changed_false_msg_failed_to_connect_to_the_host_via_ssh_permission_denied_publickeypassword_rn_unreachable_true"><a class="anchor" href="#_fatal_atlassian1_unreachable_changed_false_msg_failed_to_connect_to_the_host_via_ssh_permission_denied_publickeypassword_rn_unreachable_true"></a>fatal: [atlassian1]: UNREACHABLE! =&gt; {"changed": false, "msg": "Failed to connect to the host via ssh: Permission denied (publickey,password).\r\n", "unreachable": true}</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This error happens when executing the ansible-playbooks as root user.
+You have to execute the playbooks as vagrant</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_timeouts_during_the_execution_of_ansible_playbooks"><a class="anchor" href="#_timeouts_during_the_execution_of_ansible_playbooks"></a>Timeouts during the execution of ansible-playbooks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Just execute the playbook again. The network is sometimes too slow.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_minishift_does_not_start"><a class="anchor" href="#_minishift_does_not_start"></a>Minishift does not start</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you install Minishift in an environment with an AD domain it is possible, that Minishift doesn&#8217;t start up.
+Try to connect to your AD domain and then restart Minishift again.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_jenkins_slave_image_pull_error_errimgpull_imagepullback_exception"><a class="anchor" href="#_jenkins_slave_image_pull_error_errimgpull_imagepullback_exception"></a>Jenkins slave - Image pull error (ErrImgPull / ImagePullback Exception)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Jenkins builds fails (or gets stuck at "continuing on node xyz"). Check pods in the project&#8217;s CD project - and see if a slave pod is in error state with the above message in the events section.</p>
+</div>
+<div class="paragraph">
+<p>In this case - grant <code>system:authenticated (group)</code> -&gt; <code>image-puller</code> rights.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_all_other_issues"><a class="anchor" href="#_all_other_issues"></a>All other issues</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Just open a ticket against OpenDevStack - don&#8217;t be shy there is no wrong or bad question. And we are there to help!</p>
+</div>
+</div>
 </div>
 </article>
   </main>
