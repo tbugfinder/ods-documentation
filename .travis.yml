@@ -10,8 +10,13 @@ addons:
     packages:
       - git
 
+language: node_js
+
 before_install:
   - docker pull antora/antora:2.0.0
+
+before_script:
+  - npm install
 
 script:
   - docker run -v $TRAVIS_BUILD_DIR:/antora --rm -t antora/antora:2.0.0 --fetch --stacktrace site.yml
