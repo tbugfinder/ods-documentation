@@ -3,7 +3,7 @@ site:
   start_page: common::index.adoc
 content:
   sources:
-    - url: https://github.com/rattermeyer/ods-guides.git
+    - url: https://github.com/rattermeyer/ods-docs-guides.git
     - url: https://github.com/rattermeyer/ods-core.git
       start_path: docs
     - url: https://github.com/rattermeyer/ods-jenkins-shared-library.git
@@ -18,6 +18,14 @@ content:
       start_path: docs
     - url: https://git.opitz-consulting.de/scm/opendevstack/ods-bitbucket-keycloak.git
       start_path: docs
+
+asciidoc:
+  extensions:
+    - asciidoctor-plantuml
+  attributes:
+    plantuml-server-url: 'http://www.plantuml.com/plantuml'
+    plantuml-fetch-diagram: true
+
 output:
   dir: ./docs
 ui:
