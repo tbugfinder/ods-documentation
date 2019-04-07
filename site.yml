@@ -10,14 +10,14 @@ content:
       start_path: docs
     - url: https://github.com/rattermeyer/ods-provisioning-app.git
       start_path: docs
-    - url: https://git.opitz-consulting.de/scm/opendevstack/ods-common-keycloak.git
-      start_path: docs
-    - url: https://git.opitz-consulting.de/scm/opendevstack/ods-jira-keycloak.git
-      start_path: docs
-    - url: https://git.opitz-consulting.de/scm/opendevstack/ods-confluence-keycloak.git
-      start_path: docs
-    - url: https://git.opitz-consulting.de/scm/opendevstack/ods-bitbucket-keycloak.git
-      start_path: docs
+      #    - url: https://git.opitz-consulting.de/scm/opendevstack/ods-common-keycloak.git
+      #      start_path: docs
+      #    - url: https://git.opitz-consulting.de/scm/opendevstack/ods-jira-keycloak.git
+      #      start_path: docs
+      #    - url: https://git.opitz-consulting.de/scm/opendevstack/ods-confluence-keycloak.git
+      #      start_path: docs
+      #    - url: https://git.opitz-consulting.de/scm/opendevstack/ods-bitbucket-keycloak.git
+      #      start_path: docs
 
 asciidoc:
   extensions:
