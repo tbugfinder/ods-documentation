@@ -7,7 +7,7 @@ setup_git() {
 
 commit_website_files() {
   cd docs
-  touch .nojekyll
+  sudo touch .nojekyll
   git add -A . 
   git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
 }
