@@ -2,6 +2,7 @@ site:
   title: OpenDevStack
   start_page: common::index.adoc
   url: https://www.rattermeyer.de/ods-documentation
+
 content:
   sources:
     - url: https://github.com/rattermeyer/opendevstack.github.io

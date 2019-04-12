@@ -20,6 +20,7 @@ before_script:
 
 script:
   - docker run -v $TRAVIS_BUILD_DIR:/antora --rm -t antora/antora:2.0.0 --clean --fetch --stacktrace site.yml
+  - touch docs/.nojekyll
 
 after_success:
   - ./.travis/push.sh
