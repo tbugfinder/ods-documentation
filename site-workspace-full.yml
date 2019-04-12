@@ -4,7 +4,8 @@ site:
 content:
   branches: master,1.*
   sources:
-    - url: ../ods-docs-guides
+    - url: ../opendevstack.github.io
+      start_path: docs
     - url: ../ods-core
       start_path: docs
     - url: ../ods-jenkins-shared-library
@@ -16,12 +17,12 @@ asciidoc:
   extensions:
     - asciidoctor-plantuml
   attributes:
-    plantuml-server-url: 'http://www.plantuml.com/plantuml'
+    plantuml-server-url: 'http://localhost:9080'
     plantuml-fetch-diagram: true
 
 output:
   dir: ./docs
 ui:
   bundle:
-    url: ./ui-bundle.zip
+    url: ../ods-docs-ui/build/ui-bundle.zip
     snapshot: true

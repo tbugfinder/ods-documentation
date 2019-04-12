@@ -3,7 +3,8 @@ site:
   start_page: common::index.adoc
 content:
   sources:
-    - url: ../ods-docs-guides
+    - url: ../opendevstack.github.io
+      start_path: docs
       branches: HEAD
     - url: ../ods-core
       start_path: docs
@@ -17,18 +18,6 @@ content:
     - url: ../tailor
       start_path: docs
       branches: HEAD
-      #    - url: ../ods-common-keycloak
-      #      start_path: docs
-      #      branches: HEAD
-      #    - url: ../ods-jira-keycloak
-      #      start_path: docs
-      #      branches: HEAD
-      #    - url: ../ods-confluence-keycloak
-      #      start_path: docs
-      #      branches: HEAD
-      #    - url: ../ods-bitbucket-keycloak
-      #      start_path: docs
-      #      branches: HEAD
 asciidoc:
   extensions:
     - asciidoctor-plantuml
