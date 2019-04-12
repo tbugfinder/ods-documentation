@@ -19,7 +19,7 @@ before_script:
   - npm install
 
 script:
-  - docker run -v $TRAVIS_BUILD_DIR:/antora --rm -t antora/antora:2.0.0 --fetch --stacktrace site.yml
+  - docker run -v $TRAVIS_BUILD_DIR:/antora --rm -t antora/antora:2.0.0 --clean --fetch --stacktrace site.yml
 
 after_success:
   - ./travis/push.sh
