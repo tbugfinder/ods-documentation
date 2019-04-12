@@ -14,6 +14,9 @@ content:
     - url: ../ods-provisioning-app
       start_path: docs
       branches: HEAD
+    - url: ../tailor
+      start_path: docs
+      branches: HEAD
       #    - url: ../ods-common-keycloak
       #      start_path: docs
       #      branches: HEAD
@@ -37,5 +40,5 @@ output:
   dir: ./docs
 ui:
   bundle:
-    url: ./ui-bundle.zip
+    url: ../ods-docs-ui/build/ui-bundle.zip
     snapshot: true
