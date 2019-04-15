@@ -19,12 +19,13 @@ before_script:
   - npm install
 
 script:
+  - git checkout -b master origin/master
   - docker run -v $TRAVIS_BUILD_DIR:/antora --rm -t antora/antora:2.0.0 --clean --fetch --stacktrace site.yml
   - sudo touch docs/.nojekyll
   - git add -A .
-  - git commit --message 'Travis build'
+  - git commit -a -m 'Travis build'
   - git remote add origin-pages https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git > /dev/null 2>&1
-  - git push --quiet --set-upstream origin-pages master
+  - git push --all --set-upstream origin-pages master
 
 after_success:
   - ./.travis/push.sh
