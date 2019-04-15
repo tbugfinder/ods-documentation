@@ -22,7 +22,7 @@ script:
   - docker run -v $TRAVIS_BUILD_DIR:/antora --rm -t antora/antora:2.0.0 --clean --fetch --stacktrace site.yml
   - sudo touch docs/.nojekyll
   - git add -A .
-  - git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
+  - git commit --message 'Travis build'
   - git remote add origin-pages https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git > /dev/null 2>&1
   - git push --quiet --set-upstream origin-pages master
 
