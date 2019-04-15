@@ -6,12 +6,24 @@ content:
   sources:
     - url: ../opendevstack.github.io
       start_path: docs
+      branches:
+      - 1.0.x
+      - master
     - url: ../ods-core
       start_path: docs
+      branches:
+      - 1.0.x
+      - master
     - url: ../ods-jenkins-shared-library
       start_path: docs
+      branches:
+      - 1.0.x
+      - master
     - url: ../ods-provisioning-app
       start_path: docs
+      branches:
+      - 1.0.x
+      - master
 
 asciidoc:
   extensions:
