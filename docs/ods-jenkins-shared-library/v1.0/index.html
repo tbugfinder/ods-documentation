@@ -110,7 +110,7 @@
     <a class="version is-current" href="index.html">v1.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/rattermeyer/ods-jenkins-shared-library/edit/1.0.x/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-jenkins-shared-library/edit/1.0.x/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
 </div>
 <article class="doc">
 <h1>Jenkins Shared Library</h1>
@@ -295,6 +295,184 @@ autoCloneEnvironmentsFromSourceMapping: [
 <div class="paragraph">
 <p>Inside the closure passed to <code>odsPipeline</code>, you have full control. Write stages just like you would do in a normal <code>Jenkinsfile</code>. You have access to the <code>context</code>, which is assembled for you on the master node. The <code>context</code> can be influenced by changing the config map passed to <code>odsPipeline</code>. Please see <code>vars/odsPipeline.groovy</code> for possible options.</p>
 </div>
+<div class="paragraph">
+<p>When you write stages, you have access to both global variables (defined without <code>def</code> in the <code>Jenkinsfile</code>) and the
+<code>context</code> object. It contains the following properties:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">jobName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Value of JOB_NAME. It is the name of the project of the build.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">buildNumber</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Value of BUILD_NUMBER. The current build number, such as "153".</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">buildUrl</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Value of BUILD_URL. The URL where the results of the build can be found (e.g. <a href="http://buildserver/jenkins/job/MyJobName/123/" class="bare">http://buildserver/jenkins/job/MyJobName/123/</a>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">buildTime</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Time of the build, collected when the odsPipeline starts.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">image</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Container image to use for the Jenkins agent container. This value is not used when "podContainers" is set.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">podLabel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pod label, set by default to a random label to avoid caching issues. Set to a stable label if you want to reuse pods across builds.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">podContainers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Custom pod containers to use. By default, only one container is used, and it is configure automatically. If you need to run multiple containers (e.g. app and database), then you can configure the containers via this property.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">podVolumes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Volumes to make available to the pod.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">podAlwaysPullImage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Determine whether to always pull the container image before each build run.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">podServiceAccount</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Serviceaccount to use when running the pod.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">credentialsId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Credentials identifier (Credentials are created and named automatically by the OpenShift Jenkins plugin).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tagversion</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The tagversion is made up of the build number and the first 8 chars of the commit SHA.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">notifyNotGreen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to send notifications if the build is not successful.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nexusHost</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nexus host (with scheme).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nexusUsername</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nexus username.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nexusPassword</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nexus password.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nexusHostWithBasicAuth</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nexus host (with scheme), including username and password as BasicAuth.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">branchToEnvironmentMapping</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Define which branches are deployed to which environments.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">autoCloneEnvironmentsFromSourceMapping</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Define which environments are cloned from which source environments.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cloneSourceEnv</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The environment which was chosen as the clone source.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">environment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The environment which was chosen as the deployment target, e.g. "dev".</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">targetProject</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Target project, based on the environment. E.g. "foo-dev".</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">groupId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Group ID, defaults to: org.opendevstack.<projectID>.</projectID></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">projectId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Project ID, e.g. "foo".</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">componentId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Component ID, e.g. "be-auth-service".</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">gitUrl</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Git URL of repository</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">gitBranch</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Git branch for which the build runs.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">gitCommit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Git commit SHA to build.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">gitCommitAuthor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Git commit author.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">gitCommitMessage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Git commit message.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">gitCommitTime</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Git commit time in RFC 3399.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sonarQubeBranch</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Branch on which to run SonarQube analysis.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">dependencyCheckBranch</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Branch on which to run dependency checks.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">environmentLimit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of environments to allow.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">openshiftHost</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OpenShift host - value taken from OPENSHIFT_API_URL.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">odsSharedLibVersion</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ODS Jenkins shared library version, taken from reference in Jenkinsfile.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bitbucketHost</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BitBucket host - value taken from BITBUCKET_HOST.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">environmentCreated</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether an environment has been created during the build.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">openshiftBuildTimeout</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Timeout for the OpenShift build of the container image.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ciSkip</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether the build should be skipped, based on the Git commit message.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 <div class="sect1">
@@ -330,6 +508,36 @@ a <code>Jenkinsfile</code> on branch <code>0.1.x</code> points to <code>0.1.x</c
 </div>
 </div>
 <div class="sect1">
+<h2 id="_git_lfs_git_large_file_storage_extension"><a class="anchor" href="#_git_lfs_git_large_file_storage_extension"></a>Git LFS (Git Large File Storage extension)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you are working with large files (e.g.: binary files, media files, files bigger than 5MB&#8230;&#8203;),
+you can follow the following steps:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Check this HOWTO about <a href="https://www.atlassian.com/git/tutorials/git-lfs">Git LFS</a></p>
+</li>
+<li>
+<p>Track your large files in your local clone, as explained in previous step</p>
+</li>
+<li>
+<p>Enable Git LFS in your repository (if BitBucket: under repository&#8217;s settings main page you can enable it)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>NOTE</strong>: if already having a repository with large files and you want to migrate it to using git LFS:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git lfs migrate</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_development"><a class="anchor" href="#_development"></a>Development</h2>
 <div class="sectionbody">
 <div class="ulist">
@@ -351,9 +559,7 @@ a <code>Jenkinsfile</code> on branch <code>0.1.x</code> points to <code>0.1.x</c
 <h2 id="_background"><a class="anchor" href="#_background"></a>Background</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The implementation is largely based on <a href="https://www.relaxdiego.com/2018/02/jenkins-on-jenkins-shared-libraries.html" class="bare">https://www.relaxdiego.com/2018/02/jenkins-on-jenkins-shared-libraries.html</a>.
-The scripted pipeline syntax was chosen because it is a better fit for a shared library.
-The declarative pipeline syntax is targeted for newcomers and/or simple pipelines (see <a href="https://jenkins.io/doc/book/pipeline/syntax/#scripted-pipeline" class="bare">https://jenkins.io/doc/book/pipeline/syntax/#scripted-pipeline</a>). If you try to use it e.g. within a Groovy class you&#8217;ll end up with lots of <code>script</code> blocks.</p>
+<p>The implementation is largely based on <a href="https://www.relaxdiego.com/2018/02/jenkins-on-jenkins-shared-libraries.html" class="bare">https://www.relaxdiego.com/2018/02/jenkins-on-jenkins-shared-libraries.html</a>. The scripted pipeline syntax was chosen because it is a better fit for a shared library. The declarative pipeline syntax is targeted for newcomers and/or simple pipelines (see <a href="https://jenkins.io/doc/book/pipeline/syntax/#scripted-pipeline" class="bare">https://jenkins.io/doc/book/pipeline/syntax/#scripted-pipeline</a>). If you try to use it e.g. within a Groovy class you&#8217;ll end up with lots of <code>script</code> blocks.</p>
 </div>
 </div>
 </div>
