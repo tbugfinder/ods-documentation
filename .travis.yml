@@ -11,15 +11,18 @@ addons:
       - git
 
 language: node_js
+node_js: 
+  - "lts/*"
 
 before_install:
   - docker pull antora/antora:2.0.0
 
 before_script:
+  - npm i -g @antora/cli@2.0 @antora/site-generator-default@2.0
   - npm install
 
 script:
-  - docker run -v $TRAVIS_BUILD_DIR:/antora --rm -t antora/antora:2.0.0 --clean --fetch --stacktrace site.yml
+  - antora site.yml
 
 after_success:
   - ./.travis/push.sh
