@@ -10,6 +10,9 @@ commit_website_files() {
   sudo touch .nojekyll
   git add -A . 
   git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
+  git branch temp-changes
+  git checkout master
+  git merge temp-changes
 }
 
 upload_files() {
