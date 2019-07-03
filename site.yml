@@ -9,21 +9,25 @@ content:
       start_path: docs
       branches:
       - 1.0.x
+      - 1.1.x
       - master
     - url: https://github.com/rattermeyer/ods-core.git
       start_path: docs
       branches:
       - 1.0.x
+      - 1.1.x
       - master
     - url: https://github.com/rattermeyer/ods-jenkins-shared-library.git
       start_path: docs
       branches:
       - 1.0.x
+      - 1.1.x
       - master
     - url: https://github.com/rattermeyer/ods-provisioning-app.git
       start_path: docs
       branches:
       - 1.0.x
+      - 1.1.x
       - master
 asciidoc:
   extensions:
