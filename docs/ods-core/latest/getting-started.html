@@ -51,12 +51,6 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="sysenv-requirements.html">System and Environment Requirements</a>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="development-guide.html">Development Guide</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="update-guide.html">Update Guide</a>
-  </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="0">
@@ -69,14 +63,35 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="jenkins/index.html">Jenkins</a>
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Jenkins</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="jenkins/index.html">Jenkins Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="jenkins/webhook-proxy.html">Webhook Proxy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="jenkins/slave-base.html">Jenkins Slave Base Image</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="shared-images/index.html">Shared Images</a>
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Shared Images</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="shared-images/openresty-nginx.html">OpenResty Base image + WAF</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="shared-images/nginx-authproxy-crowd.html">Crowd Authproxy</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -118,6 +133,9 @@
           <a href="../../common/latest/index.html">latest</a>
         </li>
         <li class="version">
+          <a href="../../common/1.1/index.html">1.1</a>
+        </li>
+        <li class="version">
           <a href="../../common/v1.0/index.html">v1.0</a>
         </li>
       </ul>
@@ -127,6 +145,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../../ods-jenkins-shared-library/latest/index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../../ods-jenkins-shared-library/1.1/index.html">1.1</a>
         </li>
         <li class="version">
           <a href="../../ods-jenkins-shared-library/v1.0/index.html">v1.0</a>
@@ -140,6 +161,9 @@
           <a href="infrastructure-setup/index.html">latest</a>
         </li>
         <li class="version">
+          <a href="../1.1/infrastructure-setup/index.html">1.1</a>
+        </li>
+        <li class="version">
           <a href="../v1.0/infrastructure-setup/index.html">v1.0</a>
         </li>
       </ul>
@@ -149,6 +173,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../../ods-provisioning-app/latest/index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../../ods-provisioning-app/1.1/index.html">1.1</a>
         </li>
         <li class="version">
           <a href="../../ods-provisioning-app/v1.0/index.html">v1.0</a>
@@ -174,6 +201,7 @@
   <button class="versions-menu-toggle" title="Show other versions of page">latest</button>
   <div class="versions-menu">
     <a class="version is-current" href="getting-started.html">latest</a>
+    <a class="version" href="../1.1/getting-started.html">1.1</a>
     <a class="version is-missing" href="../v1.0/infrastructure-setup/index.html">v1.0</a>
   </div>
 </div>
@@ -196,7 +224,11 @@
 <h2 id="_requirements"><a class="anchor" href="#_requirements"></a>Requirements</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The following requirements have to be met to setup a local environment</p>
+<p>The following requirements have to be met to setup a local environment. You should have a computer with at least 32 GB of RAM, because we are going to install
+several Atlassian tools and a local OpenShift environment.</p>
+</div>
+<div class="paragraph">
+<p><strong>Important: We assume, you will have a full functional internet connection</strong></p>
 </div>
 <div class="sect2">
 <h3 id="_git"><a class="anchor" href="#_git"></a>Git</h3>
@@ -240,49 +272,54 @@ You need licenses for the following products:</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>The evaluation licenses are valid for 30 days from the date of purchase. If you need a server id, this will be provided by the tools within the installation, so you are able to inlcude the licenses within the
-installation wizards of the tools, after the base setup provided by the Ansible scripts.</p>
+<p>The evaluation licenses are valid for 30 days from the date of purchase. If you need a server id, this will be provided by the tools within the installation,
+so you are able to inlcude the licenses within theinstallation wizards of the tools, after the base setup provided by the Ansible scripts.</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_minishift"><a class="anchor" href="#_minishift"></a>Minishift</h3>
 <div class="paragraph">
-<p>The provided provision application and Rundeck jobs work with links, which are designed to connect to a installed and configured <a href="https://docs.openshift.org/latest/minishift/index.html">Minishift</a> instance. Minishift is a tool provided by Redhat to run OpenShift locally by providing a single-node OpenShift cluster inside a VM.
-Information, how to setup Minishift can be found at the <a href="https://docs.openshift.org/latest/minishift/getting-started/index.html">Minishift Getting Started guide</a>.
-Currently the OpenDevStack works with Openshift 3.9.0.</p>
+<p>The base setup uses the following versions:</p>
 </div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Software</th>
+<th class="tableblock halign-left valign-top">Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bitbucket</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.16.3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Jira</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7.13.3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Confluence</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6.14.3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Crowd</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.4.4</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 <div class="sect2">
 <h3 id="_cygwin_linux"><a class="anchor" href="#_cygwin_linux"></a>Cygwin / Linux</h3>
 <div class="paragraph">
-<p>You must have the possibility to run bash scripts to import the provided OpenShift templates. On Linux systems you can use these scripts out-of-the box, on Windows systems you will have to install either a bash port for Windows like <a href="https://www.cygwin.com/">Cygwin</a>.
-For Windows, our recommendation is to use Cygwin for starting a minishift cluster and further configuration. Make sure to select the curl package under the "net" category when installing cygwin.</p>
-</div>
-<div class="paragraph">
-<p><code>minishift</code> will use the <a href="https://kubernetes.io/docs/tasks/access-application-cluster/configure-access-multiple-clusters/#explore-the-home-kube-directory">.kube/config</a> mechanism to configure access to the kubernetes cluster. Minishift will place the config in the Windows home directory. To make this work under <code>cygwin</code>, we will point the cygwin home directory to the Windows Home directory.
-This can easily be achieved by changing the <code>db_home</code> entry in <code>/etc/nsswitch.conf</code> to</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>dbhome: windows</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>or</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>dbhome: /%H</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This is described in the <a href="https://cygwin.com/cygwin-ug-net/ntsec.html#ntsec-mapping-nsswitch-syntax">cygwin user guide</a>.</p>
+<p>You must have the possibility to run bash scripts to install the OpenDevStack. On Linux systems you can use these scripts out-of-the box, on Windows systems you will have to install either a bash port for Windows like <a href="https://www.cygwin.com/">Cygwin</a>.
+For Windows, our recommendation is to use Cygwin for configuration. Make sure to select the curl package under the "net" category when installing cygwin.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_ansible"><a class="anchor" href="#_ansible"></a>Ansible</h3>
 <div class="paragraph">
-<p>The OpenDevStack uses <a href="https://www.ansible.com/">Ansible</a> to install and configure the necessary software for the enabling stack, so it&#8217;s recommended to get familiar with its core concepts and usage. Also credentials are stored within an Ansible vault, so even if you commit them in a public repository they are not available unless you know the vault password.</p>
+<p>The OpenDevStack uses <a href="https://www.ansible.com/">Ansible</a> to install and configure the necessary software for the enabling stack, so it&#8217;s recommended to get familiar with its core concepts and usage. Credentials are stored within an Ansible vault, so even if you commit them in a public repository they are not available unless you know the vault password. Nevertheless, it is recommended to take care with handling credentials, even if they are encrypted.</p>
 </div>
 </div>
 </div>
@@ -318,68 +355,89 @@ This can easily be achieved by changing the <code>db_home</code> entry in <code>
 <td class="tableblock halign-left valign-top"><p class="tableblock">1.0.x</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">&gt;= 0.9.1</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.1.x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&gt;= 0.9.3</p></td>
+</tr>
 </tbody>
 </table>
 </div>
 <div class="sect2">
 <h3 id="_prepare_infrastructure"><a class="anchor" href="#_prepare_infrastructure"></a>Prepare infrastructure</h3>
 <div class="paragraph">
-<p>First you have to clone the <a href="http://www.github.com/opendevstack/ods-core">ods-core</a> repository.</p>
+<p>First create a base directory for the OpenDevStack repositories, e.g. <strong>ods</strong>. This will be your base directory for all following operations.
+This path will also be mounted to the VMs provisioned by Vagrant.</p>
 </div>
 <div class="paragraph">
-<p>Navigate to the folder <span class="menuseq"><b class="menu">ods-core</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">infrastructure-setup</b></span>.
-There you will find a Vagrant file. You can start the infrastructure provisioning and setup by using</p>
+<p>Then you have to clone the <a href="http://www.github.com/opendevstack/ods-core">ods-core</a> repository into the created directory.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">vagrant up</code></pre>
+<pre>git clone https://github.com/opendevstack/ods-core.git</pre>
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/setup-script/clone_repo.PNG" alt="Clone repository">
 </div>
 </div>
 <div class="paragraph">
-<p>After Vagrant has provisioned the VMs you are able to connect to them. There are two VMs, <code>atlcon</code> and <code>atlassian1</code>.
-First connect to the Ansible controller <code>atlcon</code> from the directory you ran the Vagrantfile from via</p>
+<p>Navigate to the folder <span class="menuseq"><b class="menu">ods</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">ods-core</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">infrastructure-setup</b></span>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/setup-script/scripts.PNG" alt="Directory listing">
+</div>
+</div>
+<div class="paragraph">
+<p>There you will find the setup and configuration shell scripts. You can start the infrastructure provisioning and setup by using</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">vagrant ssh atlcon</code></pre>
+<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./setup-local-environment.sh</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>After the connect change the directory to <code>/vagrant/ansible</code>.
-Here you have to execute the following command:</p>
+<p>This script allows you to set the necessary installation pathes, clones the necessary OpenDevStack repositories and prepares the vagrant infrastructure, including the base installation of the Atlassian tools, Rundeck and datatbase preparing.</p>
 </div>
-<div class="listingblock">
+<div class="paragraph">
+<p>For a local test environment it is recommended to keep the default values.</p>
+</div>
+<div class="imageblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">ansible-playbook -i inventories/dev dev.yml --ask-vault-pass</code></pre>
+<img src="_images/documentation/setup-script/script-execution-1.PNG" alt="Configuration values">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/setup-script/script-execution-2.PNG" alt="Vagrant">
 </div>
 </div>
 <div class="paragraph">
-<p>This playbook prepares the ansible controller and basic installations on the <code>atlassian1</code> VM like a local database and the necessary schemas with their respective user.
-The password for the vault located under <code>ansible/inventories/dev/group_vars/all/vault.yml</code> is <code>opendevstack</code>.
-Depending on your network or proxy configuration it might happen that some online resources are not reachable. Please try to execute the playbook again in such a case.</p>
+<p>During script execution you will have the possibility to choose, if you want to confirm the Atlassian and Rundeck installation for every tool or to run a complete setup.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/setup-script/stack-confirm.PNG" alt="Atlassian stack">
+</div>
 </div>
 <div class="paragraph">
-<p><strong>All ansible playbook commands in this guide have to be executed from the Ansible controller like described before!</strong></p>
+<p>After the base installation, you will have to configure the Atlassian tools, before you are able to proceed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/setup-script/script-execution-3.PNG" alt="Vagrant">
+</div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_install_atlassian_tools_and_rundeck"><a class="anchor" href="#_install_atlassian_tools_and_rundeck"></a>Install Atlassian Tools and Rundeck</h3>
+<h3 id="_configure_atlassian_tools"><a class="anchor" href="#_configure_atlassian_tools"></a>Configure Atlassian Tools</h3>
 <div class="paragraph">
-<p>The following steps explain the Atlassian tools and the Rundeck installation.</p>
+<p>The following steps explain the Atlassian tools configuration i the local test environment.
+If you have already installed the Atlassian tools, you can skip the Configuration Wizard chapter for the respective tool</p>
 </div>
 <div class="sect3">
-<h4 id="_crowd_setup"><a class="anchor" href="#_crowd_setup"></a>Crowd Setup</h4>
-<div class="sect4">
-<h5 id="_setup_application"><a class="anchor" href="#_setup_application"></a>Setup Application</h5>
-<div class="paragraph">
-<p>Downloading and Configuring as service</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">ansible-playbook -v -i inventories/dev playbooks/crowd.yml --ask-vault</code></pre>
-</div>
-</div>
-</div>
+<h4 id="_atlassian_crowd"><a class="anchor" href="#_atlassian_crowd"></a>Atlassian Crowd</h4>
 <div class="sect4">
 <h5 id="_run_configuration_wizard"><a class="anchor" href="#_run_configuration_wizard"></a>Run Configuration Wizard</h5>
 <div class="paragraph">
@@ -393,18 +451,35 @@ Depending on your network or proxy configuration it might happen that some onlin
 <div class="paragraph">
 <p>Here you can see the server id you need for the license you can get from the <a href="https://my.atlassian.com/products/index">My Atlassian page</a>. Use the link to get an evaluation license (Crowd Server) or enter a valid license key into the textbox.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/crowd/crowd-config-1.PNG" alt="License key">
+</div>
+</div>
 </div>
 <div class="sect5">
 <h6 id="_step_2_crowd_installation"><a class="anchor" href="#_step_2_crowd_installation"></a>Step 2: Crowd installation</h6>
 <div class="paragraph">
 <p>Here choose the <strong>New installation</strong> option.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/crowd/crowd-config-2.PNG" alt="New installation">
+</div>
+</div>
 </div>
 <div class="sect5">
 <h6 id="_step_3_database_configuration"><a class="anchor" href="#_step_3_database_configuration"></a>Step 3: Database Configuration</h6>
 <div class="paragraph">
-<p>The next step is the database configuration.
-Choose the <strong>JDBC Connection</strong> option and configure the database with the following settings</p>
+<p>The next step is the database configuration.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/crowd/crowd-config-3.PNG" alt="Database configuration">
+</div>
+</div>
+<div class="paragraph">
+<p>Choose the <strong>JDBC Connection</strong> option and configure the database with the following settings</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -428,7 +503,7 @@ Choose the <strong>JDBC Connection</strong> option and configure the database wi
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">JDBC URL</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">jdbc:postgresql://localhost:5432/atlassian?currentSchema=crowd&amp;reWriteBatchedInserts=true&amp;prepareThreshold=0</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">jdbc:postgresql://localhost:5432/crowd?reWriteBatchedInserts=true&amp;prepareThreshold=0</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Username</p></td>
@@ -450,35 +525,55 @@ Choose the <strong>JDBC Connection</strong> option and configure the database wi
 <div class="paragraph">
 <p>Choose a deployment title, e.g. <em>OpenDevStack</em> and set the <strong>Base URL</strong> to <code>http://192.168.56.31:8095/crowd</code></p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/crowd/crowd-config-4.PNG" alt="Options">
+</div>
+</div>
 </div>
 <div class="sect5">
-<h6 id="_step_5_mail_configuration"><a class="anchor" href="#_step_5_mail_configuration"></a>Step 5: Mail configuration</h6>
-<div class="paragraph">
-<p>For the local test environment a mail server is not necessary, so you can skip this step by choosing <strong>Later</strong></p>
-</div>
-</div>
-<div class="sect5">
-<h6 id="_step_6_internal_directory"><a class="anchor" href="#_step_6_internal_directory"></a>Step 6: Internal directory</h6>
+<h6 id="_step_5_internal_directory"><a class="anchor" href="#_step_5_internal_directory"></a>Step 5: Internal directory</h6>
 <div class="paragraph">
 <p>Enter the name for the internal crowd directory, e.g. <em>OpenDevStack</em></p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/crowd/crowd-config-5.PNG" alt="Internal directory">
+</div>
+</div>
 </div>
 <div class="sect5">
-<h6 id="_step_7_default_administrator"><a class="anchor" href="#_step_7_default_administrator"></a>Step 7: Default administrator</h6>
+<h6 id="_step_6_default_administrator"><a class="anchor" href="#_step_6_default_administrator"></a>Step 6: Default administrator</h6>
 <div class="paragraph">
-<p>Enter the data for the default administrator, so you are able to login to crowd.</p>
+<p>Enter the data for the default administrator, so you are able to login to crowd.
+For the test installation, we will choose the username <code>opendevstack.admin</code> with the password <code>admin</code>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/crowd/crowd-config-6.PNG" alt="Default administrator">
+</div>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_step_8_integrated_applications"><a class="anchor" href="#_step_8_integrated_applications"></a>Step 8: Integrated applications</h6>
+<h6 id="_step_7_integrated_applications"><a class="anchor" href="#_step_7_integrated_applications"></a>Step 7: Integrated applications</h6>
 <div class="paragraph">
-<p>Enable both integrated applications.</p>
+<p>Enable the OpenID Server.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/crowd/crowd-config-7.PNG" alt="Integrated applications">
+</div>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_step_9_log_in_to_crowd_console"><a class="anchor" href="#_step_9_log_in_to_crowd_console"></a>Step 9: Log in to Crowd console</h6>
+<h6 id="_step_8_log_in_to_crowd_console"><a class="anchor" href="#_step_8_log_in_to_crowd_console"></a>Step 8: Log in to Crowd console</h6>
 <div class="paragraph">
 <p>Now you can verify the installation and log in with the credentials defined in the previous step.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/crowd/crowd-config-8.PNG" alt="Login">
+</div>
 </div>
 </div>
 </div>
@@ -487,10 +582,43 @@ Choose the <strong>JDBC Connection</strong> option and configure the database wi
 <div class="paragraph">
 <p>You will have to configure crowd to enable the Atlassian tools and Rundeck to login with crowd credentials.</p>
 </div>
+<div class="paragraph">
+<p>The following paragraphs assume, that you are logged in to the <a href="http://192.168.56.31:8095/crowd/console">Crowd console</a>.</p>
+</div>
+<div class="sect5">
+<h6 id="_session_configuration"><a class="anchor" href="#_session_configuration"></a>Session configuration</h6>
+<div class="paragraph">
+<p>You will have to change the default session configuration.</p>
+</div>
+<div class="paragraph">
+<p>Open the <strong>Administration</strong> menu and choose the <strong>Session configuration</strong> entry.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/crowd/crowd-session-configuration.PNG" alt="Session configuration">
+</div>
+</div>
+<div class="paragraph">
+<p>Uncheck the <strong>Require consistent client IP address</strong> checkbox.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/crowd/crowd-session-configuration-2.PNG" alt="Session configuration">
+</div>
+</div>
+<div class="paragraph">
+<p>Click <strong>save</strong> and login again.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/crowd/crowd-session-configuration-3.PNG" alt="Session configuration success">
+</div>
+</div>
+</div>
 <div class="sect5">
 <h6 id="_add_opendevstack_groups"><a class="anchor" href="#_add_opendevstack_groups"></a>Add OpenDevStack groups</h6>
 <div class="paragraph">
-<p>You will have to add the following groups to crowd&#8217;s internal directory</p>
+<p>You will have to add additional groups Crowd&#8217;s internal directory. The groups are listed in the table below.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -514,75 +642,162 @@ Choose the <strong>JDBC Connection</strong> option and configure the database wi
 </tr>
 </tbody>
 </table>
-</div>
-<div class="sect5">
-<h6 id="_add_atlassian_groups"><a class="anchor" href="#_add_atlassian_groups"></a>Add Atlassian groups</h6>
 <div class="paragraph">
-<p>You also have to add the groups from the atlassian tools, even if you don&#8217;t use them.</p>
+<p>To add a group, open the <strong>Groups</strong> tab and choose <strong>Add group</strong></p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Group</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">bitbucket-administrators</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Bitbucket administrator group</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">bitbucket-users</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Bitbucket user group</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">jira-administrators</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Jira administrator group</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">jira-developers</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Jira developers group</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">jira-users</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Jira user group</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">confluence-administrators</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Confluence administrator group</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">confluence-users</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Confluence user group</p></td>
-</tr>
-</tbody>
-</table>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/crowd/crowd-add-group.PNG" alt="Add group">
+</div>
+</div>
 <div class="paragraph">
-<p>To do so, access the crowd console at <a href="http://192.168.56.31:8095/crowd/console/" class="bare">http://192.168.56.31:8095/crowd/console/</a>
-Choose the <strong>Groups</strong> menu point and click <strong>Add group</strong>
-Enter the group name like shown above and link it to the created internal directory.</p>
+<p>Enter the name and the description for the group, choose the <strong>OpenDevStack</strong> directory and click <strong>Create</strong>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/crowd/crowd-add-group-2.PNG" alt="Enter group details">
+</div>
+</div>
+<div class="paragraph">
+<p>The group has been created. Repeat the steps of group creation for all necessary groups.</p>
 </div>
 </div>
 <div class="sect5">
-<h6 id="_add_groups_to_user"><a class="anchor" href="#_add_groups_to_user"></a>Add groups to user</h6>
+<h6 id="_add_cd_user"><a class="anchor" href="#_add_cd_user"></a>Add CD user</h6>
+<div class="paragraph">
+<p>After creating the groups you have to create a user, that is used by continuous integration mechanisms of the OpenDevStack.</p>
+</div>
+<div class="paragraph">
+<p>Go to the <strong>Users</strong> section in Crowd and click <strong>Add user</strong>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/crowd/crowd-add-user-1.PNG" alt="Add user">
+</div>
+</div>
+<div class="paragraph">
+<p>Enter the details for the CD user and click <strong>Create</strong>. For the provided scripts we assume, that the username <code>cd_user</code> with the password <code>cd_user</code> is used.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/crowd/crowd-add-user-2.PNG" alt="User details">
+</div>
+</div>
+<div class="paragraph">
+<p>In the following overview choose the user&#8217;s <strong>group</strong> tab and click <strong>Add groups</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/crowd/crowd-add-user-3.PNG" alt="User group tab">
+</div>
+</div>
+<div class="paragraph">
+<p>Now search for all groups by leaving the Search fields empty, check the <strong>opendevstack-users</strong> group and click <strong>Add selected groups</strong>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/crowd/crowd-add-user-4.PNG" alt="Group modal view">
+</div>
+</div>
+<div class="paragraph">
+<p>The group has been added to the user.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/crowd/crowd-add-user-5.PNG" alt="Updated user groups">
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_add_groups_to_administrator"><a class="anchor" href="#_add_groups_to_administrator"></a>Add groups to administrator</h6>
 <div class="paragraph">
 <p>Now you have to add all groups to the administrator.
 Go to the <strong>Users</strong> section in Crowd, choose your administration user and open the <strong>Groups</strong> tab.
 Click <strong>Add groups</strong>, search for all by leaving the Search fields empty and add all groups.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/crowd/crowd-add-user-6.PNG" alt="Administrator groups">
+</div>
+</div>
 </div>
 <div class="sect5">
 <h6 id="_add_applications_to_crowd"><a class="anchor" href="#_add_applications_to_crowd"></a>Add applications to crowd</h6>
 <div class="paragraph">
-<p>You will have to add the applications you want to access with your Crowd credentials in the Crowd console.
-Access the Crowd console at <a href="http://192.168.56.31:8095/crowd/console/" class="bare">http://192.168.56.31:8095/crowd/console/</a>
-Choose the <strong>Applications</strong> menu point and click <strong>Add application</strong>
-In the following wizard enter the data for the application you want to add. See the data for the applications in the test environment in the table below.</p>
+<p>You will have to add the applications you want to access with your Crowd credentials in the Crowd console.</p>
+</div>
+<div class="paragraph">
+<p>Access the Crowd console at <a href="http://192.168.56.31:8095/crowd/console/" class="bare">http://192.168.56.31:8095/crowd/console/</a></p>
+</div>
+<div class="paragraph">
+<p><em>The following example shows, how to add Jira to the application section. The steps for the other applications are equal.</em></p>
+</div>
+<div class="paragraph">
+<p>Choose the <strong>Applications</strong> menu point and click <strong>Add application</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/crowd/crowd-add-app-1.PNG" alt="Add application">
+</div>
+</div>
+<div class="paragraph">
+<p>You enter the <em>Add application</em>-Wizard. Enter your application details and proceed with <strong>Next</strong>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/crowd/crowd-add-app-2.PNG" alt="Add application - details">
+</div>
+</div>
+<div class="paragraph">
+<p>Enter the <em>URL</em> and <em>Remote IP address</em> and click <strong>Next</strong>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/crowd/crowd-add-app-3.PNG" alt="Add application - connection">
+</div>
+</div>
+<div class="paragraph">
+<p>Check the OpenDevStack user directory checkbox. Then proceed with <strong>Next</strong>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/crowd/crowd-add-app-4.PNG" alt="Add application - directory">
+</div>
+</div>
+<div class="paragraph">
+<p>Check the <em>Allow all users to authenticate</em> checkbox. Click <strong>Next</strong>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/crowd/crowd-add-app-5.PNG" alt="Add application - authorisation">
+</div>
+</div>
+<div class="paragraph">
+<p>Confirm the application information by clicking <strong>Add application</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/crowd/crowd-add-app-6.PNG" alt="Add application - confirmation">
+</div>
+</div>
+<div class="paragraph">
+<p>In the following overview choose the <strong>Remote addresses</strong> tab.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/crowd/crowd-add-app-7.PNG" alt="Add application - remote addresses">
+</div>
+</div>
+<div class="paragraph">
+<p>Now enter the CIDR <code>0.0.0.0/0</code> in the input field and click <strong>Add</strong>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/crowd/crowd-add-app-8.PNG" alt="Add application remote addresses">
+</div>
+</div>
+<div class="paragraph">
+<p>You will have to add all applications listed in the table below. The provided data is meant to be used in the local test environment.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -641,8 +856,8 @@ In the following wizard enter the data for the application you want to add. See 
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Generic application</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">rundeck</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">secret</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://192.168.56.31:4440/rundeck" class="bare">http://192.168.56.31:4440/rundeck</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">rundeck</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="http://192.168.56.31:4440" class="bare">http://192.168.56.31:4440</a></p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">192.168.56.31</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Internal directory with OpenDevStack groups</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">all users</p></td>
@@ -658,21 +873,31 @@ In the following wizard enter the data for the application you want to add. See 
 <td class="tableblock halign-left valign-top"><p class="tableblock">all users</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">0.0.0.0/0</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Generic application</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sonarqube</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sonarqube</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://sonarqube-cd.192.168.56.101.nip.io" class="bare">https://sonarqube-cd.192.168.56.101.nip.io</a></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">192.168.56.101</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Internal directory with OpenDevStack groups</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">all users</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.0.0.0/0</p></td>
+</tr>
 </tbody>
 </table>
+<div class="paragraph">
+<p>After adding all applications they should shown at the applications overview in Crowd.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/crowd/crowd-app-overview.PNG" alt="Applications overview">
+</div>
+</div>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_bitbucket_setup"><a class="anchor" href="#_bitbucket_setup"></a>Bitbucket Setup</h4>
-<div class="sect4">
-<h5 id="_setup_application_2"><a class="anchor" href="#_setup_application_2"></a>Setup Application</h5>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">ansible-playbook -v -i inventories/dev playbooks/bitbucket.yml --ask-vault</code></pre>
-</div>
-</div>
-</div>
+<h4 id="_attlassian_bitbucket"><a class="anchor" href="#_attlassian_bitbucket"></a>Attlassian Bitbucket</h4>
 <div class="sect4">
 <h5 id="_run_configuration_wizard_2"><a class="anchor" href="#_run_configuration_wizard_2"></a>Run Configuration Wizard</h5>
 <div class="paragraph">
@@ -683,79 +908,239 @@ In the following wizard enter the data for the application you want to add. See 
 </div>
 <div class="paragraph">
 <p>On the configuration page you have the possibility to define the application name, the base URL and to get an evaluation license or enter a valid license.
-If you choose to get an evaluation license you can retrieve it from the my atlassian page. You will be redirected automatically.
-After adding the license you have to create a local Bitbucket administrator account.
-Don&#8217;t integrate Bitbucket with Jira at this point, but proceed with going to Bitbucket.</p>
+If you choose to get an evaluation license you can retrieve it from the my atlassian page. You will be redirected automatically.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/bitbucket/bitbucket-install-1.PNG" alt="Bitbucket setup - licensing">
+</div>
+</div>
+<div class="paragraph">
+<p>After adding the license you have to create a local Bitbucket administrator account.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/bitbucket/bitbucket-install-2.PNG" alt="Bitbucket setup - administrator">
+</div>
+</div>
+<div class="paragraph">
+<p>Don&#8217;t integrate Bitbucket with Jira, but proceed with going to Bitbucket.</p>
 </div>
 </div>
 <div class="sect4">
 <h5 id="_configure_crowd_access"><a class="anchor" href="#_configure_crowd_access"></a>Configure Crowd access</h5>
 <div class="paragraph">
 <p>Go to the Bitbucket start page at <a href="http://192.168.56.31:7990/" class="bare">http://192.168.56.31:7990/</a>
-Open the administration settings and navigate to the <strong>User directories</strong> menu.
-Here you have to add a directory of type <em>Atlassian Crowd</em>.
-Here you have to add the Crowd server URL <code>http://192.168.56.31:8095/crowd</code>
-You also have to add the application name and the password you have defined for Bitbucket in crowd.
+Open the administration settings and navigate to the <strong>User directories</strong> menu.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/bitbucket/bitbucket-add-directory-1.PNG" alt="Add directory">
+</div>
+</div>
+<div class="paragraph">
+<p>Here you have to add a directory of type <em>Atlassian Crowd</em>.
+In the following form add the Crowd server URL <code>http://192.168.56.31:8095/crowd</code>, the application name and the password you have defined for Bitbucket in crowd.
 For the local test environment this is <code>bitbucket</code> <code>bitbucket</code>
 Now activate <strong>nested groups</strong> and deactivate the <strong>incremental synchronization</strong>
 The group membership should be proofed every time a user logs in.
-Test the settings and save them.
-Now change the order of the user directories. The Crowd directory has to be on first position.</p>
+Test the settings and save them.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/bitbucket/bitbucket-add-directory-2.PNG" alt="Add directory - form">
 </div>
 </div>
-<div class="sect4">
-<h5 id="_configure_user_groups"><a class="anchor" href="#_configure_user_groups"></a>Configure user groups</h5>
-<div class="sect5">
-<h6 id="_add_groups"><a class="anchor" href="#_add_groups"></a>Add groups</h6>
 <div class="paragraph">
-<p>After configuring the crowd directory change to <strong>Groups</strong>
-Here you have to add the groups defined in crowd in the previous steps, if
-they are not available yet.</p>
+<p>Now change the order of the user directories. The Crowd directory has to be on first position.
+Synchronize the directory, so all groups and users are available in Bitbucket.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/bitbucket/bitbucket-add-directory-3.PNG" alt="User directory listing">
+</div>
+</div>
+<div class="sect5">
+<h6 id="_add_permissions"><a class="anchor" href="#_add_permissions"></a>Add permissions</h6>
+<div class="paragraph">
+<p>Now you have to configure the permissions for the OpenDevStack groups.
+Go to the <strong>Global permissions</strong> menu.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/bitbucket/bitbucket-add-permission-1.PNG" alt="Add permission">
+</div>
+</div>
+<div class="paragraph">
+<p>In the <em>Group access</em> section add the <code>opendevstack-administrators</code> group with <em>System Admin</em> rights.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/bitbucket/bitbucket-add-permission-2.PNG" alt="Add permission - administrators">
+</div>
+</div>
+<div class="paragraph">
+<p>Add the <code>opendevstack-users</code> group with <em>Project Creator</em> rights.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/bitbucket/bitbucket-add-permission-3.PNG" alt="Add permission - users">
+</div>
+</div>
+</div>
+<div class="sect5">
+<h6 id="_create_opendevstack_project_in_bitbucket"><a class="anchor" href="#_create_opendevstack_project_in_bitbucket"></a>Create OpenDevStack project in Bitbucket</h6>
+<div class="paragraph">
+<p>The local checked out OpenDevStack repositories will be mirrored into the Bitbucket instance.
+Therefore, we need to create a new <em>project</em> within Bitbucket.</p>
+</div>
+<div class="paragraph">
+<p>Go to the Projects page in Bitbucket and click the <strong>Create project</strong> button.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/bitbucket/bitbucket-add-project-1.PNG" alt="project overview">
+</div>
+</div>
+<div class="paragraph">
+<p>Now enter the <em>Project name:</em> <code>OpenDevStack</code> with the <em>Project key</em> <code>OPENDEVSTACK</code> and hit
+<strong>Create Project</strong>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/bitbucket/bitbucket-add-project-2.PNG" alt="Create project form">
+</div>
+</div>
+<div class="paragraph">
+<p>Now open the project settings.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/bitbucket/bitbucket-project-settings-1.PNG" alt="Project details">
+</div>
+</div>
+<div class="paragraph">
+<p>In the <strong>Project permissions</strong> section, allow the <code>opendevstack-users</code> group write access.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/bitbucket/bitbucket-project-settings-2.PNG" alt="Project permissions">
+</div>
+</div>
+<div class="paragraph">
+<p>After you have adjusted the project permissions, you will have to create the repositories for the OpenDevStack.
+Go to the OpenDevStack project overview and choose the <strong>Create repository</strong> option, either with
+the '+' sign on the left menu bar or with the <strong>Create repository</strong> button in the middle of the screen,
+if you have an empty project.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/bitbucket/bitbucket-add-repo-1.PNG" alt="Project overview">
+</div>
+</div>
+<div class="paragraph">
+<p>Enter the name for the repository and click <strong>Create repository</strong>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/bitbucket/bitbucket-add-repo-2.PNG" alt="Project overview">
+</div>
+</div>
+<div class="paragraph">
+<p>You will have to create the repositories listed in the table below.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
+<col style="width: 100%;">
 </colgroup>
 <thead>
 <tr>
-<th class="tableblock halign-left valign-top">Group</th>
-<th class="tableblock halign-left valign-top">Description</th>
+<th class="tableblock halign-left valign-top">Repositories</th>
 </tr>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">bitbucket-administrators</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Bitbucket administrator group</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ods-core</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">bitbucket-users</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Bitbucket user group</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ods-configuration</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ods-configuration-sample</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ods-jenkins-shared-library</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ods-project-quickstarters</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ods-provisioning-app</p></td>
 </tr>
 </tbody>
 </table>
 </div>
 <div class="sect5">
-<h6 id="_add_permissions"><a class="anchor" href="#_add_permissions"></a>Add permissions</h6>
+<h6 id="_add_ssh_key_for_cd_user_to_bitbucket"><a class="anchor" href="#_add_ssh_key_for_cd_user_to_bitbucket"></a>Add SSH Key for CD user to Bitbucket</h6>
 <div class="paragraph">
-<p>The last step is to configure the permissions for the created groups.
-Go to the <strong>Global permissions</strong> menu.
-In the groups section add the <code>bitbucket-administrators</code> group with <em>System Admin</em> rights.
-Add the <code>bitbucket-users</code> group with <em>Project Creator</em> rights.</p>
+<p>You will have to add a SSH key to the <code>cd_user</code> in Bitbucket, so Rundeck will be able to communicate with Bitbucket.</p>
+</div>
+<div class="paragraph">
+<p>First got to the <strong>Users</strong> section in the Bitbucket administration.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/bitbucket/bitbucket-add-ssh-key-1.PNG" alt="Add SSH key">
+</div>
+</div>
+<div class="paragraph">
+<p>Choose the <code>cd_user</code> and select the <em>SSH keys</em> tab.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/bitbucket/bitbucket-add-ssh-key-2.PNG" alt="Add SSH key">
+</div>
+</div>
+<div class="paragraph">
+<p>Click <strong>Add key</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/bitbucket/bitbucket-add-ssh-key-3.PNG" alt="Add SSH key">
+</div>
+</div>
+<div class="paragraph">
+<p>The key has been auto generated during the setup script execution. Navigate to the base directory you created at the beginning of the setup process.</p>
+</div>
+<div class="paragraph">
+<p>There you will find a file named <code>id_rsa_bitbucket.pub</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/bitbucket/bitbucket-add-ssh-key-5.PNG" alt="Add SSH key">
+</div>
+</div>
+<div class="paragraph">
+<p>Copy the content of the file</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/bitbucket/bitbucket-add-ssh-key-6.PNG" alt="Add SSH key">
+</div>
+</div>
+<div class="paragraph">
+<p>Paste the key to the input field in Bitbucket and click <strong>Add key</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/bitbucket/bitbucket-add-ssh-key-4.PNG" alt="Add SSH key">
+</div>
 </div>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_jira_setup"><a class="anchor" href="#_jira_setup"></a>Jira Setup</h4>
-<div class="sect4">
-<h5 id="_setup_application_3"><a class="anchor" href="#_setup_application_3"></a>Setup Application</h5>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">ansible-playbook -v -i inventories/dev playbooks/jira.yml --ask-vault</code></pre>
-</div>
-</div>
-</div>
+<h4 id="_atlassian_jira"><a class="anchor" href="#_atlassian_jira"></a>Atlassian Jira</h4>
 <div class="sect4">
 <h5 id="_run_configuration_wizard_3"><a class="anchor" href="#_run_configuration_wizard_3"></a>Run Configuration Wizard</h5>
 <div class="paragraph">
@@ -770,11 +1155,21 @@ Add the <code>bitbucket-users</code> group with <em>Project Creator</em> rights.
 <p>Here you have to choose the application title and the base URL.
 You can leave the data as is for the test environment.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/jira/jira-install-1.PNG" alt="Setup application properties">
+</div>
+</div>
 </div>
 <div class="sect5">
 <h6 id="_step_2_specify_your_license_key"><a class="anchor" href="#_step_2_specify_your_license_key"></a>Step 2: Specify your license key</h6>
 <div class="paragraph">
 <p>Here you have to enter the license key for the Jira instance (Jira Software (Server)). With the provided link in the dialogue you are able to generate an evaluation license at Atlassian.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/jira/jira-install-2.PNG" alt="License key">
+</div>
 </div>
 </div>
 <div class="sect5">
@@ -782,69 +1177,189 @@ You can leave the data as is for the test environment.</p>
 <div class="paragraph">
 <p>Now you have to set up a Jira administrator account.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/jira/jira-install-3.PNG" alt="Local Jira administrator">
+</div>
+</div>
 </div>
 <div class="sect5">
 <h6 id="_step_4_set_up_email_notifications"><a class="anchor" href="#_step_4_set_up_email_notifications"></a>Step 4: Set up email notifications</h6>
 <div class="paragraph">
 <p>Unless you have configured a mail server, leave this for later.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/jira/jira-install-4.PNG" alt="email notifications">
+</div>
+</div>
 </div>
 <div class="sect5">
 <h6 id="_step_5_basic_configuration"><a class="anchor" href="#_step_5_basic_configuration"></a>Step 5: Basic configuration</h6>
 <div class="paragraph">
-<p>To finish this part of the Jira installation, you will have to provide some informations to your prefered language, your avatar and you will have to create an empty or a sample project.
-After these basic configurations, you have access to the Jira board.</p>
+<p>To finish this part of the Jira installation, you will have to provide some informations to your prefered language, your avatar and you will have to create an empty or a sample project.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/jira/jira-install-5.PNG" alt="Language selection">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/jira/jira-install-6.PNG" alt="Avatar selection">
+</div>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/jira/jira-install-7.PNG" alt="Example project">
+</div>
+</div>
+<div class="paragraph">
+<p>After these basic configurations, you have access to the Jira board.</p>
 </div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_configure_crowd_access_2"><a class="anchor" href="#_configure_crowd_access_2"></a>Configure Crowd access</h5>
-<div class="sect5">
-<h6 id="_configure_user_directory"><a class="anchor" href="#_configure_user_directory"></a>Configure user directory</h6>
+<h5 id="_configure_user_directory"><a class="anchor" href="#_configure_user_directory"></a>Configure user directory</h5>
 <div class="paragraph">
 <p>Open the <strong>User management</strong> in the Jira administration.
-To enter the administration, you have to verify you have admin rights with the password for your admin user.
-Click the <strong>User Directories</strong> entry at the left..
-Now choose <strong>Add Directory</strong>.
-Here you have to add a directory of type <em>Atlassian Crowd</em>.
-Here you have to add the Crowd server URL <code>http://192.168.56.31:8095/crowd</code>
-You also have to add the application name and the password you have defined for Jira in crowd.
-For the local test environment this is <code>jira</code> <code>jira</code>
-Now activate <strong>nested groups</strong> and deactivate the <strong>incremental synchronization</strong>
-The group membership should be proofed every time a user logs in.
-Test the settings and save them.
-Now change the order of the user directories. The Crowd directory has to be on first position.</p>
+To enter the administration, you have to verify you have admin rights with the password for your admin user.</p>
 </div>
-</div>
-<div class="sect5">
-<h6 id="_configure_sso_with_crowd"><a class="anchor" href="#_configure_sso_with_crowd"></a>Configure SSO with crowd</h6>
-<div class="paragraph">
-<p>To finish the SSO configuration, you will have to run the following playbook command:</p>
-</div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">ansible-playbook -v -i inventories/dev playbooks/jira_enable_sso.yml --ask-vault</code></pre>
+<img src="_images/documentation/jira/jira-user-directory-1.PNG" alt="Administration access">
 </div>
 </div>
 <div class="paragraph">
-<p>This will configure the authenticator.</p>
+<p>Click the <strong>User Directories</strong> entry at the left.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/jira/jira-user-directory-2.PNG" alt="User directories">
+</div>
 </div>
 <div class="paragraph">
-<p><strong>After Jira has been restarted, you are not able to login with the local administrator anymore, but with your crowd credentials.</strong></p>
+<p>Now choose <strong>Add Directory</strong>.
+Here you have to add a directory of type <em>Atlassian Crowd</em>.
+Enter the Crowd server URL <code>http://192.168.56.31:8095/crowd</code>
+You also have to fill in the application name and the password you have defined for Jira in crowd.</p>
+</div>
+<div class="paragraph">
+<p>For the local test environment this is <code>jira</code> <code>jira</code>.</p>
+</div>
+<div class="paragraph">
+<p>Now activate <strong>nested groups</strong> and deactivate the <strong>incremental synchronization</strong>
+The group membership should be proofed every time a user logs in.
+Test the settings and save them.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/jira/jira-user-directory-3.PNG" alt="User directory form">
+</div>
+</div>
+<div class="paragraph">
+<p>Now change the order of the user directories. The Crowd directory has to be on first position.
+Synchronize the directory, so all groups and users are available in Jira.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/jira/jira-user-directory-4.PNG" alt="Directory listing">
+</div>
+</div>
+</div>
+<div class="sect4">
+<h5 id="_add_permissions_2"><a class="anchor" href="#_add_permissions_2"></a>Add permissions</h5>
+<div class="paragraph">
+<p>The next step is to configure the permissions for the OpenDevStack user groups.
+Go to the <em>Global Permissions</em> menu beneath the <em>System</em> tab.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/jira/jira-permissions-1.PNG" alt="Global permissions">
+</div>
+</div>
+<div class="paragraph">
+<p>There you will have to add the OpenDevStack groups according to the Jira user groups.
+For this choose the permission and the user group in the <em>Add Permission</em> section of the page and click <strong>Add</strong>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/jira/jira-permissions-2.PNG" alt="Global permissions with added OpenDevStack groups">
+</div>
+</div>
+<div class="paragraph">
+<p>See the table below for the permission mapping.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Permission</th>
+<th class="tableblock halign-left valign-top">User group</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Jira System Administrators</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">opendevstack-administrators</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Jira Administrators</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">opendevstack-administrators</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Browse Users</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">opendevstack-(administrators|users)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Create Shared Objects</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">opendevstack-(administrators|users)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Manage Group Filter Subscriptions</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">opendevstack-(administrators|users)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bulk Change</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">opendevstack-(administrators|users)</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect4">
+<h5 id="_add_application_access"><a class="anchor" href="#_add_application_access"></a>Add application access</h5>
+<div class="paragraph">
+<p>The last step is to grant the created OpenDevStack groups application access.
+Go to the <em>Application access</em> menu beneath the <em>Applications</em> tab.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/jira/jira-application-access-1.PNG" alt="Application access menu">
+</div>
+</div>
+<div class="paragraph">
+<p>There you will have to add the OpenDevStack groups according to the Jira user groups.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/jira/jira-application-access-2.PNG" alt="Application access selection">
+</div>
+</div>
+<div class="paragraph">
+<p>Click on the group selection and choose the group you want to add to Jira.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/jira/jira-application-access-3.PNG" alt="Application access with added groups">
 </div>
 </div>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_confluence_setup"><a class="anchor" href="#_confluence_setup"></a>Confluence Setup</h4>
-<div class="sect4">
-<h5 id="_setup_application_4"><a class="anchor" href="#_setup_application_4"></a>Setup Application</h5>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">ansible-playbook -v -i inventories/dev playbooks/confluence.yml --ask-vault</code></pre>
-</div>
-</div>
-</div>
+<h4 id="_atlassian_confluence"><a class="anchor" href="#_atlassian_confluence"></a>Atlassian Confluence</h4>
 <div class="sect4">
 <h5 id="_run_configuration_wizard_4"><a class="anchor" href="#_run_configuration_wizard_4"></a>Run Configuration Wizard</h5>
 <div class="paragraph">
@@ -855,11 +1370,21 @@ Now change the order of the user directories. The Crowd directory has to be on f
 <div class="paragraph">
 <p>Here you have to choose <strong>Production Installation</strong>, because we want to configure an external database.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/confluence/confluence-install-1.PNG" alt="Set up Confluence">
+</div>
+</div>
 </div>
 <div class="sect5">
 <h6 id="_step_2_get_add_ons"><a class="anchor" href="#_step_2_get_add_ons"></a>Step 2: Get add-ons</h6>
 <div class="paragraph">
 <p>Ensure the add-ons are unchecked and proceed.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/confluence/confluence-install-2.PNG" alt="Add-Ons">
+</div>
 </div>
 </div>
 <div class="sect5">
@@ -867,17 +1392,27 @@ Now change the order of the user directories. The Crowd directory has to be on f
 <div class="paragraph">
 <p>Here you are able to get an evaluation license from atlassian or to enter a valid license key.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/confluence/confluence-install-3.PNG" alt="License key">
+</div>
+</div>
 </div>
 <div class="sect5">
 <h6 id="_step_4_choose_a_database_configuration"><a class="anchor" href="#_step_4_choose_a_database_configuration"></a>Step 4: Choose a Database Configuration</h6>
 <div class="paragraph">
-<p>Here you have to choose <strong>External Database</strong> with the option <em>PostgrSQL</em></p>
+<p>Here you have to choose <strong>My own database</strong>.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/confluence/confluence-install-4.PNG" alt="Database selection">
+</div>
 </div>
 </div>
 <div class="sect5">
 <h6 id="_step_5_configure_database"><a class="anchor" href="#_step_5_configure_database"></a>Step 5: Configure Database</h6>
 <div class="paragraph">
-<p>Click the <strong>Direct JDBC</strong> button and configure the database with the following values:</p>
+<p>Choose <strong>By connection string</strong> as <em>Setup type</em> and configure the database with the following values:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -892,8 +1427,8 @@ Now change the order of the user directories. The Crowd directory has to be on f
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Driver Class Name</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">org.postgresql.Driver</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Database Type</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PostgreSQL</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Database URL</p></td>
@@ -909,6 +1444,14 @@ Now change the order of the user directories. The Crowd directory has to be on f
 </tr>
 </tbody>
 </table>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/confluence/confluence-install-5.PNG" alt="Database configuration">
+</div>
+</div>
+<div class="paragraph">
+<p>Click <strong>Next</strong> to proceed.</p>
+</div>
 <div class="paragraph">
 <p>Be patient. This step takes some time until next page appears.</p>
 </div>
@@ -918,11 +1461,21 @@ Now change the order of the user directories. The Crowd directory has to be on f
 <div class="paragraph">
 <p>Here you have to choose <strong>Empty Site</strong> or <strong>Example Site</strong></p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/confluence/confluence-install-6.PNG" alt="Load content">
+</div>
+</div>
 </div>
 <div class="sect5">
 <h6 id="_step_7_configure_user_management"><a class="anchor" href="#_step_7_configure_user_management"></a>Step 7: Configure User Management</h6>
 <div class="paragraph">
 <p>Choose <strong>Manage users and groups within Confluence</strong>. Crowd will be configured later.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/confluence/confluence-install-7.PNG" alt="Configure user management">
+</div>
 </div>
 </div>
 <div class="sect5">
@@ -930,456 +1483,177 @@ Now change the order of the user directories. The Crowd directory has to be on f
 <div class="paragraph">
 <p>Here you have to configure a local administrator account. After this step, you are able to work with Confluence. Just press Start and create a space.</p>
 </div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/confluence/confluence-install-8.PNG" alt="Configure administrator account">
+</div>
+</div>
 </div>
 </div>
 <div class="sect4">
-<h5 id="_configure_crowd_access_3"><a class="anchor" href="#_configure_crowd_access_3"></a>Configure Crowd access</h5>
-<div class="sect5">
-<h6 id="_configure_user_directory_2"><a class="anchor" href="#_configure_user_directory_2"></a>Configure user directory</h6>
+<h5 id="_configure_user_directory_2"><a class="anchor" href="#_configure_user_directory_2"></a>Configure user directory</h5>
 <div class="paragraph">
-<p>Open the <strong>User management</strong> in the Confluence administration.
-To enter the administration, you have to verify you have admin rights with the password for your admin user.
-Click the <strong>User Directories</strong> entry at the left in the <strong>USERS &amp; SECURITY</strong> section.
-Now choose <strong>Add Directory</strong>.
-Here you have to add a directory of type <em>Atlassian Crowd</em>.
-Here you have to add the Crowd server URL <code>http://192.168.56.31:8095/crowd</code>
-You also have to add the application name and the password you have defined for Confluence in crowd.
-For the local test environment this is <code>confluence</code> <code>confluence</code>
-Now activate <strong>nested groups</strong> and deactivate the <strong>incremental synchronization</strong>
-The group membership should be proofed every time a user logs in.
-Test the settings and save them.
-Now change the order of the user directories. The Crowd directory has to be on first position.</p>
+<p>Open the <strong>User management</strong> in the Confluence administration.</p>
 </div>
-</div>
-<div class="sect5">
-<h6 id="_configure_sso_with_crowd_2"><a class="anchor" href="#_configure_sso_with_crowd_2"></a>Configure SSO with crowd</h6>
 <div class="paragraph">
-<p>To finish the SSO configuration, you will have to run the following playbook command:</p>
+<p>To enter the administration, you have to verify you have admin rights with the password for your admin user.</p>
 </div>
-<div class="listingblock">
+<div class="paragraph">
+<p>Click the <strong>User Directories</strong> entry at the left in the <strong>USERS &amp; SECURITY</strong> section.</p>
+</div>
+<div class="paragraph">
+<p>Now choose <strong>Add Directory</strong>.</p>
+</div>
+<div class="imageblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">ansible-playbook -v -i inventories/dev playbooks/confluence_enable_sso.yml --ask-vault</code></pre>
+<img src="_images/documentation/confluence/confluence-user-directory-1.PNG" alt="Add user directory">
 </div>
 </div>
 <div class="paragraph">
-<p>This will configure the authenticator.
-<strong>After Confluence has been restarted, you are not able to login with the local administrator anymore, but with your crowd credentials.</strong></p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_create_opendevstack_project_in_bitbucket"><a class="anchor" href="#_create_opendevstack_project_in_bitbucket"></a>Create opendevstack project in Bitbucket</h4>
-<div class="paragraph">
-<p>We will mirror the opendevstack project into this Bitbucket instance.
-Therefore, we need to create a new <em>project</em>.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Go to the Projects page in Bitbucket</p>
-</li>
-<li>
-<p>Hit "Create" button</p>
-</li>
-<li>
-<p>enter Project Name: OpenDevStack and key: OPENDEVSTACK</p>
-</li>
-<li>
-<p>Hit <code>Create Project</code></p>
-</li>
-<li>
-<p>In the settings section, allow the <code>bitbucket-users</code> group write access.</p>
-</li>
-</ul>
+<p>Here you have to add a directory of type <em>Atlassian Crowd</em>.</p>
 </div>
 <div class="paragraph">
-<p>You will be directed to the projects dashboard.
-Using the '+' sign  you need to create a couple of repositories:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>ods-core</p>
-</li>
-<li>
-<p>ods-configuration</p>
-</li>
-<li>
-<p>ods-configuration-sample</p>
-</li>
-<li>
-<p>ods-jenkins-shared-library</p>
-</li>
-<li>
-<p>ods-project-quickstarters</p>
-</li>
-<li>
-<p>ods-provisioning-app</p>
-</li>
-</ul>
+<p>Now enter the Crowd server URL <code>http://192.168.56.31:8095/crowd</code></p>
 </div>
 <div class="paragraph">
-<p>On the Project Dashboard Navigate to the "Settings" menu and grant the group "opendevstack-users" admin access.</p>
+<p>You also have to fill in the application name and the password you have defined for Confluence in crowd.</p>
 </div>
 <div class="paragraph">
-<p>Navigate to the <strong>ods-core/infrastructure-setup/scripts</strong> directory and execute
-<code>mirror-repos.sh</code></p>
+<p>For the local test environment this is <code>confluence</code> <code>confluence</code></p>
 </div>
 <div class="paragraph">
-<p>Use your crowd login when asked for credentials.
-Verify that you have mirrored the github repos and that they have been populated in your Bitbucket instance. The ods-configuration repositpory will remain empty.</p>
+<p>Activate <strong>nested groups</strong> and deactivate the <strong>incremental synchronization</strong></p>
 </div>
 <div class="paragraph">
-<p>Setup project branch permissions - <code>production</code> should be guarded against direct merges except through admins</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_rundeck_setup"><a class="anchor" href="#_rundeck_setup"></a>Rundeck Setup</h4>
-<div class="sect4">
-<h5 id="_setup_application_5"><a class="anchor" href="#_setup_application_5"></a>Setup Application</h5>
-<div class="paragraph">
-<p>Rundeck needs an account to access Bitbucket later. We will create an ssh keypair for this and add this later to the Bitbucket <code>cd_user</code> account.</p>
+<p>The group membership should be proofed every time a user logs in.</p>
 </div>
 <div class="paragraph">
-<p>Open the shell and generate a ssh key. On cygwin enter the following command:</p>
+<p>Test the settings and save them.</p>
 </div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">ssh-keygen -f /home/vagrant/cd_user -t rsa -C "CD User"</code></pre>
+<img src="_images/documentation/confluence/confluence-user-directory-2.PNG" alt="User directory form">
 </div>
 </div>
 <div class="paragraph">
-<p>This saves the public and private key in a file <code>cd_user.pub</code> and <code>cd_user</code>.</p>
+<p>Now change the order of the user directories. The Crowd directory has to be on first position and synchronize the directory.</p>
 </div>
-<div class="paragraph">
-<p>Create a file called <code>/home/vagrant/rundeck_vars.yml</code> that customizes some of the rundeck configuration, e.g. the ssh key.</p>
-</div>
-<div class="paragraph">
-<p>This is a yaml file, looking structurally like this Example</p>
-</div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-yaml hljs" data-lang="yaml">rundeck_bitbucket_host_external: 192.168.56.31
-rundeck_bitbucket_host_internal: localhost
-rundeck_bitbucket_port: 7999
-rundeck_cduser_name: cd_user
-rundeck_cduser_private_key: |
-  -----BEGIN RSA PRIVATE KEY-----
-  MIIJKgIBAAKCAgEA9byVUZKe0dB0gkFL5g4Zcxb3AUNPvtD2tpkejyaLoF/XnQj+
-  qn+UX9WZSn0YyTQH+cmNF1SFuMmq/eSZpdAL7JSRY2bAw9RLo3dPpabO2N3Teib1
-  HSvCnPncNQZa/tPUaWSddX0BTWEpS1fAl4NFfUmN02k+cEHIErv2OcbhMnq675aO
-  p4rU3NHN01kymhUCLz5cUCAj4CyEhxv3Fe7zSeKGuSceaD2Yq1vEnp8WmYnqdiFf
-  ....
-  0rMrGoSgTuttxQ+oU2a+2pRQD+vFXg6BpXMJNXeXyPuSIVfqfSFTqUdshZC8d76Q
-  8IwfUR/GtEjTO4l9nDr0eqb4LixvpREVVvMOH+Ea/a8yATejH9xR7xNHAA0AQqZ+
-  t1pNCqijBNTk2oUYNu9t9m16zF3Ly+ZIikBm0D67ke5yC5ziSPa1Xs6E70ens04H
-  RwP9We5Y453L2st43FlQXVAyXd4OacJcUqvYqQpd7c7u1syhpRzG5ALYcfoNJA==
-  -----END RSA PRIVATE KEY-----</code></pre>
+<img src="_images/documentation/confluence/confluence-user-directory-3.PNG" alt="User directory listing">
 </div>
 </div>
-<div class="paragraph">
-<p>You have to replace the private key with the key you created earlier and change
-other variables according to your environment. Be careful about the 2 spaces at the beginning of every line of the private key.</p>
-</div>
-<div class="paragraph">
-<p>Now execute the playbook:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">ansible-playbook -v -i inventories/dev playbooks/rundeck.yml -e "@/home/vagrant/rundeck_vars.yml" --ask-vault</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You can change <code>host</code> and <code>cduser</code> according to your environment.
-After the playbook has been finished Rundeck is accessible via <a href="http://192.168.56.31:4440/rundeck" class="bare">http://192.168.56.31:4440/rundeck</a></p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_configure_minishift"><a class="anchor" href="#_configure_minishift"></a>Configure Minishift</h3>
-<div class="sect3">
-<h4 id="_minishift_startup"><a class="anchor" href="#_minishift_startup"></a>Minishift startup</h4>
-<div class="paragraph">
-<p>First you have to install Minishift. You have to use a minishift version &gt;= 1.14.0, so openshift v3.9.0 (see below) is supported.</p>
-</div>
-<div class="paragraph">
-<p>To do so, follow the installation instructions of the <a href="https://docs.openshift.org/latest/minishift/getting-started/index.html">Minishift Getting Started guide</a>.</p>
-</div>
-<div class="paragraph">
-<p>Before you start up Minishift with the <code>minishift start</code> command you will have to create or modify a <code>config.json</code> file.
-This file is located in the <code>.minishift/config</code> folder in the user home directory.
-On a Windows system, you will find this file under <code>C:\Users\&lt;username&gt;\.minishift\config\config.json</code> or under cygwin <code>~/.minishift/config/config.json</code>.
-If the file doesn&#8217;t exist, you will have to create it.
-The file has to have the following content:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-javascript hljs" data-lang="javascript">{
-    "cpus": 2,
-    "memory": "8192",
-    "openshift-version": "v3.9.0",
-    "disk-size": "40GB",
-    "vm-driver": "virtualbox"
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>It is important to use <em>v3.9.0</em> as minimum version to ensure, that the templates provided by the OpenDevStack work properly. If you are on windows you have to run the "minishift start" command as administrator.</p>
-</div>
-<div class="paragraph">
-<p>After the start up you are able to open the webconsole with the <code>minishift console</code> command. This will open the webconsole in your standard browser.
-Please access the webconsole with the credentials <code>developer</code> <code>developer</code>.
-It is <em>important</em> not to use the <code>system</code> user, because Jenkins does not allow a user named <code>system</code>.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_configure_the_path_for_the_oc_cli"><a class="anchor" href="#_configure_the_path_for_the_oc_cli"></a>Configure the path for the OC CLI</h3>
-<div class="paragraph">
-<p>The OC CLI is automatically downloaded after "minishift start".
-To add it to the path you can run</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">minishift oc-env</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>and execute the displayed command.</p>
-</div>
-<div class="sect3">
-<h4 id="_login_with_the_cli"><a class="anchor" href="#_login_with_the_cli"></a>Login with the CLI</h4>
-<div class="paragraph">
-<p>You have to login via the CLI with</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">oc login -u system:admin</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_setup_the_base_template_project"><a class="anchor" href="#_setup_the_base_template_project"></a>Setup the base template project</h4>
-<div class="paragraph">
-<p>After you have logged in, you are able to create a project, that will contain the base templates and the Nexus Repository Manager. Please enter the following command to add the base project:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">oc new-project cd --description="Base project holding the templates and the Repositoy Manager" --display-name="OpenDevStack Templates"</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This command will create the base project.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_adjust_user_rights_for_the_developer_user"><a class="anchor" href="#_adjust_user_rights_for_the_developer_user"></a>Adjust user rights for the developer user</h4>
-<div class="paragraph">
-<p>To be able to see all created projects, you will have to adjust the user rights for the developer use. Do so by using the provided command</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">oc adm policy --as system:admin add-cluster-role-to-user cluster-admin developer</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_create_service_account_for_deployment"><a class="anchor" href="#_create_service_account_for_deployment"></a>Create service account for deployment</h4>
-<div class="paragraph">
-<p>Rundeck needs a technical account in Minishift to be able to create projects and provision resources. Therefore, we create a service account, which credentials are provided to Rundeck in a later step.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">oc create sa deployment -n cd
-oc adm policy --as system:admin add-cluster-role-to-user cluster-admin system:serviceaccount:cd:deployment</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>After you have created the service account we need the token for this account.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">oc sa get-token deployment -n cd</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Save the token text. It will be used in the Rundeck configuration later.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_install_minishift_certificate_on_atlassian_server"><a class="anchor" href="#_install_minishift_certificate_on_atlassian_server"></a>Install Minishift certificate on Atlassian server</h4>
-<div class="paragraph">
-<p>You have to add the Minishift certificate to the <code>atlassian1</code> JVM, so Bitbucket is able to execute REST Calls against Minishift, triggered by Webhooks.
-Go to the directory, where you have started Vagrant.
-Here open a SSH connection to the <code>atlassian1</code> server</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">vagrant ssh atlassian1</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>On the server change to the root account</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">sudo -i</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Here execute the following command to get the certificate from the Minishift server:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell"> openssl s_client -connect 192.168.99.100:8443 -showcerts &lt; /dev/null 2&gt;/dev/null| sed -ne '/-BEGIN CERTIFICATE-/,/-END CERTIFICATE-/p' &gt; /tmp/minishift.crt</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You should now have two PEM encoded certificate in /tmp/minishift.crt.
-Remove the first one (this is the server certificate) and keep the CA Cert.</p>
-</div>
-<div class="paragraph">
-<p>Check that you got the CA certificate:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">openssl x509 -in /tmp/minishift.crt -text</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You should see a section:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>    X509v3 extensions:
-            X509v3 Key Usage: critical
-                Digital Signature, Key Encipherment, Certificate Sign
-            X509v3 Basic Constraints: critical
-                CA:TRUE</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Now import the certificate in the default JVM keystore.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">sudo /usr/java/latest/jre/bin/keytool -import -alias minishift -keystore /usr/java/latest/jre/lib/security/cacerts -file /tmp/minishift.crt</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The default password is <code>changeit</code>.
-Confirm with yes when ask to trust the certificates.
-Restart the bitbucket service</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">sudo service atlbitbucket restart</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>We need this certificate for the Rundeck part later as well.
-On the atlassian1 server clone the <code>ods-project-quickstarters</code> from your Bitbucket server.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">sudo su - rundeck
-git clone http://192.168.56.31:7990/scm/opendevstack/ods-project-quickstarters.git
-git config --global user.email "cd_user@opendevstack.local"
-git config --global user.name "cd_user"
-cat /tmp/minishift.crt &gt;&gt; ods-project-quickstarters/ocp-templates/root.ca/ca-bundle.crt
-cd ods-project-quickstarters
-git commit -am "added local root ca"
-git push origin master</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Use your crowd login when asked for credentials.
-we do this as the rundeck user, so we can accept the ssh host key.</p>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_prepare_environment_settings"><a class="anchor" href="#_prepare_environment_settings"></a>Prepare environment settings</h3>
-<div class="paragraph">
-<p>Switch to your local machine and clone the repositories: <code>ods-configuration-sample</code> and <code>ods-configuration</code> from your bitbucket server.
-Copy the entire directory structure from <code>ods-configuration-sample</code> into <code>ods-configuration</code>and remove the .sample postfixes.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">git clone http://192.168.56.31:7990/scm/opendevstack/ods-configuration-sample.git
-git clone http://192.168.56.31:7990/scm/opendevstack/ods-configuration.git
-cp -r ./ods-configuration-sample/. ./ods-configuration
-find ods-configuration -name '*.sample' -type f | while read NAME ; do mv "${NAME}" "${NAME%.sample}" ; done</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>(Assuming your host/ip for bitbucket is: 192.168.56.31:7990)</p>
-</div>
-<div class="paragraph">
-<p>Now you will have to check the <code>.env</code> configuration files in <code>ods-configuration</code>. Change all values with the suffix <code>_base64</code> to a Base64 encoded value.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_setup_and_configure_nexus3"><a class="anchor" href="#_setup_and_configure_nexus3"></a>Setup and Configure Nexus3</h3>
-<div class="paragraph">
-<p>Amend <code>ods-configuration/ods-core/nexus/ocp-config/route.env</code> and change the domain to match your openshift/minishift domain (for example <code>nexus-cd.192.168.99.100.nip.io</code>)</p>
-</div>
-<div class="paragraph">
-<p>Go to <code>ods-core/nexus/ocp-config</code> - and type</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">tailor update</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You should see a proposed list of new objects that are created - and confirm with <code>y</code></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">Comparing templates in C:\code_bix\opendevstack_at_BIX\ods-core\nexus\ocp-config with OCP namespace cd.
-Limiting resources to dc,is,pvc,route,svc with selector app=nexus3.
-Found 0 resources in OCP cluster (current state) and 5 resources in processed templates (desired state).
-
-[32m+ dc/nexus3 to be created
-[0m--- Current State (OpenShift cluster)
-+++ Desired State (Processed template)
-@@ -1 +1,63 @@
-+apiVersion: v1
-+kind: DeploymentConfig
-+metadata:
-+  annotations:
-+    original-values.tailor.io/spec.template.spec.containers.0.image: sonatype/nexus3:latest
-+  creationTimestamp: null
-+  labels:
-+    app: nexus3
-+  name: nexus3
-+spec:
-+  replicas: 1
-+  selector:
-+    app: nexus3
-+    deploymentconfig: nexus3
-+  strategy:
-+    activeDeadlineSeconds: 21600
-+    recreateParams:
-
-.......</code></pre>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_configure_repository_manager"><a class="anchor" href="#_configure_repository_manager"></a>Configure Repository Manager</h4>
-<div class="paragraph">
-<p>Access Nexus3 <a href="http://nexus-cd.192.168.99.100.nip.io/" class="bare">http://nexus-cd.192.168.99.100.nip.io/</a>
-Login with the default credentials for Nexus3 <code>admin</code> <code>admin123</code></p>
 </div>
 <div class="sect4">
-<h5 id="_configure_repositories"><a class="anchor" href="#_configure_repositories"></a>Configure repositories</h5>
+<h5 id="_add_permissions_3"><a class="anchor" href="#_add_permissions_3"></a>Add permissions</h5>
 <div class="paragraph">
-<p>Open the <strong>Server administration and configuration</strong> menu
-by clicking the gear icon in the top bar.
-Now create three Blob Stores.</p>
+<p>The last step is to configure the permissions for the OpenDevStack groups.</p>
+</div>
+<div class="paragraph">
+<p>Open the <strong>User management</strong> in the Confluence administration.</p>
+</div>
+<div class="paragraph">
+<p>To enter the administration, you have to verify you have admin rights with the password for your admin user.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/confluence/confluence-permission-1.PNG" alt="Administration login">
+</div>
+</div>
+<div class="paragraph">
+<p>Click the <strong>Global Permissions</strong> entry at the left in the <strong>USERS &amp; SECURITY</strong> section.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/confluence/confluence-permission-2.PNG" alt="Permission listing">
+</div>
+</div>
+<div class="paragraph">
+<p>Now choose <strong>Edit Permissions</strong> and add the OpenDevStack groups with the Input field in the groups section.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/confluence/confluence-permission-3.PNG" alt="Add group to permissions">
+</div>
+</div>
+<div class="paragraph">
+<p>Check the checkboxes, so the OpenDevStack groups have the same permissions the local confluence groups have.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/confluence/confluence-permission-4.PNG" alt="Set permissions">
+</div>
+</div>
+<div class="paragraph">
+<p>Click <strong>Save all</strong> to persist the permissions.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_prepare_local_opendevstack_environment"><a class="anchor" href="#_prepare_local_opendevstack_environment"></a>Prepare local OpenDevStack environment</h3>
+<div class="paragraph">
+<p>After the configuration of the Atlassian tools has been done, it&#8217;s time to continue with the preparation oft the OpenDevStack environment.
+In this step the basic configuration for the OpenShift cluster takes place, as well as the installation of Sonarqube, Nexus3 and the Provisioning application.
+In addition Rundeck will be prepared automatically as far as possible.</p>
+</div>
+<div class="paragraph">
+<p>Navigate to the <strong>ods-core/infrastructure-setup/scripts</strong> directory on your local machine and execute the script</p>
+</div>
+<div class="paragraph">
+<p><code>prepare-local-environment.sh</code></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/prepare-script/directory-listing.PNG" alt="Directory listing">
+</div>
+</div>
+<div class="paragraph">
+<p>Now you will have to decide, which configuration should be done. In a first time installation you will have to keep the defaults.
+For further customization there will be an additional guide.</p>
+</div>
+<div class="paragraph">
+<p><strong>Important; The preparation script also activates SSO in Confluence and Jira. After the activation has been done a login with the local administrator credentials is no longer possible!</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/prepare-script/activate-sso.PNG" alt="SSO activation">
+</div>
+</div>
+<div class="paragraph">
+<p>During the mirroring of the local repositories to your Bitbucket instance, it is possible, that you will be asked for credentials.
+Here you have to enter the credentials for your loacl Crowd administrator or the <code>cd_user</code> credentials.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/prepare-script/git-credentials.PNG" alt="Git credentials">
+</div>
+</div>
+<div class="paragraph">
+<p>After the repository mirroring you may setup project branch permissions in Bitbucket, if the <code>production</code> branch should be guarded against direct merges except through admins.</p>
+</div>
+<div class="paragraph">
+<p>The subsequent paragraphs explain the installation and configuration content for Nexus3, Sonarqube, Rundeck and the Provisioning application.</p>
+</div>
+<div class="sect3">
+<h4 id="_nexus3"><a class="anchor" href="#_nexus3"></a>Nexus3</h4>
+<div class="paragraph">
+<p>Nexus3 will be installed automatically, if you have confirmed the installation in the prepare script.</p>
+</div>
+<div class="paragraph">
+<p>After the installation Nexus3 will be accessible at <a href="http://nexus-cd.192.168.56.101.nip.io/" class="bare">http://nexus-cd.192.168.56.101.nip.io/</a></p>
+</div>
+<div class="paragraph">
+<p>You are able to login with the default credentials for Nexus3 <code>admin</code> <code>admin123</code>.</p>
+</div>
+<div class="paragraph">
+<p>During installation various resources will be created automatically. You will find their description in
+the subsequent paragraphs.</p>
+</div>
+<div class="sect4">
+<h5 id="_blob_stores"><a class="anchor" href="#_blob_stores"></a>Blob stores</h5>
+<div class="paragraph">
+<p>In the automated installation the following blob stores will be created</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1412,8 +1686,11 @@ Now create three Blob Stores.</p>
 </tr>
 </tbody>
 </table>
+</div>
+<div class="sect4">
+<h5 id="_repositories"><a class="anchor" href="#_repositories"></a>Repositories</h5>
 <div class="paragraph">
-<p>After this step you will have to create the following repositories in the <strong>Repositories</strong> Subsection.</p>
+<p>This table lists the repositories created automatically.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1562,14 +1839,60 @@ Now create three Blob Stores.</p>
 <td class="tableblock halign-left valign-top"></td>
 <td class="tableblock halign-left valign-top"></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pypi-all</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pypi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">group</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">checked</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">default</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pypi-proxy</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pypi-proxy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">pypi</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">proxy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">checked</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">default</p></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://pypi.org/" class="bare">https://pypi.org/</a></p></td>
+<td class="tableblock halign-left valign-top"></td>
+</tr>
 </tbody>
 </table>
 </div>
 <div class="sect4">
-<h5 id="_configure_user_and_roles"><a class="anchor" href="#_configure_user_and_roles"></a>Configure user and roles</h5>
+<h5 id="_user_and_roles"><a class="anchor" href="#_user_and_roles"></a>User and roles</h5>
 <div class="paragraph">
-<p>First disable the anonymous access in the <span class="menuseq"><b class="menu">Security</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Anonymous</b></span> section.
-Under <span class="menuseq"><b class="menu">Security</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Roles</b></span> create a nexus-role <em>OpenDevStack-Developer</em>.</p>
+<p>During installation the following user will be created.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Name</th>
+<th class="tableblock halign-left valign-top">Password</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">developer</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">developer</p></td>
+</tr>
+</tbody>
+</table>
+<div class="paragraph">
+<p>The user will get the <code>opendevstack-developer</code> role listed below.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1593,7 +1916,7 @@ Under <span class="menuseq"><b class="menu">Security</b>&#160;<i class="fa fa-an
 </tbody>
 </table>
 <div class="paragraph">
-<p>This role has to have the following privileges:</p>
+<p>This role has the following privileges:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -1626,339 +1949,188 @@ Under <span class="menuseq"><b class="menu">Security</b>&#160;<i class="fa fa-an
 </tbody>
 </table>
 <div class="paragraph">
-<p>Now create a user under <span class="menuseq"><b class="menu">Security</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Users</b></span>.</p>
+<p>The account created is used to authenticate against Nexus3, anonymous access is disabled.</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Name</th>
-<th class="tableblock halign-left valign-top">Password</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">developer</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">developer</p></td>
-</tr>
-</tbody>
-</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_sonarqube"><a class="anchor" href="#_sonarqube"></a>Sonarqube</h4>
 <div class="paragraph">
-<p>You can choose any First name, Last name and Email.
-Make this account active and assign role <code>OpenDevStack-Developer</code> to this account.</p>
+<p>By default Sonarqube will be installed with the preparation script.</p>
 </div>
 <div class="paragraph">
-<p>This account is later used for authentication against nexus to pull artifacts during build phase</p>
+<p>You will have to pass a valid authentication token for Sonarqube to the OpenShift templates, so the script will pause as soon as Sonarqube is available.</p>
 </div>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_import_base_templates"><a class="anchor" href="#_import_base_templates"></a>Import base templates</h3>
-<div class="paragraph">
-<p>After you have configured Nexus3, import the base templates for OpenShift.
-Clone the <a href="https://www.github.com/opendevstack/ods-project-quickstarters">ods-project-quickstarters</a>.
-Navigate to the folder, where the cloned repository is located and navigate to the <code>ocp-templates/scripts</code> subfolder.
-From with this folder, check if you are still logged in to the OpenShift CLI and login, if necessary.</p>
-</div>
-<div class="paragraph">
-<p>Amend <code>ods-configuration/ods-project-quickstarters/ocp-templates/templates/templates.env</code> and run</p>
-</div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">./upload-templates.sh</code></pre>
+<img src="_images/documentation/sonarqube/pause-script.PNG" alt="Paused preparation script">
 </div>
 </div>
 <div class="paragraph">
-<p>This script creates the basic templates used by the OpenDevStack quickstarters in the <code>cd</code> project.
-If you have to modify templates, there are also scripts to replace existing templates in OpenShift.</p>
+<p>Go to <a href="https://sonarqube-cd.192.168.56.101.nip.io" class="bare">https://sonarqube-cd.192.168.56.101.nip.io</a> .</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_prepare_cd_project_for_jenkins"><a class="anchor" href="#_prepare_cd_project_for_jenkins"></a>Prepare CD project for Jenkins</h3>
-<div class="paragraph">
-<p>Now create secrets inside the CD project.</p>
-</div>
-<div class="listingblock">
+<div class="imageblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">oc process -n cd templates/secrets -p PROJECT=cd | oc create -n cd -f-</code></pre>
+<img src="_images/documentation/sonarqube/sonarqube_login.PNG" alt="Sonarqube Screen">
 </div>
 </div>
 <div class="paragraph">
-<p>We will now build base images for jenkins and jenkins slave:</p>
+<p>Login with your Crowd credentials.</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Customize the configuration in the <code>ods-configuration</code> project at <span class="menuseq"><b class="menu">ods-core</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">jenkins</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">ocp-config</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">bc.env</b></span></p>
-</li>
-<li>
-<p>Execute <code>tailor update</code> inside ods-core/jenkins/ocp-config:</p>
-</li>
-<li>
-<p>Start jenkins slave base build: <code>oc start-build -n cd jenkins-slave-base</code></p>
-</li>
-<li>
-<p>check that builds for <code>jenkins-master</code> and <code>jenkins-slave-base</code> are running and successful.</p>
-</li>
-<li>
-<p>You can optionally start the <code>jenkins-master</code> build using <code>oc start-build -n cd jenkins-master</code></p>
-</li>
-</ul>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/sonarqube/sonar_qube_user.PNG" alt="Login">
+</div>
+</div>
+<div class="paragraph">
+<p>Now open your personal account settings.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/sonarqube/sonarqube_my_account.PNG" alt="My account">
+</div>
+</div>
+<div class="paragraph">
+<p>Generate a token in the <em>Security</em> section.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/sonarqube/sonarqube_my_account.PNG" alt="Generate token">
+</div>
+</div>
+<div class="paragraph">
+<p>Copy the token value to the input of the preparation script and follow the instructions.
+The token will be processed and integrated in the templates for future builds.</p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_prepare_jenkins_slave_docker_images"><a class="anchor" href="#_prepare_jenkins_slave_docker_images"></a>Prepare Jenkins slave docker images</h4>
 <div class="paragraph">
-<p>To support different kinds of projects, we need different kinds of Jenkins slave images.
-These slave images are located in the project <a href="https://github.com/opendevstack/jenkins-slaves-dockerimages">jenkins-slave-dockerimages</a>.</p>
+<p>In additon to the base Jenkins images you have the option to build additional Jenkins slave images.
+To do so, just type <code>y</code> instead of typing <code>n</code> or pressing <code>Enter</code>, if you are asked, if you want to install the additional slave images.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/prepare-script/jenkins-slaves.PNG" alt="Jenkins slaves">
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_rundeck_configuration"><a class="anchor" href="#_rundeck_configuration"></a>Rundeck configuration</h4>
+<div class="paragraph">
+<p>After the preparation script execution, you will have to configure some values in Rundeck.</p>
 </div>
 <div class="paragraph">
-<p>So as a first step clone this repository.
-Make the required customizations in the <code>ods-configuration</code> under <span class="menuseq"><b class="menu">jenkins-slaves-dockerimages</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">maven</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">ocp-config</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">bc.env</b></span></p>
+<p>Access Rundeck at <a href="http://192.168.56.31:4440/" class="bare">http://192.168.56.31:4440/</a></p>
 </div>
 <div class="paragraph">
-<p>and run <code>tailor update</code> inside <code>ods-project-quickstarters\jenkins-slaves\maven\ocp-config</code>:</p>
+<p>Login with your Crowd credentials.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/rundeck/rundeck-login.PNG" alt="Rundeck login">
+</div>
 </div>
 <div class="paragraph">
-<p>and start the build: <code>oc start-build -n cd jenkins-slave-maven</code>.</p>
+<p>Now choose the <em>Quickstarters</em> project.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/rundeck/project.PNG" alt="Project selection">
+</div>
 </div>
 <div class="paragraph">
-<p>Repeat for every project type you require.</p>
+<p>Open the <strong>Job Actions</strong> button on the right and <strong>Import Remote Changes</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/rundeck/remote-changes.PNG" alt="Job actions">
+</div>
+</div>
+<div class="paragraph">
+<p>Click <strong>Import</strong></p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/rundeck/import-remote-changes.PNG" alt="Import changes">
+</div>
+</div>
+<div class="paragraph">
+<p>Now you should see the imported jobs.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/rundeck/jobs.PNG" alt="Import changes">
+</div>
+</div>
+<div class="paragraph">
+<p>Choose the <strong>verify global rundeck settings</strong> job and execute it to verify that Rundeck has all necessary data.</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/rundeck/verify-connections.PNG" alt="Import changes">
+</div>
+</div>
+<div class="sect4">
+<h5 id="_configure_scm_export_plugin"><a class="anchor" href="#_configure_scm_export_plugin"></a>Configure SCM Export plugin</h5>
+<div class="paragraph">
+<p>If you use the Github repository, and use as is this step isn&#8217;t necessary!</p>
+</div>
+<div class="paragraph">
+<p>If you use your own repository, configure the export plugin in same way as the import plugin, except the file path template - set to <code>rundeck-jobs/${job.group}${job.name}.${config.format}</code></p>
+</div>
 </div>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_configure_cd_user"><a class="anchor" href="#_configure_cd_user"></a>Configure CD user</h3>
+<h3 id="_provisioning_application"><a class="anchor" href="#_provisioning_application"></a>Provisioning application</h3>
 <div class="paragraph">
-<p>The continuous delivery process requires a dedicated system user in crowd for accessing bitbucket.
-Access the <a href="http://192.168.56.31:8095/crowd/console/">crowd console</a> and choose <strong>Add user</strong> in the <strong>Users</strong> menu.
-Enter valid credentials. The only restriction here is, that the user has the username <code>cd_user</code> and that the user belongs to the internal crowd directory.
-After creating the user you have to add the following groups:</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 100%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Group</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">opendevstack-users</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">bitbucket-users</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>After you have created the user in crowd, you must add the public cd_user SSH key to the Bitbucket account.</p>
+<p><mark>#</mark>#Run from OpenShift
+The Provisioning application has been installed with the environment preparation script and is accessible via</p>
 </div>
 <div class="paragraph">
-<p>Open <a href="http://192.168.56.31:7990/">Bitbucket</a>, login with your crowd administration user and go to the administration.
-Here open the User section. If you can&#8217;t see the CD user, you have to synchronize the Crowd directory in the <strong>User directories</strong> section.
-Click on the CD user. In the user details you have the possiblity to add a SSH key. Click on the tab and enter the <em>public key</em> from the generated key pair.</p>
+<p><a href="https://prov-app-test.192.168.56.101.nip.io" class="bare">https://prov-app-test.192.168.56.101.nip.io</a></p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_setup_and_configure_sonarqube"><a class="anchor" href="#_setup_and_configure_sonarqube"></a>Setup and configure SonarQube</h3>
 <div class="paragraph">
-<p>Amend <code>ods-configuration/ods-core/sonarqube/ocp-config/sonarqube.env</code>
-and type</p>
+<p>There is no further configuration needed.</p>
+</div>
+<div class="paragraph">
+<p>If the application is not available, you will have to proof in OpenShift, if there have been any errors during the installation.</p>
+</div>
+<div class="sect3">
+<h4 id="_run_from_ide"><a class="anchor" href="#_run_from_ide"></a>Run from IDE</h4>
+<div class="paragraph">
+<p>Open the cloned provision application in your favorite IDE</p>
+</div>
+<div class="paragraph">
+<p>If you run the application from your IDE, you will have to provide some addional informations.</p>
+</div>
+<div class="paragraph">
+<p>In case you want to use your local Nexus, you will have to create a <code>gradle.properties</code> file in the ods-provisioning-app project to provide the Nexus credentials, because we disabled anonymous access.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">tailor update</code></pre>
+<pre class="highlightjs highlight"><code class="language-INI hljs" data-lang="INI">nexus_url=http://nexus-cd.192.168.56.101.nip.io
+nexus_user=developer
+nexus_pw=developer</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>confirm with <code>y</code> and installation should start.</p>
+<p>You also have to ensure the Nexus certificate is integrated in the keystore of the JDK the IDE uses.</p>
 </div>
 <div class="paragraph">
-<p>After the installation has taken place, you will have to build SonarQube: <code>oc start-build -n cd sonarqube</code></p>
-</div>
-<div class="paragraph">
-<p>Go to <a href="http://sonarqube-cd.192.168.99.100.nip.io/" class="bare">http://sonarqube-cd.192.168.99.100.nip.io/</a> and log in with your crowd user. Click on your profile on the top right, my account / security - and create a new token (and save it in your notes). This token will be used throughout the codebase to trigger the code quality scan.</p>
-</div>
-<div class="paragraph">
-<p>TODO: Explain all variables
-END_TODO</p>
-</div>
-<div class="paragraph">
-<p>Check out the cd project</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_prepare_docker_registry"><a class="anchor" href="#_prepare_docker_registry"></a>Prepare Docker Registry</h3>
-<div class="paragraph">
-<p>The Docker registry preparation is needed for several quickstarters, e.g. be_spring_boot. To do so, make sure you have the Docker client binary installed on your machine.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>minishift addons apply registry-route</code></p>
-</li>
-<li>
-<p>Run <code>minishift docker-env</code> to display the commend you need to execute in order to configure your Docker client.</p>
-</li>
-<li>
-<p>Execute the displayed command, e.g. on Windows CMD <code>@FOR /f "tokens=*" %i IN ('minishift docker-env') DO @call %i</code></p>
-</li>
-<li>
-<p><code>oc login -u developer -n default</code></p>
-</li>
-<li>
-<p><code>oc whoami -t</code> should show the token for you user</p>
-</li>
-<li>
-<p>`docker login -u developer -p `&lt;Token from oc whoami -t&gt;<code> docker-registry-default.192.168.99.100.nip.io:443</code></p>
-</li>
-<li>
-<p><code>docker pull busybox</code></p>
-</li>
-<li>
-<p><code>docker tag busybox docker-registry-default.192.168.99.100.nip.io:443/openshift/busybox</code></p>
-</li>
-<li>
-<p><code>docker push docker-registry-default.192.168.99.100.nip.io:443/openshift/busybox</code></p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_prepare_rundeck_and_required_dockerfiles"><a class="anchor" href="#_prepare_rundeck_and_required_dockerfiles"></a>Prepare Rundeck and required Dockerfiles</h3>
-<div class="paragraph">
-<p>After configuring the Atlassian tools and Minishift, Rundeck has to be configured as well.
-Access <a href="http://192.168.56.31:4440/rundeck">Rundeck</a>, login and open the configuration.</p>
-</div>
-<div class="sect3">
-<h4 id="_create_quickstarters_project"><a class="anchor" href="#_create_quickstarters_project"></a>Create Quickstarters project</h4>
-<div class="paragraph">
-<p>Create a project named <code>Quickstarters</code>. The project doesn&#8217;t need any additional information, so leave all other options blank.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_openshift_api_token"><a class="anchor" href="#_openshift_api_token"></a>Openshift API token</h4>
-<div class="paragraph">
-<p>You have to store the API token for the service account in Rundeck, so Rundeck is able to communicate with Openshift.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>In the <strong>Key Storage</strong> section click on <strong>Add or Upload a Key</strong>, choose the Key Type <em>Password</em>.</p>
-</li>
-<li>
-<p>Copy the token text you saved earlier to the textfield.</p>
-</li>
-<li>
-<p>Leave Storage path blank.</p>
-</li>
-<li>
-<p>The key has to have the name <code>openshift-api-token</code></p>
-</li>
-<li>
-<p>Save the key.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_cd_user_private_key"><a class="anchor" href="#_cd_user_private_key"></a>CD user private key</h4>
-<div class="paragraph">
-<p>For initial code commit the CD user&#8217;s private key has to be stored in Rundeck, to enable an SSH communication between Rundeck and Bitbucket.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>In the <strong>Key Storage</strong> section click on <strong>Add or Upload a Key</strong>, choose the Key Type <em>Private key</em>.</p>
-</li>
-<li>
-<p>Enter / Upload the private key generated for the CD user.</p>
-</li>
-<li>
-<p>Leave Storage path blank.</p>
-</li>
-<li>
-<p>The key has to have the name <code>id_rsa_bitbucket</code></p>
-</li>
-<li>
-<p>Save the key.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_configure_scm_plugins"><a class="anchor" href="#_configure_scm_plugins"></a>Configure SCM plugins</h4>
-<div class="paragraph">
-<p>Within the ods-project-quickstarters create a new branch called <code>rundeck-changes</code> - and let it inherit from production</p>
-</div>
-<div class="paragraph">
-<p>Open the configuration and go to the <strong>SCM</strong> section. This section is available as soon as you are in the project configuration for the <code>Quickstarters</code> project.</p>
-</div>
-<div class="sect4">
-<h5 id="_setup_import_plugin"><a class="anchor" href="#_setup_import_plugin"></a>Setup Import plugin</h5>
-<div class="ulist">
-<ul>
-<li>
-<p>Change the <strong>File Path Template</strong> to <code>${job.group}${job.name}.${config.format}</code></p>
-</li>
-<li>
-<p>Change the format for the <strong>Job Source Files</strong> to <code>yaml</code></p>
-</li>
-<li>
-<p>Enter the SSH Git URL for the <code>ods-project-quickstarters</code> repository.
-You have to enter valid authorization credentials, stored in Rundeck&#8217;s key storage. This will be the ` id_rsa_bitbucket` key specified in the previous step.</p>
-</li>
-<li>
-<p>Branch: Choose "rundeck-changes"</p>
-</li>
-<li>
-<p>In the next step ensure that the regular expression points to yaml files. Change the regexp to <code>rundeck-jobs/.*\.yaml</code></p>
-</li>
-<li>
-<p>Change the file path template to <code>rundeck-jobs${job.group}${job.name}-${job.id}.${config.format}</code></p>
-</li>
-<li>
-<p>Import the job definitions under job actions.</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_setup_export_plugin"><a class="anchor" href="#_setup_export_plugin"></a>Setup Export plugin</h5>
-<div class="paragraph">
-<p>If you use the Github repository, and use as is this step isn&#8217;t necessary!
-If you use your own repository, configure the export plugin in same way as the import plugin, except the file path template - set to <code>rundeck-jobs/${job.group}${job.name}.${config.format}</code></p>
-</div>
-</div>
-<div class="sect4">
-<h5 id="_update_the_job_properties"><a class="anchor" href="#_update_the_job_properties"></a>Update the job properties</h5>
-<div class="paragraph">
-<p>Go to the project page and then configure. Edit the configuration file (using the button) and add the following lines - based on your environment</p>
+<p>If you don&#8217;t want to use the internal Nexus and run the application from your IDE, you will have to provide a <code>gradle.properties</code> file with the following content:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-INI hljs" data-lang="INI"># bitbucket https host including url schema
-project.globals.bitbucket_host=https\://192.168.56.31
-# bitbucket ssh host including url schema
-project.globals.bitbucket_sshhost=ssh://git@192.168.56.31:7999
-# openshift host including url scheme
-project.globals.openshift_apihost=https://192.168.99.100:8443
-# openshift host without url scheme - used to grab CA etc
-project.globals.openshift_apihost_lookup=192.168.99.100:8443
-# openshift nexus host including url scheme
-project.globals.nexus_host=http://nexus-cd.192.168.99.100.nip.io/
-# public route of docker registry including url scheme
-project.globals.openshift_dockerregistry=https://docker-registry-default.192.168.99.100.nip.io:443
-# os user and group rundeck is running with
-project.globals.rundeck_os_user=root:root</code></pre>
+<pre class="highlightjs highlight"><code class="language-INI hljs" data-lang="INI">no_nexus=true</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>After startup via the IDE the application is available at <a href="http://localhost:8080/" class="bare">http://localhost:8080/</a></p>
+</div>
+<div class="paragraph">
+<p>You can login in with the Crowd admin user you set up earlier.</p>
 </div>
 </div>
 </div>
@@ -1980,78 +2152,6 @@ project.globals.rundeck_os_user=root:root</code></pre>
 <p>and start the build: <code>oc start-build -n shared-services nginx-authproxy</code>.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_configure_provisioning_application"><a class="anchor" href="#_configure_provisioning_application"></a>Configure provisioning application</h3>
-<div class="paragraph">
-<p>Clone the provisioning application repository.</p>
-</div>
-<div class="paragraph">
-<p>Because we disabled anonymous access for nexus, we need to provide some data.</p>
-</div>
-<div class="paragraph">
-<p>What you need to provide are gradle guild variables. You do this by creating a <code>gradle.properties</code> file in the ods-provisioning-app project:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-INI hljs" data-lang="INI">nexus_url=http://nexus-cd.192.168.99.100.nip.io
-nexus_user=developer
-nexus_pw=developer</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If you run the application from your IDE, there is no further configuration needed.</p>
-</div>
-<div class="paragraph">
-<p>After startup via the IDE the application is available at <a href="http://localhost:8088/" class="bare">http://localhost:8088/</a></p>
-</div>
-<div class="paragraph">
-<p>You can login in with the Crowd admin user you set up earlier.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_setup_within_openshift"><a class="anchor" href="#_setup_within_openshift"></a>Setup within Openshift</h3>
-<div class="paragraph">
-<p>Create 3 openshift projects projects</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>prov-cd</code> (for the jenkins builder)</p>
-</li>
-<li>
-<p><code>prov-test</code> (<em>production</em> branch will be built and deployed here)</p>
-</li>
-<li>
-<p><code>prov-dev</code> (other branches will be built and deployed here)</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Start with <code>prov-cd</code> and issue:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>cd ocp-config/prov-cd
-tailor update</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Add <code>prov-cd/jenkins</code> and <code>prov-cd/default</code> service accounts with edit rights into -dev &amp; -test projects, so jenkins can update the build config and trigger the corresponding <code>oc start build / oc update bc</code> from within the jenkins build.</p>
-</div>
-<div class="paragraph">
-<p>For the runtime projects (<code>prov-test</code> and <code>prov-dev</code>) run:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-shell hljs" data-lang="shell">cd ocp-config/prov-app
-tailor update -f Tailorfile.dev
-tailor update -f Tailorfile.test</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Once Jenkins id deployed, you can trigger the build in the <code>prov-cd/ods-provisioning-app-production</code> pipeline. Deployment should happen automatically and you can start using the provision app.</p>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -2062,7 +2162,7 @@ tailor update -f Tailorfile.test</code></pre>
 Open the Provisioning application in your web browser and login with your crowd credentials.</p>
 </div>
 <div class="paragraph">
-<p>Provision your first project and have a look at OpenShift.</p>
+<p>Provision your first project and have a look at your project in the Atlassian tools and OpenShift.</p>
 </div>
 </div>
 </div>
