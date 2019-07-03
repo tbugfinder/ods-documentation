@@ -1,6 +1,6 @@
 site:
   title: OpenDevStack
-  start_page: common::index.adoc
+  start_page: common:getting-started:local-install.adoc
 content:
   sources:
     - url: ../opendevstack.github.io
