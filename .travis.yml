@@ -16,6 +16,7 @@ before_script:
   - npm install
 
 script:
+  - rm -rf docs/*
   - $(npm bin)/antora generate --silent --clean --fetch site.yml
 
 after_success:
