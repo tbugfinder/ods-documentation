@@ -1,8 +1,5 @@
 dist: xenial
 
-services:
-  - docker
-
 addons:
   apt:
     source:
@@ -14,15 +11,12 @@ language: node_js
 node_js: 
   - "lts/*"
 
-before_install:
-  - docker pull antora/antora:2.0.0
-
 before_script:
   - npm i @antora/cli@2.0 @antora/site-generator-default@2.0
   - npm install
 
 script:
-  - $(npm bin)/antora site.yml
+  - $(npm bin)/antora generate --silent --clean --fetch site.yml
 
 after_success:
   - ./.travis/push.sh
