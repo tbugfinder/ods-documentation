@@ -1,6 +1,7 @@
 site:
   title: OpenDevStack
   start_page: common:getting-started:local-install.adoc
+  url: file:///home/richard/git/ods-documentation-poc/ods-documentation/docs/index.html
 content:
   branches: master,1.*
   sources:
