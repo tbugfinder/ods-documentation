@@ -15,6 +15,9 @@ content:
     - url: ../ods-provisioning-app
       start_path: docs
       branches: HEAD
+    - url: ../ods-project-quickstarters
+      start_path: docs
+      branches: HEAD
 asciidoc:
   extensions:
     - asciidoctor-plantuml

@@ -23,10 +23,15 @@ content:
       - 1.0.x
       - 1.1.x
       - master
-    - url: https://github.com/rattermeyer/ods-provisioning-app.git
+    - url: https://github.com/opendevstack/ods-provisioning-app.git
       start_path: docs
       branches:
       - 1.0.x
+      - 1.1.x
+      - master
+    - url: https://github.com/rattermeyer/ods-project-quickstarters.git
+      start_path: docs
+      branches:
       - 1.1.x
       - master
 asciidoc:

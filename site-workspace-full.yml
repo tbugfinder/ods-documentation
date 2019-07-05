@@ -29,7 +29,11 @@ content:
       - 1.0.x
       - 1.1.x
       - master
-
+    - url: ../ods-project-quickstarters
+      start_path: docs
+      branches:
+      - 1.1.x
+      - master
 asciidoc:
   extensions:
     - asciidoctor-plantuml
