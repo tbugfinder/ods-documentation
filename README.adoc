@@ -16,3 +16,7 @@ Then you are able to generate the documentation
 or if you want to include all versions
 
    antora site-workspace-full.yml
+
+## Building on travis
+
+Whenever this repository is pushed to github, it triggers a travis build, that regenerates the antora documentation based on the `site.yml` playbook.
