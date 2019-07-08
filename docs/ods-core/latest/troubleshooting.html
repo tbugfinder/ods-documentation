@@ -27,10 +27,11 @@
             <a class="navbar-item" href="../../common/latest/index.html">Guides and Tutorials</a>
             <a class="navbar-item" href="../../ods-jenkins-shared-library/latest/index.html">Jenkins Shared Library</a>
             <a class="navbar-item" href="infrastructure-setup/index.html">ODS Core</a>
+            <a class="navbar-item" href="../../ods-project-quickstarters/latest/index.html">ODS Project Quickstarters</a>
             <a class="navbar-item" href="../../ods-provisioning-app/latest/index.html">Provisioning App</a>
           </div>
         </div>
-        <a class="navbar-item" href="#">Home</a>
+        <a class="navbar-item" href="https://www.rattermeyer.de/ods-documentation">Home</a>
       </div>
     </div>
   </nav>
@@ -41,6 +42,24 @@
     <div class="panels">
 <div class="navigation-menu is-active" data-panel="menu">
   <nav class="nav-menu">
+    <h3 class="title">ODS Components</h3>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+      <a class="nav-link" href="../../common/latest/index.html">Guides and Tutorials</a>
+      </li>
+  <li class="nav-item" data-depth="0">
+      <a class="nav-link" href="../../ods-jenkins-shared-library/latest/index.html">Jenkins Shared Library</a>
+      </li>
+  <li class="nav-item" data-depth="0">
+      <a class="nav-link" href="infrastructure-setup/index.html">ODS Core</a>
+      </li>
+  <li class="nav-item" data-depth="0">
+      <a class="nav-link" href="../../ods-project-quickstarters/latest/index.html">ODS Project Quickstarters</a>
+      </li>
+  <li class="nav-item" data-depth="0">
+      <a class="nav-link" href="../../ods-provisioning-app/latest/index.html">Provisioning App</a>
+      </li>
+    </ul>
     <h3 class="title"><a href="infrastructure-setup/index.html">ODS Core</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
@@ -50,12 +69,6 @@
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="sysenv-requirements.html">System and Environment Requirements</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="development-guide.html">Development Guide</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="update-guide.html">Update Guide</a>
   </li>
 </ul>
   </li>
@@ -69,14 +82,35 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="jenkins/index.html">Jenkins</a>
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Jenkins</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="jenkins/index.html">Jenkins Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="jenkins/webhook-proxy.html">Webhook Proxy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="jenkins/slave-base.html">Jenkins Slave Base Image</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="shared-images/index.html">Shared Images</a>
+    <button class="nav-toggle"></button>
+    <span class="nav-text">Shared Images</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="shared-images/openresty-nginx.html">OpenResty Base image + WAF</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="shared-images/nginx-authproxy-crowd.html">Crowd Authproxy</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -88,21 +122,6 @@
 </ul>
   </li>
 </ul>
-    <h3 class="title">ODS Components</h3>
-    <ul class="nav-list">
-  <li class="nav-item" data-depth="0">
-      <a class="nav-link" href="../../common/latest/index.html">Guides and Tutorials</a>
-      </li>
-  <li class="nav-item" data-depth="0">
-      <a class="nav-link" href="../../ods-jenkins-shared-library/latest/index.html">Jenkins Shared Library</a>
-      </li>
-  <li class="nav-item" data-depth="0">
-      <a class="nav-link" href="infrastructure-setup/index.html">ODS Core</a>
-      </li>
-  <li class="nav-item" data-depth="0">
-      <a class="nav-link" href="../../ods-provisioning-app/latest/index.html">Provisioning App</a>
-      </li>
-    </ul>
   </nav>
 </div>
 <div class="navigation-explore" data-panel="explore">
@@ -118,6 +137,9 @@
           <a href="../../common/latest/index.html">latest</a>
         </li>
         <li class="version">
+          <a href="../../common/1.1/index.html">1.1</a>
+        </li>
+        <li class="version">
           <a href="../../common/v1.0/index.html">v1.0</a>
         </li>
       </ul>
@@ -127,6 +149,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../../ods-jenkins-shared-library/latest/index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../../ods-jenkins-shared-library/1.1/index.html">1.1</a>
         </li>
         <li class="version">
           <a href="../../ods-jenkins-shared-library/v1.0/index.html">v1.0</a>
@@ -140,7 +165,21 @@
           <a href="infrastructure-setup/index.html">latest</a>
         </li>
         <li class="version">
+          <a href="../1.1/infrastructure-setup/index.html">1.1</a>
+        </li>
+        <li class="version">
           <a href="../v1.0/infrastructure-setup/index.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">ODS Project Quickstarters</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../ods-project-quickstarters/latest/index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../../ods-project-quickstarters/1.1/index.html">1.1</a>
         </li>
       </ul>
     </li>
@@ -149,6 +188,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../../ods-provisioning-app/latest/index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../../ods-provisioning-app/1.1/index.html">1.1</a>
         </li>
         <li class="version">
           <a href="../../ods-provisioning-app/v1.0/index.html">v1.0</a>
@@ -163,7 +205,7 @@
   <main class="main">
 <div class="toolbar" role="navigation">
   <button class="navigation-toggle"></button>
-  <a href="../../common/latest/index.html" class="home-link"></a>
+  <a href="../../common/latest/getting-started/local-install.html" class="home-link"></a>
 <nav class="crumbs" aria-label="breadcrumbs">
   <ul>
     <li class="crumb"><a href="infrastructure-setup/index.html">ODS Core</a></li>
@@ -174,6 +216,7 @@
   <button class="versions-menu-toggle" title="Show other versions of page">latest</button>
   <div class="versions-menu">
     <a class="version is-current" href="troubleshooting.html">latest</a>
+    <a class="version" href="../1.1/troubleshooting.html">1.1</a>
     <a class="version is-missing" href="../v1.0/infrastructure-setup/index.html">v1.0</a>
   </div>
 </div>

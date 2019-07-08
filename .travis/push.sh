@@ -9,12 +9,15 @@ commit_website_files() {
   cd docs
   sudo touch .nojekyll
   git add -A . 
-  git commit --message "Travis build: $TRAVIS_BUILD_NUMBER"
+  git commit --message "Travis build: $TRAVIS_BUILD_NUMBER [ci skip]"
+  git branch temp-changes
+  git checkout master
+  git merge temp-changes
 }
 
 upload_files() {
   git remote add origin-pages https://${GH_TOKEN}@github.com/${TRAVIS_REPO_SLUG}.git > /dev/null 2>&1
-  git push --all --quiet --set-upstream origin-pages
+  git push --quiet --set-upstream origin-pages master
 }
 
 setup_git

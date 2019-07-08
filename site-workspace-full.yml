@@ -1,6 +1,7 @@
 site:
   title: OpenDevStack
-  start_page: common::index.adoc
+  start_page: common:getting-started:local-install.adoc
+  url: file:///home/richard/git/ods-documentation-poc/ods-documentation/docs/index.html
 content:
   branches: master,1.*
   sources:
@@ -8,23 +9,31 @@ content:
       start_path: docs
       branches:
       - 1.0.x
+      - 1.1.x
       - master
     - url: ../ods-core
       start_path: docs
       branches:
       - 1.0.x
+      - 1.1.x
       - master
     - url: ../ods-jenkins-shared-library
       start_path: docs
       branches:
       - 1.0.x
+      - 1.1.x
       - master
     - url: ../ods-provisioning-app
       start_path: docs
       branches:
       - 1.0.x
+      - 1.1.x
       - master
-
+    - url: ../ods-project-quickstarters
+      start_path: docs
+      branches:
+      - 1.1.x
+      - master
 asciidoc:
   extensions:
     - asciidoctor-plantuml

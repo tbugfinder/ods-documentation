@@ -1,0 +1,390 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width, initial-scale=1.0">
+    <title>Python Flask Quickstarter (be-python-flask) :: OpenDevStack</title>
+    <link rel="canonical" href="https://www.rattermeyer.de/ods-documentation/ods-project-quickstarters/latest/be-python-flask.html">
+    <meta name="generator" content="Antora 2.0.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.rattermeyer.de/ods-documentation">OpenDevStack</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Components</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../../common/latest/index.html">Guides and Tutorials</a>
+            <a class="navbar-item" href="../../ods-jenkins-shared-library/latest/index.html">Jenkins Shared Library</a>
+            <a class="navbar-item" href="../../ods-core/latest/infrastructure-setup/index.html">ODS Core</a>
+            <a class="navbar-item" href="../latest/index.html">ODS Project Quickstarters</a>
+            <a class="navbar-item" href="../../ods-provisioning-app/latest/index.html">Provisioning App</a>
+          </div>
+        </div>
+        <a class="navbar-item" href="https://www.rattermeyer.de/ods-documentation">Home</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="main-wrapper">
+<div class="navigation-container" data-component="ods-project-quickstarters" data-version="1.1">
+  <aside class="navigation">
+    <div class="panels">
+<div class="navigation-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title">ODS Components</h3>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+      <a class="nav-link" href="../../common/latest/index.html">Guides and Tutorials</a>
+      </li>
+  <li class="nav-item" data-depth="0">
+      <a class="nav-link" href="../../ods-jenkins-shared-library/latest/index.html">Jenkins Shared Library</a>
+      </li>
+  <li class="nav-item" data-depth="0">
+      <a class="nav-link" href="../../ods-core/latest/infrastructure-setup/index.html">ODS Core</a>
+      </li>
+  <li class="nav-item" data-depth="0">
+      <a class="nav-link" href="../latest/index.html">ODS Project Quickstarters</a>
+      </li>
+  <li class="nav-item" data-depth="0">
+      <a class="nav-link" href="../../ods-provisioning-app/latest/index.html">Provisioning App</a>
+      </li>
+    </ul>
+    <h3 class="title"><a href="index.html">ODS Project Quickstarters</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Allgemein</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="java-spring-boot.html">BE Java / Spring Boot</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="be-docker-plain.html">BE Docker Plain</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="be-node-express.html">BE Node Express</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="be-python-flask.html">BE Python Flask</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="be-scala-akka.html">BE Scala Akka</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="fe-angular.html">FE Angular</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="fe-ionic.html">FE Ionic</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="fe-react.html">FE React</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="ds-ml-service.html">Data Science Machine Learing Service</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="e2e-cypress.html">Cypress E2E testing Quickstarters</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="jupyter-notebook.html">Jupyter Notebook</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="rshiny-app.html">RShiny app</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="navigation-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">ODS Project Quickstarters</span>
+    <span class="version">1.1</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <span class="title">Guides and Tutorials</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../common/latest/index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../../common/1.1/index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../common/v1.0/index.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Jenkins Shared Library</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../ods-jenkins-shared-library/latest/index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../../ods-jenkins-shared-library/1.1/index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../ods-jenkins-shared-library/v1.0/index.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">ODS Core</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../ods-core/latest/infrastructure-setup/index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../../ods-core/1.1/infrastructure-setup/index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../ods-core/v1.0/infrastructure-setup/index.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <span class="title">ODS Project Quickstarters</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../latest/index.html">latest</a>
+        </li>
+        <li class="version is-current">
+          <a href="index.html">1.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Provisioning App</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../ods-provisioning-app/latest/index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../../ods-provisioning-app/1.1/index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../ods-provisioning-app/v1.0/index.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+  <main class="main">
+<div class="toolbar" role="navigation">
+  <button class="navigation-toggle"></button>
+  <a href="../../common/latest/getting-started/local-install.html" class="home-link"></a>
+<nav class="crumbs" aria-label="breadcrumbs">
+  <ul>
+    <li class="crumb"><a href="index.html">ODS Project Quickstarters</a></li>
+    <li class="crumb"><a href="be-python-flask.html">BE Python Flask</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="versions-menu-toggle" title="Show other versions of page">1.1</button>
+  <div class="versions-menu">
+    <a class="version" href="../latest/be-python-flask.html">latest</a>
+    <a class="version is-current" href="be-python-flask.html">1.1</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-project-quickstarters/edit/1.1.x/docs/modules/ROOT/pages/be-python-flask.adoc">Edit this Page</a></div>
+</div>
+<article class="doc">
+<h1>Python Flask Quickstarter (be-python-flask)</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The project supports generation of Python Flask project boilerplate and quick
+installation and integration of it with OpenShift CD pipelines.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_purpose_of_this_quickstarter"><a class="anchor" href="#_purpose_of_this_quickstarter"></a>Purpose of this quickstarter</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The quickstarter is simmple WEB-server written on Python using Flask framework.
+The package allows easily build a Python project, using different Python modules
+and frameworks.
+It contains the basic setup for Docker, Jenkins, SonarQube and OpenShift.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_what_files_architecture_is_generated"><a class="anchor" href="#_what_files_architecture_is_generated"></a>What files / architecture is generated?</h2>
+<div class="sectionbody">
+<div class="literalblock">
+<div class="content">
+<pre>├── Jenkinsfile - This file contains Jenkins build configuration settings
+├── README.md
+├── files
+│   ├── docker - This folder contains Docker configuration settings
+│   │   ├── Dockerfile
+│   │   └── run.sh - This bash script solves issue with permissions for a container user
+│   └── src
+│       ├── app.py - This file is the main entry point in the project.
+│       ├── requirements.txt - This file contains a list of required Python modules to run application
+│       ├── static
+│       │   ├── css
+│       │   │   └── main.css
+│       │   └── img
+│       │       └── bix.jpg
+│       ├── templates - Flask view teplates
+│       │   └── base.html
+│       ├── test_requirements.txt - This file contains a list of required Python modules to runt tests
+│       └── tests
+│           ├── __init__.py
+│           └── tests.py
+├── init.sh
+└── sonar-project.properties - This file contains SonarQube configuration settings</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_frameworks_used"><a class="anchor" href="#_frameworks_used"></a>Frameworks used</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://flask.pocoo.org/">Flask</a></p>
+</li>
+<li>
+<p><a href="https://nose.readthedocs.io/en/latest/">Nose</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_usage_how_do_you_start_after_you_provisioned_this_quickstarter"><a class="anchor" href="#_usage_how_do_you_start_after_you_provisioned_this_quickstarter"></a>Usage - how do you start after you provisioned this quickstarter</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The project should be started automatically by OpenShift. Server should be started
+on the port 8080 in the debug mode.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-python hljs" data-lang="python">app.run('0.0.0.0', 8080, debug=True)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To disable a debug mode set debug to <strong>False</strong>.</p>
+</div>
+<div class="paragraph">
+<p>To run application locally - specify the next command in a console:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">python app.py</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you run application the first time, please install dependencies with the next
+command:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">pip install -r requirements.txt</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It is recommended when you work with a Python project use separated environment
+for every of your project. For this purpose usually iis used
+<a href="https://virtualenv.pypa.io/en/latest/">virtualenv</a> package.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># Command install virtualenv package (run only once)
+pip install virtualenv
+# Creates virtual environment 'venv' (will be located in the folder venv) (run only once)
+virtualenv venv
+
+# Initiate virtual environment for the project (every time)
+source venv/bin/activate
+
+# Runs installation of required modules in the virtual environment (run only once)
+pip install -r requirements.txt
+
+# Start your application
+python app.py</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_this_quickstarter_is_built_through_jenkins"><a class="anchor" href="#_how_this_quickstarter_is_built_through_jenkins"></a>How this quickstarter is built through Jenkins</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Jenkinsfile is provisioned with this quick starter to ease CI/CD process. In Jenkinsfile, there are various stages:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><strong>Test</strong> - Runs unit test cases by executing command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  nosetests -v</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>PEP</strong> 8 - Runs lint profiler by running command:</p>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">  pycodestyle --show-source --show-pep8 . &amp;&amp;
+  pycodestyle --statistics -qq .</code></pre>
+</div>
+</div>
+</li>
+<li>
+<p><strong>Build</strong> - Builds the application, copies output folder dist into docker/dist folder.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_builder_slave_used"><a class="anchor" href="#_builder_slave_used"></a>Builder Slave used</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This quickstarter uses <a href="https://github.com/opendevstack/ods-project-quickstarters/tree/master/jenkins-slaves/python">Python</a> builder slave Jenkins builder slave.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_known_limitations"><a class="anchor" href="#_known_limitations"></a>Known limitations</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>NA</p>
+</div>
+</div>
+</div>
+</article>
+  </main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+  </body>
+</html>

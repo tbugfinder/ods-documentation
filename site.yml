@@ -1,6 +1,6 @@
 site:
   title: OpenDevStack
-  start_page: common::index.adoc
+  start_page: common:getting-started:local-install.adoc
   url: https://www.rattermeyer.de/ods-documentation
 
 content:
@@ -9,21 +9,30 @@ content:
       start_path: docs
       branches:
       - 1.0.x
+      - 1.1.x
       - master
     - url: https://github.com/opendevstack/ods-core.git
       start_path: docs
       branches:
       - 1.0.x
+      - 1.1.x
       - master
     - url: https://github.com/opendevstack/ods-jenkins-shared-library.git
       start_path: docs
       branches:
       - 1.0.x
+      - 1.1.x
       - master
     - url: https://github.com/opendevstack/ods-provisioning-app.git
       start_path: docs
       branches:
       - 1.0.x
+      - 1.1.x
+      - master
+    - url: https://github.com/opendevstack/ods-project-quickstarters.git
+      start_path: docs
+      branches:
+      - 1.1.x
       - master
 asciidoc:
   extensions:
@@ -36,4 +45,4 @@ output:
   dir: ./docs
 ui:
   bundle:
-    url: https://github.com/rattermeyer/ods-docs-ui/releases/download/v1.0.0/ui-bundle.zip
+    url: https://github.com/rattermeyer/ods-docs-ui/releases/download/v1.0.2/ui-bundle.zip
