@@ -45,4 +45,4 @@ output:
   dir: ./docs
 ui:
   bundle:
-    url: https://github.com/rattermeyer/ods-docs-ui/releases/download/v1.0.2/ui-bundle.zip
+    url: https://github.com/opendevstack/ods-docs-ui/releases/download/v1.0.3/ui-bundle.zip
