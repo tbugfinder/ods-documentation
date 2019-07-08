@@ -1,7 +1,7 @@
 site:
   title: OpenDevStack
   start_page: common:getting-started:local-install.adoc
-  url: https://www.rattermeyer.de/ods-documentation
+  url: https://www.opendevstack.org/ods-documentation
 
 content:
   sources:
