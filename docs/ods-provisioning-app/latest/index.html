@@ -171,6 +171,36 @@
   <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-provisioning-app/edit/master/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
 </div>
 <article class="doc">
+<div id="toc" class="toc">
+<div id="toctitle" class="title">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_opendevstack_provisioning_application">OpenDevStack Provisioning Application</a>
+<ul class="sectlevel2">
+<li><a href="#_basic_idea_usage">Basic idea &amp; usage:</a></li>
+<li><a href="#_integration_with_bitbucket_webhooks">Integration with Bitbucket (webhooks)</a></li>
+<li><a href="#_permissions">Permissions</a></li>
+<li><a href="#_projectspace_types_based_on_templates">Project/Space types based on templates</a></li>
+<li><a href="#_using_the_provision_application_via_api_thru_direct_rest_calls">Using the provision application via API / thru direct REST calls</a></li>
+</ul>
+</li>
+<li><a href="#_configuration_guide">Configuration Guide</a>
+<ul class="sectlevel2">
+<li><a href="#_authentication_configuration">Authentication Configuration</a></li>
+</ul>
+</li>
+<li><a href="#_internal_architecture">Internal architecture</a>
+<ul class="sectlevel2">
+<li><a href="#_gradle_build_configuration">Gradle Build configuration</a></li>
+<li><a href="#_frontend_code">Frontend Code</a></li>
+<li><a href="#_backend_code">Backend Code</a></li>
+<li><a href="#_authentication_implementation">Authentication Implementation</a></li>
+<li><a href="#_consuming_rest_apis_in_java">Consuming REST APIs in Java</a></li>
+<li><a href="#_link_collection">Link collection</a></li>
+</ul>
+</li>
+<li><a href="#_faq">FAQ:</a></li>
+</ul>
+</div>
 <div class="sect1">
 <h2 id="_opendevstack_provisioning_application"><a class="anchor" href="#_opendevstack_provisioning_application"></a>OpenDevStack Provisioning Application</h2>
 <div class="sectionbody">
@@ -188,7 +218,7 @@ It delegates the tasks to create / update resources to several services such as 
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>An admin (user in a group defined in property <code>crowd.admin.group</code>) creates new ODS project. This in turn creates</p>
+<p>An admin (user in a group defined in property <code>idmanager.group.opendevstack-administrators</code>) creates new ODS project. This in turn creates</p>
 <div class="ulist">
 <ul>
 <li>
@@ -207,7 +237,7 @@ It delegates the tasks to create / update resources to several services such as 
 </div>
 </li>
 <li>
-<p>A normal user (user in a group defined in property <code>crowd.user.group</code>) creates all resources required for a working component -
+<p>A normal user (user in a group defined in property <code>idmanager.group.opendevstack-users</code>) creates all resources required for a working component -
 this happens thru the user interface - in going to modify project / picking your project and then the wanted quickstarter. Internally this is done thru a rest call to rundeck - with the picked job as parameter - <a href="https://github.com/opendevstack/ods-project-quickstarters/tree/master/rundeck-jobs/quickstarts">here</a></p>
 <div class="ulist">
 <ul>
@@ -271,10 +301,10 @@ this happens thru the user interface - in going to modify project / picking your
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>JIRA Project is provisioned with its own permissionset <a href="src/main/resources/permission-templates/jira.permission.all.txt">defined in src/main/resources/permission-templates/jira.permission.all.txt</a></p>
+<p>JIRA Project is provisioned with its own permissionset defined in <a href="src/main/resources/permission-templates/jira.permission.all.txt">src/main/resources/permission-templates/jira.permission.all.txt</a></p>
 </li>
 <li>
-<p>Confluence Project is provisioned with special permission set <a href="src/main/resources/permission-templates">defined in src/main/resources/permission-templates/confluence.permission.*</a></p>
+<p>Confluence Project is provisioned with special permission set defined in <a href="src/main/resources/permission-templates">src/main/resources/permission-templates/confluence.permission.*</a></p>
 </li>
 <li>
 <p>Bitbucket Project is provisioned with tight read &amp; write roles</p>
@@ -360,7 +390,170 @@ provisionfile=create.txt
 
 # invoke the provision API to create a new project
 curl -k -X POST --cookie "$COOKIES" -d @"$provisionfile" \
--H "Content-Type: application/json; charset=utf-8" -v ${PROVISION_API_HOST}/api/v1/project</code></pre>
+-H "Content-Type: application/json; charset=utf-8" -v ${PROVISION_API_HOST}/api/v2/project</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuration_guide"><a class="anchor" href="#_configuration_guide"></a>Configuration Guide</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The Provisioning Application is configured via spring boot profiles.
+Default configuration properties are definded in <a href="src/main/resources/application.properties">application.properties</a></p>
+</div>
+<div class="sect2">
+<h3 id="_authentication_configuration"><a class="anchor" href="#_authentication_configuration"></a>Authentication Configuration</h3>
+<div class="paragraph">
+<p>There are to separate authentication options to authenticated a user for the provisioning app.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>CROWD (default)</p>
+</li>
+<li>
+<p>OAUTH2</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="&#128161;"></i>
+</td>
+<td class="content">
+Note that the current OAUTH2 implementation is only used for authentication the user to the provisioning app.
+To authentication that is used for the REST - API calls of Atlassian Crowd, Jira, Confluence, Bitbucket and Rundeck is done eighter via the logged in uses credentials (user name and password) or via the technical users, that are configured in the used spring boot profile.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect3">
+<h4 id="_authentication_crowd_configuration"><a class="anchor" href="#_authentication_crowd_configuration"></a>Authentication Crowd Configuration</h4>
+<div class="listingblock">
+<div class="title">application.properties</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">provision.auth.provider=crowd <i class="conum" data-value="1"></i><b>(1)</b>
+spring.profiles.active=crowd <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>configures crowd authentication provider</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>include crowd profile per default.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The crowd specific configuration is done in the included profile <em>crowd</em>, see property documentation inside the profile file <em>application-crowd.properties</em>. The provided example configuration is appropriate for a locally installed OpenDevStack environment.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_authentication_oauth2_configuration"><a class="anchor" href="#_authentication_oauth2_configuration"></a>Authentication OAUTH2 Configuration</h4>
+<div class="paragraph">
+<p>A default oauth2 configuration is given in spring boot profile <a href="src/main/resources/application-outh2.properties">application-oauth2.properties</a>. The provided example configuration is appropriate for a locally installed OpenDevStack environment, when the <em>idmanager</em> vagrant box is used.</p>
+</div>
+<div class="listingblock">
+<div class="title">application-oauth2.properties</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">provision.auth.provider=oauth2 <i class="conum" data-value="1"></i><b>(1)</b>
+
+idmanager.url=http://192.168.56.32:8080 <i class="conum" data-value="2"></i><b>(2)</b>
+idmanager.realm=provisioning-app <i class="conum" data-value="3"></i><b>(3)</b>
+
+oauth2.user.roles.jsonpointerexpression=/claims/roles <i class="conum" data-value="4"></i><b>(4)</b>
+
+<i class="conum" data-value="5"></i><b>(5)</b>
+spring.security.oauth2.client.registration.keycloak.client-id=ods-provisioning-app
+spring.security.oauth2.client.registration.keycloak.client-secret=put-your-secret-here
+spring.security.oauth2.client.registration.keycloak.clientName=ods-provisioning-app
+spring.security.oauth2.client.registration.keycloak.authorization-grant-type=authorization_code
+spring.security.oauth2.client.registration.keycloak.redirectUri={baseUrl}/login/oauth2/code/{registrationId}
+spring.security.oauth2.client.registration.keycloak.scope=openid
+
+<i class="conum" data-value="6"></i><b>(6)</b>
+spring.security.oauth2.client.provider.keycloak.authorization-uri=${idmanager.url}/auth/realms/${idmanager.realm}-app/protocol/openid-connect/auth
+spring.security.oauth2.client.provider.keycloak.token-uri=${idmanager.url}/auth/realms/${idmanager.realm}/protocol/openid-connect/token
+spring.security.oauth2.client.provider.keycloak.user-info-uri=${idmanager.url}/auth/realms/${idmanager.realm}/protocol/openid-connect/userinfo
+spring.security.oauth2.client.provider.keycloak.jwk-set-uri=${idmanager.url}/auth/realms/${idmanager.realm}/protocol/openid-connect/certs
+spring.security.oauth2.client.provider.keycloak.user-name-attribute=preferred_username</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>configures oauth2 authentication provider</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>URL to idmanager. The value defaults to opendevstack idmanager box with keycloak installation</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Name of realm that is used</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>The application reads the user roles from the claim that is inside the oauth2 ID-Token. The property <em>oauth2.user.roles.jsonpointerexpression</em> is a JsonPointer - Expression that defines a path to the roles that are extracted from the id token. Details regarding pointer expression can be found at <a href="https://fasterxml.github.io/jackson-core/javadoc/2.5/com/fasterxml/jackson/core/JsonPointer.html">Jackson-core JsonPointer Documentation</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Defines the OAUTH2 client registration properties, in particular the client name and client secret. See
+<a href="https://docs.spring.io/spring-security/site/docs/5.1.5.RELEASE/reference/html/jc.html#oauth2login-boot-property-mappings">OAUTH2 Spring Boot 2.x Property Mappings</a> for details.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Defines the OAUTH2 <em>client.provider</em> properties. These properties correspond to the <em>well-known</em> OAUTH2-URIs. In case of keycloak, this URIs can be read out using the  <a href="http://192.168.56.32:8080/auth/realms/provisioning-app/.well-known/openid-configuration">.well-known/openid-configuration-link</a></td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_authentication_to_third_party_apps_via_technical_users"><a class="anchor" href="#_authentication_to_third_party_apps_via_technical_users"></a>Authentication to third party apps via technical users</h4>
+<div class="paragraph">
+<p>The rest api calles use HTTP <em>basic access authentication</em> to communicate with Jira, Confluence, Bitbucket and Rundeck. The used credentials are read from a pair of properties. For Example, <em>rundeck.admin_password</em> and <em>rundeck.admin_user</em> properties are used for Rundeck, <em>confluence.admin_user</em> and <em>confluence.admin_password</em> are used for confluence, etc.</p>
+</div>
+<div class="listingblock">
+<div class="title">application-oauth2.properties</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash"># configure technical user for rundeck. Do not authenticate via oauth2, since not implemented.
+rundeck.admin_password=rundeck_admin
+rundeck.admin_user=rundeck_admin
+
+# configure technical user for bitbucket. Do not authenticate via oauth2, since not implemented.
+bitbucket.admin_password=bitbucket_admin
+bitbucket.admin_user=bitbucket_admin
+
+# configure technical user for confluence. Do not authenticate via oauth2, since not implemented.
+confluence.admin_password=confluence_admin
+confluence.admin_user=confluence_admin
+
+# configure technical user for jira. Do not authenticate via oauth2, since not implemented.
+jira.admin_password=jira_admin
+jira.admin_user=jira_admin</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="&#128161;"></i>
+</td>
+<td class="content">
+Note: if the pair of properties is not defined for a third party tool, the logged in user&#8217;s credentials are used to authenticate against the application.
+ The credentials are read by caling the method <em>getUserName</em> and <em>getUserPassword</em> from <a href="src/main/java/org/opendevstack/provision/adapter/IODSAuthnzAdapter">IODSAuthnzAdapter</a>]. See also implementation of <em>org.opendevstack.provision.services.BaseServiceAdapter#authenticatedCall()</em>
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -380,6 +573,8 @@ Rundeck (for openshift interaction).</p>
 <p>The APIs exposed for direct usage, and also for the UI are in the <a href="src/main/java/org/opendevstack/provision/controller">controller package</a>.
 The connectors to the various tools to create resources are in the <a href="src/main/java/org/opendevstack/provision/services">services package</a></p>
 </div>
+<div class="sect2">
+<h3 id="_gradle_build_configuration"><a class="anchor" href="#_gradle_build_configuration"></a>Gradle Build configuration</h3>
 <div class="paragraph">
 <p>If you want to build / run locally - create <code>gradle.properties</code> in the project&#8217;s root to configure connectivity to OpenDevStack NEXUS</p>
 </div>
@@ -444,6 +639,7 @@ gradle bootRun</code></pre>
 <p>To overwrite the provided <a href="src/main/resources/application.properties">application.properties</a> a configmap is created out of them and injected into /config/application.properties within the container.
 The base configuration map as well as the deployment yamls can be found in <a href="ocp-config/prov-app/cm.yml">ocp-config</a>, and overwrite parameters from application.</p>
 </div>
+</div>
 <div class="sect2">
 <h3 id="_frontend_code"><a class="anchor" href="#_frontend_code"></a>Frontend Code</h3>
 <div class="paragraph">
@@ -453,9 +649,54 @@ The base configuration map as well as the deployment yamls can be found in <a hr
 <div class="sect2">
 <h3 id="_backend_code"><a class="anchor" href="#_backend_code"></a>Backend Code</h3>
 <div class="paragraph">
-<p>The backend is based on Spring Boot, authenticates against Atlassian Crowd and exposes consumable APIs (<code>api/v1/project</code>).
+<p>The backend is based on Spring Boot, authenticates against Atlassian Crowd (Using property <code>provision.auth.provider=crowd</code>) or OAUTH2/OpenID Connect provider (Using property <code>provision.auth.provider=oauth2</code>) and exposes consumable APIs (<code>api/v2/project</code>).
 Storage of created projects happens on the filesystem thru the <a href="src/main/java/org/opendevstack/provision/storage/LocalStorage.java">StorageAdapter</a>.
 Both frontend (html) and backend are tested thru Junit &amp; Mockito</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_authentication_implementation"><a class="anchor" href="#_authentication_implementation"></a>Authentication Implementation</h3>
+<div class="paragraph">
+<p>By using the property <code>provision.auth.provider=crowd</code> or <code>provision.auth.provider=oauth2</code>, the application uses eigher CROWD or OAUTH2 authentication. Dependent of the property used, different spring beans are used for configuration.
+The switch between the two options is implemented via Spring&#8217;s <em>ConditionalOnProperty</em> annotation.</p>
+</div>
+<div class="paragraph">
+<p>CROWD - specific configuration classes are located in the java package <em>org.opendevstack.provision.authentication.crowd</em>.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="title">org.opendevstack.provision.authentication.crowd.CrowdSecurityConfiguration.java</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-java hljs" data-lang="java">@Configuration
+@EnableWebSecurity
+@EnableCaching
+@EnableEncryptableProperties
+@ConditionalOnProperty(name = "provision.auth.provider", havingValue = "crowd")
+public class CrowdSecurityConfiguration extends WebSecurityConfigurerAdapter {
+//...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>OAUTH2 - specific configuration classes are located in the java package <em>org.opendevstack.provision.authentication.oauth2</em>.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="title">org.opendevstack.provision.authentication.oauth2.Oauth2SecurityConfiguration.java</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-java hljs" data-lang="java">@Configuration
+@Order(Ordered.HIGHEST_PRECEDENCE)
+@ConditionalOnProperty(name = "provision.auth.provider", havingValue = "oauth2")
+@EnableWebSecurity
+@EnableOAuth2Client
+public class Oauth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
+//...
+}</code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">
@@ -491,7 +732,7 @@ Both frontend (html) and backend are tested thru Junit &amp; Mockito</p>
 <p>Generate (a) Pojo('s) for the Endpoint</p>
 </li>
 <li>
-<p>Use the pojo to build your request, convert it to JSON with Jackson and send it via OKHTTP3, and the Provision Application&#8217;s <a href="src/main/java/org/opendevstack/provision/util/RestClient.java">RestClient</a></p>
+<p>Use the pojo to build your request, convert it to JSON with Jackson and send it via OKHTTP3, and the Provision Application&#8217;s <a href="src/main/java/org/opendevstack/provision/util/rest/RestClient.java">RestClient</a></p>
 </li>
 </ol>
 </div>
