@@ -5,6 +5,7 @@ All notable changes to the documentation of OpenDevStack will be documented in t
 ## [Unreleased]
 
 * inclusion of 1.1.x branches of repos
+* Add option to authenticate via oauth2 instead of crowd. ([#170](https://github.com/opendevstack/ods-provisioning-app/issues/170))
 
 
 
