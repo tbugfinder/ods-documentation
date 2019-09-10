@@ -68,10 +68,13 @@
     <a class="nav-link" href="index.html">Introduction</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="java-spring-boot.html">BE Java / Spring Boot</a>
+    <a class="nav-link" href="airflow.html">airflow</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="be-docker-plain.html">BE Docker Plain</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="be-golang.html">BE Golang</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="be-node-express.html">BE Node Express</a>
@@ -83,6 +86,15 @@
     <a class="nav-link" href="be-scala-akka.html">BE Scala Akka</a>
   </li>
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="be-springboot.html">BE Java / Spring Boot</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="ds-ml-service.html">Data Science Machine Learing Service</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="e2e-cypress.html">Cypress E2E testing Quickstarters</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="fe-angular.html">FE Angular</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -91,11 +103,8 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="fe-react.html">FE React</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="ds-ml-service.html">Data Science Machine Learing Service</a>
-  </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="e2e-cypress.html">Cypress E2E testing Quickstarters</a>
+    <a class="nav-link" href="fe-vue.html">FE Vue</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="jupyter-notebook.html">Jupyter Notebook</a>
@@ -214,6 +223,9 @@
 pipeline hosted on OpenShift with the goal in mind that one does not have to take care/change
 much of the needed pipeline and infrastructure.</p>
 </div>
+<div class="paragraph">
+<p>For pull requests and discussion regarding direction, please pull in @hugowschneider, @sklingel and @gerardcl</p>
+</div>
 </div>
 </div>
 <div class="sect1">
@@ -224,16 +236,14 @@ much of the needed pipeline and infrastructure.</p>
 prediction service.</p>
 </div>
 <div class="sect2">
-<h3 id="_docker"><a class="anchor" href="#_docker"></a>Docker</h3>
+<h3 id="_container_services"><a class="anchor" href="#_container_services"></a>Container services</h3>
 <div class="paragraph">
-<p>Each service has their own <code>Dockerfile</code>, under <code>docker-prediction</code> and <code>docker-training</code>
-respectively,
-  which can be changed according to your requirements in regards to operating system dependencies.</p>
+<p>From one <code>Dockerfile</code>, under <code>docker</code> folder, both <code>training</code> and <code>prediction</code> services are built. If required, one can edit it in order to provide different dependency management workflows for each service.</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>The <code>docker-training</code> container provides a pod that is able to reproduce/retrain the model that is
+<p>The <code>training</code> service provides a pod that is able to reproduce/retrain the model that is
 developed in the current commit either locally on OpenShift or execute the training on a remote
 linux system using ssh. The training process is wrapped into a flask server to be able to monitor
  and possible restart the training process. Moreover, the training service offers an endpoint
@@ -242,9 +252,9 @@ linux system using ssh. The training process is wrapped into a flask server to b
  dependencies in the jenkins slave.</p>
 </li>
 <li>
-<p>The <code>docker-prediction</code> container provides a simple flask service for getting new predictions out
+<p>The <code>prediction</code> service provides a simple flask service for getting new predictions out
 of your model by making json posts to the prediction REST endpoint.
-The prediction service downloads the newly trained model from the training pod after startup.</p>
+The prediction service is already built with the newly trained model from the training pod.</p>
 </li>
 </ul>
 </div>
@@ -347,53 +357,6 @@ trained.</p>
 This can be easily achieved, either by using an IDE that supports that (e.g. PyCharm) or by doing
 manually in the docker container.</p>
 </div>
-<div class="paragraph">
-<p>The whole setup (prediction and training service) can be tested using the attached docker-compose</p>
-</div>
-<div class="sect2">
-<h3 id="_local_deployment_docker_compose_testing_the_services"><a class="anchor" href="#_local_deployment_docker_compose_testing_the_services"></a>Local deployment (docker-compose) - testing the services</h3>
-<div class="paragraph">
-<p>Any new change: Generate <code>/dist</code> folder for both training and prediction containers</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>./build.sh</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Setup the right values for the environment variables in <code>docker-compose.yml</code> file wherever there
-is a definition like <code>THIS_PARAMETER_SHOULD_BE_NOT_COMMITED</code></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>vim docker-compose.yml</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Build the images defined in <code>docker-compose.yml</code></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>docker-compose build</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Run the images defined in <code>docker-compose.yml</code></p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>docker-compose up</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>When done: stop the containers</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre>[Ctrl+C]</pre>
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="sect1">
@@ -466,7 +429,8 @@ A Logistic Regression using scikit-learn with some (unnecessary) feature cleanin
  is trained on the iris data flower set.</p>
 </div>
 <div class="paragraph">
-<p><strong>Iris flower data set</strong>. (n.d.). In Wikipedia. Retrieved January 7, 2019, from <a href="https://en.wikipedia.org/wiki/Iris_flower_data_set">Iris_flower_data_set</a></p>
+<p><strong>Iris flower data set</strong>. (n.d.). In Wikipedia. Retrieved January 7, 2019, from <a href="https://en" class="bare">https://en</a>
+.wikipedia.org/wiki/Iris_flower_data_set</p>
 </div>
 </div>
 </div>
@@ -748,16 +712,6 @@ training task can run at a time.</p>
 </table>
 </div>
 <div class="sect2">
-<h3 id="_frameworks_used"><a class="anchor" href="#_frameworks_used"></a>Frameworks used</h3>
-<div class="ulist">
-<ul>
-<li>
-<p>python 3.6</p>
-</li>
-</ul>
-</div>
-</div>
-<div class="sect2">
 <h3 id="_environment_variables_for_prediction"><a class="anchor" href="#_environment_variables_for_prediction"></a>Environment Variables for prediction</h3>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -820,7 +774,7 @@ training task can run at a time.</p>
 <p>Prepare build</p>
 </li>
 <li>
-<p>Sonarcube checks</p>
+<p>Sonarqube checks</p>
 </li>
 <li>
 <p>Build training image</p>
@@ -852,6 +806,21 @@ training task can run at a time.</p>
 <div class="sectionbody">
 <div class="paragraph">
 <p><a href="https://github.com/opendevstack/ods-project-quickstarters/tree/master/jenkins-slaves/python">jenkins-slave-python</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_frameworks_used"><a class="anchor" href="#_frameworks_used"></a>Frameworks used</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p>Python 3.6</p>
+</li>
+<li>
+<p>Python Flask 1.0.2</p>
+</li>
+</ul>
 </div>
 </div>
 </div>

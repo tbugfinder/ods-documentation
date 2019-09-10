@@ -68,10 +68,13 @@
     <a class="nav-link" href="index.html">Introduction</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="java-spring-boot.html">BE Java / Spring Boot</a>
+    <a class="nav-link" href="airflow.html">airflow</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="be-docker-plain.html">BE Docker Plain</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="be-golang.html">BE Golang</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="be-node-express.html">BE Node Express</a>
@@ -81,6 +84,15 @@
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="be-scala-akka.html">BE Scala Akka</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="be-springboot.html">BE Java / Spring Boot</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="ds-ml-service.html">Data Science Machine Learing Service</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="e2e-cypress.html">Cypress E2E testing Quickstarters</a>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="fe-angular.html">FE Angular</a>
@@ -92,10 +104,7 @@
     <a class="nav-link" href="fe-react.html">FE React</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="ds-ml-service.html">Data Science Machine Learing Service</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="e2e-cypress.html">Cypress E2E testing Quickstarters</a>
+    <a class="nav-link" href="fe-vue.html">FE Vue</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="jupyter-notebook.html">Jupyter Notebook</a>
@@ -231,6 +240,7 @@
 ├── Jenkinsfile - This file contains Jenkins build configuration settings
 ├── README.md
 ├── angular.json - This file contains Angular project configuration settings
+├── browserslist - This file is used by the build system to adjust CSS and JS output to support the specified browsers
 ├── docker - This folder contains Docker configuration settings
 │   ├── Dockerfile
 │   └── nginx.vh.default.conf.nginx
@@ -239,7 +249,9 @@
 │   ├── src
 │   │   ├── app.e2e-spec.ts
 │   │   └── app.po.ts
-│   └── tsconfig.e2e.json
+│   └── tsconfig.json
+├── karma.conf.js
+├── package-lock.json - It describes the exact tree that was generated, such that subsequent installs are able to generate identical trees, regardless of intermediate dependency updates.
 ├── package.json - This file contains scripts to run and node packages dependencies for project
 ├── sonar-project.properties - This file contains SonarQube configuration settings
 ├── src
@@ -250,22 +262,19 @@
 │   │   ├── app.component.ts
 │   │   └── app.module.ts
 │   ├── assets
-│   ├── browserslist
 │   ├── environments
 │   │   ├── environment.prod.ts
 │   │   └── environment.ts
 │   ├── favicon.ico
 │   ├── index.html
-│   ├── karma.conf.js
 │   ├── main.ts
 │   ├── polyfills.ts
 │   ├── styles.scss
-│   ├── test.ts
-│   ├── tsconfig.app.json
-│   ├── tsconfig.spec.json
-│   └── tslint.json
+│   └── test.ts
+├── tsconfig.app.json
 ├── tsconfig.json
-└── tslint.json
+├── tsconfig.spec.json
+├── tslint.json
 
 7 directories, 31 files</pre>
 </div>

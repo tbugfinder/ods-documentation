@@ -221,6 +221,36 @@ odsPipeline(
 </div>
 </div>
 <div class="sect1">
+<h2 id="_provided_stages"><a class="anchor" href="#_provided_stages"></a>Provided Stages</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Following stages are provided (see folder vars for more details):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="#_stage_scan_for_sonarqube">stageScanForSonarqube(context)</a></p>
+</li>
+<li>
+<p>stageOWASPDependencyCheck(context)</p>
+</li>
+<li>
+<p><a href="#_stage_scan_for_snyk">stageScanForSnyk(context, snykAuthenticationCode, buildFile, projectId)</a></p>
+</li>
+<li>
+<p>stageUploadToNexus(context)</p>
+</li>
+<li>
+<p><a href="#_stage_start_openshift_build">stageStartOpenshiftBuild(context)</a></p>
+</li>
+<li>
+<p>stageDeployToOpenshift(context)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_workflow"><a class="anchor" href="#_workflow"></a>Workflow</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -498,6 +528,10 @@ autoCloneEnvironmentsFromSourceMapping: [
 <td class="tableblock halign-left valign-top"><p class="tableblock">Branch on which to run SonarQube analysis.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">failOnSnykScanVulnerabilities</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Boolean flag (default true) that disables build failure in case Snyk Scan finds vulnerabilities</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">dependencyCheckBranch</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Branch on which to run dependency checks.</p></td>
 </tr>
@@ -591,6 +625,131 @@ you can follow the following steps:</p>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git lfs migrate</code></pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_how_to_add_snyk_scanning_to_your_ods_project"><a class="anchor" href="#_how_to_add_snyk_scanning_to_your_ods_project"></a>How to add Snyk scanning to your ODS project</h3>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Setup organisation in snyk.io</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>If you don´t have an snyk account just create one at snyk.io</p>
+</li>
+<li>
+<p>Once you logged into snyk.io, in your snyk group create an organisation for your project with exactly same name as project name.</p>
+</li>
+<li>
+<p>Create a service account in settings for the created organisation and keep the displayed token. You will need it later.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Add environment variable to jenkins in your cd project</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Add the environment variable <code>SNYK_AUTHENTICATION_CODE</code> in jenkins in your openshift cd project with service account token as value.</p>
+</li>
+</ol>
+</div>
+</li>
+<li>
+<p>Edit your project Jenkinsfile</p>
+<div class="olist loweralpha">
+<ol class="loweralpha" type="a">
+<li>
+<p>Read auth code from environment by adding:</p>
+<div class="listingblock">
+<div class="content">
+<pre> node {
+     ...
+   snykAuthenticationCode = env.SNYK_AUTHENTICATION_CODE
+}</pre>
+</div>
+</div>
+</li>
+<li>
+<p>Add stageScanForSnyk:</p>
+<div class="listingblock">
+<div class="content">
+<pre> ) { context -&gt;
+    ...
+
+   stageScanForSnyk(context, snykAuthenticationCode, 'build.gradle', context.projectId)
+   ...
+ }</pre>
+</div>
+</div>
+</li>
+</ol>
+</div>
+</li>
+</ol>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_stages"><a class="anchor" href="#_stages"></a>Stages</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_ods_pipeline"><a class="anchor" href="#_ods_pipeline"></a>Ods Pipeline</h3>
+<div class="paragraph">
+<p>The odsPipeline method offers a complete pipeline for any component created with a quickstarter. It takes care of building the code, uploading artifacts to Nexus, analysing the code and starting builds and triggering deployments in Openshift.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_stage_scan_for_snyk"><a class="anchor" href="#_stage_scan_for_snyk"></a>Stage Scan for Snyk</h3>
+<div class="paragraph">
+<p>The "Snyk Security Scan" stage does 2 tasks:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>uploads the list of project 3rd party dependencies including its licenses for monitoring. Snyk monitoring feature notifies developers about new vulnerabilities per email once this vulnerabilities are reported to the Snyk Vulnerability Database</p>
+</li>
+<li>
+<p>analyses your project 3rd party dependencies including its licenses and break the build if vulnerable versions are found in the project. Build fail can be disable with the property <code>failOnSnykScanVulnerabilities</code>
+Note: that if this stage only runs if the SNYK_AUTHENTICATION_CODE is found as environment variable. This variable needs to be defined as environment variable in the deployment configuration of your project jenkins.</p>
+</li>
+</ol>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_stage_start_openshift_build"><a class="anchor" href="#_stage_start_openshift_build"></a>Stage Start OpenShift Build</h3>
+<div class="paragraph">
+<p>stageStartOpenshiftBuild triggers the BuildConfig related to the repository
+being built.</p>
+</div>
+<div class="paragraph">
+<p>stageStartOpenshiftBuild takes two optional params
+(a) the first one, named "buildArgs", which is a map allowing to customise the image build step in OpenShift.
+For example:
+stageStartOpenshiftBuild(context, ["myArg":"val"])</p>
+</div>
+<div class="paragraph">
+<p>(b) the second one, named "imageLabels", which is a map allowing to customise the image label generation.
+For example:
+stageStartOpenshiftBuild(context, [ : ], ["myImageLabel":"valLabel"]). This will end up as label prefixed with 'ext.'</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_stage_scan_for_sonarqube"><a class="anchor" href="#_stage_scan_for_sonarqube"></a>Stage Scan For SonarQube</h3>
+<div class="paragraph">
+<p>The "SonarQube Analysis" stage scans your source code and reports findings to
+SonarQube. The configuration of the scan happens via the
+"sonar-project.properties" file in the repository being built.</p>
+</div>
+<div class="paragraph">
+<p>In debug mode, the sonar-scanner binary is started with the "-X" flag.</p>
+</div>
+<div class="paragraph">
+<p>If no "sonar.projectVersion" is specified in "sonar-project.properties", it is
+set to the shortened Git SHA.</p>
 </div>
 </div>
 </div>

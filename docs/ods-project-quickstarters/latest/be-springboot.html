@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Plain docker image (be-docker-plain) :: OpenDevStack</title>
-    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/ods-project-quickstarters/latest/be-docker-plain.html">
+    <title>Spring Boot Quickstarter :: OpenDevStack</title>
+    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/ods-project-quickstarters/latest/be-springboot.html">
     <meta name="generator" content="Antora 2.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -70,7 +70,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="airflow.html">airflow</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="be-docker-plain.html">BE Docker Plain</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -85,7 +85,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="be-scala-akka.html">BE Scala Akka</a>
   </li>
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="be-springboot.html">BE Java / Spring Boot</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -202,49 +202,151 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">ODS Project Quickstarters</a></li>
-    <li><a href="be-docker-plain.html">BE Docker Plain</a></li>
+    <li><a href="be-springboot.html">BE Java / Spring Boot</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">latest</button>
   <div class="version-menu">
-    <a class="version is-current" href="be-docker-plain.html">latest</a>
-    <a class="version" href="../1.1/be-docker-plain.html">1.1</a>
+    <a class="version is-current" href="be-springboot.html">latest</a>
+    <a class="version is-missing" href="../1.1/index.html">1.1</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-project-quickstarters/edit/master/docs/modules/ROOT/pages/be-docker-plain.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-project-quickstarters/edit/master/docs/modules/ROOT/pages/be-springboot.adoc">Edit this Page</a></div>
 </div>
 <article class="doc">
-<h1>Plain docker image (be-docker-plain)</h1>
+<h1>Spring Boot Quickstarter</h1>
 <div class="sect1">
 <h2 id="_purpose_of_this_quickstarter"><a class="anchor" href="#_purpose_of_this_quickstarter"></a>Purpose of this quickstarter</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Use this quickstarter when you want to start from a plain dockerfile only - w/o a framework on top.
-A good usecase here is a dockerfile you found on github that you want to run with OpenDevStack features,
-or that you need to "openshiftify", by setting an execution user or alike.</p>
+<p>Use this quickstarter to generate a <a href="https://www.tutorialspoint.com/spring_boot/index.htm">spring boot</a> based project.</p>
+</div>
+<div class="paragraph">
+<p>It will provide a java 8 project with preconfigured gradle build and CI/CD integration (Jenkinsfile).</p>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_what_files_architecture_is_generated"><a class="anchor" href="#_what_files_architecture_is_generated"></a>What files / architecture is generated?</h2>
 <div class="sectionbody">
-<div class="listingblock">
-<div class="content">
-<pre>├── Jenkinsfile - Contains Jenkins build configuration
-├── README.md
-├── docker - Contains Dockerfile for the build
-│   └── Dockerfile
-├── sonar-project.properties  - SonarQube Configuration</pre>
+<div class="paragraph">
+<p>Under the hook this quickstarter runs the <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#cli-init">spring boot cli init command</a>.</p>
+</div>
+<div class="paragraph">
+<p>This is implemented in the script <code>init.sh</code> (open it to understand the internal of the code generation of this quickstarter).</p>
+</div>
+<div class="paragraph">
+<p>When provisioning this quickstarter in the provisioning app a spring boot project will be generated and pushed to your git repository.</p>
+</div>
+<div class="paragraph">
+<p>The generated project requires java 8 and include the required gradle build and wrapper artifact.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_project_structure"><a class="anchor" href="#_project_structure"></a>Project Structure</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The generated spring boot project contains following folders:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>src</code> (maven based java project structure)</p>
+</li>
+<li>
+<p><code>gradle</code> (gradle wrapper portable distribution)</p>
+</li>
+<li>
+<p><code>docker</code> (include the <code>Dockerfile</code> used to build the image to be deployed during CI/CD to openshift)</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_gradle_support"><a class="anchor" href="#_gradle_support"></a>Gradle Support</h3>
+<div class="paragraph">
+<p>The generated project includes a gradlew wrapper which is a portable distribution of gradle.
+It allows you to easily build the project without any further tool installation other than java.</p>
+</div>
+<div class="paragraph">
+<p>You´ll find in the project following gradle artifacts:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>build.gradle</code> (build definition)</p>
+</li>
+<li>
+<p><code>gradlew.bat</code></p>
+</li>
+<li>
+<p><code>gradlew</code></p>
+</li>
+<li>
+<p><code>gradle/wrapper/gradle-wrapper.jar</code></p>
+</li>
+<li>
+<p><code>gradle/wrapper/gradle.properties</code></p>
+</li>
+<li>
+<p><code>settings.gradlew</code></p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+gradle.properties is missing. This is on purpose. You´ll need to create it yourself and add following properties:
+</td>
+</tr>
+</table>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>nexus_url=&lt;URL_OF_YOUR_NEXUS_SERVER&gt;</code></p>
+</li>
+<li>
+<p><code>nexus_folder=&lt;FOLDER_TO_UPLOAD_ARTIFACTS&gt;</code> (ie. snapshots, candidate)</p>
+</li>
+<li>
+<p><code>nexus_user=&lt;YOUR_NEXUS_USERNAME&gt;</code></p>
+</li>
+<li>
+<p><code>nexus_pw=&lt;YOUR_NEXUS_PASSWORD&gt;</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The quickstarter uses the latest available spring boot cli version to generate the spring boot project.</p>
+</div>
+<div class="paragraph">
+<p>Run <code>gradlew -v</code> to verify the installed version of gradle wrapper.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_frameworks_used"><a class="anchor" href="#_frameworks_used"></a>Frameworks used</h2>
+<h2 id="_dependencies_and_frameworks_used"><a class="anchor" href="#_dependencies_and_frameworks_used"></a>Dependencies and Frameworks used</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>None, except the ODS <a href="https://github.com/opendevstack/ods-jenkins-shared-library">jenkins shared library</a></p>
+<p>The generated spring boot project is preconfigured with some third party dependencies (i.e. <code>--dependencies="web,jersey,data-jpa,h2,lombok,data-rest,restdocs,security"</code>), which are defined in the script <code>init.sh</code> (open it to understand the internal of the code generation of this quickstarter).</p>
+</div>
+<div class="paragraph">
+<p>Look in method <code>dependencies</code> in the file <code>build.gradle</code> to review the defined dependencies.</p>
+</div>
+<div class="sect2">
+<h3 id="_ods_integration_jenkinsfile"><a class="anchor" href="#_ods_integration_jenkinsfile"></a>ODS Integration (Jenkinsfile)</h3>
+<div class="paragraph">
+<p>The project includes a special artifact that enables it to integrate with OpenDevStack CI/CD infrastructure.
+The <code>Jenkinsfile</code> provides this capability.
+Basically it is the script that is executed in Jenkins every time a push to your git repository is done. More on this below.</p>
+</div>
 </div>
 </div>
 </div>
@@ -252,33 +354,69 @@ or that you need to "openshiftify", by setting an execution user or alike.</p>
 <h2 id="_usage_how_do_you_start_after_you_provisioned_this_quickstarter"><a class="anchor" href="#_usage_how_do_you_start_after_you_provisioned_this_quickstarter"></a>Usage - how do you start after you provisioned this quickstarter</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Amend the generated <code>Dockerfile</code> as needed.</p>
+<p>After the provisioning the provisioning app will display the url of git repository.
+This git repository contains the generated project artifacts as describe above in <a href="#project-structure">Project Structure</a>.</p>
+</div>
+<div class="paragraph">
+<p>To start working with it you´ll need to clone the git repository in your local development environment.
+After cloning it use <code>./gradlew build</code> to verify that the project compiles and test runs.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+java 8 or later version is required to run gradlew and compile java classes.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_how_this_quickstarter_is_built_through_jenkins"><a class="anchor" href="#_how_this_quickstarter_is_built_through_jenkins"></a>How this quickstarter is built through jenkins</h2>
+<h2 id="_how_this_quickstarter_is_built_thru_jenkins"><a class="anchor" href="#_how_this_quickstarter_is_built_thru_jenkins"></a>How this quickstarter is built thru jenkins</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The shared library is used as is - whatever is in the <code>/docker</code> folder is passed to <code>oc start build</code> as docker context.
-In case you want to run testing, plug into <code>stageUnitTest</code>.</p>
+<p>The <code>Jenkinsfile</code> implements the CI/CD pipeline of your project.</p>
 </div>
-<div class="listingblock">
-<div class="content">
-<pre>def stageBuild(def context) {
-  stage('Build') {
-    // copy any other artifacts if needed
-    // sh "cp -r build docker/dist"
-    // the docker context passed in /docker
-  }
-}
-
-def stageUnitTest(def context) {
-  stage('Unit Test') {
-    // if needed add your unit tests here
-  }
-}</pre>
+<div class="paragraph">
+<p>The <code>Jenkinsfile</code> is kind of configuration that customizes the core pipeline implemented by <a href="https://github.com/opendevstack/ods-jenkins-shared-library">jenkins shared library</a>.
+It is highly recommended that you familiarize with this file and library.</p>
 </div>
+<div class="paragraph">
+<p>It is executed in Jenkins every time a push to your git repository is done.
+Basically, the tasks implemented by this pipeline are:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>clone the branch in the Jenkins environment</p>
+</li>
+<li>
+<p>run the java build</p>
+</li>
+<li>
+<p>build a docker image</p>
+</li>
+<li>
+<p>deploy the docker image to openshift</p>
+</li>
+</ol>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+The 2nd step executes <code>gradlew build</code> to compile your project and create a distribution as <code>jar</code> file.
+This file is copied to the <code>docker</code> folder to be included in the docker image when the image is built in step 3.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -286,7 +424,8 @@ def stageUnitTest(def context) {
 <h2 id="_builder_slave_used"><a class="anchor" href="#_builder_slave_used"></a>Builder Slave used</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>none</p>
+<p>This quickstarter uses
+<a href="https://github.com/opendevstack/ods-project-quickstarters/tree/master/jenkins-slaves/maven">Maven builder slave</a> Jenkins builder slave.</p>
 </div>
 </div>
 </div>
@@ -294,7 +433,7 @@ def stageUnitTest(def context) {
 <h2 id="_known_limitations"><a class="anchor" href="#_known_limitations"></a>Known limitations</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>N/A</p>
+<p>NA</p>
 </div>
 </div>
 </div>
