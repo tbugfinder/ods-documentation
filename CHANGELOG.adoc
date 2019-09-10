@@ -1,14 +1,14 @@
-# Changelog
+= Changelog
 
 All notable changes to the documentation of OpenDevStack will be documented in this file.
 
 
-## [10.09.2018]
+== 10.09.2018
 
 * https://github.com/opendevstack/ods-jenkins-shared-library/pull/124
 * https://github.com/opendevstack/ods-jenkins-shared-library/pull/123#event-2621452653
 
-## [Released]
+== Released
 
 * inclusion of 1.1.x branches of repos
 * Add option to authenticate via oauth2 instead of crowd. ([#170](https://github.com/opendevstack/ods-provisioning-app/issues/170))
