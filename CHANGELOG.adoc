@@ -5,7 +5,7 @@ All notable changes to the documentation of OpenDevStack will be documented in t
 
 == 12.09.2018
 Publish documentation updates because auf PRs merged today.
-
+* https://github.com/opendevstack/ods-project-quickstarters/pull/342
 == 10.09.2018
 
 * https://github.com/opendevstack/ods-jenkins-shared-library/pull/124
