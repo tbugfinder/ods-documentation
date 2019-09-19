@@ -3,7 +3,10 @@
 All notable changes to the documentation of OpenDevStack will be documented in this file.
 
 
-== 12.09.2018
+== 19.09.2019
+Corrected links in provisioning app documentaiton
+
+== 12.09.2019
 Publish documentation updates because auf PRs merged today.
 * https://github.com/opendevstack/ods-project-quickstarters/pull/342
 == 10.09.2018
