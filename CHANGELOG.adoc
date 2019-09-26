@@ -2,9 +2,11 @@
 
 All notable changes to the documentation of OpenDevStack will be documented in this file.
 
+== 26.09.2019
+Improved documentation of local build.
 
 == 19.09.2019
-Corrected links in provisioning app documentaiton
+Corrected links in provisioning app documentation
 
 == 12.09.2019
 Publish documentation updates because auf PRs merged today.
