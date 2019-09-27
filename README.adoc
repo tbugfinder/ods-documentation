@@ -4,6 +4,9 @@
 
 ### Prerequisites
 
+#### Antora
+Antora has to be installed according to the https://docs.antora.org/antora/2.0/install/install-antora/[Install Antora] guide.
+
 #### OpenDevStack Repositories
 The following OpenDevStack Repositories have to be cloned and stored beside the _ods-documentation_ repository:
 
@@ -42,7 +45,7 @@ You can start a server using a docker container
 
 *Start as jetty server via maven*:
 
-    mvn mvn jetty:run -Djetty.port=9080 -Djetty.contextpath=/
+    mvn jetty:run -Djetty.port=9080 -Djetty.contextpath=/
 
 *Classic way (not recommend)*:
 
@@ -50,14 +53,28 @@ Since PlantUML is a simple web application, you can even go the classic way and 
 and deploy it to your java application server.
 
 
-### Run the buil locally
-Then you are able to generate the documentation
+### Run the build locally
+The documentation build is defined by a playbook.
+There are 3 different playbook versions with different behavior.
 
-   antora site-workspace.yml
+#### Fetch content from github
+  antora generate site.yml
 
-or if you want to include all versions
+This fetches the different referenced repositories from github and caches them locally.
 
-   antora site-workspace-full.yml
+#### Use local repositories
+If you want to preview your local changes, you can use
+
+   antora generate site-workspace.yml
+
+or
+
+   antora generate site-workspace-full.yml
+
+The difference is that the latter will take into account all branches, the first option will only build the last branch.
+Both assume that all ods projects are located side-by-side.
+
+
 
 ## Building on travis
 
