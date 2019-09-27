@@ -30,6 +30,7 @@ and the following hint may help to create the requiered zip-file:
 
 
 #### PlantUML-Server
+
 Because we use PlantUML for creating of diagrams, it is important, that a plantuml server is running.
 Currently the system is configured to use a local plantuml server when building locally.
 Plantuml server can be downloaded from https://github.com/plantuml/plantuml-server. It runs as
@@ -43,7 +44,19 @@ You can start a server using a docker container
 
     docker run -d -p 9080:8080 plantuml/plantuml-server:jetty
 
+Then you are able to generate the documentation
 *Start as jetty server via maven*:
+
+    mvn mvn jetty:run -Djetty.port=9080 -Djetty.contextpath=/
+
+*Classic way (not recommend)*:
+
+Since PlantUML is a simple web application, you can even go the classic way and build a war - archive
+and deploy it to your java application server.
+
+
+### Run the buil locally
+Then you are able to generate the documentation
 
     mvn jetty:run -Djetty.port=9080 -Djetty.contextpath=/
 
