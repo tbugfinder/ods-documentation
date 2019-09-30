@@ -38,27 +38,17 @@ docker container or can be started with a jetty server out of the box. See the d
 github and the following explanations for details.
 
 
-*Start as Docker container*:
+*Start as Docker container:*
 
 You can start a server using a docker container
 
     docker run -d -p 9080:8080 plantuml/plantuml-server:jetty
 
-Then you are able to generate the documentation
+Then you are able to generate the documentation.
+
 *Start as jetty server via maven*:
 
     mvn mvn jetty:run -Djetty.port=9080 -Djetty.contextpath=/
-
-*Classic way (not recommend)*:
-
-Since PlantUML is a simple web application, you can even go the classic way and build a war - archive
-and deploy it to your java application server.
-
-
-### Run the buil locally
-Then you are able to generate the documentation
-
-    mvn jetty:run -Djetty.port=9080 -Djetty.contextpath=/
 
 *Classic way (not recommend)*:
 
