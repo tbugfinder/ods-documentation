@@ -4,6 +4,9 @@
 
 ### Prerequisites
 
+#### Antora
+Antora has to be installed according to the https://docs.antora.org/antora/2.0/install/install-antora/[Install Antora] guide.
+
 #### OpenDevStack Repositories
 The following OpenDevStack Repositories have to be cloned and stored beside the _ods-documentation_ repository:
 
@@ -27,6 +30,7 @@ and the following hint may help to create the requiered zip-file:
 
 
 #### PlantUML-Server
+
 Because we use PlantUML for creating of diagrams, it is important, that a plantuml server is running.
 Currently the system is configured to use a local plantuml server when building locally.
 Plantuml server can be downloaded from https://github.com/plantuml/plantuml-server. It runs as
@@ -34,11 +38,13 @@ docker container or can be started with a jetty server out of the box. See the d
 github and the following explanations for details.
 
 
-*Start as Docker container*:
+*Start as Docker container:*
 
 You can start a server using a docker container
 
     docker run -d -p 9080:8080 plantuml/plantuml-server:jetty
+
+Then you are able to generate the documentation.
 
 *Start as jetty server via maven*:
 
@@ -50,14 +56,28 @@ Since PlantUML is a simple web application, you can even go the classic way and 
 and deploy it to your java application server.
 
 
-### Run the buil locally
-Then you are able to generate the documentation
+### Run the build locally
+The documentation build is defined by a playbook.
+There are 3 different playbook versions with different behavior.
 
-   antora site-workspace.yml
+#### Fetch content from github
+  antora generate site.yml
 
-or if you want to include all versions
+This fetches the different referenced repositories from github and caches them locally.
 
-   antora site-workspace-full.yml
+#### Use local repositories
+If you want to preview your local changes, you can use
+
+   antora generate site-workspace.yml
+
+or
+
+   antora generate site-workspace-full.yml
+
+The difference is that the latter will take into account all branches, the first option will only build the last branch.
+Both assume that all ods projects are located side-by-side.
+
+
 
 ## Building on travis
 
