@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Getting started :: OpenDevStack</title>
+    <title>Local Installation Guide :: OpenDevStack</title>
     <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/common/latest/getting-started/local-install.html">
     <meta name="generator" content="Antora 2.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
@@ -64,6 +64,9 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="introduction.html">Introduction</a>
+  </li>
   <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="local-install.html">Local Installation</a>
   </li>
@@ -72,10 +75,10 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../development-guide.html">Development Guide</a>
+    <a class="nav-link" href="../update-guide.html">Update Guide</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="../update-guide.html">Update Guide</a>
+    <a class="nav-link" href="../development-guide.html">Development Guide</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="../documentation.html">Contributing Documentation</a>
@@ -184,7 +187,34 @@
   <div class="edit-this-page"><a href="https://github.com/opendevstack/opendevstack.github.io/edit/master/docs/modules/getting-started/pages/local-install.adoc">Edit this Page</a></div>
 </div>
 <article class="doc">
-<h1>Getting started</h1>
+<h1>Local Installation Guide</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_introduction">Introduction</a></li>
+<li><a href="#_requirements">Requirements</a>
+<ul class="sectlevel2">
+<li><a href="#_git">Git</a></li>
+<li><a href="#_vagrant">Vagrant</a></li>
+<li><a href="#_virtualbox">Virtualbox</a></li>
+<li><a href="#_atlassian_tools_licenses">Atlassian tools licenses</a></li>
+<li><a href="#_cygwin_linux">Cygwin / Linux</a></li>
+<li><a href="#_ansible">Ansible</a></li>
+</ul>
+</li>
+<li><a href="#_setup_your_local_environment">Setup your local environment</a>
+<ul class="sectlevel2">
+<li><a href="#_tailor">Tailor</a></li>
+<li><a href="#_prepare_infrastructure">Prepare infrastructure</a></li>
+<li><a href="#_configure_atlassian_tools">Configure Atlassian Tools</a></li>
+<li><a href="#_prepare_local_opendevstack_environment">Prepare local OpenDevStack environment</a></li>
+<li><a href="#_provisioning_application">Provisioning application</a></li>
+<li><a href="#_add_shared_images">Add shared images</a></li>
+</ul>
+</li>
+<li><a href="#_try_out_the_opendevstack">Try out the OpenDevStack</a></li>
+</ul>
+</div>
 <div class="sect1">
 <h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
 <div class="sectionbody">
@@ -2087,9 +2117,10 @@ To do so, just type <code>y</code> instead of typing <code>n</code> or pressing 
 </div>
 <div class="sect2">
 <h3 id="_provisioning_application"><a class="anchor" href="#_provisioning_application"></a>Provisioning application</h3>
+<div class="sect3">
+<h4 id="_run_from_openshift"><a class="anchor" href="#_run_from_openshift"></a>Run from OpenShift</h4>
 <div class="paragraph">
-<p><mark>#</mark>#Run from OpenShift
-The Provisioning application has been installed with the environment preparation script and is accessible via</p>
+<p>The Provisioning application has been installed with the environment preparation script and is accessible via</p>
 </div>
 <div class="paragraph">
 <p><a href="https://prov-app-test.192.168.56.101.nip.io" class="bare">https://prov-app-test.192.168.56.101.nip.io</a></p>
@@ -2099,6 +2130,7 @@ The Provisioning application has been installed with the environment preparation
 </div>
 <div class="paragraph">
 <p>If the application is not available, you will have to proof in OpenShift, if there have been any errors during the installation.</p>
+</div>
 </div>
 <div class="sect3">
 <h4 id="_run_from_ide"><a class="anchor" href="#_run_from_ide"></a>Run from IDE</h4>
