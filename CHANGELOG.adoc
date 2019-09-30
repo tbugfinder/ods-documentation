@@ -2,7 +2,7 @@
 
 All notable c hanges to the documentation of OpenDevStack will be documented in this file.
 
-== 27.09.2019
+== 30.09.2019
 - https://github.com/opendevstack/opendevstack.github.io/issues/108
 
 == 26.09.2019
