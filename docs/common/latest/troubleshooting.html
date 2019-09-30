@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>The OpenDevStack documentation :: OpenDevStack</title>
-    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/common/latest/documentation.html">
+    <title>Troubleshooting :: OpenDevStack</title>
+    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/common/latest/troubleshooting.html">
     <meta name="generator" content="Antora 2.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -80,7 +80,7 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="development-guide.html">Development Guide</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="documentation.html">Contributing Documentation</a>
   </li>
 </ul>
@@ -173,163 +173,89 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">Guides and Tutorials</a></li>
-    <li><a href="documentation.html">Contributing Documentation</a></li>
+    <li><a href="troubleshooting.html">Troubleshooting</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">latest</button>
   <div class="version-menu">
-    <a class="version is-current" href="documentation.html">latest</a>
-    <a class="version" href="../1.1/documentation.html">1.1</a>
-    <a class="version" href="../v1.0/documentation.html">v1.0</a>
+    <a class="version is-current" href="troubleshooting.html">latest</a>
+    <a class="version is-missing" href="../1.1/index.html">1.1</a>
+    <a class="version is-missing" href="../v1.0/index.html">v1.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/opendevstack/opendevstack.github.io/edit/master/docs/modules/ROOT/pages/documentation.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/opendevstack.github.io/edit/master/docs/modules/ROOT/pages/troubleshooting.adoc">Edit this Page</a></div>
 </div>
 <article class="doc">
-<h1>The OpenDevStack documentation</h1>
-<div id="preamble">
+<h1>Troubleshooting</h1>
+<div class="sect1">
+<h2 id="_the_terminal_is_empty_when_using_vagrant_ssh_in_cygwin"><a class="anchor" href="#_the_terminal_is_empty_when_using_vagrant_ssh_in_cygwin"></a>The terminal is empty when using vagrant ssh in cygwin</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>OpenDevStack documentation is build with Antora.</p>
+<p>By default cygwin uses the ssh client from it&#8217;s msys environment
+Use "VAGRANT_PREFER_SYSTEM_BIN=1 vagrant ssh " on Windows 10 to tell cygwin to use windows&#8217;s ssh-client</p>
+</div>
+<div class="paragraph">
+<p>Source: <a href="https://github.com/hashicorp/vagrant/issues/9143#issuecomment-343311263" class="bare">https://github.com/hashicorp/vagrant/issues/9143#issuecomment-343311263</a></p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_why_we_chose_antora"><a class="anchor" href="#_why_we_chose_antora"></a>Why we chose Antora</h2>
+<h2 id="_error_the_role_was_not_found_in_vagrantansibleplaybooksroles"><a class="anchor" href="#_error_the_role_was_not_found_in_vagrantansibleplaybooksroles"></a>ERROR! the role '…' was not found in /vagrant/ansible/playbooks/roles …</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>As we release new versions of OpenDevStack with new or changed functionality and configuration, it should always be clear, which documentation applies to which release.
-Thus we follow the philosophy: manage docs as code. Which means:</p>
+<p>This error can happen on windows when the shared folder between windows and the vm doesn&#8217;t have the right permissions. Then Ansible will ignore the ansible.cfg config-file in this folder which will cause it to use the wrong directory to search for roles.
+To fix this you can modify the ansible.cfg file in /etc/ansible and change the roles_path to</p>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p>Storing content in a version control system alongside with the code.</p>
-</li>
-<li>
-<p>Separating content, configuration, and presentation</p>
-</li>
-<li>
-<p>Reusing shared materials (Don&#8217;t repeat yourself)</p>
-</li>
-</ul>
+<div class="listingblock">
+<div class="content">
+<pre>roles_path = /vagrant/ansible/roles</pre>
 </div>
-<div class="paragraph">
-<p>Antora is a static site generator by the same folks behind the AsciiDoctor project that follows this practices.
-The engine converts a collection of version controlled documentation written in AsciiDoc into an html site.
-The project, while new, is active and responsive and has already made released v2.0 and is being embraced by static site documentarians, like Fedora, Couchbase, Owncloud, Mule.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_how_is_the_documentation_organized"><a class="anchor" href="#_how_is_the_documentation_organized"></a>How is the documentation organized?</h2>
+<h2 id="_fatal_atlassian1_unreachable_changed_false_msg_failed_to_connect_to_the_host_via_ssh_permission_denied_publickeypassword_rn_unreachable_true"><a class="anchor" href="#_fatal_atlassian1_unreachable_changed_false_msg_failed_to_connect_to_the_host_via_ssh_permission_denied_publickeypassword_rn_unreachable_true"></a>fatal: [atlassian1]: UNREACHABLE! =&gt; {"changed": false, "msg": "Failed to connect to the host via ssh: Permission denied (publickey,password).\r\n", "unreachable": true}</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The documentation is contained in the <code>doc</code> subdirectory of every project. Every <code>doc</code> directory is the root of an <a href="https://docs.antora.org/antora/2.0/component-structure/">Antora Component</a>.
-We have additional projects containing the <em>playbook</em> and the UI customization.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>ods-documentation</p>
-</li>
-<li>
-<p>ods-docs-ui</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>We also maintain a third repository <code>ods-guides</code> that provide more complete Guides that refer to multiple OpenDevStack components, like the <a href="#">common:getting-started.adoc</a> guide.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<caption class="title">Table 1. Antora components and relevant repositories</caption>
-<colgroup>
-<col style="width: 33.3333%;">
-<col style="width: 33.3333%;">
-<col style="width: 33.3334%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">github-repo</th>
-<th class="tableblock halign-left valign-top">antora component</th>
-<th class="tableblock halign-left valign-top">modules</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ods-core</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/opendevstack/ods-core/tree/master/docs">ods-core</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">infrastructure-setup, jenkins, nexus, ROOT, shared-images, sonarqube</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ods-jenkins-shared-library</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/opendevstack/ods-jenkins-shared-library/tree/master/docs">ods-jenkins-shared-library</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ROOT</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ods-provisioning-app</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/opendevstack/ods-provisioning-app/tree/master/docs">ods-provisioning-app</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ROOT</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">opendevstack.github.io</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock"><a href="https://github.com/opendevstack/opendevstack.github.io/tree/master/docs">commons</a></p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">getting-started, ROOT</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_how_to_build_the_site_locally"><a class="anchor" href="#_how_to_build_the_site_locally"></a>How to build the site locally?</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>A guide for building the documentation localy is provided in the <a href="https://github.com/opendevstack/ods-documentation/blob/master/README.adoc">ods-documentation project</a>.</p>
+<p>This error happens when executing the ansible-playbooks as root user.
+You have to execute the playbooks as vagrant</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_how_to_contribute_documentation"><a class="anchor" href="#_how_to_contribute_documentation"></a>How to contribute documentation</h2>
+<h2 id="_timeouts_during_the_execution_of_ansible_playbooks"><a class="anchor" href="#_timeouts_during_the_execution_of_ansible_playbooks"></a>Timeouts during the execution of ansible-playbooks</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>At least you should</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Fork the required ods-projects</p>
-</li>
-<li>
-<p>Make your changes and push them to your github account</p>
-</li>
-<li>
-<p>Issue a Pull Request against the original repository</p>
-</li>
-</ul>
+<p>Just execute the playbook again. The network is sometimes too slow.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_how_is_the_documentation_built_on_github"><a class="anchor" href="#_how_is_the_documentation_built_on_github"></a>How is the documentation built on Github?</h2>
+<h2 id="_minishift_does_not_start"><a class="anchor" href="#_minishift_does_not_start"></a>Minishift does not start</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The documentation will be build on travis and pushed back to the ods-documentation repository.
-The <a href="https://github.com/opendevstack/ods-documentation/blob/master/.travis.yml">travis</a> file is located in the ods-documentation project.</p>
+<p>If you install Minishift in an environment with an AD domain it is possible, that Minishift doesn&#8217;t start up.
+Try to connect to your AD domain and then restart Minishift again.</p>
 </div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-This means, if a "documentation" Pull Request is merged, the documentation is not automatically built and deployed. You should add an
-entry to the <a href="https://github.com/opendevstack/ods-documentation/blob/master/CHANGELOG.adoc">documentation changelog</a> and issue a PR.
-Only when this is merged, the new documentation is generated.
-</td>
-</tr>
-</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_jenkins_slave_image_pull_error_errimgpull_imagepullback_exception"><a class="anchor" href="#_jenkins_slave_image_pull_error_errimgpull_imagepullback_exception"></a>Jenkins slave - Image pull error (ErrImgPull / ImagePullback Exception)</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Jenkins builds fails (or gets stuck at "continuing on node xyz"). Check pods in the project&#8217;s CD project - and see if a slave pod is in error state with the above message in the events section.</p>
+</div>
+<div class="paragraph">
+<p>In this case - grant <code>system:authenticated (group)</code> -&gt; <code>image-puller</code> rights.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_all_other_issues"><a class="anchor" href="#_all_other_issues"></a>All other issues</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Just open a ticket against OpenDevStack - don&#8217;t be shy there is no wrong or bad question. And we are there to help!</p>
 </div>
 </div>
 </div>
