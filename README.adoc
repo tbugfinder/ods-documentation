@@ -2,20 +2,82 @@
 
 ## Building documentation locally
 
-Because we use plantuml for creating of diagrams, it is important, that a plantuml server is running.
+### Prerequisites
+
+#### Antora
+Antora has to be installed according to the https://docs.antora.org/antora/2.0/install/install-antora/[Install Antora] guide.
+
+#### OpenDevStack Repositories
+The following OpenDevStack Repositories have to be cloned and stored beside the _ods-documentation_ repository:
+
+- opendevstack.github.io
+- ods-core
+- ods-jenkins-shared-library
+- ods-provisioning-app
+- ods-project-quickstarters
+- ods-docs-ui
+
+Take care that _../ods-docs-ui/build/ui-bundle.zip_ has been build before. If you are not already
+familar with _ods-docs-ui_ project, a closer look at the documentation at
+https://github.com/opendevstack/ods-docs-ui/blob/ods-docs-ui/README.adoc
+and the following hint may help to create the requiered zip-file:
+
+    cd ../ods-docs-ui
+    # compile
+    npm install
+    # create file ui-bundle.zip
+    gulp bundle
+
+
+#### PlantUML-Server
+
+Because we use PlantUML for creating of diagrams, it is important, that a plantuml server is running.
 Currently the system is configured to use a local plantuml server when building locally.
+Plantuml server can be downloaded from https://github.com/plantuml/plantuml-server. It runs as
+docker container or can be started with a jetty server out of the box. See the documentation at
+github and the following explanations for details.
+
+
+*Start as Docker container:*
 
 You can start a server using a docker container
 
     docker run -d -p 9080:8080 plantuml/plantuml-server:jetty
 
-Then you are able to generate the documentation
+Then you are able to generate the documentation.
 
-   antora site-workspace.yml
+*Start as jetty server via maven*:
 
-or if you want to include all versions
+    mvn mvn jetty:run -Djetty.port=9080 -Djetty.contextpath=/
 
-   antora site-workspace-full.yml
+*Classic way (not recommend)*:
+
+Since PlantUML is a simple web application, you can even go the classic way and build a war - archive
+and deploy it to your java application server.
+
+
+### Run the build locally
+The documentation build is defined by a playbook.
+There are 3 different playbook versions with different behavior.
+
+#### Fetch content from github
+  antora generate site.yml
+
+This fetches the different referenced repositories from github and caches them locally.
+
+#### Use local repositories
+If you want to preview your local changes, you can use
+
+   antora generate site-workspace.yml
+
+or
+
+   antora generate site-workspace-full.yml
+
+The difference is that the latter will take into account all branches, the first option will only build the last branch.
+Both assume that all ods projects are located side-by-side.
+
+
 
 ## Building on travis
 
