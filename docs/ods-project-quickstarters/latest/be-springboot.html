@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Spring Boot Quickstarter :: OpenDevStack</title>
+    <title>Untitled :: OpenDevStack</title>
     <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/ods-project-quickstarters/latest/be-springboot.html">
     <meta name="generator" content="Antora 2.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -215,7 +215,6 @@
   <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-project-quickstarters/edit/master/docs/modules/ROOT/pages/be-springboot.adoc">Edit this Page</a></div>
 </div>
 <article class="doc">
-<h1>Spring Boot Quickstarter</h1>
 <div class="sect1">
 <h2 id="_purpose_of_this_quickstarter"><a class="anchor" href="#_purpose_of_this_quickstarter"></a>Purpose of this quickstarter</h2>
 <div class="sectionbody">
@@ -231,7 +230,8 @@
 <h2 id="_what_files_architecture_is_generated"><a class="anchor" href="#_what_files_architecture_is_generated"></a>What files / architecture is generated?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Under the hook this quickstarter runs the <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#cli-init">spring boot cli init command</a>.</p>
+<p>Under the hook this quickstarter runs the <a href="https://docs.spring.io/spring-boot/docs/current/reference/htmlsingle/#cli-init">spring boot cli init command</a>.
+The quickstarter uses the <strong>latest</strong> available spring boot cli version to generate the spring boot project.</p>
 </div>
 <div class="paragraph">
 <p>This is implemented in the script <code>init.sh</code> (open it to understand the internal of the code generation of this quickstarter).</p>
@@ -263,12 +263,17 @@
 </li>
 </ul>
 </div>
-<div class="sect2">
-<h3 id="_gradle_support"><a class="anchor" href="#_gradle_support"></a>Gradle Support</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_gradle_support"><a class="anchor" href="#_gradle_support"></a>Gradle Support</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The generated project includes a gradlew wrapper which is a portable distribution of gradle.
 It allows you to easily build the project without any further tool installation other than java.</p>
 </div>
+<div class="sect2">
+<h3 id="_gradle_artifacts"><a class="anchor" href="#_gradle_artifacts"></a>Gradle Artifacts</h3>
 <div class="paragraph">
 <p>You´ll find in the project following gradle artifacts:</p>
 </div>
@@ -301,32 +306,67 @@ It allows you to easily build the project without any further tool installation 
 <i class="fa icon-note" title="Note"></i>
 </td>
 <td class="content">
-gradle.properties is missing. This is on purpose. You´ll need to create it yourself and add following properties:
+gradle.properties is missing. This is on purpose, because you need to define it on your own by providing your nexus configuration.
 </td>
 </tr>
 </table>
 </div>
-<div class="ulist">
-<ul>
-<li>
-<p><code>nexus_url=&lt;URL_OF_YOUR_NEXUS_SERVER&gt;</code></p>
-</li>
-<li>
-<p><code>nexus_folder=&lt;FOLDER_TO_UPLOAD_ARTIFACTS&gt;</code> (ie. snapshots, candidate)</p>
-</li>
-<li>
-<p><code>nexus_user=&lt;YOUR_NEXUS_USERNAME&gt;</code></p>
-</li>
-<li>
-<p><code>nexus_pw=&lt;YOUR_NEXUS_PASSWORD&gt;</code></p>
-</li>
-</ul>
+</div>
+<div class="sect2">
+<h3 id="_nexus_configuration_in_gradle_properties"><a class="anchor" href="#_nexus_configuration_in_gradle_properties"></a>Nexus configuration in gradle.properties</h3>
+<div class="paragraph">
+<p>You´ll need to create <code>gradle.properties</code> yourself and add following properties:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>nexus_url=&lt;URL_OF_YOUR_NEXUS_SERVER&gt;
+nexus_user=&lt;YOUR_NEXUS_USERNAME&gt;
+nexus_pw=&lt;YOUR_NEXUS_PASSWORD&gt;</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>The quickstarter uses the latest available spring boot cli version to generate the spring boot project.</p>
+<p>Optionaly you can add</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>nexus_folder_releases=&lt;FOLDER_TO_UPLOAD_RELEASE_ARTEFACTS&gt; (ie. maven-releases)
+nexus_folder_snapshot=&lt;FOLDER_TO_UPLOAD_SNAPSHOT_ARTEFACTS&gt; (ie. maven-snapshots)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you do not want to use Nexus at all, just define the following property:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>no_nexus=true</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>Run <code>gradlew -v</code> to verify the installed version of gradle wrapper.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_uploading_artifacts_via_gradle"><a class="anchor" href="#_uploading_artifacts_via_gradle"></a>Uploading artifacts via gradle</h3>
+<div class="paragraph">
+<p>The build is prepared to upload generated artifacts to a nexus repository via the gradle <code>maven-puplish</code> plugin.
+If the artifact has a SNAPSHOT-Version, the nexus folder <code>maven-snapshots</code> is used, otherwise it uses the folder <code>maven-releases</code>.
+This folders are used per default.</p>
+</div>
+<div class="paragraph">
+<p>You can override this default configuraiton by specifing the properties <code>nexus_folder_releases</code> and <code>nexus_folder_releases</code>
+in <code>gradle.properties</code>. Overriding this configuration can also be achieved by setting the  environment variables <code>NEXUS_FOLDER_RELEASES</code> and <code>NEXUS_FOLDER_SNAPSHOTS</code>.</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Upload to nexus is prepared in Jenkinsfile, but disabled per default. See section <a href="#quickstarter-build">How this quickstarter is built thru jenkins</a> below for details.
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -335,10 +375,11 @@ gradle.properties is missing. This is on purpose. You´ll need to create it your
 <h2 id="_dependencies_and_frameworks_used"><a class="anchor" href="#_dependencies_and_frameworks_used"></a>Dependencies and Frameworks used</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The generated spring boot project is preconfigured with some third party dependencies (i.e. <code>--dependencies="web,jersey,data-jpa,h2,lombok,data-rest,restdocs,security"</code>), which are defined in the script <code>init.sh</code> (open it to understand the internal of the code generation of this quickstarter).</p>
+<p>The generated spring boot project is preconfigured with some third party dependencies (i.e.
+ <code>--dependencies="web,jersey,data-jpa,h2,lombok,data-rest,restdocs,security"</code>), which are defined in the script <code>init.sh</code> (open it to understand the internal of the code generation of this quickstarter).</p>
 </div>
 <div class="paragraph">
-<p>Look in method <code>dependencies</code> in the file <code>build.gradle</code> to review the defined dependencies.</p>
+<p>Look in method <code><code>dependencies</code></code> in the file <code><code>build.gradle</code></code> to review the defined dependencies.</p>
 </div>
 <div class="sect2">
 <h3 id="_ods_integration_jenkinsfile"><a class="anchor" href="#_ods_integration_jenkinsfile"></a>ODS Integration (Jenkinsfile)</h3>
@@ -395,13 +436,20 @@ Basically, the tasks implemented by this pipeline are:</p>
 <p>clone the branch in the Jenkins environment</p>
 </li>
 <li>
-<p>run the java build</p>
+<p>run the java build by calling method <code>stageBuild</code></p>
 </li>
 <li>
-<p>build a docker image</p>
+<p>execute sonarqube analysis (via calling shared library method <code>stageScanForSonarqube</code>)</p>
 </li>
 <li>
-<p>deploy the docker image to openshift</p>
+<p>Optionally: deploy to nexus (via calling method <code>stageUploadToNexus</code>). Note that this is disabled per default. To enable, please remove the
+comment on line <code>stageUploadToNexus</code> in  <code>Jenkinsfile</code></p>
+</li>
+<li>
+<p>build a docker image (via shared library method <code>stageStartOpenshiftBuild</code>)</p>
+</li>
+<li>
+<p>deploy the docker image to openshift (via shared library method <code>stageDeployToOpenshift</code>)</p>
 </li>
 </ol>
 </div>
@@ -413,7 +461,7 @@ Basically, the tasks implemented by this pipeline are:</p>
 </td>
 <td class="content">
 The 2nd step executes <code>gradlew build</code> to compile your project and create a distribution as <code>jar</code> file.
-This file is copied to the <code>docker</code> folder to be included in the docker image when the image is built in step 3.
+This file is copied to the <code>docker</code> folder to be included in the docker image when the image is built in step 5.
 </td>
 </tr>
 </table>

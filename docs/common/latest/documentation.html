@@ -65,6 +65,9 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="getting-started/introduction.html">Introduction</a>
+  </li>
+  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="getting-started/local-install.html">Local Installation</a>
   </li>
 </ul>
@@ -72,10 +75,10 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="development-guide.html">Development Guide</a>
+    <a class="nav-link" href="update-guide.html">Update Guide</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="update-guide.html">Update Guide</a>
+    <a class="nav-link" href="development-guide.html">Development Guide</a>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="documentation.html">Contributing Documentation</a>
@@ -185,6 +188,13 @@
 </div>
 <article class="doc">
 <h1>The OpenDevStack documentation</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>OpenDevStack documentation is build with Antora.</p>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_why_we_chose_antora"><a class="anchor" href="#_why_we_chose_antora"></a>Why we chose Antora</h2>
 <div class="sectionbody">
@@ -272,36 +282,10 @@ We have additional projects containing the <em>playbook</em> and the UI customiz
 </div>
 </div>
 <div class="sect1">
-<h2 id="_how_to_build_the_site_locally"><a class="anchor" href="#_how_to_build_the_site_locally"></a>How to build the site locally.</h2>
+<h2 id="_how_to_build_the_site_locally"><a class="anchor" href="#_how_to_build_the_site_locally"></a>How to build the site locally?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After installing Antora according to the <a href="https://docs.antora.org/antora/2.0/install/install-antora/">Install Antora</a> guide, you need to check out the <code>ods-documentation</code> project and run the playbook.</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>antora generate site.yml</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>This fetches the different referenced repositories from github and caches them locally.
-If you want to preview your local changes, you can use</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>antora generate site-workspace.yml</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>or</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>antora generate site-workspace-full.yml</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The difference is that the latter will take into account all branches, the first option will only build the last branch.
-Both assume that all ods projects are located side-by-side.</p>
+<p>A guide for building the documentation localy is provided in the <a href="https://github.com/opendevstack/ods-documentation/blob/master/README.adoc">ods-documentation project</a>.</p>
 </div>
 </div>
 </div>
