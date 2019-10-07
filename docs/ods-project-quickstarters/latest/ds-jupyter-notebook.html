@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Rshiny Application :: OpenDevStack</title>
-    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/ods-project-quickstarters/latest/rshiny-app.html">
+    <title>Data Science Jupyter Notebook :: OpenDevStack</title>
+    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/ods-project-quickstarters/latest/ds-jupyter-notebook.html">
     <meta name="generator" content="Antora 2.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -68,13 +68,13 @@
     <a class="nav-link" href="index.html">Introduction</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="airflow.html">airflow</a>
-  </li>
-  <li class="nav-item" data-depth="1">
     <a class="nav-link" href="be-docker-plain.html">BE Docker Plain</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="be-golang.html">BE Golang</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="be-java-springboot.html">BE Java / Spring Boot</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="be-node-express.html">BE Node Express</a>
@@ -85,15 +85,10 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="be-scala-akka.html">BE Scala Akka</a>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="be-springboot.html">BE Java / Spring Boot</a>
+</ul>
   </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="ds-ml-service.html">Data Science Machine Learing Service</a>
-  </li>
-  <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="e2e-cypress.html">Cypress E2E testing Quickstarters</a>
-  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="fe-angular.html">FE Angular</a>
   </li>
@@ -106,11 +101,24 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="fe-vue.html">FE Vue</a>
   </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="jupyter-notebook.html">Jupyter Notebook</a>
+    <a class="nav-link" href="ds-ml-service.html">Data Science Machine Learning Service</a>
   </li>
   <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="rshiny-app.html">RShiny app</a>
+    <a class="nav-link" href="ds-jupyter-notebook.html">Data Science Jupyter Notebook</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="ds-rshiny-app.html">Data Science RShiny app</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="airflow.html">Airflow</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="e2e-cypress.html">Cypress E2E testing Quickstarters</a>
   </li>
 </ul>
   </li>
@@ -202,25 +210,25 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="index.html">ODS Project Quickstarters</a></li>
-    <li><a href="rshiny-app.html">RShiny app</a></li>
+    <li><a href="ds-jupyter-notebook.html">Data Science Jupyter Notebook</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">latest</button>
   <div class="version-menu">
-    <a class="version is-current" href="rshiny-app.html">latest</a>
-    <a class="version" href="../1.1/rshiny-app.html">1.1</a>
+    <a class="version is-current" href="ds-jupyter-notebook.html">latest</a>
+    <a class="version is-missing" href="../1.1/index.html">1.1</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-project-quickstarters/edit/master/docs/modules/ROOT/pages/rshiny-app.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-project-quickstarters/edit/master/docs/modules/ROOT/pages/ds-jupyter-notebook.adoc">Edit this Page</a></div>
 </div>
 <article class="doc">
-<h1>Rshiny Application</h1>
+<h1>Data Science Jupyter Notebook</h1>
 <div class="sect1">
 <h2 id="_purpose_of_this_quickstarter"><a class="anchor" href="#_purpose_of_this_quickstarter"></a>Purpose of this quickstarter</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Provisions a Rshiny application within openshift using crowd authentification.</p>
+<p>Provision a shared jupyter notebook within openshift for rapid prototyping of data science applications using crowd authentification</p>
 </div>
 </div>
 </div>
@@ -229,12 +237,14 @@
 <div class="sectionbody">
 <div class="listingblock">
 <div class="content">
-<pre>.
-├── Jenkinsfile - This file contains Jenkins build configuration settings
-├── README.md - This readme file
-├── docker - This folder contains Docker configuration settings and main R shiny app
-    ├── Dockerfile
-    └── app.R</pre>
+<pre>+-- Jenkinsfile
++-- docker
+| +-- Dockerfile
+| +-- jupyter_notebook_config.json
+| +-- requirements.txt
+| +-- run.sh
++-- src
++-- init.sh</pre>
 </div>
 </div>
 </div>
@@ -243,7 +253,7 @@
 <h2 id="_frameworks_used"><a class="anchor" href="#_frameworks_used"></a>Frameworks used</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="https://www.tutorialspoint.com/r/index.htm">R</a>/https://shiny.rstudio.com/tutorial/[Rshiny]</p>
+<p><a href="https://docs.python.org/3.6/tutorial/">python 3.6</a> + <a href="https://jupyter-notebook-beginner-guide.readthedocs.io/en/latest/">jupyter</a></p>
 </div>
 </div>
 </div>
@@ -251,7 +261,12 @@
 <h2 id="_usage_how_do_you_start_after_you_provisioned_this_quickstarter"><a class="anchor" href="#_usage_how_do_you_start_after_you_provisioned_this_quickstarter"></a>Usage - how do you start after you provisioned this quickstarter</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The quickstarter sets up two pods in openshift. The rshiny application is routed through a <a href="https://github.com/opendevstack/ods-core/tree/master/shared-images/nginx-authproxy-crowd">crowd authentication proxy</a>.</p>
+<p>The quickstarter sets up two pods in openshift. The jupyter notebook is routed through a <a href="https://github.com/opendevstack/ods-core/tree/master/shared-images/nginx-authproxy-crowd">crowd authentication proxy</a>.</p>
+</div>
+<div class="paragraph">
+<p>The directory <code>/app/src/work/storage</code> is created where code can be organized using installed git.<br>
+Please consider mounting a persistent volume claim for this path.<br>
+New python requirements are specified using the <code>requirements.txt</code></p>
 </div>
 </div>
 </div>
@@ -263,6 +278,9 @@
 </div>
 <div class="olist arabic">
 <ol class="arabic">
+<li>
+<p>Patch the build configs and inject nexus credentials for installing python dependencies over nexus pypi repository</p>
+</li>
 <li>
 <p>Start openshift build</p>
 </li>
@@ -285,7 +303,7 @@
 <h2 id="_known_limitions"><a class="anchor" href="#_known_limitions"></a>Known limitions</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>N/A</p>
+<p>Consider if sufficient computing resources can be provided by the openshift cluster.</p>
 </div>
 </div>
 </div>
