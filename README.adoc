@@ -77,8 +77,16 @@ or
 The difference is that the latter will take into account all branches, the first option will only build the last branch.
 Both assume that all ods projects are located side-by-side.
 
+Both playbooks _site-workspace.yml_ and _site-workspace-full.yml_ are configured to write the outout
+in the local directory _docs_local_, which is ignored by git. This directory is only for local
+preview and verification.
+
 
 
 ## Building on travis
 
-Whenever this repository is pushed to github, it triggers a travis build, that regenerates the antora documentation based on the `site.yml` playbook.
+Whenever this repository is pushed to github, it triggers a travis build,
+that regenerates the antora documentation based on the `site.yml` playbook. The
+updated content in directory docs will be pushed back to the githup repository during the build.
+
+See xref:.travis.yml[.travis.yml] for details.

@@ -42,7 +42,7 @@ asciidoc:
     plantuml-fetch-diagram: true
 
 output:
-  dir: ./docs
+  dir: ./docs_local
 ui:
   bundle:
     url: ../ods-docs-ui/build/ui-bundle.zip
