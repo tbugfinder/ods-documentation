@@ -1,0 +1,493 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Internal architecture :: OpenDevStack</title>
+    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/ods-provisioning-app/latest/architecture.html">
+    <meta name="generator" content="Antora 2.0.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">OpenDevStack</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Components</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../../common/latest/index.html">Guides and Tutorials</a>
+            <a class="navbar-item" href="../../ods-jenkins-shared-library/latest/index.html">Jenkins Shared Library</a>
+            <a class="navbar-item" href="../../ods-core/latest/infrastructure-setup/index.html">ODS Core</a>
+            <a class="navbar-item" href="../../ods-project-quickstarters/latest/index.html">ODS Project Quickstarters</a>
+            <a class="navbar-item" href="index.html">Provisioning App</a>
+          </div>
+        </div>
+        <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">Home</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ods-provisioning-app" data-version="latest">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title">ODS Components</h3>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+      <a class="nav-link" href="../../common/latest/index.html">Guides and Tutorials</a>
+      </li>
+  <li class="nav-item" data-depth="0">
+      <a class="nav-link" href="../../ods-jenkins-shared-library/latest/index.html">Jenkins Shared Library</a>
+      </li>
+  <li class="nav-item" data-depth="0">
+      <a class="nav-link" href="../../ods-core/latest/infrastructure-setup/index.html">ODS Core</a>
+      </li>
+  <li class="nav-item" data-depth="0">
+      <a class="nav-link" href="../../ods-project-quickstarters/latest/index.html">ODS Project Quickstarters</a>
+      </li>
+  <li class="nav-item" data-depth="0">
+      <a class="nav-link" href="index.html">Provisioning App</a>
+      </li>
+    </ul>
+    <h3 class="title"><a href="index.html">Provisioning App</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="configuration.html">Configuration Guide</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="architecture.html">Internal Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="faq.html">FAQ</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="upgrade_notes.html">Upgrade Notes</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Provisioning App</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <span class="title">Guides and Tutorials</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../common/latest/index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../../common/1.1/index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../common/v1.0/index.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Jenkins Shared Library</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../ods-jenkins-shared-library/latest/index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../../ods-jenkins-shared-library/1.1/index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../ods-jenkins-shared-library/v1.0/index.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">ODS Core</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../ods-core/latest/infrastructure-setup/index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../../ods-core/1.1/infrastructure-setup/index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../ods-core/v1.0/infrastructure-setup/index.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">ODS Project Quickstarters</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../ods-project-quickstarters/latest/index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../../ods-project-quickstarters/1.1/index.html">1.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <span class="title">Provisioning App</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../1.1/index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../v1.0/index.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main role="main">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../common/latest/getting-started/introduction.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Provisioning App</a></li>
+    <li><a href="architecture.html">Internal Architecture</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">latest</button>
+  <div class="version-menu">
+    <a class="version is-current" href="architecture.html">latest</a>
+    <a class="version is-missing" href="../1.1/index.html">1.1</a>
+    <a class="version is-missing" href="../v1.0/index.html">v1.0</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-provisioning-app/edit/master/docs/modules/ROOT/pages/architecture.adoc">Edit this Page</a></div>
+</div>
+<article class="doc">
+<h1>Internal architecture</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div id="toc" class="toc">
+<div id="toctitle" class="title">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_how_to_develop_locally">How to develop locally</a></li>
+<li><a href="#_frontend_code">Frontend Code</a></li>
+<li><a href="#_backend_code">Backend Code</a></li>
+<li><a href="#_authentication_implementation">Authentication Implementation</a></li>
+<li><a href="#_consuming_rest_apis_in_java">Consuming REST APIs in Java</a></li>
+<li><a href="#_link_collection">Link collection</a></li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The Project is based on Spring Boot, using several technologies which can be seen in the <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/build.gradle">build.gradle</a>.</p>
+</div>
+<div class="paragraph">
+<p>The provision app is merely an orchestrator that does HTTP REST calls to Atlassian Crowd, Jira, Confluence, Bitbucket and
+Rundeck (for openshift interaction).</p>
+</div>
+<div class="paragraph">
+<p>The APIs exposed for direct usage, and also for the UI are in the <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/java/org/opendevstack/provision/controller">controller package</a>.
+The connectors to the various tools to create resources are in the <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/java/org/opendevstack/provision/services">services package</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_develop_locally"><a class="anchor" href="#_how_to_develop_locally"></a>How to develop locally</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Make sure that you have installed GIT and JAVA ( &gt;= 8 ).</p>
+</li>
+<li>
+<p>Clone the project out of Github</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>$ git clone https://github.com/opendevstack/ods-provisioning-app.git</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>Change directory into ods-provisioning-app</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>$ cd ods-provisioning-app</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="4">
+<li>
+<p>If you want to build / run locally - create <code>gradle.properties</code> in the project&#8217;s root to configure connectivity to OpenDevStack NEXUS</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">nexus_url=&lt;NEXUS HOST&gt;
+nexus_user=&lt;NEXUS USER&gt;
+nexus_pw=&lt;NEXUS_PW&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you want to build / run locally without NEXUS, you can disable NEXUS by adding the following property to <code>gradle.properties</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">no_nexus=true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can also configure the build using environment variables:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Gradle property</th>
+<th class="tableblock halign-left valign-top">Environment variable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nexus_url</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NEXUS_HOST</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nexus_user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NEXUS_USERNAME</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nexus_pw</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NEXUS_PASSWORD</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no_nexus</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NO_NEXUS</p></td>
+</tr>
+</tbody>
+</table>
+<div class="olist arabic">
+<ol class="arabic" start="5">
+<li>
+<p>You can start the application with the following command:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># to run the server execute
+./gradlew bootRun</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To overwrite the provided <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/resources/application.properties">application.properties</a> a configmap is created out of them and injected into /config/application.properties within the container.
+The base configuration map as well as the deployment yamls can be found in <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/ocp-config/prov-app/cm.yml">ocp-config</a>, and overwrite parameters from application.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="6">
+<li>
+<p>After started the server it can be reached in the browser under</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>http://localhost:8080</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_frontend_code"><a class="anchor" href="#_frontend_code"></a>Frontend Code</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The frontend is based on jquery and thymeleaf. All <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/resources/static/js/client.js">posting to the API</a> happens out of java script (client.js)</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_backend_code"><a class="anchor" href="#_backend_code"></a>Backend Code</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The backend is based on Spring Boot, authenticates against Atlassian Crowd (Using property <code>provision.auth.provider=crowd</code>) or OAUTH2/OpenID Connect provider (Using property <code>provision.auth.provider=oauth2</code>) and exposes consumable APIs (<code>api/v2/project</code>).
+Storage of created projects happens on the filesystem thru the <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/java/org/opendevstack/provision/storage/LocalStorage.java">StorageAdapter</a>.
+Both frontend (html) and backend are tested thru Junit &amp; Mockito</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_authentication_implementation"><a class="anchor" href="#_authentication_implementation"></a>Authentication Implementation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>By using the property <code>provision.auth.provider=crowd</code> or <code>provision.auth.provider=oauth2</code>, the application uses eigher CROWD or OAUTH2 authentication. Dependent of the property used, different spring beans are used for configuration.
+The switch between the two options is implemented via Spring&#8217;s <em>ConditionalOnProperty</em> annotation.</p>
+</div>
+<div class="paragraph">
+<p>CROWD - specific configuration classes are located in the java package <em>org.opendevstack.provision.authentication.crowd</em>.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="title">org.opendevstack.provision.authentication.crowd.CrowdSecurityConfiguration.java</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-java hljs" data-lang="java">@Configuration
+@EnableWebSecurity
+@EnableCaching
+@EnableEncryptableProperties
+@ConditionalOnProperty(name = "provision.auth.provider", havingValue = "crowd")
+public class CrowdSecurityConfiguration extends WebSecurityConfigurerAdapter {
+//...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>OAUTH2 - specific configuration classes are located in the java package <em>org.opendevstack.provision.authentication.oauth2</em>.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="title">org.opendevstack.provision.authentication.oauth2.Oauth2SecurityConfiguration.java</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-java hljs" data-lang="java">@Configuration
+@Order(Ordered.HIGHEST_PRECEDENCE)
+@ConditionalOnProperty(name = "provision.auth.provider", havingValue = "oauth2")
+@EnableWebSecurity
+@EnableOAuth2Client
+public class Oauth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
+//...
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_consuming_rest_apis_in_java"><a class="anchor" href="#_consuming_rest_apis_in_java"></a>Consuming REST APIs in Java</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Generally this is a pain. To ease development, a few tools are in use:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Jackson (see link below)</p>
+</li>
+<li>
+<p>OKTTP3 Client (see link below)</p>
+</li>
+<li>
+<p>jsonschema2pojo generator (see link below)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The process for new operations to be called is:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Look up the API call that you intend to make</p>
+</li>
+<li>
+<p>see if there is a JSON Schema available</p>
+</li>
+<li>
+<p>Generate (a) Pojo('s) for the Endpoint</p>
+</li>
+<li>
+<p>Use the pojo to build your request, convert it to JSON with Jackson and send it via OKHTTP3, and the Provision Application&#8217;s <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/java/org/opendevstack/provision/util/rest/RestClient.java">RestClient</a></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_link_collection"><a class="anchor" href="#_link_collection"></a>Link collection</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.mkyong.com/spring-boot/spring-boot-spring-security-thymeleaf-example/">Mkyong spring boot + security + thymeleaf example</a></p>
+</li>
+<li>
+<p><a href="http://www.webjars.org/">Getting more Webjars</a></p>
+</li>
+<li>
+<p><a href="http://www.jsonschema2pojo.org/">Generating POJOs from JSON Schemas</a> very helpful for the Atlassian API Docs</p>
+</li>
+<li>
+<p><a href="https://square.github.io/okhttp">OKHttp3</a></p>
+</li>
+<li>
+<p><a href="https://site.mockito.org">Mockito</a></p>
+</li>
+<li>
+<p><a href="https://github.com/FasterXML/jackson">Jackson</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Atlassian API&#8217;s</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.atlassian.com/jira/REST/server/#api/2/fullJiraProject-createProject">Jira API</a></p>
+</li>
+<li>
+<p><a href="https://docs.atlassian.com/ConfluenceServer/rest/6.12.1/">Confluence API</a></p>
+</li>
+<li>
+<p><a href="https://developer.atlassian.com/server/bitbucket/reference/rest-api/">Bitbucket API</a></p>
+</li>
+<li>
+<p><a href="https://developer.atlassian.com/server/crowd/crowd-rest-apis/">Crowd API</a></p>
+</li>
+<li>
+<p><a href="https://rundeck.org/docs/api/">Rundeck API</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

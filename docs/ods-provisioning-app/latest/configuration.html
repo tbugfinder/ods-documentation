@@ -1,0 +1,373 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Configuration Guide :: OpenDevStack</title>
+    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/ods-provisioning-app/latest/configuration.html">
+    <meta name="generator" content="Antora 2.0.1">
+    <link rel="stylesheet" href="../../_/css/site.css">
+  </head>
+  <body class="article">
+<header class="header">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">OpenDevStack</a>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Components</a>
+          <div class="navbar-dropdown">
+            <a class="navbar-item" href="../../common/latest/index.html">Guides and Tutorials</a>
+            <a class="navbar-item" href="../../ods-jenkins-shared-library/latest/index.html">Jenkins Shared Library</a>
+            <a class="navbar-item" href="../../ods-core/latest/infrastructure-setup/index.html">ODS Core</a>
+            <a class="navbar-item" href="../../ods-project-quickstarters/latest/index.html">ODS Project Quickstarters</a>
+            <a class="navbar-item" href="index.html">Provisioning App</a>
+          </div>
+        </div>
+        <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">Home</a>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="ods-provisioning-app" data-version="latest">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title">ODS Components</h3>
+    <ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+      <a class="nav-link" href="../../common/latest/index.html">Guides and Tutorials</a>
+      </li>
+  <li class="nav-item" data-depth="0">
+      <a class="nav-link" href="../../ods-jenkins-shared-library/latest/index.html">Jenkins Shared Library</a>
+      </li>
+  <li class="nav-item" data-depth="0">
+      <a class="nav-link" href="../../ods-core/latest/infrastructure-setup/index.html">ODS Core</a>
+      </li>
+  <li class="nav-item" data-depth="0">
+      <a class="nav-link" href="../../ods-project-quickstarters/latest/index.html">ODS Project Quickstarters</a>
+      </li>
+  <li class="nav-item" data-depth="0">
+      <a class="nav-link" href="index.html">Provisioning App</a>
+      </li>
+    </ul>
+    <h3 class="title"><a href="index.html">Provisioning App</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Overview</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="1">
+    <a class="nav-link" href="configuration.html">Configuration Guide</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="architecture.html">Internal Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="faq.html">FAQ</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="upgrade_notes.html">Upgrade Notes</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">Provisioning App</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <span class="title">Guides and Tutorials</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../common/latest/index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../../common/1.1/index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../common/v1.0/index.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Jenkins Shared Library</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../ods-jenkins-shared-library/latest/index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../../ods-jenkins-shared-library/1.1/index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../ods-jenkins-shared-library/v1.0/index.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">ODS Core</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../ods-core/latest/infrastructure-setup/index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../../ods-core/1.1/infrastructure-setup/index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../ods-core/v1.0/infrastructure-setup/index.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">ODS Project Quickstarters</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../ods-project-quickstarters/latest/index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../../ods-project-quickstarters/1.1/index.html">1.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <span class="title">Provisioning App</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../1.1/index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../v1.0/index.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main role="main">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../common/latest/getting-started/introduction.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="index.html">Provisioning App</a></li>
+    <li><a href="configuration.html">Configuration Guide</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">latest</button>
+  <div class="version-menu">
+    <a class="version is-current" href="configuration.html">latest</a>
+    <a class="version is-missing" href="../1.1/index.html">1.1</a>
+    <a class="version is-missing" href="../v1.0/index.html">v1.0</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-provisioning-app/edit/master/docs/modules/ROOT/pages/configuration.adoc">Edit this Page</a></div>
+</div>
+<article class="doc">
+<h1>Configuration Guide</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div id="toc" class="toc">
+<div id="toctitle" class="title">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_authentication_configuration">Authentication Configuration</a>
+<ul class="sectlevel2">
+<li><a href="#_authentication_crowd_configuration">Authentication Crowd Configuration</a></li>
+<li><a href="#_authentication_oauth2_configuration">Authentication OAUTH2 Configuration</a></li>
+<li><a href="#_authentication_to_third_party_apps_via_technical_users">Authentication to third party apps via technical users</a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The Provisioning Application is configured via spring boot profiles.
+Default configuration properties are definded in <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/resources/application.properties">application.properties</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_authentication_configuration"><a class="anchor" href="#_authentication_configuration"></a>Authentication Configuration</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are to separate authentication options to authenticated a user for the provisioning app.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>CROWD (default)</p>
+</li>
+<li>
+<p>OAUTH2</p>
+</li>
+</ul>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="&#128161;"></i>
+</td>
+<td class="content">
+Note that the current OAUTH2 implementation is only used for authentication the user to the provisioning app.
+To authentication that is used for the REST - API calls of Atlassian Crowd, Jira, Confluence, Bitbucket and Rundeck is done eighter via the logged in uses credentials (user name and password) or via the technical users, that are configured in the used spring boot profile.
+</td>
+</tr>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_authentication_crowd_configuration"><a class="anchor" href="#_authentication_crowd_configuration"></a>Authentication Crowd Configuration</h3>
+<div class="listingblock">
+<div class="title">application.properties</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">provision.auth.provider=crowd <i class="conum" data-value="1"></i><b>(1)</b>
+spring.profiles.active=crowd <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>configures crowd authentication provider</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>include crowd profile per default.</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>The crowd specific configuration is done in the included profile <em>crowd</em>, see property documentation inside the profile file <em>application-crowd.properties</em>. The provided example configuration is appropriate for a locally installed OpenDevStack environment.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_authentication_oauth2_configuration"><a class="anchor" href="#_authentication_oauth2_configuration"></a>Authentication OAUTH2 Configuration</h3>
+<div class="paragraph">
+<p>A default oauth2 configuration is given in spring boot profile <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/resources/application-outh2.properties">application-oauth2.properties</a>. The provided example configuration is appropriate for a locally installed OpenDevStack environment, when the <em>idmanager</em> vagrant box is used.</p>
+</div>
+<div class="listingblock">
+<div class="title">application-oauth2.properties</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">provision.auth.provider=oauth2 <i class="conum" data-value="1"></i><b>(1)</b>
+
+idmanager.url=http://192.168.56.32:8080 <i class="conum" data-value="2"></i><b>(2)</b>
+idmanager.realm=provisioning-app <i class="conum" data-value="3"></i><b>(3)</b>
+
+oauth2.user.roles.jsonpointerexpression=/claims/roles <i class="conum" data-value="4"></i><b>(4)</b>
+
+<i class="conum" data-value="5"></i><b>(5)</b>
+spring.security.oauth2.client.registration.keycloak.client-id=ods-provisioning-app
+spring.security.oauth2.client.registration.keycloak.client-secret=put-your-secret-here
+spring.security.oauth2.client.registration.keycloak.clientName=ods-provisioning-app
+spring.security.oauth2.client.registration.keycloak.authorization-grant-type=authorization_code
+spring.security.oauth2.client.registration.keycloak.redirectUri={baseUrl}/login/oauth2/code/{registrationId}
+spring.security.oauth2.client.registration.keycloak.scope=openid
+
+<i class="conum" data-value="6"></i><b>(6)</b>
+spring.security.oauth2.client.provider.keycloak.authorization-uri=${idmanager.url}/auth/realms/${idmanager.realm}-app/protocol/openid-connect/auth
+spring.security.oauth2.client.provider.keycloak.token-uri=${idmanager.url}/auth/realms/${idmanager.realm}/protocol/openid-connect/token
+spring.security.oauth2.client.provider.keycloak.user-info-uri=${idmanager.url}/auth/realms/${idmanager.realm}/protocol/openid-connect/userinfo
+spring.security.oauth2.client.provider.keycloak.jwk-set-uri=${idmanager.url}/auth/realms/${idmanager.realm}/protocol/openid-connect/certs
+spring.security.oauth2.client.provider.keycloak.user-name-attribute=preferred_username</code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>configures oauth2 authentication provider</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>URL to idmanager. The value defaults to opendevstack idmanager box with keycloak installation</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>Name of realm that is used</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>The application reads the user roles from the claim that is inside the oauth2 ID-Token. The property <em>oauth2.user.roles.jsonpointerexpression</em> is a JsonPointer - Expression that defines a path to the roles that are extracted from the id token. Details regarding pointer expression can be found at <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/https://fasterxml.github.io/jackson-core/javadoc/2.5/com/fasterxml/jackson/core/JsonPointer.html">Jackson-core JsonPointer Documentation</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>Defines the OAUTH2 client registration properties, in particular the client name and client secret. See
+<a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/https://docs.spring.io/spring-security/site/docs/5.1.5.RELEASE/reference/html/jc.html#oauth2login-boot-property-mappings">OAUTH2 Spring Boot 2.x Property Mappings</a> for details.</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>Defines the OAUTH2 <em>client.provider</em> properties. These properties correspond to the <em>well-known</em> OAUTH2-URIs. In case of keycloak, this URIs can be read out using the  <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/http://192.168.56.32:8080/auth/realms/provisioning-app/.well-known/openid-configuration">.well-known/openid-configuration-link</a></td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_authentication_to_third_party_apps_via_technical_users"><a class="anchor" href="#_authentication_to_third_party_apps_via_technical_users"></a>Authentication to third party apps via technical users</h3>
+<div class="paragraph">
+<p>The rest api calles use HTTP <em>basic access authentication</em> to communicate with Jira, Confluence, Bitbucket and Rundeck. The used credentials are read from a pair of properties. For Example, <em>rundeck.admin_password</em> and <em>rundeck.admin_user</em> properties are used for Rundeck, <em>confluence.admin_user</em> and <em>confluence.admin_password</em> are used for confluence, etc.</p>
+</div>
+<div class="listingblock">
+<div class="title">application-oauth2.properties</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash"># configure technical user for rundeck. Do not authenticate via oauth2, since not implemented.
+rundeck.admin_password=rundeck_admin
+rundeck.admin_user=rundeck_admin
+
+# configure technical user for bitbucket. Do not authenticate via oauth2, since not implemented.
+bitbucket.admin_password=bitbucket_admin
+bitbucket.admin_user=bitbucket_admin
+
+# configure technical user for confluence. Do not authenticate via oauth2, since not implemented.
+confluence.admin_password=confluence_admin
+confluence.admin_user=confluence_admin
+
+# configure technical user for jira. Do not authenticate via oauth2, since not implemented.
+jira.admin_password=jira_admin
+jira.admin_user=jira_admin</code></pre>
+</div>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="&#128161;"></i>
+</td>
+<td class="content">
+Note: if the pair of properties is not defined for a third party tool, the logged in user&#8217;s credentials are used to authenticate against the application.
+The credentials are read by caling the method <em>getUserName</em> and <em>getUserPassword</em> from <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/java/org/opendevstack/provision/adapter/IODSAuthnzAdapter">IODSAuthnzAdapter</a>]. See also implementation of <em>org.opendevstack.provision.services.BaseServiceAdapter#authenticatedCall()</em>
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</div>
+</article>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="../../_/js/site.js"></script>
+<script async src="../../_/js/vendor/highlight.js"></script>
+  </body>
+</html>

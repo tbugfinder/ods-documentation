@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Untitled :: OpenDevStack</title>
+    <title>Overview: Provisioning Application :: OpenDevStack</title>
     <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/ods-provisioning-app/latest/index.html">
     <meta name="generator" content="Antora 2.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -66,6 +66,18 @@
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="index.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="configuration.html">Configuration Guide</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="architecture.html">Internal Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="faq.html">FAQ</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="upgrade_notes.html">Upgrade Notes</a>
   </li>
 </ul>
   </li>
@@ -171,50 +183,29 @@
   <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-provisioning-app/edit/master/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
 </div>
 <article class="doc">
+<h1>Overview: Provisioning Application</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div id="toc" class="toc">
 <div id="toctitle" class="title">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_opendevstack_provisioning_application">OpenDevStack Provisioning Application</a>
-<ul class="sectlevel2">
-<li><a href="#_basic_idea_usage">Basic idea &amp; usage:</a></li>
+<li><a href="#_basic_idea_usage">Basic idea &amp; usage</a></li>
 <li><a href="#_integration_with_bitbucket_webhooks">Integration with Bitbucket (webhooks)</a></li>
 <li><a href="#_permissions">Permissions</a></li>
 <li><a href="#_projectspace_types_based_on_templates">Project/Space types based on templates</a></li>
 <li><a href="#_using_the_provision_application_via_api_thru_direct_rest_calls">Using the provision application via API / thru direct REST calls</a></li>
+<li><a href="#_what_happens_in_error_cases">What happens in error cases</a></li>
 </ul>
-</li>
-<li><a href="#_configuration_guide">Configuration Guide</a>
-<ul class="sectlevel2">
-<li><a href="#_authentication_configuration">Authentication Configuration</a></li>
-</ul>
-</li>
-<li><a href="#_internal_architecture">Internal architecture</a>
-<ul class="sectlevel2">
-<li><a href="#_gradle_build_configuration">Gradle Build configuration</a></li>
-<li><a href="#_frontend_code">Frontend Code</a></li>
-<li><a href="#_backend_code">Backend Code</a></li>
-<li><a href="#_authentication_implementation">Authentication Implementation</a></li>
-<li><a href="#_consuming_rest_apis_in_java">Consuming REST APIs in Java</a></li>
-<li><a href="#_link_collection">Link collection</a></li>
-</ul>
-</li>
-<li><a href="#_faq">FAQ:</a></li>
-</ul>
-</div>
-<div class="sect1">
-<h2 id="_opendevstack_provisioning_application"><a class="anchor" href="#_opendevstack_provisioning_application"></a>OpenDevStack Provisioning Application</h2>
-<div class="sectionbody">
-<div class="imageblock">
-<div class="content">
-<a class="image" href="https://travis-ci.com/opendevstack/ods-provisioning-app"><img src="https://travis-ci.com/opendevstack/ods-provisioning-app.svg?branch=master" alt="Build Status"></a>
-</div>
 </div>
 <div class="paragraph">
 <p>This application creates new OpenDevStack digital projects. It is the central entrypoint to get started with a new project / or provision new components based on <a href="https://github.com/opendevstack/ods-project-quickstarters">quickstarters</a>.
 It delegates the tasks to create / update resources to several services such as jira, confluence, bitbucket and rundeck.</p>
 </div>
-<div class="sect2">
-<h3 id="_basic_idea_usage"><a class="anchor" href="#_basic_idea_usage"></a>Basic idea &amp; usage:</h3>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_basic_idea_usage"><a class="anchor" href="#_basic_idea_usage"></a>Basic idea &amp; usage</h2>
+<div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
 <li>
@@ -256,8 +247,10 @@ this happens thru the user interface - in going to modify project / picking your
 </ol>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_integration_with_bitbucket_webhooks"><a class="anchor" href="#_integration_with_bitbucket_webhooks"></a>Integration with Bitbucket (webhooks)</h3>
+</div>
+<div class="sect1">
+<h2 id="_integration_with_bitbucket_webhooks"><a class="anchor" href="#_integration_with_bitbucket_webhooks"></a>Integration with Bitbucket (webhooks)</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>Next to the provision app creating the bitbucket repository for a chosen quickstarter - it also creates a webhook on that repo, which triggers on three events</p>
 </div>
@@ -274,8 +267,10 @@ this happens thru the user interface - in going to modify project / picking your
 <p>This webhook calls the <a href="https://github.com/opendevstack/ods-core/tree/master/jenkins/webhook-proxy">webhook proxy</a> which in turn creates an openshift <code>build config</code> of type <code>pipeline</code> in the <code>name</code>-cd project and executes it.</p>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_permissions"><a class="anchor" href="#_permissions"></a>Permissions</h3>
+</div>
+<div class="sect1">
+<h2 id="_permissions"><a class="anchor" href="#_permissions"></a>Permissions</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>By default no special permissions are set on either confluence / jira / bitbucket or openshift, only system-wide settings are inherited.</p>
 </div>
@@ -315,8 +310,10 @@ this happens thru the user interface - in going to modify project / picking your
 </ol>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_projectspace_types_based_on_templates"><a class="anchor" href="#_projectspace_types_based_on_templates"></a>Project/Space types based on templates</h3>
+</div>
+<div class="sect1">
+<h2 id="_projectspace_types_based_on_templates"><a class="anchor" href="#_projectspace_types_based_on_templates"></a>Project/Space types based on templates</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The default jira / confluence project' types are defined in <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/resources/application.properties">src/main/resources/application.properties</a> - and correspondingly in the config maps</p>
 </div>
@@ -352,8 +349,10 @@ project.template.key.names=default,&lt;name&gt;</pre>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_using_the_provision_application_via_api_thru_direct_rest_calls"><a class="anchor" href="#_using_the_provision_application_via_api_thru_direct_rest_calls"></a>Using the provision application via API / thru direct REST calls</h3>
+</div>
+<div class="sect1">
+<h2 id="_using_the_provision_application_via_api_thru_direct_rest_calls"><a class="anchor" href="#_using_the_provision_application_via_api_thru_direct_rest_calls"></a>Using the provision application via API / thru direct REST calls</h2>
+<div class="sectionbody">
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">PROVISION_API_HOST=&lt;host name&gt;
@@ -395,443 +394,12 @@ curl -k -X POST --cookie "$COOKIES" -d @"$provisionfile" \
 </div>
 </div>
 </div>
-</div>
 <div class="sect1">
-<h2 id="_configuration_guide"><a class="anchor" href="#_configuration_guide"></a>Configuration Guide</h2>
+<h2 id="_what_happens_in_error_cases"><a class="anchor" href="#_what_happens_in_error_cases"></a>What happens in error cases</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Provisioning Application is configured via spring boot profiles.
-Default configuration properties are definded in <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/resources/application.properties">application.properties</a></p>
-</div>
-<div class="sect2">
-<h3 id="_authentication_configuration"><a class="anchor" href="#_authentication_configuration"></a>Authentication Configuration</h3>
-<div class="paragraph">
-<p>There are to separate authentication options to authenticated a user for the provisioning app.</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>CROWD (default)</p>
-</li>
-<li>
-<p>OAUTH2</p>
-</li>
-</ul>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="&#128161;"></i>
-</td>
-<td class="content">
-Note that the current OAUTH2 implementation is only used for authentication the user to the provisioning app.
-To authentication that is used for the REST - API calls of Atlassian Crowd, Jira, Confluence, Bitbucket and Rundeck is done eighter via the logged in uses credentials (user name and password) or via the technical users, that are configured in the used spring boot profile.
-</td>
-</tr>
-</table>
-</div>
-<div class="sect3">
-<h4 id="_authentication_crowd_configuration"><a class="anchor" href="#_authentication_crowd_configuration"></a>Authentication Crowd Configuration</h4>
-<div class="listingblock">
-<div class="title">application.properties</div>
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">provision.auth.provider=crowd <i class="conum" data-value="1"></i><b>(1)</b>
-spring.profiles.active=crowd <i class="conum" data-value="2"></i><b>(2)</b></code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>configures crowd authentication provider</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>include crowd profile per default.</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>The crowd specific configuration is done in the included profile <em>crowd</em>, see property documentation inside the profile file <em>application-crowd.properties</em>. The provided example configuration is appropriate for a locally installed OpenDevStack environment.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_authentication_oauth2_configuration"><a class="anchor" href="#_authentication_oauth2_configuration"></a>Authentication OAUTH2 Configuration</h4>
-<div class="paragraph">
-<p>A default oauth2 configuration is given in spring boot profile <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/resources/application-outh2.properties">application-oauth2.properties</a>. The provided example configuration is appropriate for a locally installed OpenDevStack environment, when the <em>idmanager</em> vagrant box is used.</p>
-</div>
-<div class="listingblock">
-<div class="title">application-oauth2.properties</div>
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">provision.auth.provider=oauth2 <i class="conum" data-value="1"></i><b>(1)</b>
-
-idmanager.url=http://192.168.56.32:8080 <i class="conum" data-value="2"></i><b>(2)</b>
-idmanager.realm=provisioning-app <i class="conum" data-value="3"></i><b>(3)</b>
-
-oauth2.user.roles.jsonpointerexpression=/claims/roles <i class="conum" data-value="4"></i><b>(4)</b>
-
-<i class="conum" data-value="5"></i><b>(5)</b>
-spring.security.oauth2.client.registration.keycloak.client-id=ods-provisioning-app
-spring.security.oauth2.client.registration.keycloak.client-secret=put-your-secret-here
-spring.security.oauth2.client.registration.keycloak.clientName=ods-provisioning-app
-spring.security.oauth2.client.registration.keycloak.authorization-grant-type=authorization_code
-spring.security.oauth2.client.registration.keycloak.redirectUri={baseUrl}/login/oauth2/code/{registrationId}
-spring.security.oauth2.client.registration.keycloak.scope=openid
-
-<i class="conum" data-value="6"></i><b>(6)</b>
-spring.security.oauth2.client.provider.keycloak.authorization-uri=${idmanager.url}/auth/realms/${idmanager.realm}-app/protocol/openid-connect/auth
-spring.security.oauth2.client.provider.keycloak.token-uri=${idmanager.url}/auth/realms/${idmanager.realm}/protocol/openid-connect/token
-spring.security.oauth2.client.provider.keycloak.user-info-uri=${idmanager.url}/auth/realms/${idmanager.realm}/protocol/openid-connect/userinfo
-spring.security.oauth2.client.provider.keycloak.jwk-set-uri=${idmanager.url}/auth/realms/${idmanager.realm}/protocol/openid-connect/certs
-spring.security.oauth2.client.provider.keycloak.user-name-attribute=preferred_username</code></pre>
-</div>
-</div>
-<div class="colist arabic">
-<table>
-<tr>
-<td><i class="conum" data-value="1"></i><b>1</b></td>
-<td>configures oauth2 authentication provider</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="2"></i><b>2</b></td>
-<td>URL to idmanager. The value defaults to opendevstack idmanager box with keycloak installation</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="3"></i><b>3</b></td>
-<td>Name of realm that is used</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="4"></i><b>4</b></td>
-<td>The application reads the user roles from the claim that is inside the oauth2 ID-Token. The property <em>oauth2.user.roles.jsonpointerexpression</em> is a JsonPointer - Expression that defines a path to the roles that are extracted from the id token. Details regarding pointer expression can be found at <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/https://fasterxml.github.io/jackson-core/javadoc/2.5/com/fasterxml/jackson/core/JsonPointer.html">Jackson-core JsonPointer Documentation</a></td>
-</tr>
-<tr>
-<td><i class="conum" data-value="5"></i><b>5</b></td>
-<td>Defines the OAUTH2 client registration properties, in particular the client name and client secret. See
-<a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/https://docs.spring.io/spring-security/site/docs/5.1.5.RELEASE/reference/html/jc.html#oauth2login-boot-property-mappings">OAUTH2 Spring Boot 2.x Property Mappings</a> for details.</td>
-</tr>
-<tr>
-<td><i class="conum" data-value="6"></i><b>6</b></td>
-<td>Defines the OAUTH2 <em>client.provider</em> properties. These properties correspond to the <em>well-known</em> OAUTH2-URIs. In case of keycloak, this URIs can be read out using the  <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/http://192.168.56.32:8080/auth/realms/provisioning-app/.well-known/openid-configuration">.well-known/openid-configuration-link</a></td>
-</tr>
-</table>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_authentication_to_third_party_apps_via_technical_users"><a class="anchor" href="#_authentication_to_third_party_apps_via_technical_users"></a>Authentication to third party apps via technical users</h4>
-<div class="paragraph">
-<p>The rest api calles use HTTP <em>basic access authentication</em> to communicate with Jira, Confluence, Bitbucket and Rundeck. The used credentials are read from a pair of properties. For Example, <em>rundeck.admin_password</em> and <em>rundeck.admin_user</em> properties are used for Rundeck, <em>confluence.admin_user</em> and <em>confluence.admin_password</em> are used for confluence, etc.</p>
-</div>
-<div class="listingblock">
-<div class="title">application-oauth2.properties</div>
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash"># configure technical user for rundeck. Do not authenticate via oauth2, since not implemented.
-rundeck.admin_password=rundeck_admin
-rundeck.admin_user=rundeck_admin
-
-# configure technical user for bitbucket. Do not authenticate via oauth2, since not implemented.
-bitbucket.admin_password=bitbucket_admin
-bitbucket.admin_user=bitbucket_admin
-
-# configure technical user for confluence. Do not authenticate via oauth2, since not implemented.
-confluence.admin_password=confluence_admin
-confluence.admin_user=confluence_admin
-
-# configure technical user for jira. Do not authenticate via oauth2, since not implemented.
-jira.admin_password=jira_admin
-jira.admin_user=jira_admin</code></pre>
-</div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="&#128161;"></i>
-</td>
-<td class="content">
-Note: if the pair of properties is not defined for a third party tool, the logged in user&#8217;s credentials are used to authenticate against the application.
- The credentials are read by caling the method <em>getUserName</em> and <em>getUserPassword</em> from <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/java/org/opendevstack/provision/adapter/IODSAuthnzAdapter">IODSAuthnzAdapter</a>]. See also implementation of <em>org.opendevstack.provision.services.BaseServiceAdapter#authenticatedCall()</em>
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_internal_architecture"><a class="anchor" href="#_internal_architecture"></a>Internal architecture</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The Project is based on Spring Boot, using several technologies which can be seen in the <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/build.gradle">build.gradle</a>.</p>
-</div>
-<div class="paragraph">
-<p>The provision app is merely an orchestrator that does HTTP REST calls to Atlassian Crowd, Jira, Confluence, Bitbucket and
-Rundeck (for openshift interaction).</p>
-</div>
-<div class="paragraph">
-<p>The APIs exposed for direct usage, and also for the UI are in the <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/java/org/opendevstack/provision/controller">controller package</a>.
-The connectors to the various tools to create resources are in the <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/java/org/opendevstack/provision/services">services package</a></p>
-</div>
-<div class="sect2">
-<h3 id="_gradle_build_configuration"><a class="anchor" href="#_gradle_build_configuration"></a>Gradle Build configuration</h3>
-<div class="paragraph">
-<p>If you want to build / run locally - create <code>gradle.properties</code> in the project&#8217;s root to configure connectivity to OpenDevStack NEXUS</p>
-</div>
-<div class="literalblock">
-<div class="content">
-<pre>- nexus_url=&lt;NEXUS HOST&gt;
-- nexus_user=&lt;NEXUS USER&gt;
-- nexus_pw=&lt;NEXUS_PW&gt;</pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If you want to build / run locally without NEXUS, you can disable NEXUS by adding the following property to <code>gradle.properties</code>:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">no_nexus=true</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Alternatively, you can also configure the build using environment variables:</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Gradle property</th>
-<th class="tableblock halign-left valign-top">Environment variable</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">nexus_url</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">NEXUS_HOST</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">nexus_user</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">NEXUS_USERNAME</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">nexus_pw</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">NEXUS_PASSWORD</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">no_nexus</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">NO_NEXUS</p></td>
-</tr>
-</tbody>
-</table>
-<div class="paragraph">
-<p>You can start the application with the following command:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># to run the server execute
-gradle bootRun</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>To overwrite the provided <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/resources/application.properties">application.properties</a> a configmap is created out of them and injected into /config/application.properties within the container.
-The base configuration map as well as the deployment yamls can be found in <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/ocp-config/prov-app/cm.yml">ocp-config</a>, and overwrite parameters from application.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_frontend_code"><a class="anchor" href="#_frontend_code"></a>Frontend Code</h3>
-<div class="paragraph">
-<p>The frontend is based on jquery and thymeleaf. All <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/resources/static/js/client.js">posting to the API</a> happens out of java script (client.js)</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_backend_code"><a class="anchor" href="#_backend_code"></a>Backend Code</h3>
-<div class="paragraph">
-<p>The backend is based on Spring Boot, authenticates against Atlassian Crowd (Using property <code>provision.auth.provider=crowd</code>) or OAUTH2/OpenID Connect provider (Using property <code>provision.auth.provider=oauth2</code>) and exposes consumable APIs (<code>api/v2/project</code>).
-Storage of created projects happens on the filesystem thru the <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/java/org/opendevstack/provision/storage/LocalStorage.java">StorageAdapter</a>.
-Both frontend (html) and backend are tested thru Junit &amp; Mockito</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_authentication_implementation"><a class="anchor" href="#_authentication_implementation"></a>Authentication Implementation</h3>
-<div class="paragraph">
-<p>By using the property <code>provision.auth.provider=crowd</code> or <code>provision.auth.provider=oauth2</code>, the application uses eigher CROWD or OAUTH2 authentication. Dependent of the property used, different spring beans are used for configuration.
-The switch between the two options is implemented via Spring&#8217;s <em>ConditionalOnProperty</em> annotation.</p>
-</div>
-<div class="paragraph">
-<p>CROWD - specific configuration classes are located in the java package <em>org.opendevstack.provision.authentication.crowd</em>.</p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="listingblock">
-<div class="title">org.opendevstack.provision.authentication.crowd.CrowdSecurityConfiguration.java</div>
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-java hljs" data-lang="java">@Configuration
-@EnableWebSecurity
-@EnableCaching
-@EnableEncryptableProperties
-@ConditionalOnProperty(name = "provision.auth.provider", havingValue = "crowd")
-public class CrowdSecurityConfiguration extends WebSecurityConfigurerAdapter {
-//...
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>OAUTH2 - specific configuration classes are located in the java package <em>org.opendevstack.provision.authentication.oauth2</em>.</p>
-</div>
-<div class="paragraph">
-<p>Example:</p>
-</div>
-<div class="listingblock">
-<div class="title">org.opendevstack.provision.authentication.oauth2.Oauth2SecurityConfiguration.java</div>
-<div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-java hljs" data-lang="java">@Configuration
-@Order(Ordered.HIGHEST_PRECEDENCE)
-@ConditionalOnProperty(name = "provision.auth.provider", havingValue = "oauth2")
-@EnableWebSecurity
-@EnableOAuth2Client
-public class Oauth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
-//...
-}</code></pre>
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_consuming_rest_apis_in_java"><a class="anchor" href="#_consuming_rest_apis_in_java"></a>Consuming REST APIs in Java</h3>
-<div class="paragraph">
-<p>Generally this is a pain. To ease development, a few tools are in use:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Jackson (see link below)</p>
-</li>
-<li>
-<p>OKTTP3 Client (see link below)</p>
-</li>
-<li>
-<p>jsonschema2pojo generator (see link below)</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The process for new operations to be called is:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Look up the API call that you intend to make</p>
-</li>
-<li>
-<p>see if there is a JSON Schema available</p>
-</li>
-<li>
-<p>Generate (a) Pojo('s) for the Endpoint</p>
-</li>
-<li>
-<p>Use the pojo to build your request, convert it to JSON with Jackson and send it via OKHTTP3, and the Provision Application&#8217;s <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/java/org/opendevstack/provision/util/rest/RestClient.java">RestClient</a></p>
-</li>
-</ol>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_link_collection"><a class="anchor" href="#_link_collection"></a>Link collection</h3>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="http://www.mkyong.com/spring-boot/spring-boot-spring-security-thymeleaf-example/">Mkyong spring boot + security + thymeleaf example</a></p>
-</li>
-<li>
-<p><a href="http://www.webjars.org/">Getting more Webjars</a></p>
-</li>
-<li>
-<p><a href="http://www.jsonschema2pojo.org/">Generating POJOs from JSON Schemas</a> very helpful for the Atlassian API Docs</p>
-</li>
-<li>
-<p><a href="https://square.github.io/okhttp">OKHttp3</a></p>
-</li>
-<li>
-<p><a href="https://site.mockito.org">Mockito</a></p>
-</li>
-<li>
-<p><a href="https://github.com/FasterXML/jackson">Jackson</a></p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p><strong>Atlassian API&#8217;s</strong></p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p><a href="https://docs.atlassian.com/jira/REST/server/#api/2/fullJiraProject-createProject">Jira API</a></p>
-</li>
-<li>
-<p><a href="https://docs.atlassian.com/ConfluenceServer/rest/6.12.1/">Confluence API</a></p>
-</li>
-<li>
-<p><a href="https://developer.atlassian.com/server/bitbucket/reference/rest-api/">Bitbucket API</a></p>
-</li>
-<li>
-<p><a href="https://developer.atlassian.com/server/crowd/crowd-rest-apis/">Crowd API</a></p>
-</li>
-<li>
-<p><a href="https://rundeck.org/docs/api/">Rundeck API</a></p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_faq"><a class="anchor" href="#_faq"></a>FAQ:</h2>
-<div class="sectionbody">
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Where is the provision app deployed?<br></p>
-<div class="olist upperalpha">
-<ol class="upperalpha" type="A">
-<li>
-<p>the provision application is deployed on openshift, in both <code>prov-dev</code> and <code>prov-test</code>. <code>prov-dev</code> is the development environment in case you want to change / enhance the application, while the production version of the application is deployed in <code>prov-test</code>. The URL to get to the provision application, is defined thru a route. Ít&#8217;s <code>https://prov-app-test.</code><openshift application="" domains="">.</openshift></p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Why are three Openshift projects created when I provision a new project?<br>
-A: The <code>project-name</code>-dev &amp; -test ones are runtime namespaces. Depending on which branch you merge / commit your code into, images will be built &amp; deployed in one of the two (further information on how this is done - can be found in the <a href="https://github.com/opendevstack/ods-jenkins-shared-library">jenkins-shared-library</a><br>
-In contrast to this, the <code>project-name</code>-cd namespace hosts a project specific instance of the <a href="https://github.com/opendevstack/ods-core/tree/master/jenkins">ODS Jenkins</a> and also of the <a href="https://github.com/opendevstack/ods-core/tree/master/jenkins/webhook-proxy">Webhook Proxy</a>. When a built is triggered, builder pods (=deployments of <a href="https://github.com/opendevstack/ods-project-quickstarters/tree/master/jenkins-slaves">Jenkins slaves</a>) are created in this project.<br>
-This was a cautious design choice to give a project team as much power as possible - when it comes to configuration of jenkins.</p>
-</li>
-<li>
-<p>What is <code>RUNDECK</code> used for?<br>
-A: Rundeck is used as orchestration engine when the provision application triggers provision jobs (e.g. create new projects, create components). This architecture is <em>subject to change</em> likely in release 2.0, to dramatically reduce complexity in multi cluster scenarios.</p>
-</li>
-<li>
-<p>Where do I find the logs, if something went wrong?<br></p>
-<div class="olist upperalpha">
-<ol class="upperalpha" type="A">
-<li>
-<p>Within the Openshift <code>pod</code> of the provision app (in <code>project</code>dev/test, namely in <code>/opt/provision/history/logs</code> a logfile is created per <code>project</code>)</p>
-</li>
-</ol>
-</div>
-</li>
-<li>
-<p>Where is the real configuration of the provision application?<br></p>
-<div class="olist upperalpha">
-<ol class="upperalpha" type="A">
-<li>
-<p>The base configuration in the the <code>application.properties</code> in the codebase, the setup specific one is in a config map deployed within the <code>prov-dev/test</code> project.</p>
-</li>
-</ol>
-</div>
-</li>
-</ol>
+<p>Up to (and including) <em>v1.1.x</em> when provisioning failed, corrupt and inconsistent states where left in the bugtracker system, bitbucket etc. which had do be cleaned up <em>manually</em> based on logs. This is rectified and a the new <code>default</code> behavior is to see every post to the API as <code>atomic</code> unit of work, which in case of failure is tried to be cleaned up (alike functional rollback). This behavior can be turned <em>off</em> by specifying the new property
+<em>provision.cleanup.incomplete.projects</em> and setting it to <em>false</em>.</p>
 </div>
 </div>
 </div>

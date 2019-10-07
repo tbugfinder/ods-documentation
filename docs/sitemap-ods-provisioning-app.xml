@@ -1,15 +1,31 @@
 <?xml version="1.0" encoding="UTF-8"?>
 <urlset xmlns="http://www.sitemaps.org/schemas/sitemap/0.9">
 <url>
+<loc>https://www.opendevstack.org/ods-documentation/ods-provisioning-app/latest/architecture.html</loc>
+<lastmod>2019-10-07T11:52:10.230Z</lastmod>
+</url>
+<url>
+<loc>https://www.opendevstack.org/ods-documentation/ods-provisioning-app/latest/configuration.html</loc>
+<lastmod>2019-10-07T11:52:10.230Z</lastmod>
+</url>
+<url>
+<loc>https://www.opendevstack.org/ods-documentation/ods-provisioning-app/latest/faq.html</loc>
+<lastmod>2019-10-07T11:52:10.230Z</lastmod>
+</url>
+<url>
 <loc>https://www.opendevstack.org/ods-documentation/ods-provisioning-app/latest/index.html</loc>
-<lastmod>2019-10-07T08:30:49.994Z</lastmod>
+<lastmod>2019-10-07T11:52:10.230Z</lastmod>
+</url>
+<url>
+<loc>https://www.opendevstack.org/ods-documentation/ods-provisioning-app/latest/upgrade_notes.html</loc>
+<lastmod>2019-10-07T11:52:10.230Z</lastmod>
 </url>
 <url>
 <loc>https://www.opendevstack.org/ods-documentation/ods-provisioning-app/1.1/index.html</loc>
-<lastmod>2019-10-07T08:30:49.994Z</lastmod>
+<lastmod>2019-10-07T11:52:10.230Z</lastmod>
 </url>
 <url>
 <loc>https://www.opendevstack.org/ods-documentation/ods-provisioning-app/v1.0/index.html</loc>
-<lastmod>2019-10-07T08:30:49.994Z</lastmod>
+<lastmod>2019-10-07T11:52:10.230Z</lastmod>
 </url>
 </urlset>
