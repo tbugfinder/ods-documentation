@@ -48,7 +48,7 @@ Then you are able to generate the documentation.
 
 *Start as jetty server via maven*:
 
-    mvn mvn jetty:run -Djetty.port=9080 -Djetty.contextpath=/
+    mvn jetty:run -Djetty.port=9080 -Djetty.contextpath=/
 
 *Classic way (not recommend)*:
 
