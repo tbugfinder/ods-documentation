@@ -258,6 +258,8 @@ changed exactly.</p>
 </div>
 <div class="sect2">
 <h3 id="_general_update_procedure"><a class="anchor" href="#_general_update_procedure"></a>General update procedure</h3>
+<div class="sect3">
+<h4 id="_backup"><a class="anchor" href="#_backup"></a>Backup</h4>
 <div class="paragraph">
 <p>Before proceeding, it is advisable to make a backup of the existing OpenShift
 configuration. This can be done easily with Tailor:</p>
@@ -277,14 +279,24 @@ tailor export -n prov-test &gt; backup_PROV_TEST.yml</code></pre>
 <p>Note that the executing user needs to have permissions to access all resources
 in the <code>cd</code> namespaces for this to work properly.</p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_tailor"><a class="anchor" href="#_tailor"></a>Tailor</h4>
 <div class="paragraph">
 <p>Next, update Tailor to the version corresponding to your new OpenDevStack
-version.</p>
+version. At the moment, this version is noted at the start of each version specific
+update procedure.</p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_configuration"><a class="anchor" href="#_configuration"></a>Configuration</h4>
 <div class="paragraph">
 <p>Then, update the configuration parameters (located in <code>ods-configuration</code>)
 according to what has changed in the <code>ods-configuration-sample</code> repository.</p>
 </div>
+</div>
+<div class="sect3">
+<h4 id="_templates"><a class="anchor" href="#_templates"></a>Templates</h4>
 <div class="paragraph">
 <p>Once configuration is up-to-date, the OpenShift templates stored within
 OpenShift need to be updated:</p>
@@ -296,22 +308,175 @@ cd ocp-templates/scripts
 ./upload-templates.sh</code></pre>
 </div>
 </div>
-<div class="paragraph">
-<p>Next, start a build for all build configs in the <code>cd</code> namespace to create new
-images.</p>
 </div>
+<div class="sect3">
+<h4 id="_ocp_resources"><a class="anchor" href="#_ocp_resources"></a>OCP resources</h4>
 <div class="paragraph">
-<p>Finally, the provisioning app should be updated. To do that, run <code>tailor update</code>
+<p>Next, run <code>tailor update</code> in all <code>ocp-config</code> folders to bring OCP resources (such
+as DC or BC) into sync. Review the diff produced by Tailor carefully, especially around
+changes to PVCs. To find each <code>ocp-config</code> folder, you can use e.g.
+<code>find . -name ocp-config -not -path "./ods-configuration*"</code> on Unix.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_shared_images"><a class="anchor" href="#_shared_images"></a>Shared images</h4>
+<div class="paragraph">
+<p>After all OCP resources have been updated, you need to start a build for all build configs
+in the <code>cd</code> namespace to create new images.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_provisioning_app"><a class="anchor" href="#_provisioning_app"></a>Provisioning App</h4>
+<div class="paragraph">
+<p>Also, the provisioning app should be updated. To do that, run <code>tailor update</code>
 in each <code>ocp-config</code> folder, and then trigger a build in Jenkins to redeploy the
 service.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_shared_library"><a class="anchor" href="#_shared_library"></a>Shared library</h4>
+<div class="paragraph">
+<p>Finally, push the vanilla branch or tag of the shared library to your
+BitBucket instance. E.g. if your <code>production</code> branch is based on <code>1.0.x</code>, push
+<code>ods-jenkins-shared-library@1.0.x</code>. All quickstarters in the <code>1.0.x</code> branch point to this Git
+reference in the <code>Jenkinsfile</code>. It is not recommended to point to <code>production</code> in your quickstarters,
+otherwise consumers will encounter failing builds when breaking changes are introduced in the
+<code>production</code> branch. You may also choose to create a custom tag from your <code>production</code> branch and
+make all `Jenkinsfile`s point to this tag.</p>
 </div>
 <div class="paragraph">
 <p>Now that the general procedure has been completed, you need to apply all the
 update notes below which apply to your version change.</p>
 </div>
 </div>
+</div>
 <div class="sect2">
-<h3 id="_0_1_0_to_1_0_0"><a class="anchor" href="#_0_1_0_to_1_0_0"></a>0.1.0 to 1.0.0</h3>
+<h3 id="_1_1_x_to_1_2_x"><a class="anchor" href="#_1_1_x_to_1_2_x"></a>1.1.x to 1.2.x</h3>
+<div class="paragraph">
+<p>1.2.x requires Tailor <a href="https://github.com/opendevstack/tailor/releases/tag/v0.10.2">0.10.2</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="_prepare_installation_for_mrodocgen_quickstarter"><a class="anchor" href="#_prepare_installation_for_mrodocgen_quickstarter"></a>Prepare installation for MRO/DocGen quickstarter</h4>
+<div class="paragraph">
+<p>The new functionality to create documents via Jenkins requires the presence of an image for the DocGen service. In an upcoming release, this will be integrated nicely. For 1.2.x, the image needs to be built once during the update procedure. The recommended way to do this is to build the image in the <code>prov</code> namespaces and then move the image tag into the <code>cd</code> namespace. The first step is to create a pipeline <code>oc -n prov-cd process -f pipeline.yml --param REPO_BASE=&lt;YOUR-REPO-BASE-HERE&gt; --param TRIGGER_SECRET=&lt;YOUR-SECERET-HERE&gt; | oc -n prov-cd create -f -</code>, where <code>pipeline.yml</code> looks like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yml hljs" data-lang="yml">apiVersion: v1
+kind: Template
+objects:
+- apiVersion: build.openshift.io/v1
+  kind: BuildConfig
+  metadata:
+    name: docgen-production
+  spec:
+    nodeSelector: {}
+    output: {}
+    postCommit: {}
+    resources: {}
+    runPolicy: Serial
+    source:
+      git:
+        ref: production
+        uri: ${REPO_BASE}/opendevstack/ods-document-generation-svc.git
+      sourceSecret:
+        name: cd-user-with-password
+        type: Git
+    strategy:
+      jenkinsPipelineStrategy:
+        jenkinsfilePath: Jenkinsfile
+        type: JenkinsPipeline
+    triggers:
+    - generic:
+        secret: ${TRIGGER_SECRET}
+        type: Generic
+parameters:
+- name: TRIGGER_SECRET
+  required: true
+- name: REPO_BASE
+  required: true
+  description: Path to repository, e.g. https://cd_user@bitbucket.domain.com/scm</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then, create the <code>BuildConfig</code> and <code>ImageStream</code> in <code>prov-dev</code> using <code>oc -n prov-dev process -f bc-is.yml | oc -n prov-dev create -f -</code>, where <code>bc-is.yml</code> looks like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yml hljs" data-lang="yml">apiVersion: v1
+kind: Template
+objects:
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    creationTimestamp: null
+    labels:
+      app: prov-docgen
+    name: docgen
+  spec:
+    failedBuildsHistoryLimit: 5
+    successfulBuildsHistoryLimit: 5
+    nodeSelector: null
+    output:
+      to:
+        kind: ImageStreamTag
+        name: docgen:latest
+    postCommit: {}
+    resources: {}
+    runPolicy: Serial
+    source:
+      binary: {}
+      type: Binary
+    strategy:
+      dockerStrategy: {}
+      type: Docker
+    triggers: []
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    labels:
+      app: prov-docgen
+    name: docgen
+  spec:
+    dockerImageRepository: docgen
+    lookupPolicy:
+      local: false</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that this points to the <code>production</code> branch of <code>ods-document-generation-svc</code> - ensure this branch is present.</p>
+</div>
+<div class="paragraph">
+<p>After all is setup, start a build in Jenkins, and then move the built image to the cd namespace:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">oc tag prov-dev/docgen:latest cd/docgen:latest</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_0_x_to_1_1_x"><a class="anchor" href="#_1_0_x_to_1_1_x"></a>1.0.x to 1.1.x</h3>
+<div class="paragraph">
+<p>1.1.x requires Tailor <a href="https://github.com/opendevstack/tailor/releases/tag/v0.9.4">0.9.4</a>.</p>
+</div>
+<div class="paragraph">
+<p>There are no further mandatory changes apart from the general procedure
+described above when updating from 1.0.x.</p>
+</div>
+<div class="paragraph">
+<p>However, it is highly recommended to take a look at the updates done to the
+boilerplates, especially the <code>Jenkinsfile</code> and <code>Dockerfile</code>. E.g. the Python
+quickstarter is now building an image containing all dependencies instead of
+installing them during runtime.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_0_1_0_to_1_0_x"><a class="anchor" href="#_0_1_0_to_1_0_x"></a>0.1.0 to 1.0.x</h3>
+<div class="paragraph">
+<p>1.0.x requires Tailor <a href="https://github.com/opendevstack/tailor/releases/tag/v0.9.3">0.9.3</a>.</p>
+</div>
 <div class="sect3">
 <h4 id="_update_xyz_cd_projects"><a class="anchor" href="#_update_xyz_cd_projects"></a>Update <code>xyz-cd</code> projects</h4>
 <div class="paragraph">
@@ -386,6 +551,20 @@ events, select "Repository Push" and "Pull request Merged + Declined".</p>
 <div class="paragraph">
 <p>If you want to build the provisioning app automatically when commits are pushed
 to BitBucket, add a webhook as described in the previous section.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_fix_jenkins_master_build_url"><a class="anchor" href="#_fix_jenkins_master_build_url"></a>Fix Jenkins master BUILD_URL</h4>
+<div class="paragraph">
+<p>1.0.x makes use of the <code>BUILD_URL</code> env variable automatically set by Jenkins. This
+env variable might be <code>null</code> in your Jenkins master. To fix this, copy
+<a href="https://github.com/opendevstack/ods-core/blob/1.0.x/jenkins/master/configuration/init.groovy.d/url.groovy" class="bare">https://github.com/opendevstack/ods-core/blob/1.0.x/jenkins/master/configuration/init.groovy.d/url.groovy</a> into each Jenins master to <code>/var/lib/jenkins/init.groovy.d/url.groovy</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_fix_json_patch_replace_error_in_jenkins_build"><a class="anchor" href="#_fix_json_patch_replace_error_in_jenkins_build"></a>Fix JSON patch replace error in Jenkins build</h4>
+<div class="paragraph">
+<p>1.0.x sets image labels on the <code>BuildConfig</code> in Jenkins. It does this by issuing a JSON patch <code>replace</code> request to <code>/spec/output/imageLabels</code>. This path was not present in prior versions, which can lead to the following error: <code>Error from server: jsonpatch replace operation does not apply: doc is missing key: /spec/output/imageLabels</code>. For newly provisioned components, this has been fixed with <a href="https://github.com/opendevstack/ods-project-quickstarters/pull/188" class="bare">https://github.com/opendevstack/ods-project-quickstarters/pull/188</a>. For existing components, add the path to the <code>BuildConfig</code> manually by editing the YAML in OpenShift.</p>
 </div>
 </div>
 </div>
