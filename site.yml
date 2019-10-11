@@ -10,29 +10,34 @@ content:
       branches:
       - 1.0.x
       - 1.1.x
+      - 1.2.x
       - master
     - url: https://github.com/opendevstack/ods-core.git
       start_path: docs
       branches:
       - 1.0.x
       - 1.1.x
+      - 1.2.x
       - master
     - url: https://github.com/opendevstack/ods-jenkins-shared-library.git
       start_path: docs
       branches:
       - 1.0.x
       - 1.1.x
+      - 1.2.x
       - master
     - url: https://github.com/opendevstack/ods-provisioning-app.git
       start_path: docs
       branches:
       - 1.0.x
       - 1.1.x
+      - 1.2.x
       - master
     - url: https://github.com/opendevstack/ods-project-quickstarters.git
       start_path: docs
       branches:
       - 1.1.x
+      - 1.2.x
       - master
 asciidoc:
   extensions:

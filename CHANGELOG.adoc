@@ -2,6 +2,10 @@
 
 All notable changes to the documentation of OpenDevStack will be documented in this file.
 
+== 11.10.2019
+
+Documentation updated to support release 1.2
+
 == 07.10.2019
 
 - https://github.com/opendevstack/ods-provisioning-app/issues/245
