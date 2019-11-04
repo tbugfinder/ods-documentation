@@ -307,12 +307,24 @@ update procedure.</p>
 <div class="sect3">
 <h4 id="_configuration"><a class="anchor" href="#_configuration"></a>Configuration</h4>
 <div class="paragraph">
-<p>Then, update the configuration parameters (located in <code>ods-configuration</code>)
+<p>Then, update/add/remove the configuration parameters (located in <code>ods-configuration</code>)
 according to what has changed in the <code>ods-configuration-sample</code> repository.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_templates"><a class="anchor" href="#_templates"></a>Templates</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Since <code>1.2.x</code> release, this sub-chapter only applies for versions below <code>1.2.x</code>.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
 <p>Once configuration is up-to-date, the OpenShift templates stored within
 OpenShift need to be updated:</p>
@@ -328,17 +340,17 @@ cd ocp-templates/scripts
 <div class="sect3">
 <h4 id="_ocp_resources"><a class="anchor" href="#_ocp_resources"></a>OCP resources</h4>
 <div class="paragraph">
-<p>Next, run <code>tailor update</code> in all <code>ocp-config</code> folders to bring OCP resources (such
-as DC or BC) into sync. Review the diff produced by Tailor carefully, especially around
-changes to PVCs. To find each <code>ocp-config</code> folder, you can use e.g.
-<code>find . -name ocp-config -not -path "./ods-configuration*"</code> on Unix.</p>
+<p>Next, run <code>tailor update</code> in all <code>ocp-config</code> folders from all the repositories
+to bring OCP resources (such as DC or BC) into sync. Review the diff produced by
+Tailor carefully, especially around changes to PVCs. To find each <code>ocp-config</code> folder,
+you can use e.g. <code>find . -name ocp-config -not -path "./ods-configuration*"</code> on Unix.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_shared_images"><a class="anchor" href="#_shared_images"></a>Shared images</h4>
 <div class="paragraph">
 <p>After all OCP resources have been updated, you need to start a build for all build configs
-in the <code>cd</code> namespace to create new images.</p>
+in the <code>cd</code> and <code>shared-services</code> namespaces to create new images.</p>
 </div>
 </div>
 <div class="sect3">
@@ -352,13 +364,22 @@ service.</p>
 <div class="sect3">
 <h4 id="_shared_library"><a class="anchor" href="#_shared_library"></a>Shared library</h4>
 <div class="paragraph">
-<p>Finally, push the vanilla branch or tag of the shared library to your
+<p>Then, push the vanilla branch or tag of the shared library to your
 BitBucket instance. E.g. if your <code>production</code> branch is based on <code>1.0.x</code>, push
 <code>ods-jenkins-shared-library@1.0.x</code>. All quickstarters in the <code>1.0.x</code> branch point to this Git
 reference in the <code>Jenkinsfile</code>. It is not recommended to point to <code>production</code> in your quickstarters,
 otherwise consumers will encounter failing builds when breaking changes are introduced in the
 <code>production</code> branch. You may also choose to create a custom tag from your <code>production</code> branch and
 make all `Jenkinsfile`s point to this tag.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_rundeck"><a class="anchor" href="#_rundeck"></a>Rundeck</h4>
+<div class="paragraph">
+<p>Finally, in your Rundeck instance:
+* Update/Sync all jobs from this release
+* Update <code>quickstarts/airflow_cluster</code> job to get proper values for <code>-h</code>, <code>-r</code> and <code>-oc</code> flags.
+* Run <code>verify global rundeck settings</code> job</p>
 </div>
 <div class="paragraph">
 <p>Now that the general procedure has been completed, you need to apply all the
@@ -374,7 +395,7 @@ update notes below which apply to your version change.</p>
 <div class="sect3">
 <h4 id="_prepare_installation_for_mrodocgen_quickstarter"><a class="anchor" href="#_prepare_installation_for_mrodocgen_quickstarter"></a>Prepare installation for MRO/DocGen quickstarter</h4>
 <div class="paragraph">
-<p>The new functionality to create documents via Jenkins requires the presence of an image for the DocGen service. In an upcoming release, this will be integrated nicely. For 1.2.x, the image needs to be built once during the update procedure. The recommended way to do this is to build the image in the <code>prov</code> namespaces and then move the image tag into the <code>cd</code> namespace. The first step is to create a pipeline <code>oc -n prov-cd process -f pipeline.yml --param REPO_BASE=&lt;YOUR-REPO-BASE-HERE&gt; --param TRIGGER_SECRET=&lt;YOUR-SECERET-HERE&gt; | oc -n prov-cd create -f -</code>, where <code>pipeline.yml</code> looks like this:</p>
+<p>The new functionality to create documents via Jenkins requires the presence of an image for the DocGen service. In an upcoming release, this will be integrated nicely. For <code>1.2.x</code>, the image needs to be built once during the update procedure. The recommended way to do this is to build the image in the <code>prov</code> namespaces and then move the image tag into the <code>cd</code> namespace. The first step is to create a pipeline <code>oc -n prov-cd process -f pipeline.yml --param REPO_BASE=&lt;YOUR-REPO-BASE-HERE&gt; --param TRIGGER_SECRET=&lt;YOUR-SECERET-HERE&gt; | oc -n prov-cd create -f -</code>, where <code>pipeline.yml</code> looks like this:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -504,7 +525,7 @@ fly, allowing to have one pipeline per branch. To update:</p>
 <ul>
 <li>
 <p>Setup the image in the <code>cd</code> project by running <code>tailor update</code> in
-<code>ods-core/jenkins/webhook-proxy/ocp-config</code>.</p>
+<code>ods-core/jenkins/ocp-config</code>.</p>
 </li>
 <li>
 <p>Build the image.</p>
@@ -554,12 +575,22 @@ environment cloning, also apply the instructions for that.</p>
 <div class="paragraph">
 <p>In <code>docker/Dockerfile</code>:</p>
 </div>
-<div class="paragraph">
-<p>Adapt the content to match the latest state of the quickstarter boilerplates.
-In BitBucket, remove the existing "Post Webhooks" and create a new "Webhook",
+<div class="ulist">
+<ul>
+<li>
+<p>Adapt the content to match the latest state of the quickstarter boilerplates.</p>
+</li>
+<li>
+<p>No Nexus upload build artifact is required anymore, use a copy in Jenkins shell
+command to docker folder (see in any boilerplate how it is done now).</p>
+</li>
+<li>
+<p>In BitBucket, remove the existing "Post Webhooks" and create a new "Webhook",
 pointing to the new webhook proxy. The URL has to be of the form
 <code>https://webhook-proxy-$PROJECT_ID-cd.$DOMAIN?trigger_secret=$SECRET</code>. As
 events, select "Repository Push" and "Pull request Merged + Declined".</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
