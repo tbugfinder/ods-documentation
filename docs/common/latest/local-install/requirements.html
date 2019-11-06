@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Introduction to OpenDevStack :: OpenDevStack</title>
-    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/common/latest/getting-started/introduction.html">
+    <title>Local Installation Guide: Requirements :: OpenDevStack</title>
+    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/common/latest/local-install/requirements.html">
     <meta name="generator" content="Antora 2.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
   </head>
@@ -64,8 +64,8 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="introduction.html">Introduction</a>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../getting-started/introduction.html">Introduction</a>
   </li>
 </ul>
   </li>
@@ -76,16 +76,16 @@
     <span class="nav-text">Local Install Guide</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../local-install/overview.html">Overview</a>
+    <a class="nav-link" href="overview.html">Overview</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="requirements.html">Requirements</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../local-install/requirements.html">Requirements</a>
+    <a class="nav-link" href="installation.html">Installation</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../local-install/installation.html">Installation</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../local-install/try_out.html">Try out OpenDevStack</a>
+    <a class="nav-link" href="try_out.html">Try out OpenDevStack</a>
   </li>
 </ul>
   </li>
@@ -203,109 +203,195 @@
 <main role="main">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="introduction.html" class="home-link is-current"></a>
+  <a href="../getting-started/introduction.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Guides and Tutorials</a></li>
-    <li><a href="introduction.html">Introduction</a></li>
+    <li>Local Install Guide</li>
+    <li><a href="requirements.html">Requirements</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">latest</button>
   <div class="version-menu">
-    <a class="version is-current" href="introduction.html">latest</a>
-    <a class="version" href="../../1.2/getting-started/introduction.html">1.2</a>
+    <a class="version is-current" href="requirements.html">latest</a>
+    <a class="version is-missing" href="../../1.2/index.html">1.2</a>
     <a class="version is-missing" href="../../1.1/index.html">1.1</a>
     <a class="version is-missing" href="../../v1.0/index.html">v1.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/opendevstack/opendevstack.github.io/edit/master/docs/modules/getting-started/pages/introduction.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/opendevstack.github.io/edit/master/docs/modules/local-install/pages/requirements.adoc">Edit this Page</a></div>
 </div>
 <article class="doc">
-<h1>Introduction to OpenDevStack</h1>
-<div class="sect1">
-<h2 id="_what_is_opendevstack"><a class="anchor" href="#_what_is_opendevstack"></a>What is OpenDevStack?</h2>
+<h1>Local Installation Guide: Requirements</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_git">Git</a></li>
+<li><a href="#_vagrant">Vagrant</a></li>
+<li><a href="#_virtualbox">Virtualbox</a></li>
+<li><a href="#_atlassian_tools_licenses">Atlassian tools licenses</a></li>
+<li><a href="#_cygwin_linux">Cygwin / Linux</a></li>
+<li><a href="#_ansible">Ansible</a></li>
+<li><a href="#_tailor">Tailor</a></li>
+</ul>
+</div>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>When we started with <a href="https://www.openshift.com/">Redhat&#8217;s OpenShift</a> we were blown away by the 100s of possibilities to use it, while there was not anything along "This is how you make it work for your org".</p>
+<p>The following requirements have to be met to setup a local environment. You should have a computer with at least 32 GB of RAM, because we are going to install
+several Atlassian tools and a local OpenShift environment.</p>
 </div>
-<div class="paragraph">
-<p>Its catalog provides items for almost everything - yet what we wanted is to enable people to quickly introduce
-Continous delivery and standardized technology archetypes. We call this lean, empowered governance.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+We assume, you will have a full functional internet connection*
+</td>
+</tr>
+</table>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_git"><a class="anchor" href="#_git"></a>Git</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>So what does OpenDevStack now provide?</p>
+<p>We use Git as code repository, so you have to be familiar to work with <a href="https://git-scm.com/">Git</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_vagrant"><a class="anchor" href="#_vagrant"></a>Vagrant</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The OpenDevStack uses Vagrant to provide a sample infrastructure for the Atlassian tools, Rundeck and a so called Ansible controller, a VM, where you can run Ansible scripts against the Atlassian VM. It is recommended to use the latest Vagrant version available from the <a href="https://www.vagrantup.com">HashiCorp Vagrant page</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_virtualbox"><a class="anchor" href="#_virtualbox"></a>Virtualbox</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Vagrant uses Virtualbox for running the provisioned VMs. Therefore you must have <a href="https://www.virtualbox.org/">Virtualbox</a> installed.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_atlassian_tools_licenses"><a class="anchor" href="#_atlassian_tools_licenses"></a>Atlassian tools licenses</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>To use the Atlassian tools you need a license to run them. For testing and evaluation Atlassian provides evalutation licenses, which you can get on the <a href="https://my.atlassian.com/products/index">My Atlassian license page</a>.
+Here you have to keep in mind, that you have to register, if you don&#8217;t have an Atlassian account. The registration is for free.
+You need licenses for the following products:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>A set of images to get the CI infrastructure running, called <a href="https://github.com/opendevstack/ods-core">ods-core</a>. It also contains <a href="https://github.com/opendevstack/ods-core/tree/master/infrastructure-setup">ansible runbooks</a> to get the atlassian suite going.</p>
+<p>Bitbucket</p>
 </li>
 <li>
-<p>A shared <a href="https://github.com/opendevstack/ods-jenkins-shared-library">jenkins library</a> that harmonizes the way you build, test, govern and deploy.</p>
+<p>Jira</p>
 </li>
 <li>
-<p>A set of <a href="https://github.com/opendevstack/ods-project-quickstarters">technology quickstarters</a> that already provide the complete CI/CD integration, w/o anything to worry about for the engineer</p>
+<p>Confluence</p>
 </li>
 <li>
-<p>A small <a href="https://github.com/opendevstack/ods-provisioning-app">provision application</a> that gives you one place to start, no matter if you want to start a new initiative, or enhance and existing one.</p>
+<p>Crowd</p>
 </li>
 </ul>
 </div>
-<div class="sect2">
-<h3 id="_parts_of_opendevstack"><a class="anchor" href="#_parts_of_opendevstack"></a>Parts of OpenDevStack</h3>
-<div class="imageblock">
-<div class="content">
-<img src="_images/documentation/opendevstack/opendevstack_parts.png" alt="OpenDevStackParts">
+<div class="paragraph">
+<p>The evaluation licenses are valid for 30 days from the date of purchase. If you need a server id, this will be provided by the tools within the installation,
+so you are able to inlcude the licenses within theinstallation wizards of the tools, after the base setup provided by the Ansible scripts.</p>
+</div>
+<div class="paragraph">
+<p>The base setup uses the following versions:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Software</th>
+<th class="tableblock halign-left valign-top">Version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bitbucket</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">5.16.3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Jira</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">7.13.3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Confluence</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">6.14.3</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Crowd</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">3.4.4</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_journey_from_commit_to_deployment"><a class="anchor" href="#_journey_from_commit_to_deployment"></a>Journey: From Commit To Deployment</h3>
-<div class="imageblock">
-<div class="content">
-<img src="_images/documentation/opendevstack/from_commit_to_deployment.png" alt="OpenDevStack Journey From Commit to Deployment">
-</div>
-</div>
+<div class="sect1">
+<h2 id="_cygwin_linux"><a class="anchor" href="#_cygwin_linux"></a>Cygwin / Linux</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>You must have the possibility to run bash scripts to install the OpenDevStack. On Linux systems you can use these scripts out-of-the box, on Windows systems you will have to install either a bash port for Windows like <a href="https://www.cygwin.com/">Cygwin</a>.
+For Windows, our recommendation is to use Cygwin for configuration. Make sure to select the curl package under the "net" category when installing cygwin.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_using_opendevstack"><a class="anchor" href="#_using_opendevstack"></a>Using OpenDevStack</h2>
+<h2 id="_ansible"><a class="anchor" href="#_ansible"></a>Ansible</h2>
 <div class="sectionbody">
-<div class="sect2">
-<h3 id="_create_an_integrated_opendevstack_project"><a class="anchor" href="#_create_an_integrated_opendevstack_project"></a>Create an integrated OpenDevStack project</h3>
 <div class="paragraph">
-<p>Trigger project creation thru the <a href="https://github.com/opendevstack/ods-provisioning-app/">provisioning application</a> to get a new project. The web GUI of the provisioning app is located at <code><a href="https://prov-app-test.&lt;app-domain-of-your-openshift-cluster&gt" class="bare">https://prov-app-test.&lt;app-domain-of-your-openshift-cluster&gt</a>;</code>.</p>
+<p>The OpenDevStack uses <a href="https://www.ansible.com/">Ansible</a> to install and configure the necessary software for the enabling stack, so it&#8217;s recommended to get familiar with its core concepts and usage. Credentials are stored within an Ansible vault, so even if you commit them in a public repository they are not available unless you know the vault password. Nevertheless, it is recommended to take care with handling credentials, even if they are encrypted.</p>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_tailor"><a class="anchor" href="#_tailor"></a>Tailor</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>When <code>openshiftproject == true</code>, this will also create OpenShift projects, namely <code>&lt;project-KEY&gt;-dev</code> and <code>&lt;project-KEY&gt;-test</code>.
-A <a href="https://github.com/opendevstack/ods-core">Jenkins deployment</a> will be created in the <code>&lt;project-KEY&gt;-cd</code> project to allow each project full freedom of build management. This deployment is based on <a href="https://github.com/opendevstack/ods-core">common jenkins images</a> from the <code>CD</code> namespace.</p>
+<p>We use <a href="https://github.com/opendevstack/tailor">tailor</a> to handle our versioned OpenShift templates and keep our cluster in sync. Please see its <a href="https://github.com/opendevstack/tailor#installation">installation instructions</a> for your platform. The following lists the version requirements:</p>
 </div>
-</div>
-<div class="sect2">
-<h3 id="_pull_a_quickstarter_into_your_project"><a class="anchor" href="#_pull_a_quickstarter_into_your_project"></a>Pull a quickstarter into your project</h3>
-<div class="paragraph">
-<p>Open the web GUI of the provisioning app <code><a href="https://prov-app-test.&lt;app-domain-of-your-openshift-cluster&gt" class="bare">https://prov-app-test.&lt;app-domain-of-your-openshift-cluster&gt</a>;</code>.
-This time, rather than <code>new initiative</code>, pick <code>modify</code> and select your project. Pick a matching <a href="https://github.com/opendevstack/ods-project-quickstarters">quickstarter</a>. If no framework fits to your needs, choose the
- <a href="https://github.com/opendevstack/ods-project-quickstarters/blob/master/boilerplates/be-docker-plain/README.md">be-plain-docker quickstarter</a>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_result_after_quickstarted"><a class="anchor" href="#_result_after_quickstarted"></a>Result after quickstarted</h3>
-<div class="paragraph">
-<p>Now you got the <a href="https://github.com/opendevstack/ods-project-quickstarters/tree/master/boilerplates">boilerplate</a> of the picked quickstarter in your BitBucket project in its own repository, which the <a href="https://github.com/opendevstack/ods-provisioning-app/">provisioning app</a> created. Also, CI/CD is already working - you can verify this as the boilerplate application runs in the <code>&lt;project-KEY&gt;-test</code> project. This was deployed through a <a href="https://github.com/opendevstack/ods-jenkins-shared-library">Jenkins pipeline</a>, which is triggered via <a href="https://github.com/opendevstack/ods-core/tree/master/jenkins/webhook-proxy">webhooks</a> from BitBucket.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_checking_in_my_app_code"><a class="anchor" href="#_checking_in_my_app_code"></a>Checking in my app code</h3>
-<div class="paragraph">
-<p>Create a branch in the newly created repository - once pushed this will deploy your application to the <code>&lt;project-KEY&gt;-dev</code> project. After merging your branch to <code>master</code>, the update is avilable in the <code>&lt;project-KEY&gt;-test</code> project.</p>
-</div>
-<div class="paragraph">
-<p>The branch-to-environment mapping is defined in the <code>Jenkinsfile</code>, used by the <a href="https://github.com/opendevstack/ods-jenkins-shared-library">jenkins shared library</a>, and can be tailored to your needs.</p>
-</div>
-</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">OpenDevStack version</th>
+<th class="tableblock halign-left valign-top">Tailor version</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">= 0.8</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&gt;= 0.9.1</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">1.1.x</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">&gt;= 0.9.3</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </article>

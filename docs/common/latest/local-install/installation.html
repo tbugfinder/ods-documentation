@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Local Installation Guide :: OpenDevStack</title>
-    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/common/latest/getting-started/local-install.html">
+    <title>Local Installation Guide: Installation :: OpenDevStack</title>
+    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/common/latest/local-install/installation.html">
     <meta name="generator" content="Antora 2.0.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
   </head>
@@ -65,10 +65,29 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="introduction.html">Introduction</a>
+    <a class="nav-link" href="../getting-started/introduction.html">Introduction</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="local-install.html">Local Installation</a>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Local Install Guide</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="overview.html">Overview</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="requirements.html">Requirements</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="installation.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="try_out.html">Try out OpenDevStack</a>
+  </li>
+</ul>
   </li>
 </ul>
   </li>
@@ -184,226 +203,74 @@
 <main role="main">
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
-  <a href="introduction.html" class="home-link"></a>
+  <a href="../getting-started/introduction.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Guides and Tutorials</a></li>
-    <li><a href="local-install.html">Local Installation</a></li>
+    <li>Local Install Guide</li>
+    <li><a href="installation.html">Installation</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">latest</button>
   <div class="version-menu">
-    <a class="version is-current" href="local-install.html">latest</a>
-    <a class="version" href="../../1.2/getting-started/local-install.html">1.2</a>
-    <a class="version" href="../../1.1/getting-started/local-install.html">1.1</a>
+    <a class="version is-current" href="installation.html">latest</a>
+    <a class="version is-missing" href="../../1.2/index.html">1.2</a>
+    <a class="version is-missing" href="../../1.1/index.html">1.1</a>
     <a class="version is-missing" href="../../v1.0/index.html">v1.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/opendevstack/opendevstack.github.io/edit/master/docs/modules/getting-started/pages/local-install.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/opendevstack.github.io/edit/master/docs/modules/local-install/pages/installation.adoc">Edit this Page</a></div>
 </div>
 <article class="doc">
-<h1>Local Installation Guide</h1>
+<h1>Local Installation Guide: Installation</h1>
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_introduction">Introduction</a></li>
-<li><a href="#_requirements">Requirements</a>
+<li><a href="#_prepare_infrastructure">Prepare infrastructure</a>
 <ul class="sectlevel2">
-<li><a href="#_git">Git</a></li>
-<li><a href="#_vagrant">Vagrant</a></li>
-<li><a href="#_virtualbox">Virtualbox</a></li>
-<li><a href="#_atlassian_tools_licenses">Atlassian tools licenses</a></li>
-<li><a href="#_cygwin_linux">Cygwin / Linux</a></li>
-<li><a href="#_ansible">Ansible</a></li>
+<li><a href="#_clone_ods_core_repository">Clone ods-core repository</a></li>
+<li><a href="#_run_setup_local_environment_script">Run setup-local-environment script</a></li>
+<li><a href="#_verify_setup">Verify Setup</a></li>
 </ul>
 </li>
-<li><a href="#_setup_your_local_environment">Setup your local environment</a>
+<li><a href="#_configure_atlassian_tools">Configure Atlassian Tools</a>
 <ul class="sectlevel2">
-<li><a href="#_tailor">Tailor</a></li>
-<li><a href="#_prepare_infrastructure">Prepare infrastructure</a></li>
-<li><a href="#_configure_atlassian_tools">Configure Atlassian Tools</a></li>
-<li><a href="#_prepare_local_opendevstack_environment">Prepare local OpenDevStack environment</a></li>
-<li><a href="#_provisioning_application">Provisioning application</a></li>
+<li><a href="#_atlassian_crowd">Atlassian Crowd</a></li>
+<li><a href="#_attlassian_bitbucket">Attlassian Bitbucket</a></li>
+<li><a href="#_atlassian_jira">Atlassian Jira</a></li>
+<li><a href="#_atlassian_confluence">Atlassian Confluence</a></li>
+</ul>
+</li>
+<li><a href="#_prepare_local_opendevstack_environment">Prepare local OpenDevStack environment</a>
+<ul class="sectlevel2">
+<li><a href="#_nexus3">Nexus3</a></li>
+<li><a href="#_sonarqube">Sonarqube</a></li>
+<li><a href="#_prepare_jenkins_slave_docker_images">Prepare Jenkins slave docker images</a></li>
+<li><a href="#_rundeck_configuration">Rundeck configuration</a></li>
+</ul>
+</li>
+<li><a href="#_provisioning_application">Provisioning application</a>
+<ul class="sectlevel2">
+<li><a href="#_run_from_openshift">Run from OpenShift</a></li>
+<li><a href="#_run_from_ide">Run from IDE</a></li>
+</ul>
+</li>
 <li><a href="#_add_shared_images">Add shared images</a></li>
 </ul>
-</li>
-<li><a href="#_try_out_the_opendevstack">Try out the OpenDevStack</a></li>
-</ul>
 </div>
-<div class="sect1">
-<h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Welcome to the OpenDevStack. The OpenDevStack is a framework to help in setting up a project infrastructure and continuous delivery processes on OpenShift and Atlassian toolstack with one click. This guide shall help you to setup the OpenDevStack, so you can work with it and test it in a local environment setup. The steps for the setup can also be adapted for running the OpenDevstack with an existing OpenShift installation or to connect it with your Atlassian tools, if you use <a href="https://www.atlassian.com/software/crowd">Atlassian Crowd</a> as SSO provider.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-The credentials provided in the guide are only meant to be used within the local test installation. For use in production you will have to customize paths, URLs and credentials!*
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_requirements"><a class="anchor" href="#_requirements"></a>Requirements</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The following requirements have to be met to setup a local environment. You should have a computer with at least 32 GB of RAM, because we are going to install
-several Atlassian tools and a local OpenShift environment.</p>
-</div>
-<div class="admonitionblock important">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-important" title="Important"></i>
-</td>
-<td class="content">
-We assume, you will have a full functional internet connection*
-</td>
-</tr>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_git"><a class="anchor" href="#_git"></a>Git</h3>
-<div class="paragraph">
-<p>We use Git as code repository, so you have to be familiar to work with <a href="https://git-scm.com/">Git</a>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_vagrant"><a class="anchor" href="#_vagrant"></a>Vagrant</h3>
-<div class="paragraph">
-<p>The OpenDevStack uses Vagrant to provide a sample infrastructure for the Atlassian tools, Rundeck and a so called Ansible controller, a VM, where you can run Ansible scripts against the Atlassian VM. It is recommended to use the latest Vagrant version available from the <a href="https://www.vagrantup.com">HashiCorp Vagrant page</a>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_virtualbox"><a class="anchor" href="#_virtualbox"></a>Virtualbox</h3>
-<div class="paragraph">
-<p>Vagrant uses Virtualbox for running the provisioned VMs. Therefore you must have <a href="https://www.virtualbox.org/">Virtualbox</a> installed.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_atlassian_tools_licenses"><a class="anchor" href="#_atlassian_tools_licenses"></a>Atlassian tools licenses</h3>
-<div class="paragraph">
-<p>To use the Atlassian tools you need a license to run them. For testing and evaluation Atlassian provides evalutation licenses, which you can get on the <a href="https://my.atlassian.com/products/index">My Atlassian license page</a>.
-Here you have to keep in mind, that you have to register, if you don&#8217;t have an Atlassian account. The registration is for free.
-You need licenses for the following products:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Bitbucket</p>
-</li>
-<li>
-<p>Jira</p>
-</li>
-<li>
-<p>Confluence</p>
-</li>
-<li>
-<p>Crowd</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>The evaluation licenses are valid for 30 days from the date of purchase. If you need a server id, this will be provided by the tools within the installation,
-so you are able to inlcude the licenses within theinstallation wizards of the tools, after the base setup provided by the Ansible scripts.</p>
-</div>
-<div class="paragraph">
-<p>The base setup uses the following versions:</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Software</th>
-<th class="tableblock halign-left valign-top">Version</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Bitbucket</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">5.16.3</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Jira</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">7.13.3</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Confluence</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">6.14.3</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Crowd</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">3.4.4</p></td>
-</tr>
-</tbody>
-</table>
-</div>
-<div class="sect2">
-<h3 id="_cygwin_linux"><a class="anchor" href="#_cygwin_linux"></a>Cygwin / Linux</h3>
-<div class="paragraph">
-<p>You must have the possibility to run bash scripts to install the OpenDevStack. On Linux systems you can use these scripts out-of-the box, on Windows systems you will have to install either a bash port for Windows like <a href="https://www.cygwin.com/">Cygwin</a>.
-For Windows, our recommendation is to use Cygwin for configuration. Make sure to select the curl package under the "net" category when installing cygwin.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_ansible"><a class="anchor" href="#_ansible"></a>Ansible</h3>
-<div class="paragraph">
-<p>The OpenDevStack uses <a href="https://www.ansible.com/">Ansible</a> to install and configure the necessary software for the enabling stack, so it&#8217;s recommended to get familiar with its core concepts and usage. Credentials are stored within an Ansible vault, so even if you commit them in a public repository they are not available unless you know the vault password. Nevertheless, it is recommended to take care with handling credentials, even if they are encrypted.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_setup_your_local_environment"><a class="anchor" href="#_setup_your_local_environment"></a>Setup your local environment</h2>
+<div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
 <p>From now on we assume, you work from a Bash (Cygwin / Linux).</p>
 </div>
-<div class="sect2">
-<h3 id="_tailor"><a class="anchor" href="#_tailor"></a>Tailor</h3>
-<div class="paragraph">
-<p>We use <a href="https://github.com/opendevstack/tailor">tailor</a> to handle our versioned OpenShift templates and keep our cluster in sync. Please see its <a href="https://github.com/opendevstack/tailor#installation">installation instructions</a> for your platform. The following lists the version requirements:</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">OpenDevStack version</th>
-<th class="tableblock halign-left valign-top">Tailor version</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">0.1.x</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">= 0.8</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.0.x</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&gt;= 0.9.1</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">1.1.x</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">&gt;= 0.9.3</p></td>
-</tr>
-</tbody>
-</table>
 </div>
+<div class="sect1">
+<h2 id="_prepare_infrastructure"><a class="anchor" href="#_prepare_infrastructure"></a>Prepare infrastructure</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="_prepare_infrastructure"><a class="anchor" href="#_prepare_infrastructure"></a>Prepare infrastructure</h3>
+<h3 id="_clone_ods_core_repository"><a class="anchor" href="#_clone_ods_core_repository"></a>Clone ods-core repository</h3>
 <div class="paragraph">
 <p>First create a base directory for the OpenDevStack repositories, e.g. <strong>ods</strong>. This will be your base directory for all following operations.
 This path will also be mounted to the VMs provisioned by Vagrant.</p>
@@ -421,6 +288,9 @@ This path will also be mounted to the VMs provisioned by Vagrant.</p>
 <img src="_images/documentation/setup-script/clone_repo.PNG" alt="Clone repository">
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_run_setup_local_environment_script"><a class="anchor" href="#_run_setup_local_environment_script"></a>Run setup-local-environment script</h3>
 <div class="paragraph">
 <p>Navigate to the folder <span class="menuseq"><b class="menu">ods</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="submenu">ods-core</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">infrastructure-setup</b></span>.</p>
 </div>
@@ -461,33 +331,43 @@ This path will also be mounted to the VMs provisioned by Vagrant.</p>
 <img src="_images/documentation/setup-script/stack-confirm.PNG" alt="Atlassian stack">
 </div>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_verify_setup"><a class="anchor" href="#_verify_setup"></a>Verify Setup</h3>
 <div class="paragraph">
-<p>After the base installation, you will have to configure the Atlassian tools, before you are able to proceed.</p>
+<p>At the end of set setup script, the following information is displayed. Please verify, if the
+software can be loaded by using the provided urls:</p>
 </div>
 <div class="imageblock">
 <div class="content">
 <img src="_images/documentation/setup-script/script-execution-3.PNG" alt="Vagrant">
 </div>
 </div>
+<div class="paragraph">
+<p>After the base installation, you will have to configure the Atlassian tools, before you are able to proceed.</p>
 </div>
-<div class="sect2">
-<h3 id="_configure_atlassian_tools"><a class="anchor" href="#_configure_atlassian_tools"></a>Configure Atlassian Tools</h3>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configure_atlassian_tools"><a class="anchor" href="#_configure_atlassian_tools"></a>Configure Atlassian Tools</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>The following steps explain the Atlassian tools configuration i the local test environment.
 If you have already installed the Atlassian tools, you can skip the Configuration Wizard chapter for the respective tool</p>
 </div>
+<div class="sect2">
+<h3 id="_atlassian_crowd"><a class="anchor" href="#_atlassian_crowd"></a>Atlassian Crowd</h3>
 <div class="sect3">
-<h4 id="_atlassian_crowd"><a class="anchor" href="#_atlassian_crowd"></a>Atlassian Crowd</h4>
-<div class="sect4">
-<h5 id="_run_configuration_wizard"><a class="anchor" href="#_run_configuration_wizard"></a>Run Configuration Wizard</h5>
+<h4 id="_run_configuration_wizard"><a class="anchor" href="#_run_configuration_wizard"></a>Run Configuration Wizard</h4>
 <div class="paragraph">
 <p>Access <a href="http://192.168.56.31:8095/crowd/console" class="bare">http://192.168.56.31:8095/crowd/console</a></p>
 </div>
 <div class="paragraph">
 <p>Be patient. First time accessing this page will take some time.</p>
 </div>
-<div class="sect5">
-<h6 id="_step_1_license_key"><a class="anchor" href="#_step_1_license_key"></a>Step 1: License key</h6>
+<div class="sect4">
+<h5 id="_step_1_license_key"><a class="anchor" href="#_step_1_license_key"></a>Step 1: License key</h5>
 <div class="paragraph">
 <p>Here you can see the server id you need for the license you can get from the <a href="https://my.atlassian.com/products/index">My Atlassian page</a>. Use the link to get an evaluation license (Crowd Server) or enter a valid license key into the textbox.</p>
 </div>
@@ -497,8 +377,8 @@ If you have already installed the Atlassian tools, you can skip the Configuratio
 </div>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_step_2_crowd_installation"><a class="anchor" href="#_step_2_crowd_installation"></a>Step 2: Crowd installation</h6>
+<div class="sect4">
+<h5 id="_step_2_crowd_installation"><a class="anchor" href="#_step_2_crowd_installation"></a>Step 2: Crowd installation</h5>
 <div class="paragraph">
 <p>Here choose the <strong>New installation</strong> option.</p>
 </div>
@@ -508,8 +388,8 @@ If you have already installed the Atlassian tools, you can skip the Configuratio
 </div>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_step_3_database_configuration"><a class="anchor" href="#_step_3_database_configuration"></a>Step 3: Database Configuration</h6>
+<div class="sect4">
+<h5 id="_step_3_database_configuration"><a class="anchor" href="#_step_3_database_configuration"></a>Step 3: Database Configuration</h5>
 <div class="paragraph">
 <p>The next step is the database configuration.</p>
 </div>
@@ -560,8 +440,8 @@ If you have already installed the Atlassian tools, you can skip the Configuratio
 </tbody>
 </table>
 </div>
-<div class="sect5">
-<h6 id="_step_4_options"><a class="anchor" href="#_step_4_options"></a>Step 4: Options</h6>
+<div class="sect4">
+<h5 id="_step_4_options"><a class="anchor" href="#_step_4_options"></a>Step 4: Options</h5>
 <div class="paragraph">
 <p>Choose a deployment title, e.g. <em>OpenDevStack</em> and set the <strong>Base URL</strong> to <code>http://192.168.56.31:8095/crowd</code></p>
 </div>
@@ -571,8 +451,8 @@ If you have already installed the Atlassian tools, you can skip the Configuratio
 </div>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_step_5_internal_directory"><a class="anchor" href="#_step_5_internal_directory"></a>Step 5: Internal directory</h6>
+<div class="sect4">
+<h5 id="_step_5_internal_directory"><a class="anchor" href="#_step_5_internal_directory"></a>Step 5: Internal directory</h5>
 <div class="paragraph">
 <p>Enter the name for the internal crowd directory, e.g. <em>OpenDevStack</em></p>
 </div>
@@ -582,8 +462,8 @@ If you have already installed the Atlassian tools, you can skip the Configuratio
 </div>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_step_6_default_administrator"><a class="anchor" href="#_step_6_default_administrator"></a>Step 6: Default administrator</h6>
+<div class="sect4">
+<h5 id="_step_6_default_administrator"><a class="anchor" href="#_step_6_default_administrator"></a>Step 6: Default administrator</h5>
 <div class="paragraph">
 <p>Enter the data for the default administrator, so you are able to login to crowd.
 For the test installation, we will choose the username <code>opendevstack.admin</code> with the password <code>admin</code>.</p>
@@ -594,8 +474,8 @@ For the test installation, we will choose the username <code>opendevstack.admin<
 </div>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_step_7_integrated_applications"><a class="anchor" href="#_step_7_integrated_applications"></a>Step 7: Integrated applications</h6>
+<div class="sect4">
+<h5 id="_step_7_integrated_applications"><a class="anchor" href="#_step_7_integrated_applications"></a>Step 7: Integrated applications</h5>
 <div class="paragraph">
 <p>Enable the OpenID Server.</p>
 </div>
@@ -605,8 +485,8 @@ For the test installation, we will choose the username <code>opendevstack.admin<
 </div>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_step_8_log_in_to_crowd_console"><a class="anchor" href="#_step_8_log_in_to_crowd_console"></a>Step 8: Log in to Crowd console</h6>
+<div class="sect4">
+<h5 id="_step_8_log_in_to_crowd_console"><a class="anchor" href="#_step_8_log_in_to_crowd_console"></a>Step 8: Log in to Crowd console</h5>
 <div class="paragraph">
 <p>Now you can verify the installation and log in with the credentials defined in the previous step.</p>
 </div>
@@ -617,16 +497,16 @@ For the test installation, we will choose the username <code>opendevstack.admin<
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_configure_crowd"><a class="anchor" href="#_configure_crowd"></a>Configure Crowd</h5>
+<div class="sect3">
+<h4 id="_configure_crowd"><a class="anchor" href="#_configure_crowd"></a>Configure Crowd</h4>
 <div class="paragraph">
 <p>You will have to configure crowd to enable the Atlassian tools and Rundeck to login with crowd credentials.</p>
 </div>
 <div class="paragraph">
 <p>The following paragraphs assume, that you are logged in to the <a href="http://192.168.56.31:8095/crowd/console">Crowd console</a>.</p>
 </div>
-<div class="sect5">
-<h6 id="_session_configuration"><a class="anchor" href="#_session_configuration"></a>Session configuration</h6>
+<div class="sect4">
+<h5 id="_session_configuration"><a class="anchor" href="#_session_configuration"></a>Session configuration</h5>
 <div class="paragraph">
 <p>You will have to change the default session configuration.</p>
 </div>
@@ -655,8 +535,8 @@ For the test installation, we will choose the username <code>opendevstack.admin<
 </div>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_add_opendevstack_groups"><a class="anchor" href="#_add_opendevstack_groups"></a>Add OpenDevStack groups</h6>
+<div class="sect4">
+<h5 id="_add_opendevstack_groups"><a class="anchor" href="#_add_opendevstack_groups"></a>Add OpenDevStack groups</h5>
 <div class="paragraph">
 <p>You will have to add additional groups Crowd&#8217;s internal directory. The groups are listed in the table below.</p>
 </div>
@@ -702,8 +582,8 @@ For the test installation, we will choose the username <code>opendevstack.admin<
 <p>The group has been created. Repeat the steps of group creation for all necessary groups.</p>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_add_cd_user"><a class="anchor" href="#_add_cd_user"></a>Add CD user</h6>
+<div class="sect4">
+<h5 id="_add_cd_user"><a class="anchor" href="#_add_cd_user"></a>Add CD user</h5>
 <div class="paragraph">
 <p>After creating the groups you have to create a user, that is used by continuous integration mechanisms of the OpenDevStack.</p>
 </div>
@@ -748,8 +628,8 @@ For the test installation, we will choose the username <code>opendevstack.admin<
 </div>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_add_groups_to_administrator"><a class="anchor" href="#_add_groups_to_administrator"></a>Add groups to administrator</h6>
+<div class="sect4">
+<h5 id="_add_groups_to_administrator"><a class="anchor" href="#_add_groups_to_administrator"></a>Add groups to administrator</h5>
 <div class="paragraph">
 <p>Now you have to add all groups to the administrator.
 Go to the <strong>Users</strong> section in Crowd, choose your administration user and open the <strong>Groups</strong> tab.
@@ -761,8 +641,8 @@ Click <strong>Add groups</strong>, search for all by leaving the Search fields e
 </div>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_add_applications_to_crowd"><a class="anchor" href="#_add_applications_to_crowd"></a>Add applications to crowd</h6>
+<div class="sect4">
+<h5 id="_add_applications_to_crowd"><a class="anchor" href="#_add_applications_to_crowd"></a>Add applications to crowd</h5>
 <div class="paragraph">
 <p>You will have to add the applications you want to access with your Crowd credentials in the Crowd console.</p>
 </div>
@@ -936,10 +816,10 @@ Click <strong>Add groups</strong>, search for all by leaving the Search fields e
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_attlassian_bitbucket"><a class="anchor" href="#_attlassian_bitbucket"></a>Attlassian Bitbucket</h3>
 <div class="sect3">
-<h4 id="_attlassian_bitbucket"><a class="anchor" href="#_attlassian_bitbucket"></a>Attlassian Bitbucket</h4>
-<div class="sect4">
-<h5 id="_run_configuration_wizard_2"><a class="anchor" href="#_run_configuration_wizard_2"></a>Run Configuration Wizard</h5>
+<h4 id="_run_configuration_wizard_2"><a class="anchor" href="#_run_configuration_wizard_2"></a>Run Configuration Wizard</h4>
 <div class="paragraph">
 <p>Access <a href="http://192.168.56.31:7990" class="bare">http://192.168.56.31:7990</a></p>
 </div>
@@ -967,8 +847,8 @@ If you choose to get an evaluation license you can retrieve it from the my atlas
 <p>Don&#8217;t integrate Bitbucket with Jira, but proceed with going to Bitbucket.</p>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_configure_crowd_access"><a class="anchor" href="#_configure_crowd_access"></a>Configure Crowd access</h5>
+<div class="sect3">
+<h4 id="_configure_crowd_access"><a class="anchor" href="#_configure_crowd_access"></a>Configure Crowd access</h4>
 <div class="paragraph">
 <p>Go to the Bitbucket start page at <a href="http://192.168.56.31:7990/" class="bare">http://192.168.56.31:7990/</a>
 Open the administration settings and navigate to the <strong>User directories</strong> menu.</p>
@@ -1000,8 +880,8 @@ Synchronize the directory, so all groups and users are available in Bitbucket.</
 <img src="_images/documentation/bitbucket/bitbucket-add-directory-3.PNG" alt="User directory listing">
 </div>
 </div>
-<div class="sect5">
-<h6 id="_add_permissions"><a class="anchor" href="#_add_permissions"></a>Add permissions</h6>
+<div class="sect4">
+<h5 id="_add_permissions"><a class="anchor" href="#_add_permissions"></a>Add permissions</h5>
 <div class="paragraph">
 <p>Now you have to configure the permissions for the OpenDevStack groups.
 Go to the <strong>Global permissions</strong> menu.</p>
@@ -1028,8 +908,8 @@ Go to the <strong>Global permissions</strong> menu.</p>
 </div>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_create_opendevstack_project_in_bitbucket"><a class="anchor" href="#_create_opendevstack_project_in_bitbucket"></a>Create OpenDevStack project in Bitbucket</h6>
+<div class="sect4">
+<h5 id="_create_opendevstack_project_in_bitbucket"><a class="anchor" href="#_create_opendevstack_project_in_bitbucket"></a>Create OpenDevStack project in Bitbucket</h5>
 <div class="paragraph">
 <p>The local checked out OpenDevStack repositories will be mirrored into the Bitbucket instance.
 Therefore, we need to create a new <em>project</em> within Bitbucket.</p>
@@ -1120,8 +1000,8 @@ if you have an empty project.</p>
 </tbody>
 </table>
 </div>
-<div class="sect5">
-<h6 id="_add_ssh_key_for_cd_user_to_bitbucket"><a class="anchor" href="#_add_ssh_key_for_cd_user_to_bitbucket"></a>Add SSH Key for CD user to Bitbucket</h6>
+<div class="sect4">
+<h5 id="_add_ssh_key_for_cd_user_to_bitbucket"><a class="anchor" href="#_add_ssh_key_for_cd_user_to_bitbucket"></a>Add SSH Key for CD user to Bitbucket</h5>
 <div class="paragraph">
 <p>You will have to add a SSH key to the <code>cd_user</code> in Bitbucket, so Rundeck will be able to communicate with Bitbucket.</p>
 </div>
@@ -1179,18 +1059,18 @@ if you have an empty project.</p>
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_atlassian_jira"><a class="anchor" href="#_atlassian_jira"></a>Atlassian Jira</h3>
 <div class="sect3">
-<h4 id="_atlassian_jira"><a class="anchor" href="#_atlassian_jira"></a>Atlassian Jira</h4>
-<div class="sect4">
-<h5 id="_run_configuration_wizard_3"><a class="anchor" href="#_run_configuration_wizard_3"></a>Run Configuration Wizard</h5>
+<h4 id="_run_configuration_wizard_3"><a class="anchor" href="#_run_configuration_wizard_3"></a>Run Configuration Wizard</h4>
 <div class="paragraph">
 <p>Access <a href="http://192.168.56.31:8080" class="bare">http://192.168.56.31:8080</a></p>
 </div>
 <div class="paragraph">
 <p>Be patient. First time accessing this page takes time.</p>
 </div>
-<div class="sect5">
-<h6 id="_step_1_setup_application_properties"><a class="anchor" href="#_step_1_setup_application_properties"></a>Step 1: Setup application properties</h6>
+<div class="sect4">
+<h5 id="_step_1_setup_application_properties"><a class="anchor" href="#_step_1_setup_application_properties"></a>Step 1: Setup application properties</h5>
 <div class="paragraph">
 <p>Here you have to choose the application title and the base URL.
 You can leave the data as is for the test environment.</p>
@@ -1201,8 +1081,8 @@ You can leave the data as is for the test environment.</p>
 </div>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_step_2_specify_your_license_key"><a class="anchor" href="#_step_2_specify_your_license_key"></a>Step 2: Specify your license key</h6>
+<div class="sect4">
+<h5 id="_step_2_specify_your_license_key"><a class="anchor" href="#_step_2_specify_your_license_key"></a>Step 2: Specify your license key</h5>
 <div class="paragraph">
 <p>Here you have to enter the license key for the Jira instance (Jira Software (Server)). With the provided link in the dialogue you are able to generate an evaluation license at Atlassian.</p>
 </div>
@@ -1212,8 +1092,8 @@ You can leave the data as is for the test environment.</p>
 </div>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_step_3_set_up_administrator_account"><a class="anchor" href="#_step_3_set_up_administrator_account"></a>Step 3: Set up administrator account</h6>
+<div class="sect4">
+<h5 id="_step_3_set_up_administrator_account"><a class="anchor" href="#_step_3_set_up_administrator_account"></a>Step 3: Set up administrator account</h5>
 <div class="paragraph">
 <p>Now you have to set up a Jira administrator account.</p>
 </div>
@@ -1223,8 +1103,8 @@ You can leave the data as is for the test environment.</p>
 </div>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_step_4_set_up_email_notifications"><a class="anchor" href="#_step_4_set_up_email_notifications"></a>Step 4: Set up email notifications</h6>
+<div class="sect4">
+<h5 id="_step_4_set_up_email_notifications"><a class="anchor" href="#_step_4_set_up_email_notifications"></a>Step 4: Set up email notifications</h5>
 <div class="paragraph">
 <p>Unless you have configured a mail server, leave this for later.</p>
 </div>
@@ -1234,8 +1114,8 @@ You can leave the data as is for the test environment.</p>
 </div>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_step_5_basic_configuration"><a class="anchor" href="#_step_5_basic_configuration"></a>Step 5: Basic configuration</h6>
+<div class="sect4">
+<h5 id="_step_5_basic_configuration"><a class="anchor" href="#_step_5_basic_configuration"></a>Step 5: Basic configuration</h5>
 <div class="paragraph">
 <p>To finish this part of the Jira installation, you will have to provide some informations to your prefered language, your avatar and you will have to create an empty or a sample project.</p>
 </div>
@@ -1259,8 +1139,8 @@ You can leave the data as is for the test environment.</p>
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_configure_user_directory"><a class="anchor" href="#_configure_user_directory"></a>Configure user directory</h5>
+<div class="sect3">
+<h4 id="_configure_user_directory"><a class="anchor" href="#_configure_user_directory"></a>Configure user directory</h4>
 <div class="paragraph">
 <p>Open the <strong>User management</strong> in the Jira administration.
 To enter the administration, you have to verify you have admin rights with the password for your admin user.</p>
@@ -1307,8 +1187,8 @@ Synchronize the directory, so all groups and users are available in Jira.</p>
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_add_permissions_2"><a class="anchor" href="#_add_permissions_2"></a>Add permissions</h5>
+<div class="sect3">
+<h4 id="_add_permissions_2"><a class="anchor" href="#_add_permissions_2"></a>Add permissions</h4>
 <div class="paragraph">
 <p>The next step is to configure the permissions for the OpenDevStack user groups.
 Go to the <em>Global Permissions</em> menu beneath the <em>System</em> tab.</p>
@@ -1369,8 +1249,8 @@ For this choose the permission and the user group in the <em>Add Permission</em>
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_add_application_access"><a class="anchor" href="#_add_application_access"></a>Add application access</h5>
+<div class="sect3">
+<h4 id="_add_application_access"><a class="anchor" href="#_add_application_access"></a>Add application access</h4>
 <div class="paragraph">
 <p>The last step is to grant the created OpenDevStack groups application access.
 Go to the <em>Application access</em> menu beneath the <em>Applications</em> tab.</p>
@@ -1398,15 +1278,15 @@ Go to the <em>Application access</em> menu beneath the <em>Applications</em> tab
 </div>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_atlassian_confluence"><a class="anchor" href="#_atlassian_confluence"></a>Atlassian Confluence</h3>
 <div class="sect3">
-<h4 id="_atlassian_confluence"><a class="anchor" href="#_atlassian_confluence"></a>Atlassian Confluence</h4>
-<div class="sect4">
-<h5 id="_run_configuration_wizard_4"><a class="anchor" href="#_run_configuration_wizard_4"></a>Run Configuration Wizard</h5>
+<h4 id="_run_configuration_wizard_4"><a class="anchor" href="#_run_configuration_wizard_4"></a>Run Configuration Wizard</h4>
 <div class="paragraph">
 <p>Access <a href="http://192.168.56.31:8090" class="bare">http://192.168.56.31:8090</a></p>
 </div>
-<div class="sect5">
-<h6 id="_step_1_set_up_confluence"><a class="anchor" href="#_step_1_set_up_confluence"></a>Step 1: Set up Confluence</h6>
+<div class="sect4">
+<h5 id="_step_1_set_up_confluence"><a class="anchor" href="#_step_1_set_up_confluence"></a>Step 1: Set up Confluence</h5>
 <div class="paragraph">
 <p>Here you have to choose <strong>Production Installation</strong>, because we want to configure an external database.</p>
 </div>
@@ -1416,8 +1296,8 @@ Go to the <em>Application access</em> menu beneath the <em>Applications</em> tab
 </div>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_step_2_get_add_ons"><a class="anchor" href="#_step_2_get_add_ons"></a>Step 2: Get add-ons</h6>
+<div class="sect4">
+<h5 id="_step_2_get_add_ons"><a class="anchor" href="#_step_2_get_add_ons"></a>Step 2: Get add-ons</h5>
 <div class="paragraph">
 <p>Ensure the add-ons are unchecked and proceed.</p>
 </div>
@@ -1427,8 +1307,8 @@ Go to the <em>Application access</em> menu beneath the <em>Applications</em> tab
 </div>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_step_3_license_key"><a class="anchor" href="#_step_3_license_key"></a>Step 3: License key</h6>
+<div class="sect4">
+<h5 id="_step_3_license_key"><a class="anchor" href="#_step_3_license_key"></a>Step 3: License key</h5>
 <div class="paragraph">
 <p>Here you are able to get an evaluation license from atlassian or to enter a valid license key.</p>
 </div>
@@ -1438,8 +1318,8 @@ Go to the <em>Application access</em> menu beneath the <em>Applications</em> tab
 </div>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_step_4_choose_a_database_configuration"><a class="anchor" href="#_step_4_choose_a_database_configuration"></a>Step 4: Choose a Database Configuration</h6>
+<div class="sect4">
+<h5 id="_step_4_choose_a_database_configuration"><a class="anchor" href="#_step_4_choose_a_database_configuration"></a>Step 4: Choose a Database Configuration</h5>
 <div class="paragraph">
 <p>Here you have to choose <strong>My own database</strong>.</p>
 </div>
@@ -1449,8 +1329,8 @@ Go to the <em>Application access</em> menu beneath the <em>Applications</em> tab
 </div>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_step_5_configure_database"><a class="anchor" href="#_step_5_configure_database"></a>Step 5: Configure Database</h6>
+<div class="sect4">
+<h5 id="_step_5_configure_database"><a class="anchor" href="#_step_5_configure_database"></a>Step 5: Configure Database</h5>
 <div class="paragraph">
 <p>Choose <strong>By connection string</strong> as <em>Setup type</em> and configure the database with the following values:</p>
 </div>
@@ -1496,8 +1376,8 @@ Go to the <em>Application access</em> menu beneath the <em>Applications</em> tab
 <p>Be patient. This step takes some time until next page appears.</p>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_step_6_load_content"><a class="anchor" href="#_step_6_load_content"></a>Step 6: Load Content</h6>
+<div class="sect4">
+<h5 id="_step_6_load_content"><a class="anchor" href="#_step_6_load_content"></a>Step 6: Load Content</h5>
 <div class="paragraph">
 <p>Here you have to choose <strong>Empty Site</strong> or <strong>Example Site</strong></p>
 </div>
@@ -1507,8 +1387,8 @@ Go to the <em>Application access</em> menu beneath the <em>Applications</em> tab
 </div>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_step_7_configure_user_management"><a class="anchor" href="#_step_7_configure_user_management"></a>Step 7: Configure User Management</h6>
+<div class="sect4">
+<h5 id="_step_7_configure_user_management"><a class="anchor" href="#_step_7_configure_user_management"></a>Step 7: Configure User Management</h5>
 <div class="paragraph">
 <p>Choose <strong>Manage users and groups within Confluence</strong>. Crowd will be configured later.</p>
 </div>
@@ -1518,8 +1398,8 @@ Go to the <em>Application access</em> menu beneath the <em>Applications</em> tab
 </div>
 </div>
 </div>
-<div class="sect5">
-<h6 id="_step_8_configure_system_administrator_account"><a class="anchor" href="#_step_8_configure_system_administrator_account"></a>Step 8: Configure System Administrator account</h6>
+<div class="sect4">
+<h5 id="_step_8_configure_system_administrator_account"><a class="anchor" href="#_step_8_configure_system_administrator_account"></a>Step 8: Configure System Administrator account</h5>
 <div class="paragraph">
 <p>Here you have to configure a local administrator account. After this step, you are able to work with Confluence. Just press Start and create a space.</p>
 </div>
@@ -1530,8 +1410,8 @@ Go to the <em>Application access</em> menu beneath the <em>Applications</em> tab
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_configure_user_directory_2"><a class="anchor" href="#_configure_user_directory_2"></a>Configure user directory</h5>
+<div class="sect3">
+<h4 id="_configure_user_directory_2"><a class="anchor" href="#_configure_user_directory_2"></a>Configure user directory</h4>
 <div class="paragraph">
 <p>Open the <strong>User management</strong> in the Confluence administration.</p>
 </div>
@@ -1584,8 +1464,8 @@ Go to the <em>Application access</em> menu beneath the <em>Applications</em> tab
 </div>
 </div>
 </div>
-<div class="sect4">
-<h5 id="_add_permissions_3"><a class="anchor" href="#_add_permissions_3"></a>Add permissions</h5>
+<div class="sect3">
+<h4 id="_add_permissions_3"><a class="anchor" href="#_add_permissions_3"></a>Add permissions</h4>
 <div class="paragraph">
 <p>The last step is to configure the permissions for the OpenDevStack groups.</p>
 </div>
@@ -1630,15 +1510,17 @@ Go to the <em>Application access</em> menu beneath the <em>Applications</em> tab
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_prepare_local_opendevstack_environment"><a class="anchor" href="#_prepare_local_opendevstack_environment"></a>Prepare local OpenDevStack environment</h3>
+</div>
+<div class="sect1">
+<h2 id="_prepare_local_opendevstack_environment"><a class="anchor" href="#_prepare_local_opendevstack_environment"></a>Prepare local OpenDevStack environment</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>After the configuration of the Atlassian tools has been done, it&#8217;s time to continue with the preparation oft the OpenDevStack environment.
 In this step the basic configuration for the OpenShift cluster takes place, as well as the installation of Sonarqube, Nexus3 and the Provisioning application.
 In addition Rundeck will be prepared automatically as far as possible.</p>
 </div>
 <div class="paragraph">
-<p>Navigate to the <strong>ods-core/infrastructure-setup/scripts</strong> directory on your local machine and execute the script</p>
+<p>Navigate to the <strong>ods-core/infrastructure-setup/</strong> directory on your local machine and execute the script</p>
 </div>
 <div class="paragraph">
 <p><code>prepare-local-environment.sh</code></p>
@@ -1684,8 +1566,8 @@ Here you have to enter the credentials for your loacl Crowd administrator or the
 <div class="paragraph">
 <p>The subsequent paragraphs explain the installation and configuration content for Nexus3, Sonarqube, Rundeck and the Provisioning application.</p>
 </div>
-<div class="sect3">
-<h4 id="_nexus3"><a class="anchor" href="#_nexus3"></a>Nexus3</h4>
+<div class="sect2">
+<h3 id="_nexus3"><a class="anchor" href="#_nexus3"></a>Nexus3</h3>
 <div class="paragraph">
 <p>Nexus3 will be installed automatically, if you have confirmed the installation in the prepare script.</p>
 </div>
@@ -1699,8 +1581,8 @@ Here you have to enter the credentials for your loacl Crowd administrator or the
 <p>During installation various resources will be created automatically. You will find their description in
 the subsequent paragraphs.</p>
 </div>
-<div class="sect4">
-<h5 id="_blob_stores"><a class="anchor" href="#_blob_stores"></a>Blob stores</h5>
+<div class="sect3">
+<h4 id="_blob_stores"><a class="anchor" href="#_blob_stores"></a>Blob stores</h4>
 <div class="paragraph">
 <p>In the automated installation the following blob stores will be created</p>
 </div>
@@ -1736,8 +1618,8 @@ the subsequent paragraphs.</p>
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_repositories"><a class="anchor" href="#_repositories"></a>Repositories</h5>
+<div class="sect3">
+<h4 id="_repositories"><a class="anchor" href="#_repositories"></a>Repositories</h4>
 <div class="paragraph">
 <p>This table lists the repositories created automatically.</p>
 </div>
@@ -1917,8 +1799,8 @@ the subsequent paragraphs.</p>
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_user_and_roles"><a class="anchor" href="#_user_and_roles"></a>User and roles</h5>
+<div class="sect3">
+<h4 id="_user_and_roles"><a class="anchor" href="#_user_and_roles"></a>User and roles</h4>
 <div class="paragraph">
 <p>During installation the following user will be created.</p>
 </div>
@@ -2002,8 +1884,8 @@ the subsequent paragraphs.</p>
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_sonarqube"><a class="anchor" href="#_sonarqube"></a>Sonarqube</h4>
+<div class="sect2">
+<h3 id="_sonarqube"><a class="anchor" href="#_sonarqube"></a>Sonarqube</h3>
 <div class="paragraph">
 <p>By default Sonarqube will be installed with the preparation script.</p>
 </div>
@@ -2052,8 +1934,8 @@ the subsequent paragraphs.</p>
 The token will be processed and integrated in the templates for future builds.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_prepare_jenkins_slave_docker_images"><a class="anchor" href="#_prepare_jenkins_slave_docker_images"></a>Prepare Jenkins slave docker images</h4>
+<div class="sect2">
+<h3 id="_prepare_jenkins_slave_docker_images"><a class="anchor" href="#_prepare_jenkins_slave_docker_images"></a>Prepare Jenkins slave docker images</h3>
 <div class="paragraph">
 <p>In additon to the base Jenkins images you have the option to build additional Jenkins slave images.
 To do so, just type <code>y</code> instead of typing <code>n</code> or pressing <code>Enter</code>, if you are asked, if you want to install the additional slave images.</p>
@@ -2064,8 +1946,8 @@ To do so, just type <code>y</code> instead of typing <code>n</code> or pressing 
 </div>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_rundeck_configuration"><a class="anchor" href="#_rundeck_configuration"></a>Rundeck configuration</h4>
+<div class="sect2">
+<h3 id="_rundeck_configuration"><a class="anchor" href="#_rundeck_configuration"></a>Rundeck configuration</h3>
 <div class="paragraph">
 <p>After the preparation script execution, you will have to configure some values in Rundeck.</p>
 </div>
@@ -2120,8 +2002,8 @@ To do so, just type <code>y</code> instead of typing <code>n</code> or pressing 
 <img src="_images/documentation/rundeck/verify-connections.PNG" alt="Import changes">
 </div>
 </div>
-<div class="sect4">
-<h5 id="_configure_scm_export_plugin"><a class="anchor" href="#_configure_scm_export_plugin"></a>Configure SCM Export plugin</h5>
+<div class="sect3">
+<h4 id="_configure_scm_export_plugin"><a class="anchor" href="#_configure_scm_export_plugin"></a>Configure SCM Export plugin</h4>
 <div class="paragraph">
 <p>If you use the Github repository, and use as is this step isn&#8217;t necessary!</p>
 </div>
@@ -2131,10 +2013,12 @@ To do so, just type <code>y</code> instead of typing <code>n</code> or pressing 
 </div>
 </div>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_provisioning_application"><a class="anchor" href="#_provisioning_application"></a>Provisioning application</h2>
+<div class="sectionbody">
 <div class="sect2">
-<h3 id="_provisioning_application"><a class="anchor" href="#_provisioning_application"></a>Provisioning application</h3>
-<div class="sect3">
-<h4 id="_run_from_openshift"><a class="anchor" href="#_run_from_openshift"></a>Run from OpenShift</h4>
+<h3 id="_run_from_openshift"><a class="anchor" href="#_run_from_openshift"></a>Run from OpenShift</h3>
 <div class="paragraph">
 <p>The Provisioning application has been installed with the environment preparation script and is accessible via</p>
 </div>
@@ -2148,8 +2032,8 @@ To do so, just type <code>y</code> instead of typing <code>n</code> or pressing 
 <p>If the application is not available, you will have to proof in OpenShift, if there have been any errors during the installation.</p>
 </div>
 </div>
-<div class="sect3">
-<h4 id="_run_from_ide"><a class="anchor" href="#_run_from_ide"></a>Run from IDE</h4>
+<div class="sect2">
+<h3 id="_run_from_ide"><a class="anchor" href="#_run_from_ide"></a>Run from IDE</h3>
 <div class="paragraph">
 <p>Open the cloned provision application in your favorite IDE</p>
 </div>
@@ -2185,8 +2069,10 @@ nexus_pw=developer</code></pre>
 </div>
 </div>
 </div>
-<div class="sect2">
-<h3 id="_add_shared_images"><a class="anchor" href="#_add_shared_images"></a>Add shared images</h3>
+</div>
+<div class="sect1">
+<h2 id="_add_shared_images"><a class="anchor" href="#_add_shared_images"></a>Add shared images</h2>
+<div class="sectionbody">
 <div class="paragraph">
 <p>OpenDevStack provides shared images used accross the stack - like the authproxy based on NGINX and lua for crowd</p>
 </div>
@@ -2201,19 +2087,6 @@ nexus_pw=developer</code></pre>
 </div>
 <div class="paragraph">
 <p>and start the build: <code>oc start-build -n shared-services nginx-authproxy</code>.</p>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_try_out_the_opendevstack"><a class="anchor" href="#_try_out_the_opendevstack"></a>Try out the OpenDevStack</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>After you have set up your local environment it&#8217;s time to test the OpenDevStack and see it working.
-Open the Provisioning application in your web browser and login with your crowd credentials.</p>
-</div>
-<div class="paragraph">
-<p>Provision your first project and have a look at your project in the Atlassian tools and OpenShift.</p>
 </div>
 </div>
 </div>
