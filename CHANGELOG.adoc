@@ -2,6 +2,9 @@
 
 All notable changes to the documentation of OpenDevStack will be documented in this file.
 
+== 06.11.2019
+* Rework local installation guide (https://github.com/opendevstack/opendevstack.github.io/pull/121
+
 == 11.10.2019
 
 Documentation updated to support release 1.2
