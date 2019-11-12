@@ -244,21 +244,89 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>Provides one endpoint accepting webhooks from BitBucket and forwards them to the
-corresponding Jenkins pipeline (which is determined based on the branch name).
-If there is no corresponding pipeline yet, it will be created on the fly. Once a
-branch is deleted or a pull request declined/merged, the corresponding Jenkins
-pipeline is deleted as well.</p>
+<p>The webhook proxy service allows to trigger Jenkins pipelines. Further, it
+automatically creates pipelines that do not exist yet and can delete pipelines
+that are no longer needed.</p>
 </div>
 <div class="paragraph">
-<p>Jenkinsfiles, within a project are created when provisioning quickstarters,
-thru the <a href="https://github.com/opendevstack/ods-provisioning-app">provision app</a>.
-The <a href="https://github.com/opendevstack/ods-project-quickstarters/tree/master/boilerplates">quickstarter boilerplates</a>
-contain the appropriate skeletons.</p>
+<p>One instance of the webhook proxy runs in every <code>&lt;project&gt;-cd</code> namespace next to
+the Jenkins instance.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_endpoints"><a class="anchor" href="#_endpoints"></a>Endpoints</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_post"><a class="anchor" href="#_post"></a><code>POST /</code></h3>
+<div class="paragraph">
+<p>Accepts webhooks from BitBucket and forwards them to the corresponding Jenkins
+pipeline (which is determined based on the component param and the branch name).
+If there is no corresponding pipeline yet, it will be created on the fly (by
+creating a <code>BuildConfig</code> in OpenShift which is synced to Jenkins via the
+OpenShift plugin). Once a branch is deleted or a pull request declined/merged,
+the corresponding Jenkins pipeline is deleted.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_post_build"><a class="anchor" href="#_post_build"></a><code>POST /build</code></h3>
+<div class="paragraph">
+<p>Accepts a payload of the following form:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
+    "branch": "foo",
+    "repository": "repository",
+    "env": [
+       {
+          "name": "FOO_BAR",
+          "value": "baz"
+       }
+    ],
+    "project": "bar"
+}</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>One instance of the webhook proxy runs in every <code>project</code>-cd namespace next to
-the jenkins instance for this <code>project</code>.</p>
+<p><strong>Important</strong>: In order to avoid conflicts between pipelines created/triggered
+via BitBucket and pipelines created/triggered via <code>/build</code>, most likely you&#8217;d
+want to pass a component name to <code>/build</code>, like so: <code>/build?component=foo</code>, see
+the next section.</p>
+</div>
+<div class="paragraph">
+<p>Also note that the <code>project</code> field is optional, and restricted to the project of the webhook proxy and <code>opendevstack</code> by default (but can be customized via <code>ALLOWED_EXTERNAL_PROJECTS</code>).</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_parameters"><a class="anchor" href="#_parameters"></a>Parameters</h3>
+<div class="paragraph">
+<p>Both <code>/</code> and <code>/build</code> accept the following query parameters. They are offered
+as query parameters only because otherwise they could not be adjusted for
+BitBucket webhooks.</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Variable</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">jenkinsfile_path</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The path to the <code>Jenkinsfile</code>. By default, the <code>Jenkinsfile</code> is assumed to be in the root of the repository, therefore this value defaults to simply <code>Jenkinsfile</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">component</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The component part of the pipeline name. If not given, the pipeline name is created from the repository and the branch.</p></td>
+</tr>
+</tbody>
+</table>
 </div>
 </div>
 </div>
@@ -266,23 +334,13 @@ the jenkins instance for this <code>project</code>.</p>
 <h2 id="_adding_a_webhook_in_bitbucket"><a class="anchor" href="#_adding_a_webhook_in_bitbucket"></a>Adding a webhook in BitBucket</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Go to "Repository Settings &gt; Webhooks" and click on "Create webhook". Enter
-<code>Jenkins</code> as Title and the route URL (see following <a href="#setup">Setup</a> section) as
-URL. Under "Repository events", select <code>Push</code>. Under "Pull request events",
-select <code>Merged</code> and <code>Declined</code>. Save your changes and you&#8217;re done! Any other
-webhooks already setup to trigger Jenkins are not needed anymore and should be
-deactivated or deleted.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_setup_the_webhook_proxy_in_a_cd_namespace"><a class="anchor" href="#_setup_the_webhook_proxy_in_a_cd_namespace"></a>Setup the webhook proxy in a <code>*-cd</code> namespace</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Run <code>tailor update</code> in <code>ocp-config</code>. This will create <code>BuildConfig</code> and
-<code>ImageStream</code> in the central <code>cd</code> namespace. Next, you will have to create a
-<code>DeploymentConfig</code>, <code>Service</code> and <code>Route</code> in the namespace your Jenkins instance
-runs.</p>
+<p>The provisioning app sets up one webhook per repository by default. It is
+possible to create webhooks manually as well, e.g. to add more than one
+webhook (likely differentiated by the <code>component</code> param then). To manually
+create a webhook, go to "Repository Settings &gt; Webhooks" and click on
+"Create webhook". Enter e.g. <code>Jenkins</code> as title and the route to the webhook
+proxy instance as URL. Under "Repository events", select <code>Push</code>. Under
+"Pull request events", select <code>Merged</code> and <code>Declined</code>. Save your changes.</p>
 </div>
 </div>
 </div>
@@ -320,14 +378,12 @@ runs.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TRIGGER_SECRET</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The secret which protects the pipeline to be executed from outside. This variable is set by the template and usually does not need to be modified.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ALLOWED_EXTERNAL_PROJECTS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated list of external projects which the Webhook Proxy can deal with. By default, this is just the <code>opendevstack</code> project.</p></td>
+</tr>
 </tbody>
 </table>
-<div class="paragraph">
-<p>Moreover, one can pass the following query parameters to the proxy:
-| Variable | Description |
-|&#8201;&#8212;&#8201;|&#8201;&#8212;&#8201;|
-| jenkinsfile_path | The path to the <code>Jenkinsfile</code>. By default, the <code>Jenkinsfile</code> is assumed to be in the root of the repository, therefore this value defaults to simply <code>Jenkinsfile</code>. |</p>
-</div>
 </div>
 </div>
 <div class="sect1">
