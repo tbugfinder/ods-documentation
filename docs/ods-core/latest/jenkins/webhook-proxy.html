@@ -105,10 +105,7 @@
     <span class="nav-text">Shared Images</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#">openresty-nginx.adoc</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#">nginx-authproxy-crowd.adoc</a>
+    <a class="nav-link" href="../shared-images/index.html">Airflow for OpenDevStack</a>
   </li>
 </ul>
   </li>
@@ -336,11 +333,30 @@ BitBucket webhooks.</p>
 <div class="paragraph">
 <p>The provisioning app sets up one webhook per repository by default. It is
 possible to create webhooks manually as well, e.g. to add more than one
-webhook (likely differentiated by the <code>component</code> param then). To manually
-create a webhook, go to "Repository Settings &gt; Webhooks" and click on
-"Create webhook". Enter e.g. <code>Jenkins</code> as title and the route to the webhook
-proxy instance as URL. Under "Repository events", select <code>Push</code>. Under
-"Pull request events", select <code>Merged</code> and <code>Declined</code>. Save your changes.</p>
+webhook (likely differentiated by the <code>component</code> param then).</p>
+</div>
+<div class="paragraph">
+<p>To manually create a webhook, go to "Repository Settings &gt; Webhooks" and click on
+"Create webhook". Fill in the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Name: <code>Jenkins</code> (or similar, value is only serves as a description)</p>
+</li>
+<li>
+<p>URL: route to the webhook proxy instance, followed by the <code>trigger_secret</code>, e.g. <code><a href="https://webhook-proxy-foo-cd.example.com?trigger_secret=s3cr3t" class="bare">https://webhook-proxy-foo-cd.example.com?trigger_secret=s3cr3t</a></code>. The secret can be retrieved in the OpenShift console in your <code>*-cd</code> namespace (in this example <code>foo-cd</code>) under "Resources &gt; Secrets &gt; webhook-proxy".</p>
+</li>
+<li>
+<p>Secret: leave blank</p>
+</li>
+<li>
+<p>Under "Repository events", select <code>Push</code>. Under "Pull request events", select <code>Merged</code> and <code>Declined</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Now you can verify by clicking "Test connection". Afterwards, save your changes. The next pushed commit should automatically send a request to the webhook proxy and start a pipeline in Jenkins.</p>
 </div>
 </div>
 </div>

@@ -104,11 +104,8 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Shared Images</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#">openresty-nginx.adoc</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="#">nginx-authproxy-crowd.adoc</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="index.html">Airflow for OpenDevStack</a>
   </li>
 </ul>
   </li>
@@ -224,7 +221,8 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../infrastructure-setup/index.html">ODS Core</a></li>
-    <li><a href="index.html">Shared Images</a></li>
+    <li>Shared Images</li>
+    <li><a href="index.html">Airflow for OpenDevStack</a></li>
   </ul>
 </nav>
 <div class="page-versions">
@@ -240,7 +238,23 @@
 </div>
 <article class="doc">
 <h1>Shared Images</h1>
-
+<div class="sect1">
+<h2 id="_airflow_for_opendevstack"><a class="anchor" href="#_airflow_for_opendevstack"></a>Airflow for OpenDevStack</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_airflow_base_image"><a class="anchor" href="#_airflow_base_image"></a>Airflow Base Image</h3>
+<div class="paragraph">
+<p>The <a href="https://github.com/opendevstack/ods-core/tree/master/shared-images/airflow">Airflow Quickstarter base image</a> to provide <a href="https://airflow.apache.org/">Airflow</a> clusters in OpenShift.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_elasticsearch_for_airflow"><a class="anchor" href="#_elasticsearch_for_airflow"></a>ElasticSearch for Airflow</h3>
+<div class="paragraph">
+<p>The <a href="https://github.com/opendevstack/ods-core/tree/master/shared-images/elasticsearch">ElasticSearch base image</a> to provide <a href="https://www.elastic.co/products/elasticsearch">ElasticSearch</a>-enabled <a href="https://www.opendevstack.org/ods-documentation/ods-project-quickstarters/latest/airflow.html">Airflow OpenDevStack Quickstarter</a>.</p>
+</div>
+</div>
+</div>
+</div>
 </article>
 </main>
 </div>
