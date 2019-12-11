@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Data Science Rshiny Application :: OpenDevStack</title>
-    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/ods-project-quickstarters/latest/ds-rshiny-app.html">
+    <title>Frontend Angular (fe-angular) :: OpenDevStack</title>
+    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/ods-quickstarters/latest/fe-angular.html">
     <meta name="generator" content="Antora 2.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
   </head>
@@ -27,7 +27,8 @@
             <a class="navbar-item" href="../../common/latest/index.html">Guides and Tutorials</a>
             <a class="navbar-item" href="../../ods-jenkins-shared-library/latest/index.html">Jenkins Shared Library</a>
             <a class="navbar-item" href="../../ods-core/latest/infrastructure-setup/index.html">ODS Core</a>
-            <a class="navbar-item" href="index.html">ODS Project Quickstarters</a>
+            <a class="navbar-item" href="../../ods-project-quickstarters/1.2/index.html">ODS Project Quickstarters</a>
+            <a class="navbar-item" href="index.html">ODS Quickstarters</a>
             <a class="navbar-item" href="../../ods-provisioning-app/latest/index.html">Provisioning App</a>
           </div>
         </div>
@@ -37,7 +38,7 @@
   </nav>
 </header>
 <div class="body">
-<div class="nav-container" data-component="ods-project-quickstarters" data-version="latest">
+<div class="nav-container" data-component="ods-quickstarters" data-version="latest">
   <aside class="nav">
     <div class="panels">
 <div class="nav-panel-menu is-active" data-panel="menu">
@@ -54,13 +55,16 @@
       <a class="nav-link" href="../../ods-core/latest/infrastructure-setup/index.html">ODS Core</a>
       </li>
   <li class="nav-item" data-depth="0">
-      <a class="nav-link" href="index.html">ODS Project Quickstarters</a>
+      <a class="nav-link" href="../../ods-project-quickstarters/1.2/index.html">ODS Project Quickstarters</a>
+      </li>
+  <li class="nav-item" data-depth="0">
+      <a class="nav-link" href="index.html">ODS Quickstarters</a>
       </li>
   <li class="nav-item" data-depth="0">
       <a class="nav-link" href="../../ods-provisioning-app/latest/index.html">Provisioning App</a>
       </li>
     </ul>
-    <h3 class="title"><a href="index.html">ODS Project Quickstarters</a></h3>
+    <h3 class="title"><a href="index.html">ODS Quickstarters</a></h3>
 <ul class="nav-list">
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
@@ -68,16 +72,16 @@
     <a class="nav-link" href="index.html">Introduction</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="be-docker-plain.html">BE Docker Plain</a>
+    <a class="nav-link" href="docker-plain.html">BE Docker Plain</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="be-golang.html">BE Golang</a>
+    <a class="nav-link" href="be-golang-plain.html">BE Golang</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="be-java-springboot.html">BE Java / Spring Boot</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="be-node-express.html">BE Node Express</a>
+    <a class="nav-link" href="be-typescript-express.html">BE Node Express</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="be-python-flask.html">BE Python Flask</a>
@@ -89,7 +93,7 @@
   </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item" data-depth="1">
+  <li class="nav-item is-current-page" data-depth="1">
     <a class="nav-link" href="fe-angular.html">FE Angular</a>
   </li>
   <li class="nav-item" data-depth="1">
@@ -111,11 +115,11 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="ds-jupyter-notebook.html">Data Science Jupyter Notebook</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="ds-rshiny-app.html">Data Science RShiny app</a>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="ds-rshiny.html">Data Science RShiny app</a>
   </li>
   <li class="nav-item" data-depth="1">
-    <a class="nav-link" href="airflow.html">Airflow</a>
+    <a class="nav-link" href="airflow-cluster.html">Airflow</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="e2e-cypress.html">Cypress E2E testing Quickstarters</a>
@@ -127,7 +131,7 @@
 </div>
 <div class="nav-panel-explore" data-panel="explore">
   <div class="context">
-    <span class="title">ODS Project Quickstarters</span>
+    <span class="title">ODS Quickstarters</span>
     <span class="version">latest</span>
   </div>
   <ul class="components">
@@ -182,17 +186,22 @@
         </li>
       </ul>
     </li>
-    <li class="component is-current">
+    <li class="component">
       <span class="title">ODS Project Quickstarters</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../ods-project-quickstarters/1.2/index.html">1.2</a>
+        </li>
+        <li class="version">
+          <a href="../../ods-project-quickstarters/1.1/index.html">1.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <span class="title">ODS Quickstarters</span>
       <ul class="versions">
         <li class="version is-current is-latest">
           <a href="index.html">latest</a>
-        </li>
-        <li class="version">
-          <a href="../1.2/index.html">1.2</a>
-        </li>
-        <li class="version">
-          <a href="../1.1/index.html">1.1</a>
         </li>
       </ul>
     </li>
@@ -224,27 +233,26 @@
   <a href="../../common/latest/getting-started/introduction.html" class="home-link"></a>
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
-    <li><a href="index.html">ODS Project Quickstarters</a></li>
-    <li><a href="ds-rshiny-app.html">Data Science RShiny app</a></li>
+    <li><a href="index.html">ODS Quickstarters</a></li>
+    <li><a href="fe-angular.html">FE Angular</a></li>
   </ul>
 </nav>
-<div class="page-versions">
-  <button class="version-menu-toggle" title="Show other versions of page">latest</button>
-  <div class="version-menu">
-    <a class="version is-current" href="ds-rshiny-app.html">latest</a>
-    <a class="version" href="../1.2/ds-rshiny-app.html">1.2</a>
-    <a class="version is-missing" href="../1.1/index.html">1.1</a>
-  </div>
-</div>
-  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-project-quickstarters/edit/master/docs/modules/ROOT/pages/ds-rshiny-app.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-quickstarters/edit/master/docs/modules/ROOT/pages/fe-angular.adoc">Edit this Page</a></div>
 </div>
 <article class="doc">
-<h1>Data Science Rshiny Application</h1>
+<h1>Frontend Angular (fe-angular)</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Angular quickstarter project</p>
+</div>
+</div>
+</div>
 <div class="sect1">
 <h2 id="_purpose_of_this_quickstarter"><a class="anchor" href="#_purpose_of_this_quickstarter"></a>Purpose of this quickstarter</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Provisions a Rshiny application within openshift using crowd authentification.</p>
+<p>User this is a Angular project quickstarter if you want to build a frontend. It contains the basic setup for <a href="https://www.docker.com/">Docker</a>, <a href="https://jenkins.io/">Jenkins</a>, <a href="https://www.sonarqube.org/">SonarQube</a> and <a href="https://www.openshift.com/">OpenShift</a>.</p>
 </div>
 </div>
 </div>
@@ -255,10 +263,45 @@
 <div class="content">
 <pre>.
 ├── Jenkinsfile - This file contains Jenkins build configuration settings
-├── README.md - This readme file
-├── docker - This folder contains Docker configuration settings and main R shiny app
-    ├── Dockerfile
-    └── app.R</pre>
+├── README.md
+├── angular.json - This file contains Angular project configuration settings
+├── browserslist - This file is used by the build system to adjust CSS and JS output to support the specified browsers
+├── docker - This folder contains Docker configuration settings
+│   ├── Dockerfile
+│   └── nginx.vh.default.conf.nginx
+├── e2e
+│   ├── protractor.conf.js
+│   ├── src
+│   │   ├── app.e2e-spec.ts
+│   │   └── app.po.ts
+│   └── tsconfig.json
+├── karma.conf.js
+├── package-lock.json - It describes the exact tree that was generated, such that subsequent installs are able to generate identical trees, regardless of intermediate dependency updates.
+├── package.json - This file contains scripts to run and node packages dependencies for project
+├── sonar-project.properties - This file contains SonarQube configuration settings
+├── src
+│   ├── app
+│   │   ├── app.component.html
+│   │   ├── app.component.scss
+│   │   ├── app.component.spec.ts
+│   │   ├── app.component.ts
+│   │   └── app.module.ts
+│   ├── assets
+│   ├── environments
+│   │   ├── environment.prod.ts
+│   │   └── environment.ts
+│   ├── favicon.ico
+│   ├── index.html
+│   ├── main.ts
+│   ├── polyfills.ts
+│   ├── styles.scss
+│   └── test.ts
+├── tsconfig.app.json
+├── tsconfig.json
+├── tsconfig.spec.json
+├── tslint.json
+
+7 directories, 31 files</pre>
 </div>
 </div>
 </div>
@@ -267,15 +310,35 @@
 <h2 id="_frameworks_used"><a class="anchor" href="#_frameworks_used"></a>Frameworks used</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="https://www.tutorialspoint.com/r/index.htm">R</a>/https://shiny.rstudio.com/tutorial/[Rshiny]</p>
+<p>This project is generated by <a href="https://cli.angular.io/">Angular CLI</a></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://cli.angular.io/">Angular CLI</a></p>
+</li>
+<li>
+<p><a href="https://angular.io/">Angular</a></p>
+</li>
+<li>
+<p><a href="http://www.typescriptlang.org/">Typescript</a></p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
 <h2 id="_usage_how_do_you_start_after_you_provisioned_this_quickstarter"><a class="anchor" href="#_usage_how_do_you_start_after_you_provisioned_this_quickstarter"></a>Usage - how do you start after you provisioned this quickstarter</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>The quickstarter sets up two pods in openshift. The rshiny application is routed through a <a href="https://github.com/opendevstack/ods-core/tree/master/shared-images/nginx-authproxy-crowd">crowd authentication proxy</a>.</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Run command <code>npm install</code> in project directory to install npm packages.</p>
+</li>
+<li>
+<p>Run <code>ng serve --open</code> command for dev server.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
@@ -283,33 +346,38 @@
 <h2 id="_how_this_quickstarter_is_built_through_jenkins"><a class="anchor" href="#_how_this_quickstarter_is_built_through_jenkins"></a>How this quickstarter is built through jenkins</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The build pipeline is defined in the <code>Jenkinsfile</code> in the project root. The main stages of the pipeline are:</p>
+<p>The Jenkinsfile is provisioned with this quick starter to ease CI/CD process.
+In Jenkinsfile, there are various stages</p>
 </div>
-<div class="olist arabic">
-<ol class="arabic">
+<div class="ulist">
+<ul>
 <li>
-<p>Start openshift build</p>
+<p>stageBuild - Builds the application by running <code>yarn install</code>, <code>yarn build</code> command and copies output folder <code>dist</code> into <code>docker/dist</code> folder.</p>
 </li>
 <li>
-<p>Deploy image to openshift</p>
+<p>stageUnitTest - Runs unit test cases by executing command <code>yarn test</code>.</p>
 </li>
-</ol>
+<li>
+<p>stageLint - Runs <code>ng lint</code> profiler by running command <code>yarn lint</code>.</p>
+</li>
+</ul>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_builder_slave_used"><a class="anchor" href="#_builder_slave_used"></a>Builder slave used</h2>
+<h2 id="_builder_slave_used"><a class="anchor" href="#_builder_slave_used"></a>Builder Slave used</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p><a href="https://github.com/opendevstack/ods-core/tree/master/jenkins/slave-base">jenkins-slave-base</a></p>
+<p>This quickstarter uses
+<a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-slaves/nodejs10-angular">Nodejs10-Angular builder slave</a> Jenkins builder slave.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_known_limitions"><a class="anchor" href="#_known_limitions"></a>Known limitions</h2>
+<h2 id="_known_limitations"><a class="anchor" href="#_known_limitations"></a>Known limitations</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>N/A</p>
+<p>NA</p>
 </div>
 </div>
 </div>
