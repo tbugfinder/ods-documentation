@@ -18,6 +18,9 @@ content:
     - url: ../ods-project-quickstarters
       start_path: docs
       branches: HEAD
+    - url: ../ods-quickstarters
+      start_path: docs
+      branches: HEAD
 asciidoc:
   extensions:
     - asciidoctor-plantuml

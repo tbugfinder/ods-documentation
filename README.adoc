@@ -15,6 +15,7 @@ The following OpenDevStack Repositories have to be cloned and stored beside the 
 - ods-jenkins-shared-library
 - ods-provisioning-app
 - ods-project-quickstarters
+- ods-quickstarters
 - ods-docs-ui
 
 Take care that _../ods-docs-ui/build/ui-bundle.zip_ has been build before. If you are not already
