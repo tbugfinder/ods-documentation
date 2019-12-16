@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Update Guide :: OpenDevStack</title>
+    <title>Update Guide for OpenDevStack administrators :: OpenDevStack</title>
     <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/common/latest/update-guide.html">
     <meta name="generator" content="Antora 2.0.1">
     <link rel="stylesheet" href="../../_/css/site.css">
@@ -231,7 +231,7 @@
   <div class="edit-this-page"><a href="https://github.com/opendevstack/opendevstack.github.io/edit/master/docs/modules/ROOT/pages/update-guide.adoc">Edit this Page</a></div>
 </div>
 <article class="doc">
-<h1>Update Guide</h1>
+<h1>Update Guide for OpenDevStack administrators</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
@@ -265,7 +265,7 @@ on your local machine.</p>
 <div class="paragraph">
 <p>Now you are ready to update the refs. It is recommended to update both the
 <code>master</code> branch and, unless you want to live off the bleeding edge, a release
-branch such as <code>1.0.x</code>. Use the steps shown below:</p>
+branch such as <code>2.x</code>. Use the steps shown below:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -275,21 +275,19 @@ git fetch ods
 git checkout master
 git reset --hard ods/master
 git push origin master
-# Update 1.0.x
-git checkout 1.0.x
-git reset --hard ods/1.0.x
-git push origin 1.0.x</code></pre>
+# Update 2.x
+git checkout 2.x
+git reset --hard ods/2.x
+git push origin 2.x</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>So far, your OpenDevStack installation has not been affected yet because the
-<code>production</code> branch has not been updated yet. To do that, it is recommended to
-create a pull request on BitBucket from <code>1.0.x</code> into <code>production</code> This serves
-as a gate to control changes coming in, and spread knowledge about what has
-changed exactly.</p>
+<p>If your OpenDevStack installation is based on the <code>production</code> branch, then you
+need to create a pull request on BitBucket from <code>2.x</code> into <code>production</code> now.</p>
 </div>
 <div class="paragraph">
-<p>Now that changes are "live", you need to update (parts of) the installation.</p>
+<p>Now that the repositories are updated, you also need to modify the images and the
+running instances in OpenShift.</p>
 </div>
 </div>
 </div>
@@ -310,10 +308,10 @@ configuration. This can be done easily with Tailor:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh"># backup CD project
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh"># Backup CD project
 tailor export -n cd &gt; backup_CD.yml
 
-# backup provision app projects
+# Backup provision app namespaces
 tailor export -n prov-cd &gt; backup_PROV_CD.yml
 tailor export -n prov-dev &gt; backup_PROV_DEV.yml
 tailor export -n prov-test &gt; backup_PROV_TEST.yml</code></pre>
@@ -328,31 +326,18 @@ in the <code>cd</code> namespaces for this to work properly.</p>
 <h4 id="_tailor"><a class="anchor" href="#_tailor"></a>Tailor</h4>
 <div class="paragraph">
 <p>Next, update Tailor to the version corresponding to your new OpenDevStack
-version. At the moment, this version is noted at the start of each version specific
-update procedure.</p>
+version, which is noted at the start of each version specific update procedure.</p>
 </div>
 </div>
 <div class="sect3">
 <h4 id="_configuration"><a class="anchor" href="#_configuration"></a>Configuration</h4>
 <div class="paragraph">
-<p>Then, update/add/remove the configuration parameters (located in <code>ods-configuration</code>)
-according to what has changed in the <code>ods-configuration-sample</code> repository.</p>
+<p>Then, update/add/remove the configuration parameters (located in <code>ods-configuration</code>).
+To do this, use the <code>./update</code> script located in <code>ods-core/configuration-sample</code>.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_templates"><a class="anchor" href="#_templates"></a>Templates</h4>
-<div class="admonitionblock note">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-note" title="Note"></i>
-</td>
-<td class="content">
-Since <code>1.2.x</code> release, this sub-chapter only applies for versions below <code>1.2.x</code>.
-</td>
-</tr>
-</table>
-</div>
+<h4 id="_templates_only_required_prior_to_1_2_0"><a class="anchor" href="#_templates_only_required_prior_to_1_2_0"></a>Templates (only required prior to 1.2.0)</h4>
 <div class="paragraph">
 <p>Once configuration is up-to-date, the OpenShift templates stored within
 OpenShift need to be updated:</p>
@@ -368,17 +353,14 @@ cd ocp-templates/scripts
 <div class="sect3">
 <h4 id="_ocp_resources"><a class="anchor" href="#_ocp_resources"></a>OCP resources</h4>
 <div class="paragraph">
-<p>Next, run <code>tailor update</code> in all <code>ocp-config</code> folders from all the repositories
-to bring OCP resources (such as DC or BC) into sync. Review the diff produced by
-Tailor carefully, especially around changes to PVCs. To find each <code>ocp-config</code> folder,
-you can use e.g. <code>find . -name ocp-config -not -path "./ods-configuration*"</code> on Unix.</p>
+<p>Next, run <code>tailor update</code> in <code>ods-core</code> and <code>ods-quickstarters</code> to bring all OCP resources (such as DC or BC) into sync. Review the diff produced by Tailor carefully, especially around changes to PVCs.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_shared_images"><a class="anchor" href="#_shared_images"></a>Shared images</h4>
+<h4 id="_images"><a class="anchor" href="#_images"></a>Images</h4>
 <div class="paragraph">
 <p>After all OCP resources have been updated, you need to start a build for all build configs
-in the <code>cd</code> and <code>shared-services</code> namespaces to create new images.</p>
+in the <code>cd</code> namespace to create new images. Prior to 2.x, you should also start all builds in the <code>shared-services</code> namespace.</p>
 </div>
 </div>
 <div class="sect3">
@@ -390,29 +372,36 @@ service.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_shared_library"><a class="anchor" href="#_shared_library"></a>Shared library</h4>
+<h4 id="_rundeck_only_required_prior_to_2_0"><a class="anchor" href="#_rundeck_only_required_prior_to_2_0"></a>Rundeck (only required prior to 2.0)</h4>
 <div class="paragraph">
-<p>Then, push the vanilla branch or tag of the shared library to your
-BitBucket instance. E.g. if your <code>production</code> branch is based on <code>1.0.x</code>, push
-<code>ods-jenkins-shared-library@1.0.x</code>. All quickstarters in the <code>1.0.x</code> branch point to this Git
-reference in the <code>Jenkinsfile</code>. It is not recommended to point to <code>production</code> in your quickstarters,
-otherwise consumers will encounter failing builds when breaking changes are introduced in the
-<code>production</code> branch. You may also choose to create a custom tag from your <code>production</code> branch and
-make all `Jenkinsfile`s point to this tag.</p>
+<p>Finally, in your Rundeck instance:</p>
 </div>
-</div>
-<div class="sect3">
-<h4 id="_rundeck"><a class="anchor" href="#_rundeck"></a>Rundeck</h4>
-<div class="paragraph">
-<p>Finally, in your Rundeck instance:
-* Update/Sync all jobs from this release
-* Update <code>quickstarts/airflow_cluster</code> job to get proper values for <code>-h</code>, <code>-r</code> and <code>-oc</code> flags.
-* Run <code>verify global rundeck settings</code> job</p>
+<div class="ulist">
+<ul>
+<li>
+<p>Update/Sync all jobs from this release</p>
+</li>
+<li>
+<p>Update <code>quickstarts/airflow_cluster</code> job to get proper values for <code>-h</code>, <code>-r</code> and <code>-oc</code> flags.</p>
+</li>
+<li>
+<p>Run <code>verify global rundeck settings</code> job</p>
+</li>
+</ul>
 </div>
 <div class="paragraph">
 <p>Now that the general procedure has been completed, you need to apply all the
 update notes below which apply to your version change.</p>
 </div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_2_x_to_2_x"><a class="anchor" href="#_1_2_x_to_2_x"></a>1.2.x to 2.x</h3>
+<div class="paragraph">
+<p>2.x requires Tailor <a href="https://github.com/opendevstack/tailor/releases/tag/v0.11.0">0.11.0</a>.</p>
+</div>
+<div class="paragraph">
+<p>The guide is still under construction, please see <a href="https://github.com/opendevstack/ods-documentation/issues/22" class="bare">https://github.com/opendevstack/ods-documentation/issues/22</a> for details.</p>
 </div>
 </div>
 <div class="sect2">
@@ -531,7 +520,7 @@ objects:
 described above when updating from 1.0.x.</p>
 </div>
 <div class="paragraph">
-<p>However, it is highly recommended to take a look at the updates done to the
+<p>Users are highly recommended to take a look at the updates done to the
 boilerplates, especially the <code>Jenkinsfile</code> and <code>Dockerfile</code>. E.g. the Python
 quickstarter is now building an image containing all dependencies instead of
 installing them during runtime.</p>
@@ -568,7 +557,7 @@ each project.</p>
 </div>
 </div>
 <div class="sect3">
-<h4 id="_update_components"><a class="anchor" href="#_update_components"></a>Update components</h4>
+<h4 id="_update_components_information_for_ods_users"><a class="anchor" href="#_update_components_information_for_ods_users"></a>Update components (information for ODS users)</h4>
 <div class="paragraph">
 <p>For each component, follow the following steps:</p>
 </div>
