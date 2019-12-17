@@ -400,8 +400,56 @@ update notes below which apply to your version change.</p>
 <div class="paragraph">
 <p>2.x requires Tailor <a href="https://github.com/opendevstack/tailor/releases/tag/v0.11.0">0.11.0</a>.</p>
 </div>
+<div class="sect3">
+<h4 id="_setup_secure_route_checking"><a class="anchor" href="#_setup_secure_route_checking"></a>Setup secure route checking</h4>
 <div class="paragraph">
-<p>The guide is still under construction, please see <a href="https://github.com/opendevstack/ods-documentation/issues/22" class="bare">https://github.com/opendevstack/ods-documentation/issues/22</a> for details.</p>
+<p>Go to <code>ods-core/check-ocp-secure-routes/ocp-config</code> and run <code>tailor update</code> to setup a cron job that will check exposed routes once a day (see <a href="https://github.com/opendevstack/ods-core/pull/280" class="bare">https://github.com/opendevstack/ods-core/pull/280</a>).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_project_specific_cd_users"><a class="anchor" href="#_project_specific_cd_users"></a>Project specific CD users</h4>
+<div class="paragraph">
+<p>As each project may use a specific CD user now, you have to configure the username of the global CD user. To do so, add <code>username: Y2RfdXNlcg==</code> to secret <code>cd/cd-user-token</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_deprecation_of_shared_images_namespace"><a class="anchor" href="#_deprecation_of_shared_images_namespace"></a>Deprecation of <code>shared-images</code> namespace</h4>
+<div class="paragraph">
+<p>The <code>shared-images</code> namespace is no longer part of OpenDevStack. If you do not have any users that use images from that namespace, you may simply delete it via <code>oc delete project shared-images</code>. Otherwise, you can leave it in place and remote it when you see fit.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_rundeck_removal"><a class="anchor" href="#_rundeck_removal"></a>Rundeck removal</h4>
+<div class="paragraph">
+<p>Rundeck is longer part of OpenDevStack and can simply be removed.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_image_puller_rights"><a class="anchor" href="#_image_puller_rights"></a>Image puller rights</h4>
+<div class="paragraph">
+<p>Images in the <code>cd</code> namespaces should be pullable from all authenticated users. This permission is required for the new project provisioning approach to work:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">oc adm policy add-cluster-role-to-group system:image-puller system:authenticated -n cd
+oc adm policy add-role-to-group view system:authenticated -n cd</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Further, <code><strong>-dev</code> and <code></strong>-test</code> namespaces should be able to pull images from the corresponding <code>*-cd</code> namespaces to make it easy to shared base images within a project (see <a href="https://github.com/opendevstack/ods-core/issues/293" class="bare">https://github.com/opendevstack/ods-core/issues/293</a>). It is recommended to grant these rights for every project in your cluster. If you don&#8217;t do this, users will have to add the permissions manually if they want to use this flow.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_rollout_new_webhook_proxy_instances"><a class="anchor" href="#_rollout_new_webhook_proxy_instances"></a>Rollout new webhook proxy instances</h4>
+<div class="paragraph">
+<p>2.x allows the webhook proxy to build repositories in external projects if configured (see <a href="https://github.com/opendevstack/ods-core/issues/229" class="bare">https://github.com/opendevstack/ods-core/issues/229</a>). This feature is required for the new quickstarter provisioning approach to work. Therefore, it is recommended to tag a webhook proxy images built from the <code>2.x</code> branch or <code>v.2.0</code> tag with <code>latest</code> so that all webhook proxies in the cluster get updated.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_configure_the_provisioning_app"><a class="anchor" href="#_configure_the_provisioning_app"></a>Configure the provisioning app</h4>
+<div class="paragraph">
+<p>Review the <code>ConfigMap</code> of the provisioning app in <code>prov-dev</code> and <code>prov-test</code>. Depending on your requirements, you might want to configure additional quickstarters (<code>jenkinspipeline.quickstarter&#8230;&#8203;</code>) and/or change the readable repositories of the project specific users (<code>scm.global.readablerepos.opendevstack[x]</code>)</p>
+</div>
 </div>
 </div>
 <div class="sect2">
