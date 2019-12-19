@@ -337,20 +337,6 @@ To do this, use the <code>./update</code> script located in <code>ods-core/confi
 </div>
 </div>
 <div class="sect3">
-<h4 id="_templates_only_required_prior_to_1_2_0"><a class="anchor" href="#_templates_only_required_prior_to_1_2_0"></a>Templates (only required prior to 1.2.0)</h4>
-<div class="paragraph">
-<p>Once configuration is up-to-date, the OpenShift templates stored within
-OpenShift need to be updated:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh"># Within your local "ods-project-quickstarters" repository
-cd ocp-templates/scripts
-./upload-templates.sh</code></pre>
-</div>
-</div>
-</div>
-<div class="sect3">
 <h4 id="_ocp_resources"><a class="anchor" href="#_ocp_resources"></a>OCP resources</h4>
 <div class="paragraph">
 <p>Next, run <code>tailor update</code> in <code>ods-core</code> and <code>ods-quickstarters</code> to bring all OCP resources (such as DC or BC) into sync. Review the diff produced by Tailor carefully, especially around changes to PVCs.</p>
@@ -360,7 +346,7 @@ cd ocp-templates/scripts
 <h4 id="_images"><a class="anchor" href="#_images"></a>Images</h4>
 <div class="paragraph">
 <p>After all OCP resources have been updated, you need to start a build for all build configs
-in the <code>cd</code> namespace to create new images. Prior to 2.x, you should also start all builds in the <code>shared-services</code> namespace.</p>
+in the <code>cd</code> namespace to create new images.</p>
 </div>
 </div>
 <div class="sect3">
@@ -369,25 +355,6 @@ in the <code>cd</code> namespace to create new images. Prior to 2.x, you should 
 <p>Also, the provisioning app should be updated. To do that, run <code>tailor update</code>
 in each <code>ocp-config</code> folder, and then trigger a build in Jenkins to redeploy the
 service.</p>
-</div>
-</div>
-<div class="sect3">
-<h4 id="_rundeck_only_required_prior_to_2_0"><a class="anchor" href="#_rundeck_only_required_prior_to_2_0"></a>Rundeck (only required prior to 2.0)</h4>
-<div class="paragraph">
-<p>Finally, in your Rundeck instance:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Update/Sync all jobs from this release</p>
-</li>
-<li>
-<p>Update <code>quickstarts/airflow_cluster</code> job to get proper values for <code>-h</code>, <code>-r</code> and <code>-oc</code> flags.</p>
-</li>
-<li>
-<p>Run <code>verify global rundeck settings</code> job</p>
-</li>
-</ul>
 </div>
 <div class="paragraph">
 <p>Now that the general procedure has been completed, you need to apply all the
