@@ -17,7 +17,7 @@ before_script:
 
 script:
   - rm -rf docs/*
-  - $(npm bin)/antora generate --silent --clean --fetch site.yml
+  - DOCSEARCH_ENABLED=true DOCSEARCH_ENGINE=lunr $(npm bin)/antora generate --silent --clean --fetch site.yml
 
 after_success:
   - ./.travis/push.sh
