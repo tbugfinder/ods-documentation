@@ -118,11 +118,18 @@
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="ds-rshiny.html">Data Science RShiny app</a>
   </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="airflow-cluster.html">Airflow</a>
   </li>
   <li class="nav-item" data-depth="1">
     <a class="nav-link" href="e2e-cypress.html">Cypress E2E testing Quickstarters</a>
+  </li>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="release-manager.html">Release Managerr</a>
   </li>
 </ul>
   </li>
@@ -245,9 +252,9 @@
 <h2 id="_purpose_of_this_quickstarter"><a class="anchor" href="#_purpose_of_this_quickstarter"></a>Purpose of this quickstarter</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Use this quickstarter when you want to start from a plain dockerfile only - w/o a framework on top.
-A good usecase here is a dockerfile you found on github that you want to run with OpenDevStack features,
-or that you need to "openshiftify", by setting an execution user or alike.</p>
+<p>Use this quickstarter when you want to start from a plain Dockerfile only, without any framework on top.
+A good usecase here is a Dockerfile you found on GitHub which you want to run with OpenDevStack features,
+or that you need to "OpenShiftify", by setting an (non-root) execution user, etc.</p>
 </div>
 </div>
 </div>
@@ -269,7 +276,7 @@ or that you need to "openshiftify", by setting an execution user or alike.</p>
 <h2 id="_frameworks_used"><a class="anchor" href="#_frameworks_used"></a>Frameworks used</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>None, except the ODS <a href="https://github.com/opendevstack/ods-jenkins-shared-library">jenkins shared library</a></p>
+<p>None, except for the ODS <a href="https://github.com/opendevstack/ods-jenkins-shared-library">jenkins shared library</a>.</p>
 </div>
 </div>
 </div>
@@ -282,28 +289,49 @@ or that you need to "openshiftify", by setting an execution user or alike.</p>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_how_this_quickstarter_is_built_through_jenkins"><a class="anchor" href="#_how_this_quickstarter_is_built_through_jenkins"></a>How this quickstarter is built through jenkins</h2>
+<h2 id="_how_this_quickstarter_is_built_through_jenkins"><a class="anchor" href="#_how_this_quickstarter_is_built_through_jenkins"></a>How this quickstarter is built through Jenkins</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The shared library is used as is - whatever is in the <code>/docker</code> folder is passed to <code>oc start build</code> as docker context.
-In case you want to run testing, plug into <code>stageUnitTest</code>.</p>
+<p>Whatever is in the <code>/docker</code> folder will be passed to <code>oc start build</code> as the docker context. You can add other files to that context as needed:</p>
 </div>
 <div class="listingblock">
 <div class="content">
 <pre>def stageBuild(def context) {
   stage('Build') {
-    // copy any other artifacts if needed
+    // copy any other artifacts, if needed
     // sh "cp -r build docker/dist"
     // the docker context passed in /docker
   }
-}
-
-def stageUnitTest(def context) {
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In case you want to run unit tests, you can add a corresponding statement to <code>stageUnitTest</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>def stageUnitTest(def context) {
   stage('Unit Test') {
-    // if needed add your unit tests here
+    // add your unit tests here, if needed
   }
 }</pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Assuming your component contains source code you want to have delivered by the <em>Release Manager</em>, the execution of tests and the reporting of their results is mandatory. For this, your component will have to&#8230;&#8203;</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>place the test results in the xUnit XML format in a path known to <code>context.testResults</code> (defaults to <code>build/test-results/test</code>)</p>
+</li>
+<li>
+<p>provide these test results to the <a href="https://plugins.jenkins.io/junit">Jenkins JUnit plugin</a> via its <code>junit</code> step function.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Feel free to look out for examples in our existing quickstarters, such as <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/be-java-springboot/Jenkinsfile.template">be-java-springboot</a>.</p>
 </div>
 </div>
 </div>
