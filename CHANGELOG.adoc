@@ -2,6 +2,9 @@
 
 All notable changes to the documentation of OpenDevStack will be documented in this file.
 
+== 08.01.2020
+* Added default configuration of keycloak, added documentation (https://github.com/opendevstack/ods-core/pull/353) 
+
 == 06.11.2019
 * Rework local installation guide (https://github.com/opendevstack/opendevstack.github.io/pull/121
 
