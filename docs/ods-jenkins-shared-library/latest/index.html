@@ -606,8 +606,12 @@ autoCloneEnvironmentsFromSourceMapping: [
 <td class="tableblock halign-left valign-top"><p class="tableblock">ODS Jenkins shared library version, taken from reference in Jenkinsfile.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bitbucketUrl</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BitBucket URL - value taken from BITBUCKET_URL. If BITBUCKET_URL is not present, it will default to <a href="https://&lt;BITBUCKET_HOST&gt" class="bare">https://&lt;BITBUCKET_HOST&gt</a>;.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">bitbucketHost</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">BitBucket host - value taken from BITBUCKET_HOST.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BitBucket host - value derived from bitbucketUrl.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">environmentCreated</p></td>
