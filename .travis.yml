@@ -12,12 +12,12 @@ node_js:
   - "lts/*"
 
 before_script:
-  - npm i @antora/cli@2.0 @antora/site-generator-default@2.0
+  - npm i @antora/cli@2.0 antora-site-generator-lunr
   - npm install
 
 script:
   - rm -rf docs/*
-  - $(npm bin)/antora generate --silent --clean --fetch site.yml
+  - DOCSEARCH_ENABLED=true DOCSEARCH_ENGINE=lunr $(npm bin)/antora generate --silent --clean --fetch site.yml --generator antora-site-generator-lunr
 
 after_success:
   - ./.travis/push.sh

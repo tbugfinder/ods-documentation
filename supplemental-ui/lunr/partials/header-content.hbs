@@ -1,0 +1,32 @@
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="{{or site.url (or siteRootUrl siteRootPath)}}">{{site.title}}</a>
+      {{#if env.DOCSEARCH_ENABLED}}
+        <div class="navbar-item">
+          <input id="search-input" type="text" placeholder="Search docs">
+        </div>
+      {{/if}}
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Components</a>
+          <div class="navbar-dropdown is-right">
+            <a class="navbar-item" href="{{or site.url (or siteRootUrl siteRootPath)}}/common/latest/index.html">Guides and Tutorials</a>
+            <a class="navbar-item" href="{{or site.url (or siteRootUrl siteRootPath)}}/ods-jenkins-shared-library/latest/index.html">Jenkins Shared Library</a>
+            <a class="navbar-item" href="{{or site.url (or siteRootUrl siteRootPath)}}/ods-core/latest/infrastructure-setup/index.html">ODS Core</a>
+            <a class="navbar-item" href="{{or site.url (or siteRootUrl siteRootPath)}}/ods-project-quickstarters/1.2/index.html">ODS Project Quickstarters</a>
+            <a class="navbar-item" href="{{or site.url (or siteRootUrl siteRootPath)}}/ods-quickstarters/latest/index.html">ODS Quickstarters</a>
+            <a class="navbar-item" href="{{or site.url (or siteRootUrl siteRootPath)}}/ods-provisioning-app/latest/index.html">Provisioning App</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>

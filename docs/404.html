@@ -4,14 +4,18 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Page Not Found :: OpenDevStack</title>
-    <meta name="generator" content="Antora 2.0.1">
-    <link rel="stylesheet" href="/_/css/site.css">
+    <meta name="generator" content="Antora 2.2.0">
+    <link rel="stylesheet" href="/ods-documentation/_/css/site.css">
+<link rel="stylesheet" href="/ods-documentation/_/css/search.css">
   </head>
   <body class="status-404">
-<header class="header">
+<header class="header" role="banner">
   <nav class="navbar">
     <div class="navbar-brand">
       <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">OpenDevStack</a>
+        <div class="navbar-item">
+          <input id="search-input" type="text" placeholder="Search docs">
+        </div>
       <button class="navbar-burger" data-target="topbar-nav">
         <span></span>
         <span></span>
@@ -22,16 +26,15 @@
       <div class="navbar-end">
         <div class="navbar-item has-dropdown is-hoverable">
           <a class="navbar-link" href="#">Components</a>
-          <div class="navbar-dropdown">
-            <a class="navbar-item" href="/common/latest/index.html">Guides and Tutorials</a>
-            <a class="navbar-item" href="/ods-jenkins-shared-library/latest/index.html">Jenkins Shared Library</a>
-            <a class="navbar-item" href="/ods-core/latest/infrastructure-setup/index.html">ODS Core</a>
-            <a class="navbar-item" href="/ods-project-quickstarters/1.2/index.html">ODS Project Quickstarters</a>
-            <a class="navbar-item" href="/ods-quickstarters/latest/index.html">ODS Quickstarters</a>
-            <a class="navbar-item" href="/ods-provisioning-app/latest/index.html">Provisioning App</a>
+          <div class="navbar-dropdown is-right">
+            <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation/common/latest/index.html">Guides and Tutorials</a>
+            <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation/ods-jenkins-shared-library/latest/index.html">Jenkins Shared Library</a>
+            <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation/ods-core/latest/infrastructure-setup/index.html">ODS Core</a>
+            <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation/ods-project-quickstarters/1.2/index.html">ODS Project Quickstarters</a>
+            <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation/ods-quickstarters/latest/index.html">ODS Quickstarters</a>
+            <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation/ods-provisioning-app/latest/index.html">Provisioning App</a>
           </div>
         </div>
-        <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">Home</a>
       </div>
     </div>
   </nav>
@@ -169,7 +172,16 @@ If you typed the URL of this page manually, please double check that you entered
   <p>This page was built using the Antora default UI.</p>
   <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
 </footer>
-<script src="/_/js/site.js"></script>
-<script async src="/_/js/vendor/highlight.js"></script>
+<script type="text/javascript">
+  window.antora = window.antora || {}
+  window.antora.basePath = '/ods-documentation'
+  window.antora.pagePath = ''
+</script>
+<script src="/ods-documentation/_/js/site.js"></script>
+<script src="/ods-documentation/_/js/vendor/lunr.js"></script>
+<script src="/ods-documentation/_/js/vendor/search.js"></script>
+<script async src="/ods-documentation/_/../search-index.js"></script>
+<script src="/ods-documentation/_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
   </body>
 </html>
