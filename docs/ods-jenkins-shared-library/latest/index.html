@@ -109,6 +109,9 @@
           <a href="index.html">latest</a>
         </li>
         <li class="version">
+          <a href="../2/index.html">2</a>
+        </li>
+        <li class="version">
           <a href="../1.2/index.html">1.2</a>
         </li>
         <li class="version">
@@ -124,6 +127,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../../ods-core/latest/infrastructure-setup/index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../../ods-core/2/infrastructure-setup/index.html">2</a>
         </li>
         <li class="version">
           <a href="../../ods-core/1.2/infrastructure-setup/index.html">1.2</a>
@@ -153,6 +159,9 @@
         <li class="version is-latest">
           <a href="../../ods-quickstarters/latest/index.html">latest</a>
         </li>
+        <li class="version">
+          <a href="../../ods-quickstarters/2/index.html">2</a>
+        </li>
       </ul>
     </li>
     <li class="component">
@@ -160,6 +169,9 @@
       <ul class="versions">
         <li class="version is-latest">
           <a href="../../ods-provisioning-app/latest/index.html">latest</a>
+        </li>
+        <li class="version">
+          <a href="../../ods-provisioning-app/2/index.html">2</a>
         </li>
         <li class="version">
           <a href="../../ods-provisioning-app/1.2/index.html">1.2</a>
@@ -191,6 +203,7 @@
   <button class="version-menu-toggle" title="Show other versions of page">latest</button>
   <div class="version-menu">
     <a class="version is-current" href="index.html">latest</a>
+    <a class="version" href="../2/index.html">2</a>
     <a class="version" href="../1.2/index.html">1.2</a>
     <a class="version" href="../1.1/index.html">1.1</a>
     <a class="version" href="../v1.0/index.html">v1.0</a>
@@ -231,7 +244,7 @@ library identifier: 'ods-library@production', retriever: modernSCM(
    credentialsId: credentialsId])
 
 odsPipeline(
-  image: "${dockerRegistry}/cd/jenkins-slave-maven",
+  image: "${dockerRegistry}/cd/jenkins-slave-maven:latest",
   projectId: projectId,
   componentId: componentId,
   branchToEnvironmentMapping: [
@@ -433,7 +446,7 @@ autoCloneEnvironmentsFromSourceMapping: [
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">buildNumber</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Value of BUILD_NUMBER. The current build number, such as "153".</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Value of BUILD_NUMBER. The current build number, such as <code>153</code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">buildUrl</p></td>
@@ -445,7 +458,27 @@ autoCloneEnvironmentsFromSourceMapping: [
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">image</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Container image to use for the Jenkins agent container. This value is not used when "podContainers" is set.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Container image to use for the Jenkins agent container. This value is not used when <code>podContainers</code> is set.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">alwaysPullImage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Determine whether to always pull the container image before each build run. Defaults to <code>true</code>. This value is not used when <code>podContainers</code> is set.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">resourceRequestMemory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How much memory the container requests - defaults to 1Gi. This value is not used when <code>podContainers</code> is set.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">resourceLimitMemory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum memory the container can use - defaults to 2Gi. This value is not used when <code>podContainers</code> is set.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">resourceRequestCpu</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How much CPU the container requests - defaults to 10mi. This value is not used when <code>podContainers</code> is set.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">resourceLimitCpu</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum CPU the container can use - defaults to 300mi. This value is not used when <code>podContainers</code> is set.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">podLabel</p></td>
@@ -453,15 +486,11 @@ autoCloneEnvironmentsFromSourceMapping: [
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">podContainers</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Custom pod containers to use. By default, only one container is used, and it is configure automatically. If you need to run multiple containers (e.g. app and database), then you can configure the containers via this property.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Custom pod containers to use if the default, automatically configured container is not suitable for your use case (e.g. if you need multiple containers such as app and database). Please see <a href="https://github.com/jenkinsci/kubernetes-plugin#pod-and-container-template-configuration" class="bare">https://github.com/jenkinsci/kubernetes-plugin#pod-and-container-template-configuration</a> for more information.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">podVolumes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Volumes to make available to the pod.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">podAlwaysPullImage</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Determine whether to always pull the container image before each build run.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">podServiceAccount</p></td>
@@ -509,11 +538,15 @@ autoCloneEnvironmentsFromSourceMapping: [
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">environment</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The environment which was chosen as the deployment target, e.g. "dev".</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The environment which was chosen as the deployment target, e.g. <code>dev</code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">targetProject</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Target project, based on the environment. E.g. "foo-dev".</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Target project, based on the environment. E.g. <code>foo-dev</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cloneProjectScriptBranch</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Branch on <code>ods-core</code> used for the <code>clone-project.sh</code> and dependent scripts. Default is <code>production</code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">groupId</p></td>
@@ -521,11 +554,11 @@ autoCloneEnvironmentsFromSourceMapping: [
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">projectId</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Project ID, e.g. "foo".</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Project ID, e.g. <code>foo</code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">componentId</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Component ID, e.g. "be-auth-service".</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Component ID, e.g. <code>be-auth-service</code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">gitUrl</p></td>
@@ -576,8 +609,12 @@ autoCloneEnvironmentsFromSourceMapping: [
 <td class="tableblock halign-left valign-top"><p class="tableblock">ODS Jenkins shared library version, taken from reference in Jenkinsfile.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bitbucketUrl</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BitBucket URL - value taken from BITBUCKET_URL. If BITBUCKET_URL is not present, it will default to <a href="https://&lt;BITBUCKET_HOST&gt" class="bare">https://&lt;BITBUCKET_HOST&gt</a>;.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">bitbucketHost</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">BitBucket host - value taken from BITBUCKET_HOST.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">BitBucket host - value derived from bitbucketUrl.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">environmentCreated</p></td>
@@ -599,16 +636,24 @@ autoCloneEnvironmentsFromSourceMapping: [
 <h2 id="_slave_customization"><a class="anchor" href="#_slave_customization"></a>Slave customization</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The slave used to build your code can be customized by specifying the image to
-use. Further, <code>podAlwaysPullImage</code> (defaulting to <code>true</code>) can be used to
-determine whether this image should be refreshed on each build. The setting
-<code>podVolumes</code> allows to mount persistent volume claims to the pod (the value is
-passed to the <code>podTemplate</code> call as <code>volumes</code>). To control the container pods
-completely, set <code>podContainers</code> (which is passed to the <code>podTemplate</code> call
-as <code>containers</code>).</p>
+<p>The slave used in the pipeline can be customized by adjusting the <code>image</code> to
+use. Further, <code>alwaysPullImage</code> (defaulting to <code>true</code>) can be used to
+determine whether this image should be refreshed on each build.</p>
 </div>
 <div class="paragraph">
-<p>Configuring of a customized slave in a <code>Jenkinsfile</code></p>
+<p>Resource constraints of the container can be changed via <code>resourceRequestCpu</code>,
+<code>resourceLimitCpu</code>, <code>resourceRequestMemory</code> and <code>resourceLimitMemory</code>.</p>
+</div>
+<div class="paragraph">
+<p>The setting <code>podVolumes</code> allows to mount persistent volume claims to the pod
+(the value is passed to the <code>podTemplate</code> call as <code>volumes</code>).</p>
+</div>
+<div class="paragraph">
+<p>To completely control the container(s) within the pod, set <code>podContainers</code>
+(which is passed to the <code>podTemplate</code> call as <code>containers</code>).</p>
+</div>
+<div class="paragraph">
+<p>Configuring of a customized slave container in a <code>Jenkinsfile</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -617,11 +662,11 @@ as <code>containers</code>).</p>
   podContainers: [
     containerTemplate(
       name: 'jnlp', // do not change, see https://github.com/jenkinsci/kubernetes-plugin#constraints
-      image: "${dockerRegistry}/hugo/jenkins-slave-custom",
+      image: "${dockerRegistry}/foo-cd/jenkins-slave-custom",
       workingDir: '/tmp',
       resourceRequestCpu: '100m',
       resourceLimitCpu: '500m',
-      resourceRequestMemory: '1Gi',
+      resourceRequestMemory: '2Gi',
       resourceLimitMemory: '4Gi',
       alwaysPullImage: true,
       args: '${computer.jnlpmac} ${computer.name}'
