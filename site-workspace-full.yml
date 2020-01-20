@@ -51,3 +51,4 @@ ui:
   bundle:
     url: ../ods-docs-ui/build/ui-bundle.zip
     snapshot: true
+  supplemental_files: ./supplemental-ui/lunr

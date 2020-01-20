@@ -58,5 +58,5 @@ output:
   dir: ./docs
 ui:
   bundle:
-    url: https://github.com/opendevstack/ods-docs-ui/releases/download/v1.0.3/ui-bundle.zip
+    url: https://github.com/opendevstack/ods-docs-ui/releases/download/v1.0.5/ui-bundle.zip
   supplemental_files: ./supplemental-ui/lunr
