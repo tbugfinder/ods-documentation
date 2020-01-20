@@ -202,7 +202,7 @@
     </div>
   </aside>
 </div>
-<main role="main">
+<main>
 <div class="toolbar" role="navigation">
 <button class="nav-toggle"></button>
   <a href="../latest/getting-started/introduction.html" class="home-link"></a>
@@ -222,9 +222,9 @@
   </div>
 </div>
   <div class="edit-this-page"><a href="https://github.com/opendevstack/opendevstack.github.io/edit/1.1.x/docs/modules/ROOT/pages/index.adoc">Edit this Page</a></div>
-</div>
-<article class="doc">
-<h1>OpenDevStack</h1>
+  </div>
+<article class="doc"><a name="section-top"></a>
+<h1 class="page">OpenDevStack</h1>
 <div class="paragraph">
 <p>Welcome to the OpenDevStack documentation. Here you can find information and guides to help you learn about OpenDevStack and start exploring its features.</p>
 </div>
@@ -241,12 +241,17 @@ Use the left navigation bar to browse the documentation.
 </table>
 </div>
 </article>
+<aside class="article-aside hidden" role="navigation">
+  <h3 class="toc-title">Contents</h3>
+  <div id="article-toc"></div>
+</aside>
 </main>
 </div>
 <footer class="footer">
   <p>This page was built using the Antora default UI.</p>
   <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
 </footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.1.1/tocbot.min.js"></script>
 <script type="text/javascript">
   window.antora = window.antora || {}
   window.antora.basePath = '../..'
@@ -258,5 +263,19 @@ Use the left navigation bar to browse the documentation.
 <script async src="../../_/../search-index.js"></script>
 <script src="../../_/js/vendor/highlight.js"></script>
 <script>hljs.initHighlighting()</script>
+<script>
+  tocbot.init( {
+                  tocSelector: '#article-toc',
+                  contentSelector: 'article',
+                  headingSelector: 'h2, h3, h4, h5, h6',
+                  collapseDepth: 6,
+                  positionFixedSelector: '#article-toc',
+                  scrollSmooth: false
+                } );
+  var tocList = document.getElementById( 'article-toc' ).getElementsByClassName( 'toc-list' );
+  if ( tocList && tocList.length > 0 && tocList[0].childNodes.length > 0 ) {
+    document.getElementById( 'article-toc' ).parentNode.classList.remove( 'hidden' );
+  }
+</script>
   </body>
 </html>
