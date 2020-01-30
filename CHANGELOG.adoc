@@ -3,7 +3,7 @@
 All notable changes to the documentation of OpenDevStack will be documented in this file.
 
 == 29.01.2020
-* https://github.com/opendevstack/opendevstack.github.io/pull/129
+* Split guides by target group (https://github.com/opendevstack/opendevstack.github.io/pull/129)
 
 == 08.01.2020
 * Added default configuration of keycloak, added documentation (https://github.com/opendevstack/ods-core/pull/353) 
