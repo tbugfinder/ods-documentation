@@ -83,7 +83,7 @@
     <span class="nav-text">User Guides</span>
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="update-2x.html">Update to 2.x</a>
+    <a class="nav-link" href="update-2x.html">Migrate from 1.2.x to 2.x</a>
   </li>
 </ul>
   </li>
@@ -93,10 +93,10 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Administrator Guide</span>
+    <span class="nav-text">Administrator Guides</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../administrator-guides/update.html">Version update</a>
+    <a class="nav-link" href="../administrator-guides/update.html">Migrate between versions</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -251,7 +251,7 @@
   <ul>
     <li><a href="../index.html">Guides and Tutorials</a></li>
     <li>User Guides</li>
-    <li><a href="update-2x.html">Update to 2.x</a></li>
+    <li><a href="update-2x.html">Migrate from 1.2.x to 2.x</a></li>
   </ul>
 </nav>
 <div class="page-versions">
@@ -272,7 +272,8 @@
 <ul class="sectlevel1">
 <li><a href="#_required_steps">Required steps</a>
 <ul class="sectlevel2">
-<li><a href="#_update_version_references">Update version references</a></li>
+<li><a href="#_update_image_tags_of_jenkins_deployments">Update image tags of Jenkins deployments</a></li>
+<li><a href="#_update_jenkinsfiles_in_git_repositories">Update Jenkinsfiles in Git repositories</a></li>
 <li><a href="#_grant_image_puller_rights_to_your_cd_namespace">Grant image-puller rights to your <code>*-cd</code> namespace</a></li>
 <li><a href="#_component_resource_constraints">Component resource constraints</a></li>
 </ul>
@@ -317,13 +318,16 @@ It is assumed that you are updating from ODS 1.2.x.
 <h2 id="_required_steps"><a class="anchor" href="#_required_steps"></a>Required steps</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_update_version_references"><a class="anchor" href="#_update_version_references"></a>Update version references</h3>
+<h3 id="_update_image_tags_of_jenkins_deployments"><a class="anchor" href="#_update_image_tags_of_jenkins_deployments"></a>Update image tags of Jenkins deployments</h3>
 <div class="paragraph">
-<p>First, go into your <code>*-cd</code> namespace and edit the deployments (<code>jenkins</code> and
-<code>webhook-proxy</code>) to point to the new tags (via "Actions" &gt; "Edit").</p>
+<p>Go into your <code>*-cd</code> namespace and edit the deployments (<code>jenkins</code> and
+<code>webhook-proxy</code>) to point to the new tags (via "Actions" &gt; "Edit"), and trigger a deployment.</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_update_jenkinsfiles_in_git_repositories"><a class="anchor" href="#_update_jenkinsfiles_in_git_repositories"></a>Update Jenkinsfiles in Git repositories</h3>
 <div class="paragraph">
-<p>Then, edit every <code>Jenkinsfile</code>. The shared library should point to <code>2.x</code>, e.g.:</p>
+<p>Edit every <code>Jenkinsfile</code>. The shared library should point to <code>2.x</code>, e.g.:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -362,7 +366,7 @@ oc policy add-role-to-group system:image-puller system:serviceaccounts:$PROJECT_
 </div>
 </div>
 <div class="paragraph">
-<p>For more information, see <a href="https://github.com/opendevstack/ods-core/issues/293">ods-core#293</a>.</p>
+<p>Note that you need to be an admin on your project in order to run those commands. For more information, see <a href="https://github.com/opendevstack/ods-core/issues/293">ods-core#293</a>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -449,7 +453,10 @@ For more information, see <a href="https://github.com/opendevstack/ods-jenkins-s
 <h2 id="_common_known_issues"><a class="anchor" href="#_common_known_issues"></a>Common / Known Issues</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>None at this point.</p>
+<p>When provisioning new components, you must use a name that differs from the
+component type, otherwise some quickstarters fail. E.g. when creating a new
+component of type <code>fe-react</code>, you cannot name it <code>fe-react</code> but must choose
+another name like <code>my-app</code>. For more information, see <a href="https://github.com/opendevstack/ods-provisioning-app/issues/336" class="bare">https://github.com/opendevstack/ods-provisioning-app/issues/336</a>.</p>
 </div>
 </div>
 </div>

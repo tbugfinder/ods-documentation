@@ -83,7 +83,7 @@
     <span class="nav-text">User Guides</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../user-guides/update-2x.html">Update to 2.x</a>
+    <a class="nav-link" href="../user-guides/update-2x.html">Migrate from 1.2.x to 2.x</a>
   </li>
 </ul>
   </li>
@@ -93,10 +93,10 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Administrator Guide</span>
+    <span class="nav-text">Administrator Guides</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="update.html">Version update</a>
+    <a class="nav-link" href="update.html">Migrate between versions</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -250,7 +250,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../index.html">Guides and Tutorials</a></li>
-    <li>Administrator Guide</li>
+    <li>Administrator Guides</li>
     <li>Local Install</li>
     <li><a href="install-guide.html">Installation</a></li>
   </ul>
@@ -1057,7 +1057,7 @@ if you have an empty project.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ods-jenkins-shared-library</p></td>
 </tr>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ods-project-quickstarters</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ods-quickstarters</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">ods-provisioning-app</p></td>
@@ -1997,6 +1997,30 @@ the subsequent paragraphs.</p>
 <div class="paragraph">
 <p>Copy the token value to the input of the preparation script and follow the instructions.
 The token will be processed and integrated in the templates for future builds.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Under <span class="menuseq"><b class="menu">General Settings</b>&#160;<i class="fa fa-angle-right caret"></i> <b class="menuitem">Security</b></span>, you must enable "Force user authentication" to avoid public access to the SonarQube interface.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Under "My Account", you must change the default password for the admin user.
+</td>
+</tr>
+</table>
 </div>
 </div>
 <div class="sect2">
