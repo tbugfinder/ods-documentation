@@ -292,29 +292,30 @@ It contains the basic setup for Docker, Jenkins, SonarQube and OpenShift.</p>
 <div class="sect1">
 <h2 id="_what_files_architecture_is_generated"><a class="anchor" href="#_what_files_architecture_is_generated"></a>What files / architecture is generated?</h2>
 <div class="sectionbody">
-<div class="literalblock">
+<div class="listingblock">
 <div class="content">
 <pre>├── Jenkinsfile - This file contains Jenkins build configuration settings
 ├── README.md
-├── files
-│   ├── docker - This folder contains Docker configuration settings
-│   │   ├── Dockerfile
-│   │   └── run.sh - This bash script solves issue with permissions for a container user
-│   └── src
-│       ├── app.py - This file is the main entry point in the project.
-│       ├── requirements.txt - This file contains a list of required Python modules to run application
-│       ├── static
-│       │   ├── css
-│       │   │   └── main.css
-│       │   └── img
-│       │       └── bix.jpg
-│       ├── templates - Flask view teplates
-│       │   └── base.html
-│       ├── test_requirements.txt - This file contains a list of required Python modules to runt tests
-│       └── tests
-│           ├── __init__.py
-│           └── tests.py
+├── docker - This folder contains Docker configuration settings
+│   ├── Dockerfile
+│   └── run.sh - This bash script solves issue with permissions for a container user
+├── src
+│    ├── app.py - This file is the main entry point in the project.
+│    ├── requirements.txt - This file contains a list of required Python modules to run application
+│    ├── static
+│    │   ├── css
+│    │   │   └── main.css
+│    │   └── img
+│    │       └── bix.jpg
+│    ├── templates - Flask view teplates
+│    │   └── base.html
+│    ├── test_requirements.txt - This file contains a list of required Python modules to runt tests
+│    └── tests
+│        ├── __init__.py
+│        └── tests.py
 ├── init.sh
+├── metadata.yml - Component metadata
+├── release-manager.yml - Configuration file for the Release Manager
 └── sonar-project.properties - This file contains SonarQube configuration settings</pre>
 </div>
 </div>

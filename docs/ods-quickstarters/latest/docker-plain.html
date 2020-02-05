@@ -289,7 +289,9 @@ or that you need to "OpenShiftify", by setting an (non-root) execution user, etc
 ├── README.md
 ├── docker - Contains Dockerfile for the build
 │   └── Dockerfile
-├── sonar-project.properties  - SonarQube Configuration</pre>
+├── metadata.yml - Component metadata
+├── release-manager.yml - Configuration file for the Release Manager
+└── sonar-project.properties  - SonarQube Configuration</pre>
 </div>
 </div>
 </div>
@@ -345,6 +347,9 @@ or that you need to "OpenShiftify", by setting an (non-root) execution user, etc
 <div class="ulist">
 <ul>
 <li>
+<p>define <code>name</code>, <code>description</code>, <code>supplier</code>, and <code>version</code> metadata for your component in <code>files/release-manager.yml</code></p>
+</li>
+<li>
 <p>place the test results in the xUnit XML format in a path known to <code>context.testResults</code> (defaults to <code>build/test-results/test</code>)</p>
 </li>
 <li>
@@ -353,7 +358,7 @@ or that you need to "OpenShiftify", by setting an (non-root) execution user, etc
 </ul>
 </div>
 <div class="paragraph">
-<p>Feel free to look out for examples in our existing quickstarters, such as <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/be-java-springboot/Jenkinsfile.template">be-java-springboot</a>.</p>
+<p>Feel free to look out for examples in our existing quickstarters, such as <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/be-java-springboot">be-java-springboot</a>.</p>
 </div>
 </div>
 </div>
