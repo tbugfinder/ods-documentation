@@ -240,7 +240,7 @@
 </div>
 <div class="paragraph">
 <p>This application creates new OpenDevStack digital projects. It is the central entrypoint to get started with a new project / or provision new components based on <a href="https://github.com/opendevstack/ods-project-quickstarters">quickstarters</a>.
-It delegates the tasks to create / update resources to several services such as jira, confluence, bitbucket and rundeck.</p>
+It delegates the tasks to create / update resources to several services such as jira, confluence, bitbucket and jenkins.</p>
 </div>
 </div>
 </div>
@@ -260,7 +260,7 @@ It delegates the tasks to create / update resources to several services such as 
 <p>a Confluence Space (name based on project&#8217;s <code>key</code>)</p>
 </li>
 <li>
-<p>the required Openshift projects named <code>key</code>-dev, <code>key</code>-test and <code>key</code>-cd - in case <code>openshiftproject == true</code>. Internally this is done thru a rest call to rundeck triggering the <a href="https://github.com/opendevstack/ods-project-quickstarters/blob/master/rundeck-jobs/openshift/create-projects.yaml">create-projects rundeck job</a></p>
+<p>the required Openshift projects named <code>key</code>-dev, <code>key</code>-test and <code>key</code>-cd - in case <code>openshiftproject == true</code>. Internally this is done thru a Jenkins Pipeline defined in <a href="https://github.com/opendevstack/ods-core/tree/master/create-projects">ods-core</a></p>
 </li>
 <li>
 <p>a Bitbucket Project (name based on project <code>key</code>) - in case <code>openshiftproject == true</code>. Within this project two default repositories are created <code>key</code>-oc-config-artifacts for all <code>yaml</code> resources as well as <code>key</code>-design for any design artifacts (e.g. sketches)</p>
@@ -270,7 +270,7 @@ It delegates the tasks to create / update resources to several services such as 
 </li>
 <li>
 <p>A normal user (user in a group defined in property <code>idmanager.group.opendevstack-users</code>) creates all resources required for a working component -
-this happens thru the user interface - in going to modify project / picking your project and then the wanted quickstarter. Internally this is done thru a rest call to rundeck - with the picked job as parameter - <a href="https://github.com/opendevstack/ods-project-quickstarters/tree/master/rundeck-jobs/quickstarts">here</a></p>
+this happens thru the user interface - in going to modify project / picking your project and then the wanted quickstarter.</p>
 <div class="ulist">
 <ul>
 <li>

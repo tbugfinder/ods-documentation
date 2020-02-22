@@ -269,7 +269,7 @@ Default configuration properties are definded in <a href="https://github.com/ope
 </td>
 <td class="content">
 Note that the current OAUTH2 implementation is only used for authentication the user to the provisioning app.
-To authentication that is used for the REST - API calls of Atlassian Crowd, Jira, Confluence, Bitbucket and Rundeck is done eighter via the logged in uses credentials (user name and password) or via the technical users, that are configured in the used spring boot profile.
+To authentication that is used for the REST - API calls of Atlassian Crowd, Jira, Confluence and Bitbucket is done eighter via the logged in uses credentials (user name and password) or via the technical users, that are configured in the used spring boot profile.
 </td>
 </tr>
 </table>
@@ -363,16 +363,12 @@ spring.security.oauth2.client.provider.keycloak.user-name-attribute=preferred_us
 <div class="sect2">
 <h3 id="_authentication_to_third_party_apps_via_technical_users"><a class="anchor" href="#_authentication_to_third_party_apps_via_technical_users"></a>Authentication to third party apps via technical users</h3>
 <div class="paragraph">
-<p>The rest api calles use HTTP <em>basic access authentication</em> to communicate with Jira, Confluence, Bitbucket and Rundeck. The used credentials are read from a pair of properties. For Example, <em>rundeck.admin_password</em> and <em>rundeck.admin_user</em> properties are used for Rundeck, <em>confluence.admin_user</em> and <em>confluence.admin_password</em> are used for confluence, etc.</p>
+<p>The rest api calles use HTTP <em>basic access authentication</em> to communicate with Jira, Confluence and Bitbucket. The used credentials are read from a pair of properties. For Example, <em>bitbucket.admin_password</em> and <em>bitbucket.admin_user</em> properties are used for Bitbucket, <em>confluence.admin_user</em> and <em>confluence.admin_password</em> are used for Confluence, etc.</p>
 </div>
 <div class="listingblock">
 <div class="title">application-oauth2.properties</div>
 <div class="content">
-<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash"># configure technical user for rundeck. Do not authenticate via oauth2, since not implemented.
-rundeck.admin_password=rundeck_admin
-rundeck.admin_user=rundeck_admin
-
-# configure technical user for bitbucket. Do not authenticate via oauth2, since not implemented.
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash"># configure technical user for bitbucket. Do not authenticate via oauth2, since not implemented.
 bitbucket.admin_password=bitbucket_admin
 bitbucket.admin_user=bitbucket_admin
 
