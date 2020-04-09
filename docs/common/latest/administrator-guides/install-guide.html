@@ -286,18 +286,12 @@
 <li><a href="#_atlassian_confluence">Atlassian Confluence</a></li>
 </ul>
 </li>
-<li><a href="#_prepare_local_opendevstack_environment">Prepare local OpenDevStack environment</a>
+<li><a href="#_prepare_opendevstack_environment_in_openshift">Prepare OpenDevStack environment in OpenShift</a>
 <ul class="sectlevel2">
 <li><a href="#_nexus3">Nexus3</a></li>
 <li><a href="#_sonarqube">Sonarqube</a></li>
-<li><a href="#_prepare_jenkins_slave_docker_images">Prepare Jenkins slave docker images</a></li>
-<li><a href="#_rundeck_configuration">Rundeck configuration</a></li>
-</ul>
-</li>
-<li><a href="#_provisioning_application">Provisioning application</a>
-<ul class="sectlevel2">
-<li><a href="#_run_from_openshift">Run from OpenShift</a></li>
-<li><a href="#_run_from_ide">Run from IDE</a></li>
+<li><a href="#_prepare_jenkins_slave_images">Prepare Jenkins slave images</a></li>
+<li><a href="#_provisioning_application">Provisioning application</a></li>
 </ul>
 </li>
 <li><a href="#_try_out_opendevstack">Try out OpenDevStack</a></li>
@@ -373,7 +367,7 @@ This path will also be mounted to the VMs provisioned by Vagrant.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>This script allows you to set the necessary installation pathes, clones the necessary OpenDevStack repositories and prepares the vagrant infrastructure, including the base installation of the Atlassian tools, Rundeck and datatbase preparing.</p>
+<p>This script allows you to set the necessary installation pathes, clones the necessary OpenDevStack repositories and prepares the vagrant infrastructure, including the base installation of the Atlassian tools.</p>
 </div>
 <div class="paragraph">
 <p>For a local test environment it is recommended to keep the default values.</p>
@@ -389,7 +383,7 @@ This path will also be mounted to the VMs provisioned by Vagrant.</p>
 </div>
 </div>
 <div class="paragraph">
-<p>During script execution you will have the possibility to choose, if you want to confirm the Atlassian and Rundeck installation for every tool or to run a complete setup.</p>
+<p>During script execution you will have the possibility to choose, if you want to confirm the Atlassian installation for every tool or to run a complete setup.</p>
 </div>
 <div class="imageblock">
 <div class="content">
@@ -565,7 +559,7 @@ For the test installation, we will choose the username <code>opendevstack.admin<
 <div class="sect3">
 <h4 id="_configure_crowd"><a class="anchor" href="#_configure_crowd"></a>Configure Crowd</h4>
 <div class="paragraph">
-<p>You will have to configure crowd to enable the Atlassian tools and Rundeck to login with crowd credentials.</p>
+<p>You will have to configure crowd to enable the Atlassian tools to login with crowd credentials.</p>
 </div>
 <div class="paragraph">
 <p>The following paragraphs assume, that you are logged in to the <a href="http://192.168.56.31:8095/crowd/console">Crowd console</a>.</p>
@@ -1065,63 +1059,6 @@ if you have an empty project.</p>
 </tbody>
 </table>
 </div>
-<div class="sect4">
-<h5 id="_add_ssh_key_for_cd_user_to_bitbucket"><a class="anchor" href="#_add_ssh_key_for_cd_user_to_bitbucket"></a>Add SSH Key for CD user to Bitbucket</h5>
-<div class="paragraph">
-<p>You will have to add a SSH key to the <code>cd_user</code> in Bitbucket, so Rundeck will be able to communicate with Bitbucket.</p>
-</div>
-<div class="paragraph">
-<p>First got to the <strong>Users</strong> section in the Bitbucket administration.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/documentation/bitbucket/bitbucket-add-ssh-key-1.PNG" alt="Add SSH key">
-</div>
-</div>
-<div class="paragraph">
-<p>Choose the <code>cd_user</code> and select the <em>SSH keys</em> tab.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/documentation/bitbucket/bitbucket-add-ssh-key-2.PNG" alt="Add SSH key">
-</div>
-</div>
-<div class="paragraph">
-<p>Click <strong>Add key</strong></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/documentation/bitbucket/bitbucket-add-ssh-key-3.PNG" alt="Add SSH key">
-</div>
-</div>
-<div class="paragraph">
-<p>The key has been auto generated during the setup script execution. Navigate to the base directory you created at the beginning of the setup process.</p>
-</div>
-<div class="paragraph">
-<p>There you will find a file named <code>id_rsa_bitbucket.pub</code></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/documentation/bitbucket/bitbucket-add-ssh-key-5.PNG" alt="Add SSH key">
-</div>
-</div>
-<div class="paragraph">
-<p>Copy the content of the file</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/documentation/bitbucket/bitbucket-add-ssh-key-6.PNG" alt="Add SSH key">
-</div>
-</div>
-<div class="paragraph">
-<p>Paste the key to the input field in Bitbucket and click <strong>Add key</strong></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/documentation/bitbucket/bitbucket-add-ssh-key-4.PNG" alt="Add SSH key">
-</div>
-</div>
-</div>
 </div>
 </div>
 <div class="sect2">
@@ -1577,12 +1514,11 @@ Go to the <em>Application access</em> menu beneath the <em>Applications</em> tab
 </div>
 </div>
 <div class="sect1">
-<h2 id="_prepare_local_opendevstack_environment"><a class="anchor" href="#_prepare_local_opendevstack_environment"></a>Prepare local OpenDevStack environment</h2>
+<h2 id="_prepare_opendevstack_environment_in_openshift"><a class="anchor" href="#_prepare_opendevstack_environment_in_openshift"></a>Prepare OpenDevStack environment in OpenShift</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>After the configuration of the Atlassian tools has been done, it&#8217;s time to continue with the preparation oft the OpenDevStack environment.
-In this step the basic configuration for the OpenShift cluster takes place, as well as the installation of Sonarqube, Nexus3 and the Provisioning application.
-In addition Rundeck will be prepared automatically as far as possible.</p>
+<p>After the configuration of the Atlassian tools has been done, it&#8217;s time to continue with the preparation of the OpenDevStack environment.
+In this step the basic configuration for the OpenShift cluster takes place, as well as the installation of Sonarqube, Nexus3 and the Provisioning application.</p>
 </div>
 <div class="paragraph">
 <p>Navigate to the <strong>ods-core/infrastructure-setup/</strong> directory on your local machine and execute the script</p>
@@ -1629,7 +1565,7 @@ Here you have to enter the credentials for your loacl Crowd administrator or the
 <p>After the repository mirroring you may setup project branch permissions in Bitbucket, if the <code>production</code> branch should be guarded against direct merges except through admins.</p>
 </div>
 <div class="paragraph">
-<p>The subsequent paragraphs explain the installation and configuration content for Nexus3, Sonarqube, Rundeck and the Provisioning application.</p>
+<p>The subsequent paragraphs explain the installation and configuration content for Nexus3, Sonarqube and the Provisioning application.</p>
 </div>
 <div class="sect2">
 <h3 id="_nexus3"><a class="anchor" href="#_nexus3"></a>Nexus3</h3>
@@ -2024,7 +1960,7 @@ Under "My Account", you must change the default password for the admin user.
 </div>
 </div>
 <div class="sect2">
-<h3 id="_prepare_jenkins_slave_docker_images"><a class="anchor" href="#_prepare_jenkins_slave_docker_images"></a>Prepare Jenkins slave docker images</h3>
+<h3 id="_prepare_jenkins_slave_images"><a class="anchor" href="#_prepare_jenkins_slave_images"></a>Prepare Jenkins slave images</h3>
 <div class="paragraph">
 <p>In additon to the base Jenkins images you have the option to build additional Jenkins slave images.
 To do so, just type <code>y</code> instead of typing <code>n</code> or pressing <code>Enter</code>, if you are asked, if you want to install the additional slave images.</p>
@@ -2036,78 +1972,7 @@ To do so, just type <code>y</code> instead of typing <code>n</code> or pressing 
 </div>
 </div>
 <div class="sect2">
-<h3 id="_rundeck_configuration"><a class="anchor" href="#_rundeck_configuration"></a>Rundeck configuration</h3>
-<div class="paragraph">
-<p>After the preparation script execution, you will have to configure some values in Rundeck.</p>
-</div>
-<div class="paragraph">
-<p>Access Rundeck at <a href="http://192.168.56.31:4440/" class="bare">http://192.168.56.31:4440/</a></p>
-</div>
-<div class="paragraph">
-<p>Login with your Crowd credentials.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/documentation/rundeck/rundeck-login.PNG" alt="Rundeck login">
-</div>
-</div>
-<div class="paragraph">
-<p>Now choose the <em>Quickstarters</em> project.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/documentation/rundeck/project.PNG" alt="Project selection">
-</div>
-</div>
-<div class="paragraph">
-<p>Open the <strong>Job Actions</strong> button on the right and <strong>Import Remote Changes</strong></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/documentation/rundeck/remote-changes.PNG" alt="Job actions">
-</div>
-</div>
-<div class="paragraph">
-<p>Click <strong>Import</strong></p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/documentation/rundeck/import-remote-changes.PNG" alt="Import changes">
-</div>
-</div>
-<div class="paragraph">
-<p>Now you should see the imported jobs.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/documentation/rundeck/jobs.PNG" alt="Import changes">
-</div>
-</div>
-<div class="paragraph">
-<p>Choose the <strong>verify global rundeck settings</strong> job and execute it to verify that Rundeck has all necessary data.</p>
-</div>
-<div class="imageblock">
-<div class="content">
-<img src="_images/documentation/rundeck/verify-connections.PNG" alt="Import changes">
-</div>
-</div>
-<div class="sect3">
-<h4 id="_configure_scm_export_plugin"><a class="anchor" href="#_configure_scm_export_plugin"></a>Configure SCM Export plugin</h4>
-<div class="paragraph">
-<p>If you use the Github repository, and use as is this step isn&#8217;t necessary!</p>
-</div>
-<div class="paragraph">
-<p>If you use your own repository, configure the export plugin in same way as the import plugin, except the file path template - set to <code>rundeck-jobs/${job.group}${job.name}.${config.format}</code></p>
-</div>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_provisioning_application"><a class="anchor" href="#_provisioning_application"></a>Provisioning application</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_run_from_openshift"><a class="anchor" href="#_run_from_openshift"></a>Run from OpenShift</h3>
+<h3 id="_provisioning_application"><a class="anchor" href="#_provisioning_application"></a>Provisioning application</h3>
 <div class="paragraph">
 <p>The Provisioning application has been installed with the environment preparation script and is accessible via</p>
 </div>
@@ -2118,43 +1983,7 @@ To do so, just type <code>y</code> instead of typing <code>n</code> or pressing 
 <p>There is no further configuration needed.</p>
 </div>
 <div class="paragraph">
-<p>If the application is not available, you will have to proof in OpenShift, if there have been any errors during the installation.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_run_from_ide"><a class="anchor" href="#_run_from_ide"></a>Run from IDE</h3>
-<div class="paragraph">
-<p>Open the cloned provision application in your favorite IDE</p>
-</div>
-<div class="paragraph">
-<p>If you run the application from your IDE, you will have to provide some addional informations.</p>
-</div>
-<div class="paragraph">
-<p>In case you want to use your local Nexus, you will have to create a <code>gradle.properties</code> file in the ods-provisioning-app project to provide the Nexus credentials, because we disabled anonymous access.</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-INI hljs" data-lang="INI">nexus_url=http://nexus-cd.192.168.56.101.nip.io
-nexus_user=developer
-nexus_pw=developer</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You also have to ensure the Nexus certificate is integrated in the keystore of the JDK the IDE uses.</p>
-</div>
-<div class="paragraph">
-<p>If you don&#8217;t want to use the internal Nexus and run the application from your IDE, you will have to provide a <code>gradle.properties</code> file with the following content:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-INI hljs" data-lang="INI">no_nexus=true</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>After startup via the IDE the application is available at <a href="http://localhost:8080/" class="bare">http://localhost:8080/</a></p>
-</div>
-<div class="paragraph">
-<p>You can login in with the Crowd admin user you set up earlier.</p>
+<p>If the application is not available, you will have to check in OpenShift if there have been any errors during the installation.</p>
 </div>
 </div>
 </div>
