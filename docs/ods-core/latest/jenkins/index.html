@@ -260,8 +260,7 @@
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>OpenDevStack provides several customized Jenkins Docker Images based on the official OpenShift images.
-The idea is, that you do not need to configure anything on Jenkings before you can start using it.</p>
+<p>OpenDevStack provides several customized Jenkins container images based on the official OpenShift images.</p>
 </div>
 <div class="paragraph">
 <p>In <code>ods-core/jenkins</code>, you find the following directory structure:</p>
@@ -339,7 +338,7 @@ The idea is, that you do not need to configure anything on Jenkings before you c
 <div class="sect2">
 <h3 id="_init_groovy_scripts"><a class="anchor" href="#_init_groovy_scripts"></a>Init groovy scripts</h3>
 <div class="paragraph">
-<p>Jira offers to deploy <a href="https://wiki.jenkins.io/display/JENKINS/Post-initialization+script"> post-initialization </a> scripts.</p>
+<p>Jenkins offers to deploy <a href="https://wiki.jenkins.io/display/JENKINS/Post-initialization+script"> post-initialization </a> scripts.</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <caption class="title">Table 2. Table Post-Initialization Scripts</caption>
@@ -356,11 +355,19 @@ The idea is, that you do not need to configure anything on Jenkings before you c
 <tbody>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">url.groovy</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Sets the Jenkins Location based on the OpenShift route</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sets the Jenkins location based on the OpenShift route</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">sonarqube.groovy</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Sets the sonarserver url and auth token based on the configured secrets and config maps</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sets the SonarQube server URL and auth token based on the exposed environment variables</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ods-jenkins-shared-library.groovy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Registers <code>ods-jenkins-shared-library</code> as a global library</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ods-mro-jenkins-shared-library.groovy</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Registers <code>ods-mro-jenkins-shared-library</code> as a global library</p></td>
 </tr>
 </tbody>
 </table>
@@ -371,11 +378,11 @@ The idea is, that you do not need to configure anything on Jenkings before you c
 <dl>
 <dt class="hdlist1">SONAR_SERVER_URL</dt>
 <dd>
-<p>specifies the location of the sonarqube server.</p>
+<p>specifies the location of the SonarQube server.</p>
 </dd>
 <dt class="hdlist1">SONAR_AUTH_TOKEN</dt>
 <dd>
-<p>this is the sonarqube auth token that is generated when deploying and configuring sonarqube</p>
+<p>this is the SonarQube auth token that is generated when deploying and configuring sonarqube</p>
 </dd>
 </dl>
 </div>
@@ -399,13 +406,10 @@ The base image contains the following customizations</p>
 <div class="ulist">
 <ul>
 <li>
-<p>Sonarqube Scanner</p>
+<p>SonarQube Scanner</p>
 </li>
 <li>
-<p>Sonarqube CNES Report Plugin</p>
-</li>
-<li>
-<p>OWASP Dependency Checker</p>
+<p>SonarQube CNES Report Plugin</p>
 </li>
 <li>
 <p>Tailor</p>
@@ -416,7 +420,7 @@ The base image contains the following customizations</p>
 </ul>
 </div>
 <div class="paragraph">
-<p>When the docker image is built, it fetches automatically the OpenShift root CA certificate and stores it, so that the <code>oc</code>-cli tool
+<p>When the container image is built, it fetches automatically the OpenShift root CA certificate and stores it, so that the <code>oc</code>-cli tool
 can pick it up later and also adds the base domain wildcard certificate to the Java certificate store.</p>
 </div>
 <div class="paragraph">

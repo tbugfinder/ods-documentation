@@ -3,8 +3,8 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>SonarQube :: OpenDevStack</title>
-    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/ods-core/latest/sonarqube/index.html">
+    <title>OpenDevStack Setup :: OpenDevStack</title>
+    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/ods-core/latest/setup/index.html">
     <meta name="generator" content="Antora 2.2.0">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/search.css">
@@ -107,8 +107,8 @@
   </li>
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
-  <li class="nav-item is-current-page" data-depth="1">
-    <a class="nav-link" href="index.html">Sonarqube</a>
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../sonarqube/index.html">Sonarqube</a>
   </li>
 </ul>
   </li>
@@ -239,38 +239,174 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../infrastructure-setup/index.html">ODS Core</a></li>
-    <li><a href="index.html">Sonarqube</a></li>
+    <li><a href="index.html">OpenDevStack Setup</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">latest</button>
   <div class="version-menu">
     <a class="version is-current" href="index.html">latest</a>
-    <a class="version" href="../../2/sonarqube/index.html">2</a>
-    <a class="version" href="../../1.2/sonarqube/index.html">1.2</a>
-    <a class="version" href="../../1.1/sonarqube/index.html">1.1</a>
-    <a class="version" href="../../v1.0/sonarqube/index.html">v1.0</a>
+    <a class="version is-missing" href="../../2/infrastructure-setup/index.html">2</a>
+    <a class="version is-missing" href="../../1.2/infrastructure-setup/index.html">1.2</a>
+    <a class="version is-missing" href="../../1.1/infrastructure-setup/index.html">1.1</a>
+    <a class="version is-missing" href="../../v1.0/infrastructure-setup/index.html">v1.0</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-core/edit/master/docs/modules/sonarqube/pages/index.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-core/edit/master/docs/modules/setup/pages/index.adoc">Edit this Page</a></div>
   </div>
 <article class="doc"><a name="section-top"></a>
-<h1 class="page">SonarQube</h1>
+<h1 class="page">OpenDevStack Setup</h1>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>SonarQube is an open source platform developed by SonarSource for continuous inspection of code quality to perform automatic reviews with static analysis of code to detect bugs, code smells, and security vulnerabilities.</p>
-</div>
-<div class="paragraph">
-<p>The <code>ods-core</code> repository contains a build recipe for a central SonarQube instance to which all Jenkins instances send reports to. The remainder of this document describes how that setup is done.</p>
+<p>This document will guide you through installing / maintaining an OpenDevStack installation.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_setup"><a class="anchor" href="#_setup"></a>Setup</h2>
+<h2 id="_local_setup"><a class="anchor" href="#_local_setup"></a>Local Setup</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_repositories"><a class="anchor" href="#_repositories"></a>Repositories</h3>
+<div class="paragraph">
+<p>If you do not have the ODS repositories setup yet, go to your Terminal and run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">mkdir -p opendevstack
+cd opendevstack
+curl -LO https://raw.githubusercontent.com/opendevstack/ods-core/master/ods-setup/repos.sh
+chmod +x repos.sh</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you are installing OpenDevStack for the first time, run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">./repos.sh --init</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If there is already an existing installation of OpenDevStack, run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">./repos.sh</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The script will prompt you which Git ref you want to use. Select either <code>master</code> for bleeding edge or a more stable "version" such as <code>2.x</code>. Afterwards running this script, all required repositories should be available locally.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_configuration"><a class="anchor" href="#_configuration"></a>Configuration</h3>
+<div class="paragraph">
+<p>Go to <code>ods-core</code> and run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">make prepare-config</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you want to install OpenDevStack for the first time, leave the BitBucket URL empty.</p>
+</div>
+<div class="paragraph">
+<p>After the configuration is prepared, fill out all the parameters for your installation and commit the result.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_atlassian_tools"><a class="anchor" href="#_atlassian_tools"></a>Atlassian Tools</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Run <code>make install-sonarqube</code>.</p>
+<p>At this stage you can setup the Atlassian tools if they do not exist yet, or modify them as needed. Documentation for this is not complete / up-to-date but may be found at:</p>
+</div>
+<div class="paragraph">
+<p>Unresolved include directive in modules/setup/pages/index.adoc - include::infrastructure-setup/pages/index.adoc[]</p>
+</div>
+<div class="paragraph">
+<p>After Bitbucket is running, create the <code>OPENDEVSTACK</code> project and create bare repositories for each OpenDevStack repository that you have setup locally.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_openshift_cluster"><a class="anchor" href="#_openshift_cluster"></a>OpenShift cluster</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>At this stage you can setup the OpenShift cluster if it does not exist yet. Documentation for this is missing right now. Locally, some version of <code>oc cluster up</code> will do the trick.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_bitbucket_repoisitories"><a class="anchor" href="#_bitbucket_repoisitories"></a>Bitbucket Repoisitories</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It is important that all repositories in BitBucket are up-to-date and ready to be used e.g. from <code>BuildConfig</code> resources in OpenShift.</p>
+</div>
+<div class="paragraph">
+<p>In <code>ods-core</code> run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">make sync-repos</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Next, in <code>ods-configuration</code> run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">git push origin master</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_opendevstack_environment_in_openshift"><a class="anchor" href="#_opendevstack_environment_in_openshift"></a>OpenDevStack environment in OpenShift</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_central_cd_project"><a class="anchor" href="#_central_cd_project"></a>Central CD project</h3>
+<div class="paragraph">
+<p>OpenDevStack needs one central <code>cd</code> project in OpenShift, which will hold all shared resources such as images or deployments.</p>
+</div>
+<div class="paragraph">
+<p>In <code>ods-core</code> run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">make install-cd-project</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_nexus"><a class="anchor" href="#_nexus"></a>Nexus</h3>
+<div class="paragraph">
+<p>A central Nexus deployment is used to proxy packages and to store artifacts.</p>
+</div>
+<div class="paragraph">
+<p>In <code>ods-core</code> run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">make install-nexus</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_sonarqube"><a class="anchor" href="#_sonarqube"></a>SonarQube</h3>
+<div class="paragraph">
+<p>A central SonarQube deployment is used to analyze source code.</p>
+</div>
+<div class="paragraph">
+<p>In <code>ods-core</code> run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">make install-sonarqube</code></pre>
+</div>
 </div>
 <div class="paragraph">
 <p>Afterwards, perform the following manual steps:</p>
@@ -292,85 +428,27 @@
 </ol>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_building_a_new_image"><a class="anchor" href="#_building_a_new_image"></a>Building a new image</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Run <code>make start-sonarqube-build</code>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_administration"><a class="anchor" href="#_administration"></a>Administration</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>There is an <code>admin</code> user which is allowed to change settings, install plugins, etc. The password is located in the OpenShift project <code>cd</code>, inside the <code>sonarqube-app</code> secret.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_usage"><a class="anchor" href="#_usage"></a>Usage</h2>
-<div class="sectionbody">
 <div class="sect2">
-<h3 id="_add_sonar_project_properties_file"><a class="anchor" href="#_add_sonar_project_properties_file"></a>Add <code>sonar-project.properties</code> file</h3>
+<h3 id="_jenkins"><a class="anchor" href="#_jenkins"></a>Jenkins</h3>
 <div class="paragraph">
-<p>This file needs to be located in the root of the repository you want to have analysed. For example:</p>
+<p>Central Jenkins images (master, agent, webhook proxy) are used by every ODS project.</p>
+</div>
+<div class="paragraph">
+<p>In <code>ods-core</code> run:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code># Project Key (required)
-sonar.projectKey=test-spring-boot
-
-# Project Name (optional, this is what is shown in the main list)
-sonar.projectName=test-spring-boot
-
-# Comma-separated paths to directories with sources (required)
-sonar.sources=src
-
-# Forced Language (optional)
-sonar.language=java
-
-# Encoding of the source files (optional but recommended as default is ASCII)
-sonar.sourceEncoding=UTF-8
-
-# Plugin-specific settings
-sonar.java.binaries=build/classes
-sonar.java.libraries=build/libs
-sonar.junit.reportPaths=build/test-results/test</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">make install-jenkins</code></pre>
 </div>
-</div>
-<div class="paragraph">
-<p>The general settings are documented at <a href="https://docs.sonarqube.org/display/SONAR/Analysis+Parameters" class="bare">https://docs.sonarqube.org/display/SONAR/Analysis+Parameters</a>. Plugin-specific parameters can be found in the docs for each plugin, e.g. <a href="https://docs.sonarqube.org/display/PLUG/Java+Plugin+and+Bytecode" class="bare">https://docs.sonarqube.org/display/PLUG/Java+Plugin+and+Bytecode</a>.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_scanning_in_jenkins_pipelines"><a class="anchor" href="#_scanning_in_jenkins_pipelines"></a>Scanning in Jenkins pipelines</h3>
+<h3 id="_provisioning_application"><a class="anchor" href="#_provisioning_application"></a>Provisioning Application</h3>
 <div class="paragraph">
-<p>There&#8217;s a prebuilt stage (<code>odsComponentStageScanWithSonar</code>) that you can use, see <a href="https://www.opendevstack.org/ods-documentation/ods-jenkins-shared-library/latest/index.html" class="bare">https://www.opendevstack.org/ods-documentation/ods-jenkins-shared-library/latest/index.html</a> for details.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_scanning_locally_sonarlint_ide_plugin"><a class="anchor" href="#_scanning_locally_sonarlint_ide_plugin"></a>Scanning locally: SonarLint IDE Plugin</h3>
-<div class="paragraph">
-<p>The team behind SonarQube also published SonarLint, a plugin currently available for IntelliJ, Eclipse, Visual Studio, VS Code and Atom that lets you scan while coding in your IDE. It also integrates with a SonarQube Server, so that you can scan with the servers rule settings.
-For further information please see <a href="https://www.sonarlint.org/intellij/howto.html" class="bare">https://www.sonarlint.org/intellij/howto.html</a>. For the server connected mode, the SonarQube URL has to be set to your SonarQube deployment.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_scanning_locally_sonarqube_docker_container"><a class="anchor" href="#_scanning_locally_sonarqube_docker_container"></a>Scanning locally: SonarQube Docker Container</h3>
-<div class="paragraph">
-<p>Be aware that this does not connect you with the SonarQube Server in OpenShift, therefore you might have other rule settings locally than the ones set on server. That said, here&#8217;s what you need to do on your host to have a local SonarQube instance:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code>docker pull sonarqube
-docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube
-./gradlew sonarqube</code></pre>
-</div>
+<p>At this stage you can setup or modify the provisioning application. Installation of this will change in the next version of OpenDevStack. Instructions will be added here then.</p>
 </div>
 <div class="paragraph">
-<p>Running these commands will let you see at <a href="http://localhost:9000" class="bare">http://localhost:9000</a> your project reports, for any branch. Please, note that you are not running with an embedded database in this case, so it is only for temporary testing, do not expect historic report.</p>
+<p>Congratulations! At this point you should have a complete ODS installation. Try it out by provisioning a new project with the provisioning application.</p>
 </div>
 </div>
 </div>
@@ -390,7 +468,7 @@ docker run -d --name sonarqube -p 9000:9000 -p 9092:9092 sonarqube
 <script type="text/javascript">
   window.antora = window.antora || {}
   window.antora.basePath = '../../..'
-  window.antora.pagePath = '/ods-core/latest/sonarqube/index.html'
+  window.antora.pagePath = '/ods-core/latest/setup/index.html'
 </script>
 <script src="../../../_/js/site.js"></script>
 <script src="../../../_/js/vendor/lunr.js"></script>
