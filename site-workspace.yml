@@ -1,11 +1,8 @@
 site:
   title: OpenDevStack
-  start_page: common:getting-started:introduction.adoc
+  start_page: opendevstack:getting-started:index.adoc
 content:
   sources:
-    - url: ../opendevstack.github.io
-      start_path: docs
-      branches: HEAD
     - url: ../ods-core
       start_path: docs
       branches: HEAD
@@ -13,9 +10,6 @@ content:
       start_path: docs
       branches: HEAD
     - url: ../ods-provisioning-app
-      start_path: docs
-      branches: HEAD
-    - url: ../ods-project-quickstarters
       start_path: docs
       branches: HEAD
     - url: ../ods-quickstarters
@@ -27,7 +21,6 @@ asciidoc:
   attributes:
     plantuml-server-url: 'http://localhost:9080'
     plantuml-fetch-diagram: true
-
 output:
   dir: ./docs_local
 ui:
