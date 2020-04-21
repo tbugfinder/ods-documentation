@@ -1,50 +1,47 @@
 site:
   title: OpenDevStack
-  start_page: common:getting-started:introduction.adoc
-  url: file:///home/richard/git/ods-documentation-poc/ods-documentation/docs/index.html
+  start_page: opendevstack:getting-started:index.adoc
 content:
-  branches: master,1.*
+  branches: master,1.*,2.*
   sources:
-    - url: ../opendevstack.github.io
-      start_path: docs
-      branches:
-      - 1.0.x
-      - 1.1.x
-      - 1.2.x
-      - master
     - url: ../ods-core
       start_path: docs
-      branches: ["1.0.x", "1.1.x", "1.2.x", "master"]
+      branches:
+        - 1.0.x
+        - 1.1.x
+        - 1.2.x
+        - 2.x
+        - master
     - url: ../ods-jenkins-shared-library
       start_path: docs
       branches:
-      - 1.0.x
-      - 1.1.x
-      - 1.2.x
-      - master
+        - 1.0.x
+        - 1.1.x
+        - 1.2.x
+        - 2.x
+        - master
     - url: ../ods-provisioning-app
       start_path: docs
       branches:
-      - 1.0.x
-      - 1.1.x
-      - 1.2.x
-      - master
-    - url: ../ods-project-quickstarters
-      start_path: docs
-      branches:
-      - 1.1.x
-      - 1.2.x
+        - 1.0.x
+        - 1.1.x
+        - 1.2.x
+        - 2.x
+        - master
     - url: ../ods-quickstarters
       start_path: docs
       branches:
-      - master
+        - 1.0.x
+        - 1.1.x
+        - 1.2.x
+        - 2.x
+        - master
 asciidoc:
   extensions:
     - asciidoctor-plantuml
   attributes:
     plantuml-server-url: 'http://localhost:9080'
     plantuml-fetch-diagram: true
-
 output:
   dir: ./docs_local
 ui:

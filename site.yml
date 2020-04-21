@@ -1,10 +1,9 @@
 site:
   title: OpenDevStack
-  start_page: common:getting-started:introduction.adoc
+  start_page: opendevstack:getting-started:index.adoc
   url: https://www.opendevstack.org/ods-documentation
-
 content:
-  branches: master,1.*
+  branches: master,1.*,2.*
   sources:
     - url: https://github.com/opendevstack/opendevstack.github.io
       start_path: docs
@@ -12,7 +11,7 @@ content:
       - 1.0.x
       - 1.1.x
       - 1.2.x
-      - master
+      - 2.x
     - url: https://github.com/opendevstack/ods-core.git
       start_path: docs
       branches:
@@ -40,6 +39,7 @@ content:
     - url: https://github.com/opendevstack/ods-project-quickstarters.git
       start_path: docs
       branches:
+      - 1.0.x
       - 1.1.x
       - 1.2.x
     - url: https://github.com/opendevstack/ods-quickstarters.git
@@ -53,10 +53,9 @@ asciidoc:
   attributes:
     plantuml-server-url: 'http://www.plantuml.com/plantuml'
     plantuml-fetch-diagram: true
-
 output:
   dir: ./docs
 ui:
   bundle:
-    url: https://github.com/opendevstack/ods-docs-ui/releases/download/v1.0.5/ui-bundle.zip
+    url: https://github.com/opendevstack/ods-docs-ui/releases/download/v1.0.7/ui-bundle.zip
   supplemental_files: ./supplemental-ui/lunr
