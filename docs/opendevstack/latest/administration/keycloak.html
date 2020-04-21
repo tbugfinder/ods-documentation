@@ -1,0 +1,554 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Keycloak :: OpenDevStack</title>
+    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/latest/administration/keycloak.html">
+    <meta name="generator" content="Antora 2.2.0">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="stylesheet" href="../../../_/css/search.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">OpenDevStack</a>
+        <div class="navbar-item">
+          <input id="search-input" type="text" placeholder="Search docs">
+        </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Components</a>
+          <div class="navbar-dropdown is-right">
+            <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation/common/latest/index.html">Guides and Tutorials</a>
+            <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation/ods-jenkins-shared-library/latest/index.html">Jenkins Shared Library</a>
+            <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation/ods-core/latest/infrastructure-setup/index.html">ODS Core</a>
+            <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation/ods-project-quickstarters/1.2/index.html">ODS Project Quickstarters</a>
+            <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation/ods-quickstarters/latest/index.html">ODS Quickstarters</a>
+            <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation/ods-provisioning-app/latest/index.html">Provisioning App</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="opendevstack" data-version="latest">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../getting-started/index.html">OpenDevStack</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../jenkins-shared-library/index.html">Jenkins Shared Library</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins-shared-library/component-pipeline.html">Component Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins-shared-library/quickstarter-pipeline.html">Quickstarter Pipeline</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../quickstarters/index.html">Quickstarters</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/docker-plain.html">BE Docker Plain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-golang-plain.html">BE Golang</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-java-springboot.html">BE Java / Spring Boot</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-typescript-express.html">BE Node Express</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-python-flask.html">BE Python Flask</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-scala-akka.html">BE Scala Akka</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/fe-angular.html">FE Angular</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/fe-ionic.html">FE Ionic</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/fe-react.html">FE React</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/fe-vue.html">FE Vue</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/ds-ml-service.html">Data Science Machine Learning Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/ds-jupyter-notebook.html">Data Science Jupyter Notebook</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/ds-rshiny.html">Data Science RShiny app</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/airflow-cluster.html">Airflow</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/e2e-cypress.html">Cypress E2E testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/e2e-spock-geb.html">Spock, Geb and Unirest E2E testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/release-manager.html">Release Manager</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../provisioning-app/index.html">Provisioning App</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-app/configuration.html">Configuration Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-app/architecture.html">Internal Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-app/faq.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../jenkins/index.html">Jenkins</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/master.html">Jenkins Master</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/slave-base.html">Jenkins Slave Base</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/webhook-proxy.html">Webhook Proxy</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../sonarqube/index.html">SonarQube</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Update Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../update-guides/2x.html">Migrate to 2.x</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Administration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="installation.html">Installation</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="local-install-requirements.html">Local Installation Requirements</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="install-guide.html">Local Installation (outdated)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="infrastructure-setup.html">Infrastructure Setup (outdated)</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="update.html">Upgrade</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="keycloak.html">Keycloak</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../sonarqube/administration.html">SonarQube</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/administration.html">Jenkins</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Contributing to ODS</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contributing/development.html">Development</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contributing/documentation.html">Documentation</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">OpenDevStack</span>
+    <span class="version">latest</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <span class="title">Guides and Tutorials</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../common/1.2/index.html">1.2</a>
+        </li>
+        <li class="version">
+          <a href="../../../common/1.1/index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../../common/v1.0/index.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Jenkins Shared Library</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../ods-jenkins-shared-library/2/index.html">2</a>
+        </li>
+        <li class="version">
+          <a href="../../../ods-jenkins-shared-library/1.2/index.html">1.2</a>
+        </li>
+        <li class="version">
+          <a href="../../../ods-jenkins-shared-library/1.1/index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../../ods-jenkins-shared-library/v1.0/index.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">ODS Core</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../ods-core/2/infrastructure-setup/index.html">2</a>
+        </li>
+        <li class="version">
+          <a href="../../../ods-core/1.2/infrastructure-setup/index.html">1.2</a>
+        </li>
+        <li class="version">
+          <a href="../../../ods-core/1.1/infrastructure-setup/index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../../ods-core/v1.0/infrastructure-setup/index.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">ODS Project Quickstarters</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../ods-project-quickstarters/1.2/index.html">1.2</a>
+        </li>
+        <li class="version">
+          <a href="../../../ods-project-quickstarters/1.1/index.html">1.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">ODS Quickstarters</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../ods-quickstarters/2/index.html">2</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <span class="title">OpenDevStack</span>
+      <ul class="versions">
+        <li class="version is-current is-latest">
+          <a href="../getting-started/index.html">latest</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Provisioning App</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../../ods-provisioning-app/2/index.html">2</a>
+        </li>
+        <li class="version">
+          <a href="../../../ods-provisioning-app/1.2/index.html">1.2</a>
+        </li>
+        <li class="version">
+          <a href="../../../ods-provisioning-app/1.1/index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../../ods-provisioning-app/v1.0/index.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../getting-started/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../getting-started/index.html">OpenDevStack</a></li>
+    <li>Administration</li>
+    <li><a href="keycloak.html">Keycloak</a></li>
+  </ul>
+</nav>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-core/edit/master/docs/modules/administration/pages/keycloak.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc"><a name="section-top"></a>
+<h1 class="page">Keycloak</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_realm_master">Realm <em>master</em></a>
+<ul class="sectlevel2">
+<li><a href="#_users">Users</a></li>
+</ul>
+</li>
+<li><a href="#_realm_opendevstack">Realm <em>opendevstack</em></a>
+<ul class="sectlevel2">
+<li><a href="#_groups">Groups</a></li>
+<li><a href="#_users_2">Users</a></li>
+<li><a href="#_client_ods_provisioning_app">Client <em>ods-provisioning-app</em></a></li>
+</ul>
+</li>
+</ul>
+</div>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Keycloak is an open source identity and access managment tool.</p>
+</div>
+<div class="paragraph">
+<p>OpenDevStack uses eigther <em>Atlassian Crowd</em> or  <em>OpenID Connect / OAuth 2.0</em> protocol for authentication users of provisioning app.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+The usage of Keycloak is optional. Instead of keycloak, <em>Atlassian Crowd</em> can still be used for
+authentication. See documentation under <em>ODS-Components</em> &#8594; <em>Provisioning App</em> &#8594; <em>Configuration Guide</em> regarding
+the configuration of provisioning app.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Setup of keycloak for local-installation is all done without further manual setup actions
+by starting the vagrant-box <em>idmanager</em>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_realm_master"><a class="anchor" href="#_realm_master"></a>Realm <em>master</em></h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_users"><a class="anchor" href="#_users"></a>Users</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">User</th>
+<th class="tableblock halign-left valign-top">Password</th>
+<th class="tableblock halign-left valign-top">Roles</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">admin</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">admin</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">keycloak admin</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_realm_opendevstack"><a class="anchor" href="#_realm_opendevstack"></a>Realm <em>opendevstack</em></h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There is (beside the master realm) one single OpenDevStack-specific realm: <em>opendevstack</em>.</p>
+</div>
+<div class="sect2">
+<h3 id="_groups"><a class="anchor" href="#_groups"></a>Groups</h3>
+<div class="paragraph">
+<p>There are two OpenDevStack-specific groups inside the <em>opendevstack</em> realm:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>opendevstack-administrators</p>
+</li>
+<li>
+<p>opendevstack-users</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_users_2"><a class="anchor" href="#_users_2"></a>Users</h3>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 33.3333%;">
+<col style="width: 33.3334%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">User</th>
+<th class="tableblock halign-left valign-top">Password</th>
+<th class="tableblock halign-left valign-top">Groups</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">admin1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">admin1</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>opendevstack-administrators</p>
+</li>
+<li>
+<p>opendevstack-users</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user1</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">user1</p></td>
+<td class="tableblock halign-left valign-top"><div class="content"><div class="ulist">
+<ul>
+<li>
+<p>opendevstack-users</p>
+</li>
+</ul>
+</div></div></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_client_ods_provisioning_app"><a class="anchor" href="#_client_ods_provisioning_app"></a>Client <em>ods-provisioning-app</em></h3>
+<div class="paragraph">
+<p>There is one OpenDevStack-specific client inside the <em>opendevstack</em> realm: <em>ods-provisioning-app</em>.</p>
+</div>
+<div class="paragraph">
+<p>There is a protocoll mapper called <em>Group Mapper</em> that maps the user&#8217;s group membership to a token claim with name <em>roles</em>.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<aside class="article-aside hidden" role="navigation">
+  <h3 class="toc-title">Contents</h3>
+  <div id="article-toc"></div>
+</aside>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.1.1/tocbot.min.js"></script>
+<script type="text/javascript">
+  window.antora = window.antora || {}
+  window.antora.basePath = '../../..'
+  window.antora.pagePath = '/opendevstack/latest/administration/keycloak.html'
+</script>
+<script src="../../../_/js/site.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/search.js"></script>
+<script async src="../../../_/../search-index.js"></script>
+<script src="../../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+<script>
+  tocbot.init( {
+                  tocSelector: '#article-toc',
+                  contentSelector: 'article',
+                  headingSelector: 'h2, h3, h4, h5, h6',
+                  collapseDepth: 6,
+                  positionFixedSelector: '#article-toc',
+                  scrollSmooth: false
+                } );
+  var tocList = document.getElementById( 'article-toc' ).getElementsByClassName( 'toc-list' );
+  if ( tocList && tocList.length > 0 && tocList[0].childNodes.length > 0 ) {
+    document.getElementById( 'article-toc' ).parentNode.classList.remove( 'hidden' );
+  }
+</script>
+  </body>
+</html>
