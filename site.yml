@@ -39,7 +39,6 @@ content:
     - url: https://github.com/opendevstack/ods-project-quickstarters.git
       start_path: docs
       branches:
-      - 1.0.x
       - 1.1.x
       - 1.2.x
     - url: https://github.com/opendevstack/ods-quickstarters.git
