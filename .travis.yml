@@ -12,7 +12,7 @@ node_js:
   - "lts/*"
 
 before_script:
-  - npm i @antora/cli@2.0 antora-site-generator-lunr
+  - npm i @antora/cli@2.2 antora-site-generator-lunr
   - npm install
 
 script:
