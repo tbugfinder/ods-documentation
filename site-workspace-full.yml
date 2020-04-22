@@ -7,32 +7,28 @@ content:
     - url: ../ods-core
       start_path: docs
       branches:
-        - 1.0.x
-        - 1.1.x
         - 1.2.x
         - 2.x
         - master
     - url: ../ods-jenkins-shared-library
       start_path: docs
       branches:
-        - 1.0.x
-        - 1.1.x
         - 1.2.x
         - 2.x
         - master
     - url: ../ods-provisioning-app
       start_path: docs
       branches:
-        - 1.0.x
-        - 1.1.x
         - 1.2.x
         - 2.x
         - master
+    - url: ../ods-project-quickstarters
+      start_path: docs
+      branches:
+        - 1.2.x
     - url: ../ods-quickstarters
       start_path: docs
       branches:
-        - 1.0.x
-        - 1.1.x
         - 1.2.x
         - 2.x
         - master
