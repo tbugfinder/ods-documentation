@@ -1,0 +1,392 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Infrastructure Setup :: OpenDevStack</title>
+    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/2.x/infrastructure-setup.html">
+    <meta name="generator" content="Antora 2.2.0">
+    <link rel="stylesheet" href="../../_/css/site.css">
+<link rel="stylesheet" href="../../_/css/search.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">OpenDevStack</a>
+        <div class="navbar-item">
+          <input id="search-input" type="text" placeholder="Search docs">
+        </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+    <div id="topbar-nav" class="navbar-menu">
+      <div class="navbar-end">
+        <div class="navbar-item has-dropdown is-hoverable">
+          <a class="navbar-link" href="#">Components</a>
+          <div class="navbar-dropdown is-right">
+            <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation/common/latest/index.html">Guides and Tutorials</a>
+            <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation/ods-jenkins-shared-library/latest/index.html">Jenkins Shared Library</a>
+            <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation/ods-core/latest/infrastructure-setup/index.html">ODS Core</a>
+            <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation/ods-project-quickstarters/1.2/index.html">ODS Project Quickstarters</a>
+            <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation/ods-quickstarters/latest/index.html">ODS Quickstarters</a>
+            <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation/ods-provisioning-app/latest/index.html">Provisioning App</a>
+          </div>
+        </div>
+      </div>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="opendevstack" data-version="2.x">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="getting-started/index.html">OpenDevStack</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="jenkins-shared-library/index.html">Jenkins Shared Library</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="quickstarters/index.html">Quickstarters</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="quickstarters/docker-plain.html">BE Docker Plain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="quickstarters/be-golang-plain.html">BE Golang</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="quickstarters/be-java-springboot.html">BE Java / Spring Boot</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="quickstarters/be-typescript-express.html">BE Node Express</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="quickstarters/be-python-flask.html">BE Python Flask</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="quickstarters/be-scala-akka.html">BE Scala Akka</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="quickstarters/fe-angular.html">FE Angular</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="quickstarters/fe-ionic.html">FE Ionic</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="quickstarters/fe-react.html">FE React</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="quickstarters/fe-vue.html">FE Vue</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="quickstarters/ds-ml-service.html">Data Science Machine Learning Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="quickstarters/ds-jupyter-notebook.html">Data Science Jupyter Notebook</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="quickstarters/ds-rshiny.html">Data Science RShiny app</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="quickstarters/airflow-cluster.html">Airflow</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="quickstarters/e2e-cypress.html">Cypress E2E testing Quickstarters</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="provisioning-app/index.html">Provisioning App</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="provisioning-app/configuration.html">Configuration Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="provisioning-app/architecture.html">Internal Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="provisioning-app/faq.html">FAQ</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="provisioning-app/upgrade_notes.html">Upgrade Notes</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="local-installation.html">Local Installation</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="sysenv-requirements.html">System and Environment Requirements</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="infrastructure-setup.html">Infrastructure Setup</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="troubleshooting.html">Troubleshooting</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="jenkins/index.html">Jenkins</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="jenkins/webhook-proxy.html">Webhook Proxy</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="jenkins/slave-base.html">Jenkins Slave Base Image</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="sonarqube/index.html">SonarQube</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">OpenDevStack</span>
+    <span class="version">2.x</span>
+  </div>
+  <ul class="components">
+    <li class="component">
+      <span class="title">Guides and Tutorials</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../common/1.2/index.html">1.2</a>
+        </li>
+        <li class="version">
+          <a href="../../common/1.1/index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../common/v1.0/index.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Jenkins Shared Library</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../ods-jenkins-shared-library/1.1/index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../ods-jenkins-shared-library/v1.0/index.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">ODS Core</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../ods-core/1.1/infrastructure-setup/index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../ods-core/v1.0/infrastructure-setup/index.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">ODS Project Quickstarters</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../ods-project-quickstarters/1.1/index.html">1.1</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component is-current">
+      <span class="title">OpenDevStack</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../latest/getting-started/index.html">latest</a>
+        </li>
+        <li class="version is-current">
+          <a href="getting-started/index.html">2.x</a>
+        </li>
+        <li class="version">
+          <a href="../1.x/getting-started/index.html">1.x</a>
+        </li>
+      </ul>
+    </li>
+    <li class="component">
+      <span class="title">Provisioning App</span>
+      <ul class="versions">
+        <li class="version is-latest">
+          <a href="../../ods-provisioning-app/1.1/index.html">1.1</a>
+        </li>
+        <li class="version">
+          <a href="../../ods-provisioning-app/v1.0/index.html">v1.0</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../latest/getting-started/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="getting-started/index.html">OpenDevStack</a></li>
+    <li><a href="local-installation.html">Local Installation</a></li>
+    <li><a href="infrastructure-setup.html">Infrastructure Setup</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">2.x</button>
+  <div class="version-menu">
+    <a class="version is-missing" href="../latest/getting-started/index.html">latest</a>
+    <a class="version is-current" href="infrastructure-setup.html">2.x</a>
+    <a class="version" href="../1.x/infrastructure-setup.html">1.x</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-core/edit/2.x/docs/modules/ROOT/pages/infrastructure-setup.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Infrastructure Setup</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The infrastructure setup part contains the scripts to setup OpenDevstack.
+It uses <a href="https://www.ansible.com">Ansible</a> for installing the Atlassian tools and the provisioning app (including <a href="https://www.rundeck.com/open-source">Rundeck</a>.
+Setting up an <a href="https://docs.ansible.com/ansible/latest/network/getting_started/basic_concepts.html#id2">Ansible control host</a> is beyond the scope of this document.</p>
+</div>
+<div class="paragraph">
+<p>Each individual component is set-up using a seperate playbook. So you can decide which playbooks to run, depending on your current environment.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_the_different_playbooks"><a class="anchor" href="#_the_different_playbooks"></a>The different playbooks</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>We have different playbooks depending on the environment in which you install the Atlassian tools and Rundeck.
+The playbooks depend on roles. The roles provide variables for customization. The different variables can be looked up under each role at <code>default/main.yml</code>.</p>
+</div>
+<div class="dlist">
+<div class="title">General Playbooks</div>
+<dl>
+<dt class="hdlist1">postgresql.yml</dt>
+<dd>
+<p>Sets up a (local) PostgreSQL for use with Atlassian tools.</p>
+</dd>
+<dt class="hdlist1">schemas.yml</dt>
+<dd>
+<p>Sets up the required schemas for Atlassian tools</p>
+</dd>
+<dt class="hdlist1">crowd.yml</dt>
+<dd>
+<p>Sets up Atlassian Crowd as an Identity and SSO provider</p>
+</dd>
+<dt class="hdlist1">bitbucket.yml</dt>
+<dd>
+<p>Sets up Atlassian Bitbucket</p>
+</dd>
+<dt class="hdlist1">jira.yml</dt>
+<dd>
+<p>Sets up Atlassian Jira</p>
+</dd>
+<dt class="hdlist1">jira_enable_sso.yml</dt>
+<dd>
+<p>After basic setup of Crowd and Jira setup, enable SSO functionality.</p>
+</dd>
+<dt class="hdlist1">confluence.yml</dt>
+<dd>
+<p>Sets up Atlassian Confluence</p>
+</dd>
+<dt class="hdlist1">confluence_enable_sso.yml</dt>
+<dd>
+<p>After basic setup of Crowd and Confluence setup, enable SSO functionality.</p>
+</dd>
+</dl>
+</div>
+<div class="paragraph">
+<p>Beside the basic playbooks, it might be required to run additional playbooks if you setup the Atlassian tools on AWS.</p>
+</div>
+<div class="dlist">
+<div class="title">Special Plabyooks</div>
+<dl>
+<dt class="hdlist1">crowd_post_setup.yml</dt>
+<dd>
+<p>Takes care that login to crowd is possible by inserting the AWS LB IP addresses into the database tables.</p>
+</dd>
+</dl>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.1.1/tocbot.min.js"></script>
+<script type="text/javascript">
+  window.antora = window.antora || {}
+  window.antora.basePath = '../..'
+  window.antora.pagePath = '/opendevstack/2.x/infrastructure-setup.html'
+</script>
+<script src="../../_/js/site.js"></script>
+<script src="../../_/js/vendor/lunr.js"></script>
+<script src="../../_/js/vendor/search.js"></script>
+<script async src="../../_/../search-index.js"></script>
+<script src="../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+<script>
+  tocbot.init( {
+                  tocSelector: '#article-toc',
+                  contentSelector: 'article',
+                  headingSelector: 'h2, h3, h4, h5, h6',
+                  collapseDepth: 6,
+                  positionFixedSelector: '#article-toc',
+                  scrollSmooth: false
+                } );
+  var tocList = document.getElementById( 'article-toc' ).getElementsByClassName( 'toc-list' );
+  if ( tocList && tocList.length > 0 && tocList[0].childNodes.length > 0 ) {
+    document.getElementById( 'article-toc' ).parentNode.classList.remove( 'hidden' );
+  }
+</script>
+  </body>
+</html>

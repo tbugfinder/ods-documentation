@@ -16,9 +16,6 @@
 <loc>https://www.opendevstack.org/ods-documentation/sitemap-ods-provisioning-app.xml</loc>
 </sitemap>
 <sitemap>
-<loc>https://www.opendevstack.org/ods-documentation/sitemap-ods-quickstarters.xml</loc>
-</sitemap>
-<sitemap>
 <loc>https://www.opendevstack.org/ods-documentation/sitemap-opendevstack.xml</loc>
 </sitemap>
 </sitemapindex>
