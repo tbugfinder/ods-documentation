@@ -1,0 +1,494 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Release Manager :: OpenDevStack</title>
+    <meta name="generator" content="Antora 2.2.0">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="stylesheet" href="../../../_/css/search.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">OpenDevStack</a>
+        <div class="navbar-item">
+          <input id="search-input" type="text" placeholder="Search docs">
+        </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="opendevstack" data-version="3.x">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../getting-started/index.html">OpenDevStack</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../jenkins-shared-library/index.html">Jenkins Shared Library</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins-shared-library/component-pipeline.html">Component Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins-shared-library/quickstarter-pipeline.html">Quickstarter Pipeline</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Quickstarters</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="docker-plain.html">BE Docker Plain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="be-golang-plain.html">BE Golang</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="be-java-springboot.html">BE Java / Spring Boot</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="be-typescript-express.html">BE Node Express</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="be-python-flask.html">BE Python Flask</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="be-scala-akka.html">BE Scala Akka</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="fe-angular.html">FE Angular</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="fe-ionic.html">FE Ionic</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="fe-react.html">FE React</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="fe-vue.html">FE Vue</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ds-ml-service.html">Data Science Machine Learning Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ds-jupyter-notebook.html">Data Science Jupyter Notebook</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ds-rshiny.html">Data Science RShiny app</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="airflow-cluster.html">Airflow</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="e2e-cypress.html">Cypress E2E testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="e2e-spock-geb.html">Spock, Geb and Unirest E2E testing</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="release-manager.html">Release Manager</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../provisioning-app/index.html">Provisioning App</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-app/configuration.html">Configuration Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-app/architecture.html">Internal Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-app/faq.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../jenkins/index.html">Jenkins</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/master.html">Jenkins Master</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/slave-base.html">Jenkins Slave Base</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/webhook-proxy.html">Webhook Proxy</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../sonarqube/index.html">SonarQube</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Update Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../update-guides/2x.html">Migrate to 2.x</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Administration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../administration/installation.html">Installation</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/local-install-requirements.html">Local Installation Requirements</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/install-guide.html">Local Installation (outdated)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/infrastructure-setup.html">Infrastructure Setup (outdated)</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../administration/update.html">Upgrade</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../administration/keycloak.html">Keycloak</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../sonarqube/administration.html">SonarQube</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/administration.html">Jenkins</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Contributing to ODS</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contributing/development.html">Development</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contributing/documentation.html">Documentation</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">OpenDevStack</span>
+    <span class="version">3.x Preview</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">OpenDevStack</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="../getting-started/index.html">3.x Preview</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../2.x/getting-started/index.html">2.x</a>
+        </li>
+        <li class="version">
+          <a href="../../1.x/getting-started/index.html">1.x</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../2.x/getting-started/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../getting-started/index.html">OpenDevStack</a></li>
+    <li><a href="index.html">Quickstarters</a></li>
+    <li><a href="release-manager.html">Release Manager</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">3.x Preview</button>
+  <div class="version-menu">
+    <a class="version is-current" href="release-manager.html">3.x Preview</a>
+    <a class="version is-missing" href="../../2.x/getting-started/index.html">2.x</a>
+    <a class="version is-missing" href="../../1.x/getting-started/index.html">1.x</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-quickstarters/edit/master/docs/modules/quickstarters/pages/release-manager.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Release Manager</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>The release manager supports the orchestration of multiple repositories into a live application.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_file_structure"><a class="anchor" href="#_file_structure"></a>File Structure</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre>.
+├── docs         # Fall-back document chapter templates for (LeVA) compliance reports.
+├── Jenkinsfile  # The release manager pipeline.
+├── README.md
+└── metadata.yml # Configuration of the release manager pipeline and its repositories.</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuration"><a class="anchor" href="#_configuration"></a>Configuration</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_automated_resolution_of_dependencies"><a class="anchor" href="#_automated_resolution_of_dependencies"></a>Automated Resolution of Dependencies</h3>
+<div class="paragraph">
+<p>The release manager automatically resolves dependencies between repositories to be orchestrated so that they can be delivered in the correct order. Currently, repositories that want to be orchestrated need to be added to the <code>repositories</code> list inside <code>metadata.yml</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>id: PHOENIX
+name: Project Phoenix
+
+repositories:
+  - id: A
+    url: https://github.com/my-org/my-repo-A.git
+    branch: master
+  - id: B
+    name: my-repo-B
+    branch: master
+  - id: C</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If a named repository wants to announce a dependency on another repo, the dependency needs to be listed in that repository&#8217;s <code>release-manager.yml</code>, simply by referring to its <code>repo.id</code> as defined in <code>metadata.yml</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>dependencies:
+  - A</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The library supports the following repository types: <code>ods</code>, <code>ods-service</code>, and <code>ods-test</code>. Setting a repository type is required so the orchestrator can make correct assumptions based on the nature of the component at hand:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>id: PHOENIX
+name: Project Phoenix
+
+repositories:
+  - id: A
+    url: https://github.com/my-org/my-repo-A.git
+    branch: master
+    type: ods
+  - id: B
+    name: my-repo-B
+    branch: master
+    type: ods
+  - id: C
+    type: ods</pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_repository_type_ods"><a class="anchor" href="#_repository_type_ods"></a>Repository Type: ods</h4>
+<div class="paragraph">
+<p>This type designates ODS components designed for <em>code development</em>. Such repositories are based on quickstarters whose names start with <code>be-</code>, <code>ds-</code>, or <code>fe-</code>, for <em>backend</em>, <em>data science</em>, and <em>frontend</em>, respectively. This is the default type.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_repository_type_ods_service"><a class="anchor" href="#_repository_type_ods_service"></a>Repository Type: ods-service</h4>
+<div class="paragraph">
+<p>This type designates ODS components designed for <em>running some service</em>. Examples include repositories based on the <code>airflow-cluster</code> quickstarter.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_repository_type_ods_test"><a class="anchor" href="#_repository_type_ods_test"></a>Repository Type: ods-test</h4>
+<div class="paragraph">
+<p>This type designates ODS components designed for <em>running automated tests against a live application</em>. Such repositories are based on quickstarters whose names start with <code>e2e-</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_automated_resolution_of_repository_git_url"><a class="anchor" href="#_automated_resolution_of_repository_git_url"></a>Automated Resolution of Repository Git URL</h3>
+<div class="paragraph">
+<p>If no <code>url</code> parameter is provided for a repository configuration in the <code>metadata.yml</code>, the release manager will attempt to resolve it based on the component&#8217;s <em>origin remote URL</em> and one of the following:</p>
+</div>
+<div class="paragraph">
+<p>1) If the <code>name</code> parameter is provided, and not empty, the last path part of the URL is resolved to <code>${repo-name}.git</code>.
+2) If no <code>name</code> parameter is provided, the last path part of the URL is resolved to <code>${project-id}-${repo-id}.git</code> (which is the repository name pattern used with <em>OpenDevStack</em>). Here <code>${project-id}</code> refers to the lowercase value of the top-level <code>id</code> attribute in <code>metadata.yml</code>.</p>
+</div>
+<div class="sect3">
+<h4 id="_example_resolve_git_url_for_repository_b"><a class="anchor" href="#_example_resolve_git_url_for_repository_b"></a>Example: Resolve Git URL for Repository 'B'</h4>
+<div class="listingblock">
+<div class="content">
+<pre>id: PHOENIX
+name: Project Phoenix
+
+repositories:
+  - id: B
+    name: my-repo-B
+    branch: master</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Assuming your release manager component&#8217;s origin at <code><a href="https://github.com/my-org/my-pipeline.git" class="bare">https://github.com/my-org/my-pipeline.git</a></code> in this example, the Git URL for repository <code>B</code> will resolve to <code><a href="https://github.com/my-org/my-repo-B.git" class="bare">https://github.com/my-org/my-repo-B.git</a></code>, based on the value in <code>repositories[0].name</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_example_resolve_git_url_for_repository_c"><a class="anchor" href="#_example_resolve_git_url_for_repository_c"></a>Example: Resolve Git URL for Repository 'C'</h4>
+<div class="listingblock">
+<div class="content">
+<pre>id: PHOENIX
+name: Project Phoenix
+
+repositories:
+  - id: C</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Assuming your release manager component&#8217;s origin at <code><a href="https://github.com/my-org/my-pipeline.git" class="bare">https://github.com/my-org/my-pipeline.git</a></code> in this example, the Git URL for repository <code>C</code> will resolve to <code><a href="https://github.com/my-org/phoenix-C.git" class="bare">https://github.com/my-org/phoenix-C.git</a></code>, based on the values in <code>id</code> and <code>repositories[0].name</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_automated_resolution_of_repository_branch"><a class="anchor" href="#_automated_resolution_of_repository_branch"></a>Automated Resolution of Repository Branch</h3>
+<div class="paragraph">
+<p>If no <code>branch</code> parameter is provided for a repository, <code>master</code> will be assumed.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_automated_parallelization_of_repositories"><a class="anchor" href="#_automated_parallelization_of_repositories"></a>Automated Parallelization of Repositories</h3>
+<div class="paragraph">
+<p>Instead of merely resolving repositories into a strictly sequential execution model, the release manager automatically understands which repositories form independent groups and can run in parallel for best time-to-feedback and time-to-delivery.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_automated_generation_of_compliance_documents"><a class="anchor" href="#_automated_generation_of_compliance_documents"></a>Automated Generation of Compliance Documents</h3>
+<div class="paragraph">
+<p>The release manager automatically generates Lean Validation (LeVA) compliance reports based on data in your Jira project, as well as data generated along the automated build, deploy, test, and release process.</p>
+</div>
+<div class="paragraph">
+<p><em>Note:</em> when you configure a Jira service in <code>metadata.yml</code>, the release manager expects your Jira project (identified by <code>id</code>) to follow a specific structure. If your Jira project has not been set up by <em>OpenDevStack</em> lately, your structure will most likely be different. While we plan to support custom Jira setups in the future, you may disable the dependency on the Jira service entirely, as shown in the following example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>services:
+  bitbucket:
+    credentials:
+      id: my-bitbucket-credentials
+#  jira:
+#    credentials:
+#      id: my-jira-credentials
+  nexus:
+    repository:
+      name: leva-documentation</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this case, the release manager will fall back to the document chapter templates located in the <code>docs</code> folder. Therein, you can provide chapter data to be loaded into the supported compliance documents.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_automated_cloning_of_environments"><a class="anchor" href="#_automated_cloning_of_environments"></a>Automated Cloning of Environments</h3>
+<div class="paragraph">
+<p>If you want your <em>target environment</em> to be created from an existing <em>source environment</em> such as <code>dev</code> or <code>test</code> on the fly, you need to provide the <code>environment</code> and <code>sourceEnvironmentToClone</code> parameters to your pipeline, respectively. Their values will be combined with your project ID in the form <code>${project-id}-${environment}</code> to create the project (namespace) name in your OpenShift cluster.</p>
+</div>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.1.1/tocbot.min.js"></script>
+<script type="text/javascript">
+  window.antora = window.antora || {}
+  window.antora.basePath = '../../..'
+  window.antora.pagePath = '/opendevstack/3.x/quickstarters/release-manager.html'
+</script>
+<script src="../../../_/js/site.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/search.js"></script>
+<script async src="../../../_/../search-index.js"></script>
+<script src="../../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+<script>
+  tocbot.init( {
+                  tocSelector: '#article-toc',
+                  contentSelector: 'article',
+                  headingSelector: 'h2, h3, h4, h5, h6',
+                  collapseDepth: 6,
+                  positionFixedSelector: '#article-toc',
+                  scrollSmooth: false
+                } );
+  var tocList = document.getElementById( 'article-toc' ).getElementsByClassName( 'toc-list' );
+  if ( tocList && tocList.length > 0 && tocList[0].childNodes.length > 0 ) {
+    document.getElementById( 'article-toc' ).parentNode.classList.remove( 'hidden' );
+  }
+</script>
+  </body>
+</html>

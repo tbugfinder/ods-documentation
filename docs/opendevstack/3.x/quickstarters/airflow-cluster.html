@@ -1,0 +1,539 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>AirFlow Openshift Cluster Boilerplate :: OpenDevStack</title>
+    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/2.x/quickstarters/airflow-cluster.html">
+    <meta name="generator" content="Antora 2.2.0">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="stylesheet" href="../../../_/css/search.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">OpenDevStack</a>
+        <div class="navbar-item">
+          <input id="search-input" type="text" placeholder="Search docs">
+        </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="opendevstack" data-version="3.x">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../getting-started/index.html">OpenDevStack</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../jenkins-shared-library/index.html">Jenkins Shared Library</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins-shared-library/component-pipeline.html">Component Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins-shared-library/quickstarter-pipeline.html">Quickstarter Pipeline</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Quickstarters</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="docker-plain.html">BE Docker Plain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="be-golang-plain.html">BE Golang</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="be-java-springboot.html">BE Java / Spring Boot</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="be-typescript-express.html">BE Node Express</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="be-python-flask.html">BE Python Flask</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="be-scala-akka.html">BE Scala Akka</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="fe-angular.html">FE Angular</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="fe-ionic.html">FE Ionic</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="fe-react.html">FE React</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="fe-vue.html">FE Vue</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ds-ml-service.html">Data Science Machine Learning Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ds-jupyter-notebook.html">Data Science Jupyter Notebook</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ds-rshiny.html">Data Science RShiny app</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="airflow-cluster.html">Airflow</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="e2e-cypress.html">Cypress E2E testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="e2e-spock-geb.html">Spock, Geb and Unirest E2E testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="release-manager.html">Release Manager</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../provisioning-app/index.html">Provisioning App</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-app/configuration.html">Configuration Guide</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-app/architecture.html">Internal Architecture</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-app/faq.html">FAQ</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../jenkins/index.html">Jenkins</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/master.html">Jenkins Master</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/slave-base.html">Jenkins Slave Base</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/webhook-proxy.html">Webhook Proxy</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../sonarqube/index.html">SonarQube</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Update Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../update-guides/2x.html">Migrate to 2.x</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Administration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../administration/installation.html">Installation</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/local-install-requirements.html">Local Installation Requirements</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/install-guide.html">Local Installation (outdated)</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/infrastructure-setup.html">Infrastructure Setup (outdated)</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../administration/update.html">Upgrade</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../administration/keycloak.html">Keycloak</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../sonarqube/administration.html">SonarQube</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/administration.html">Jenkins</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Contributing to ODS</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contributing/development.html">Development</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contributing/documentation.html">Documentation</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">OpenDevStack</span>
+    <span class="version">3.x Preview</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">OpenDevStack</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="../getting-started/index.html">3.x Preview</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../2.x/getting-started/index.html">2.x</a>
+        </li>
+        <li class="version">
+          <a href="../../1.x/getting-started/index.html">1.x</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../2.x/getting-started/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../getting-started/index.html">OpenDevStack</a></li>
+    <li><a href="index.html">Quickstarters</a></li>
+    <li><a href="airflow-cluster.html">Airflow</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">3.x Preview</button>
+  <div class="version-menu">
+    <a class="version is-current" href="airflow-cluster.html">3.x Preview</a>
+    <a class="version" href="../../2.x/quickstarters/airflow-cluster.html">2.x</a>
+    <a class="version is-missing" href="../../1.x/getting-started/index.html">1.x</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-quickstarters/edit/master/docs/modules/quickstarters/pages/airflow-cluster.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">AirFlow Openshift Cluster Boilerplate</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This boilerplate provides an Airflow Cluster using Kubernetes Executor
+hosted in Openshift.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_setup"><a class="anchor" href="#_setup"></a>Setup</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The AirFlow Cluster setup that is provided is based on the KubernetesExecutor and will
+create and destroy worker pods on demand. It also setup an ElasticSearch instance as the log
+repository for all workers. As illustrated bellow:</p>
+</div>
+<div class="imageblock">
+<div class="content">
+<img src="_images/Airflow%20Architecture%20Diagram.png?raw=true" alt="Airflow Architecture">
+</div>
+</div>
+<div class="paragraph">
+<p>All Airflow images are based on your <code>&lt;project_id&gt;-cd/airflow</code> image stream.</p>
+</div>
+<div class="paragraph">
+<p>All documentation regarding the base images used in this quickstarter can be found at
+<a href="https://github.com/opendevstack/ods-quickstarters/tree/master/airflow-cluster/base-images">airflow-cluster/base-images</a></p>
+</div>
+<div class="paragraph">
+<p>To deploy the quickstarter <strong>the component name must be <code>airflow-worker</code></strong> otherwise nothing will be created</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_contents"><a class="anchor" href="#_contents"></a>Contents</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>These are the OpenShift resources and the repository structure created by
+this boilerplace. <strong>Nothing will be created if any rersouces in the target
+OpenShift namespace can be found under the label <code>cluster=airflow</code></strong></p>
+</div>
+<div class="sect2">
+<h3 id="_openshift_resources"><a class="anchor" href="#_openshift_resources"></a>OpenShift Resources</h3>
+<div class="paragraph">
+<p>This boilerplate create several resources in OpenShift and <strong>ALL</strong> of them
+can be found using the label <code>cluster=airflow</code>. The created resources are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Service Account:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>airflow</code> : Service account used as OAuth client for the Airflow web server</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Secrets:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>airflow-postgresql</code> : Credentials for the PostgreSQL database</p>
+</li>
+<li>
+<p><code>airflow-elasticsearch</code> : Credentials for the ElasticSearch</p>
+</li>
+<li>
+<p><code>airflow-fernetkey</code> : Fernet key for securing stored Airflow Connection</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Config Maps:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>airflow-environemnt</code> : Airflow configuration shared among all nodes</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Builds and Image Stream:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>airflow-worker</code> : Worker image which Airflow uses for executing the tasks</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Deployment Configs and Services:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>airflow-webserver</code> : Airflow Web Server</p>
+</li>
+<li>
+<p><code>airflow-scheduler</code> : Airflow Scheduler (* Only Deployment Config)</p>
+</li>
+<li>
+<p><code>airflow-postgresql</code> :  Airflow matadata database</p>
+</li>
+<li>
+<p><code>airflow-elasticsearch</code>: Worker log database</p>
+</li>
+<li>
+<p><code>airflow-kibana</code>: Interface for exploring Airflow logs in ElasticSearch</p>
+</li>
+</ul>
+</div>
+</li>
+<li>
+<p>Routes:</p>
+<div class="ulist">
+<ul>
+<li>
+<p><code>airflow-webserver</code> : Exposes Airflow webserver</p>
+</li>
+</ul>
+</div>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_file_structure_provided_in_the_repository"><a class="anchor" href="#_file_structure_provided_in_the_repository"></a>File structure provided in the repository</h3>
+<div class="listingblock">
+<div class="content">
+<pre>.
+├── docker
+│   ├── scripts
+│   │   └── setup.py                     # Script for installing python dependecies in dag_deps
+│   └── Dockerfile                       # Docker file pointing to Airflow shared image
+├── src                                  # Source folder
+│   ├── dag_deps                         # Folder containing all dependencies of the DAGs
+│   │   └── dag_deps_package             # Example package
+│   │       ├── __init__.py
+│   │       └── crazy_python.py
+│   ├── dags                             # All DAGs should be in this folder
+│   │   ├── hello_dag.py                 # Example DAG using BASH Operator
+│   │   ├── hello_kubernetes_operator.py # Example DAG using Kubernetes Operator
+│   │   └── hello_python_dag.py          # Example DAG using internal and external dependencies
+│   └── requirements.txt                 # File defining all dependencies (with an example inside)
+├── tests                                # Test source folder
+│   ├── dag_deps                         # Folder containing tests of dependecies
+│   │   ├── __init__.py
+│   │   └── test_crazy_python.py         # Test example
+│   └── dags                             # Folder containing tests of DAGs
+│       ├── __init__.py
+│       └── test_dag_integrity.py        # DAG integrity test
+├── Jenkinsfile
+├── build.sh                             # Build script
+├── metadata.yml                         # Component metadata
+├── release-manager.yml                  # Configuration file for the Release Manager
+├── sonar-project.properties
+├── test_all.sh                          # Script for running all tests
+└── test_dag_integrity.sh                # Script for running DAG integrity tests</pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_examples"><a class="anchor" href="#_examples"></a>Examples</h3>
+<div class="paragraph">
+<p>All examples files are simple examples and they are only needed for guiding the first development steps.
+They can be deleted!</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_features"><a class="anchor" href="#_features"></a>Features</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_multi_branching"><a class="anchor" href="#_multi_branching"></a>Multi Branching</h3>
+<div class="paragraph">
+<p>An Airflow cluster will be created in each environment. This allows the DAG development to follow the
+same branching strategy adopted in the whole project</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_cicd"><a class="anchor" href="#_cicd"></a>CI/CD</h3>
+<div class="paragraph">
+<p>All commited code is submitted to a CI/CD pipeline defined in Jenkinsfile. This pipeline executes
+DAG integrity tests, which prevents invalid DAGs to be deployed. It also enables the development of
+all sort of tests needed for development.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_dag_distribution"><a class="anchor" href="#_dag_distribution"></a>DAG Distribution</h3>
+<div class="paragraph">
+<p>The last step of the Jenkins pipeline is to synchorized the recent commited DAGs with the
+Airflow web server and Airflow scheduler</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuration_of_airflow"><a class="anchor" href="#_configuration_of_airflow"></a>Configuration of Airflow</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The configuration of all deployments is documented in <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/airflow-cluster/base-images/airflow">Airflow base-images</a> folder in ods-quickstarters/airflow-cluster</p>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+once the cluster is provisioned in OpenShift you need to change in the <code>airflow-environment</code> configmap any occurence of the following strings:
+- <code>your-openshift-apihost</code>
+- <code>your-openshift-console</code>
+to the right values for your cluster. Finally, redeploy <code>airflow-webserver</code> and <code>airflow-scheduler</code> to apply the configurations.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.1.1/tocbot.min.js"></script>
+<script type="text/javascript">
+  window.antora = window.antora || {}
+  window.antora.basePath = '../../..'
+  window.antora.pagePath = '/opendevstack/3.x/quickstarters/airflow-cluster.html'
+</script>
+<script src="../../../_/js/site.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/search.js"></script>
+<script async src="../../../_/../search-index.js"></script>
+<script src="../../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+<script>
+  tocbot.init( {
+                  tocSelector: '#article-toc',
+                  contentSelector: 'article',
+                  headingSelector: 'h2, h3, h4, h5, h6',
+                  collapseDepth: 6,
+                  positionFixedSelector: '#article-toc',
+                  scrollSmooth: false
+                } );
+  var tocList = document.getElementById( 'article-toc' ).getElementsByClassName( 'toc-list' );
+  if ( tocList && tocList.length > 0 && tocList[0].childNodes.length > 0 ) {
+    document.getElementById( 'article-toc' ).parentNode.classList.remove( 'hidden' );
+  }
+</script>
+  </body>
+</html>
