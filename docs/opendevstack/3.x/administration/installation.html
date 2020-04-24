@@ -529,23 +529,9 @@ Documentation for configuration is missing.
 </div>
 </div>
 <div class="paragraph">
-<p>Afterwards, perform the following manual steps:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Change admin password</p>
-</li>
-<li>
-<p>Lock SonarQube to logged-in users (Administation &gt; Configuration &gt; Security &gt; Force User Authentication).</p>
-</li>
-<li>
-<p>Log in as <code>cd_user</code> and created an auth token (My Account &gt; Security &gt; Generate New Token).</p>
-</li>
-<li>
-<p>As the auth token and the admin password have changed, update your OpenShift configuration repository and the <code>sonarqube-app</code> secret.</p>
-</li>
-</ol>
+<p>This will launch an instance of SonarQube.
+The script will prompt for a new admin password, set it and create an auth token to be used by the Jenkins pipelines.
+At the end, the script will ask you to adjust <code>ods-configuration/ods-core.env</code>, which you need to commit and push before continuing.</p>
 </div>
 </div>
 <div class="sect2">
