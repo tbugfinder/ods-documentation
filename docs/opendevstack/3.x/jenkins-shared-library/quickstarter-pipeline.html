@@ -272,8 +272,454 @@
   <div class="content">
 <article class="doc">
 <h1 class="page">Quickstarter Pipeline</h1>
+<div id="preamble">
+<div class="sectionbody">
 <div class="paragraph">
-<p>TBD</p>
+<p>This pipeline allows to have a minimal <code>Jenkinsfile</code> for a quickstarter by providing all language-agnostic provision aspects. The goal is to duplicate as little as possible between quickstarters.</p>
+</div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+This pipeline is NOT for building components. It is only to be used when you are authoring a (new) quickstarter itself. If you are building a component (an application), please refer to the <a href="component-pipeline.html" class="page">component pipeline</a>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_usage"><a class="anchor" href="#_usage"></a>Usage</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Load the shared library in your <code>Jenkinsfile</code> like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">def odsGitRef = env.ODS_GIT_REF ?: 'production'
+def odsImageTag = env.ODS_IMAGE_TAG ?: 'latest'
+library("ods-jenkins-shared-library@${odsGitRef}")
+
+odsQuickstarterPipeline(
+  imageStreamTag: "cd/jenkins-slave-golang:${odsImageTag}",
+) { context -&gt;
+
+  odsQuickstarterStageCopyFiles(context)
+
+  stage('Write go.mod') {
+    dir(context.targetDir) {
+      sh "go mod init module example.com/${context.projectId}/${context.componentId}'"
+    }
+  }
+
+  odsQuickstarterStageCreateOpenShiftResources(context)
+
+  odsQuickstarterStageRenderJenkinsfile(context)
+
+  odsQuickstarterStageRenderSonarProperties(context)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There are many built-in stages like <code>odsQuickstarterStageCopyFiles</code> that you can use, please see <a href="#_stages">Stages</a> for more details.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pipeline_options"><a class="anchor" href="#_pipeline_options"></a>Pipeline Options</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>odsQuickstgarterPipeline</code> can be customized by passing configuration options like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>odsQuickstgarterPipeline(
+  imageStreamTag: 'cd/jenkins-slave-golang:2.x'
+)</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Available options are:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">image</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Container image to use for the Jenkins agent container. This value is not used when <code>podContainers</code> is set.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">imageStreamTag</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Container image tag of an <code>ImageStream</code> in your OpenShift cluster to use for the Jenkins agent container. This value is not used when <code>podContainers</code> or <code>image</code> is set.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">alwaysPullImage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Determine whether to always pull the container image before each build run. Defaults to <code>true</code>. This value is not used when <code>podContainers</code> is set.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">resourceRequestMemory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How much memory the container requests - defaults to 1Gi. This value is not used when <code>podContainers</code> is set.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">resourceLimitMemory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum memory the container can use - defaults to 2Gi. This value is not used when <code>podContainers</code> is set.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">resourceRequestCpu</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How much CPU the container requests - defaults to 10mi. This value is not used when <code>podContainers</code> is set.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">resourceLimitCpu</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum CPU the container can use - defaults to 300mi. This value is not used when <code>podContainers</code> is set.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">podLabel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pod label, set by default to a random label to avoid caching issues. Set to a stable label if you want to reuse pods across builds.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">podContainers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Custom pod containers to use if the default, automatically configured container is not suitable for your use case (e.g. if you need multiple containers such as app and database). See <a href="#_slave_customization">Slave customization</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">podVolumes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Volumes to make available to the pod.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">podServiceAccount</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Serviceaccount to use when running the pod.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sourceDir</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The source directory of the quickstarter, relative to the root of the repository. Defaults to the directory containing the <code>Jenkinsfile</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">targetDir</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The target directory in which the component files are places. Defaults to <code>out</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pipeline_context"><a class="anchor" href="#_pipeline_context"></a>Pipeline Context</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When you write custom stages inside the closure passed to <code>odsQuickstgarterPipeline</code>, you have access to the <code>context</code>, which is assembled for you on the master node. The <code>context</code> can be influenced by changing the config map passed to <code>odsQuickstgarterPipeline</code>, see <a href="#_pipeline_options">Pipeline Options</a>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>context</code> object contains the following properties:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">jobName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Value of JOB_NAME. It is the name of the project of the build.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">buildNumber</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Value of BUILD_NUMBER. The current build number, such as <code>153</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">buildUrl</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Value of BUILD_URL. The URL where the results of the build can be found (e.g. <code><a href="http://buildserver/jenkins/job/MyJobName/123/" class="bare">http://buildserver/jenkins/job/MyJobName/123/</a></code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">buildTime</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Time of the build, collected when the odsQuickstgarterPipeline starts.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cdUserCredentialsId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Credentials identifier (Credentials are created and named automatically by the OpenShift Jenkins plugin).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sourceDir</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The source directory of the quickstarter, relative to the root of the repository. Defaults to the directory containing the <code>Jenkinsfile</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">targetDir</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The target directory in which the component files are places. Defaults to <code>out</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">projectId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Project ID, e.g. <code>foo</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">componentId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Component ID, e.g. <code>be-auth-service</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">packageName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Package name, retrieved from <code>PACKAGE_NAME</code> build parameter.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">group</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Group, retrieved from <code>GROUP</code> build parameter.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">odsImageTag</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Image tag used for the agent pod, retrieved from <code>ODS_IMAGE_TAG</code> build parameter.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">odsGitRef</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Git ref, retrieved from <code>ODS_GIT_REF</code> build parameter.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">gitUrlHttp</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">URL of the Git repository to push to.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_advanced"><a class="anchor" href="#_advanced"></a>Advanced</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_slave_customization"><a class="anchor" href="#_slave_customization"></a>Slave customization</h3>
+<div class="paragraph">
+<p>The slave used in the pipeline can be customized by adjusting the <code>image</code> (or <code>imageStreamTag</code> to
+use. Further, <code>alwaysPullImage</code> (defaulting to <code>true</code>) can be used to
+determine whether this image should be refreshed on each build.</p>
+</div>
+<div class="paragraph">
+<p>Resource constraints of the container can be changed via <code>resourceRequestCpu</code>,
+<code>resourceLimitCpu</code>, <code>resourceRequestMemory</code> and <code>resourceLimitMemory</code>.</p>
+</div>
+<div class="paragraph">
+<p>The setting <code>podVolumes</code> allows to mount persistent volume claims to the pod
+(the value is passed to the <code>podTemplate</code> call as <code>volumes</code>).</p>
+</div>
+<div class="paragraph">
+<p>To completely control the container(s) within the pod, set <code>podContainers</code>
+(which is passed to the <code>podTemplate</code> call as <code>containers</code>).</p>
+</div>
+<div class="paragraph">
+<p>Configuring of a customized slave container in a <code>Jenkinsfile</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>odsQuickstgarterPipeline(
+  projectId: projectId,
+  podContainers: [
+    containerTemplate(
+      name: 'jnlp', // do not change, see https://github.com/jenkinsci/kubernetes-plugin#constraints
+      image: "${env.DOCKER_REGISTRY}/foo-cd/jenkins-slave-custom",
+      workingDir: '/tmp',
+      resourceRequestCpu: '100m',
+      resourceLimitCpu: '500m',
+      resourceRequestMemory: '2Gi',
+      resourceLimitMemory: '4Gi',
+      alwaysPullImage: true,
+      args: ''
+    )
+  ],
+  ...
+  ) { context -&gt;
+  stageBuild(context)
+  ...
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See the <a href="https://github.com/jenkinsci/kubernetes-plugin#pod-and-container-template-configuration">kubernetes-plugin</a>
+documentation for possible configuration.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_stages"><a class="anchor" href="#_stages"></a>Stages</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Each built-in stage (like <code>odsQuickstarterStageCreateOpenShiftResources</code>) takes two arguments:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>context</code> (required, this is the <a href="#_pipeline_context">pipeline context</a>)</p>
+</li>
+<li>
+<p><code>config</code> (optional, a map of configuration options)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>odsQuickstarterStageCreateOpenShiftResources(
+    context, [directory: 'common/foobar']
+)</pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_odsquickstarterstagecopyfiles"><a class="anchor" href="#_odsquickstarterstagecopyfiles"></a>odsQuickstarterStageCopyFiles</h3>
+<div class="paragraph">
+<p>Copies files from <code>${context.sourceDir}/files</code> to <code>${context.targetDir}</code>.</p>
+</div>
+<div class="paragraph">
+<p>There are no configuration options.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_odsquickstarterstagecreateopenshiftresources"><a class="anchor" href="#_odsquickstarterstagecreateopenshiftresources"></a>odsQuickstarterStageCreateOpenShiftResources</h3>
+<div class="paragraph">
+<p>Uses a set of OpenShift templates to create resources in OpenShift. The resources are created both in <code><strong>-dev</code> and <code></strong>-test</code> namespace. <a href="https://github.com/opendevstack/tailor">Tailor</a> is used to apply the templates, and fed with a parameter file if it exists.</p>
+</div>
+<div class="paragraph">
+<p>Available options:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">directory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Directory in which templates are located, defaults to <code>${context.sourceDir}/openshift</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">envFile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Parameter file to use, defaults to <code>${context.sourceDir}/ocp.env</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">selector</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Label selector to constrain <code>tailor apply</code> to, defaults to <code>app=${context.projectId}-${context.componentId}</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_odsquickstarterstagerenderjenkinsfile"><a class="anchor" href="#_odsquickstarterstagerenderjenkinsfile"></a>odsQuickstarterStageRenderJenkinsfile</h3>
+<div class="paragraph">
+<p>Processes a <code>Jenkinsfile</code> template in the source directory by replacing tokens (<code>@token@</code>) with actual values, and placing the rendered file into the target directory.</p>
+</div>
+<div class="paragraph">
+<p>The handled replacements are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>@project_id@</code> &#8658; <code>context.projectId</code></p>
+</li>
+<li>
+<p><code>@component_id@</code> &#8658; <code>context.componentId</code></p>
+</li>
+<li>
+<p><code>@component_type@</code> &#8658; <code>context.sourceDir</code></p>
+</li>
+<li>
+<p><code>@git_url_http@</code> &#8658; <code>context.gitUrlHttp</code></p>
+</li>
+<li>
+<p><code>@ods_image_tag@</code> &#8658; <code>context.odsImageTag</code></p>
+</li>
+<li>
+<p><code>@ods_git_ref@</code> &#8658; <code>context.odsGitRef</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Available options:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">source</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Jenkinsfile</code> template to use, defaults to <code>Jenkinsfile.template</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">target</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>Jenkinsfile</code> filename, defaults to <code>Jenkinsfile</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_odsquickstarterstagerendersonarproperties"><a class="anchor" href="#_odsquickstarterstagerendersonarproperties"></a>odsQuickstarterStageRenderSonarProperties</h3>
+<div class="paragraph">
+<p>Processes a <code>sonar-project.properties</code> template in the source directory by replacing tokens (<code>@token@</code>) with actual values, and placing the rendered file into the target directory.</p>
+</div>
+<div class="paragraph">
+<p>The handled replacements are:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>@project_id@</code> &#8658; <code>context.projectId</code></p>
+</li>
+<li>
+<p><code>@component_id@</code> &#8658; <code>context.componentId</code></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Available options:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">source</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sonar-project.properties</code> template to use, defaults to <code>sonar-project.properties.template</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">target</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock"><code>sonar-project.properties</code> filename, defaults to <code>sonar-project.properties</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
 </div>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
