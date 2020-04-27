@@ -42,6 +42,9 @@
     <a class="nav-link" href="../jenkins-shared-library/component-pipeline.html">Component Pipeline</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins-shared-library/orchestration-pipeline.html">Orchestration Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../jenkins-shared-library/quickstarter-pipeline.html">Quickstarter Pipeline</a>
   </li>
 </ul>
@@ -477,7 +480,7 @@ oc adm policy add-role-to-group view system:authenticated -n cd</code></pre>
 <p>1.2.x requires Tailor <a href="https://github.com/opendevstack/tailor/releases/tag/v0.10.2">0.10.2</a>.</p>
 </div>
 <div class="sect3">
-<h4 id="_prepare_installation_for_mrodocgen_quickstarter"><a class="anchor" href="#_prepare_installation_for_mrodocgen_quickstarter"></a>Prepare installation for MRO/DocGen quickstarter</h4>
+<h4 id="_prepare_installation_for_release_manager_quickstarter"><a class="anchor" href="#_prepare_installation_for_release_manager_quickstarter"></a>Prepare installation for release manager quickstarter</h4>
 <div class="paragraph">
 <p>The new functionality to create documents via Jenkins requires the presence of an image for the DocGen service. In an upcoming release, this will be integrated nicely. For <code>1.2.x</code>, the image needs to be built once during the update procedure. The recommended way to do this is to build the image in the <code>prov</code> namespaces and then move the image tag into the <code>cd</code> namespace. The first step is to create a pipeline <code>oc -n prov-cd process -f pipeline.yml --param REPO_BASE=&lt;YOUR-REPO-BASE-HERE&gt; --param TRIGGER_SECRET=&lt;YOUR-SECERET-HERE&gt; | oc -n prov-cd create -f -</code>, where <code>pipeline.yml</code> looks like this:</p>
 </div>

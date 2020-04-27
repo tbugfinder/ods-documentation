@@ -43,6 +43,9 @@
     <a class="nav-link" href="component-pipeline.html">Component Pipeline</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="orchestration-pipeline.html">Orchestration Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="quickstarter-pipeline.html">Quickstarter Pipeline</a>
   </li>
 </ul>
@@ -281,6 +284,9 @@
 <ol class="arabic">
 <li>
 <p>A <a href="component-pipeline.html" class="page">pipeline to build components</a>, <code>odsComponentPipeline</code>. This pipeline allows to have a minimal <code>Jenkinsfile</code> in each repository by providing all language-agnostic build aspects. The goal is to duplicate as little as possible between repositories and have an easy way to ship updates to all projects. As a user, you will mostly interface with this pipeline.</p>
+</li>
+<li>
+<p>A <a href="orchestration-pipeline.html" class="page">pipeline to orchestrate releases with multiple components</a>, <code>odsOrchestrationPipeline</code>. It supports the orchestration of multiple repositories into a live application using the <strong>Release Manager</strong> quickstarter.</p>
 </li>
 <li>
 <p>A <a href="quickstarter-pipeline.html" class="page">pipeline to provision quickstarters</a>, <code>odsQuickstarterPipeline</code>. This pipeline is useful for quickstarter authors.</p>
