@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Configuration Guide :: OpenDevStack</title>
     <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/2.x/provisioning-app/configuration.html">
-    <meta name="generator" content="Antora 2.3.0">
+    <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/search.css">
   </head>
@@ -353,7 +353,7 @@ spring.profiles.active=crowd <i class="conum" data-value="2"></i><b>(2)</b></cod
 <div class="sect2">
 <h3 id="_authentication_oauth2_configuration"><a class="anchor" href="#_authentication_oauth2_configuration"></a>Authentication OAUTH2 Configuration</h3>
 <div class="paragraph">
-<p>A default oauth2 configuration is given in spring boot profile <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/resources/application-outh2.properties">application-oauth2.properties</a>. The provided example configuration is appropriate for a locally installed OpenDevStack environment, when the <em>idmanager</em> vagrant box is used.</p>
+<p>An example of plain oauth2 configuration is given in spring boot profile <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/resources/application-outh2.properties">application-oauth2.properties</a>. The provided example configuration is appropriate for a locally installed OpenDevStack environment, when the <em>idmanager</em> vagrant box is used.</p>
 </div>
 <div class="listingblock">
 <div class="title">application-oauth2.properties</div>
@@ -407,6 +407,74 @@ spring.security.oauth2.client.provider.keycloak.user-name-attribute=preferred_us
 <tr>
 <td><i class="conum" data-value="6"></i><b>6</b></td>
 <td>Defines the OAUTH2 <em>client.provider</em> properties. These properties correspond to the <em>well-known</em> OAUTH2-URIs. In case of keycloak, this URIs can be read out using the  <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/http://192.168.56.32:8080/auth/realms/provisioning-app/.well-known/openid-configuration">.well-known/openid-configuration-link</a></td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Alternatively if your identity provider is Azure AD, a configuration example is given in <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/resources/application-azure.properties">application-azure.properties</a></p>
+</div>
+<div class="listingblock">
+<div class="title">application-azure.properties</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">provision.auth.provider=oauth2 <i class="conum" data-value="1"></i><b>(1)</b>
+provision.auth.provider.oauth2.user-info-uri=userInfo <i class="conum" data-value="2"></i><b>(2)</b>
+
+<i class="conum" data-value="3"></i><b>(3)</b>
+# Application ID (also called Client ID)
+spring.security.oauth2.client.registration.azure.client-id=&lt;CLIENT_ID&gt;&gt;
+spring.security.oauth2.client.registration.azure.client-secret=&lt;CLIENT_SECRET&gt;
+
+# It's suggested the logged in user should at least belong to one of the below groups
+# If not, the logged in user will not be able to access any authorization controller rest APIs
+azure.activedirectory.user-group.allowed-groups=opendevstack-administrators,opendevstack-users <i class="conum" data-value="4"></i><b>(4)</b>
+azure.activedirectory.environment=global-v2-graph
+azure.activedirectory.user-group.key=@odata.type
+azure.activedirectory.user-group.value=#microsoft.graph.group
+azure.activedirectory.user-group.object-id-key=id
+azure.activedirectory.tenant-id=&lt;TENANT_ID&gt; <i class="conum" data-value="5"></i><b>(5)</b>
+
+oauth2.user.roles.jsonpointerexpression=/claims/roles <i class="conum" data-value="6"></i><b>(6)</b>
+
+<i class="conum" data-value="7"></i><b>(7)</b>
+idmanager.url=https://login.microsoftonline.com
+idmanager.realm=${spring.security.oauth2.client.registration.azure.client-id}
+
+idmanager.disable-logout-from-idm=true <i class="conum" data-value="8"></i><b>(8)</b></code></pre>
+</div>
+</div>
+<div class="colist arabic">
+<table>
+<tr>
+<td><i class="conum" data-value="1"></i><b>1</b></td>
+<td>configures oauth2 authentication provider</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="2"></i><b>2</b></td>
+<td>configure user info uri</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="3"></i><b>3</b></td>
+<td>registers in spring security azure oauth2 client id and secret</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="4"></i><b>4</b></td>
+<td>configure allow groups</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="5"></i><b>5</b></td>
+<td>register azure ad tenant</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="6"></i><b>6</b></td>
+<td>the application reads the user roles from the claim that is inside the oauth2 ID-Token. The property <em>oauth2.user.roles.jsonpointerexpression</em> is a JsonPointer - Expression that defines a path to the roles that are extracted from the id token. Details regarding pointer expression can be found at <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/https://fasterxml.github.io/jackson-core/javadoc/2.5/com/fasterxml/jackson/core/JsonPointer.html">Jackson-core JsonPointer Documentation</a></td>
+</tr>
+<tr>
+<td><i class="conum" data-value="7"></i><b>7</b></td>
+<td>configure name of the ProvApp realm</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>instruct ProvApp to not logout from identity management provider</td>
 </tr>
 </table>
 </div>

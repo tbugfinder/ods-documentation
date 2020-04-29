@@ -5,7 +5,7 @@
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>OpenDevStack Quickstarters :: OpenDevStack</title>
     <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/2.x/quickstarters/index.html">
-    <meta name="generator" content="Antora 2.3.0">
+    <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/search.css">
   </head>
@@ -285,13 +285,13 @@
 <li><a href="#_backend_quickstarter">Backend Quickstarter</a></li>
 <li><a href="#_frontend_quickstarter">Frontend Quickstarter</a></li>
 <li><a href="#_data_science_quickstarter">Data Science Quickstarter</a></li>
-<li><a href="#_other_quickstarter">Other Quickstarter</a></li>
+<li><a href="#_e2e_test_quickstarter">E2E Test Quickstarter</a></li>
+<li><a href="#_ods_contribution_quickstarter">ODS Contribution Quickstarter</a></li>
 </ul>
 </li>
 <li><a href="#_usage">Usage</a></li>
 <li><a href="#_changing_existing_quickstarters">Changing existing quickstarters</a></li>
 <li><a href="#_contributing_new_quickstarters">Contributing new quickstarters</a></li>
-<li><a href="#_upgrade_an_existing_git_repository_to_opendevstack">Upgrade an existing Git repository to OpenDevStack</a></li>
 </ul>
 </div>
 </div>
@@ -306,9 +306,6 @@
 <h3 id="_backend_quickstarter"><a class="anchor" href="#_backend_quickstarter"></a>Backend Quickstarter</h3>
 <div class="ulist">
 <ul>
-<li>
-<p><a href="docker-plain.html" class="page">Backend - Docker/Plain</a></p>
-</li>
 <li>
 <p><a href="#:be-gateway-nginx.adoc" class="page unresolved">Backend - Gateway/nginx</a></p>
 </li>
@@ -369,16 +366,32 @@
 </div>
 </div>
 <div class="sect2">
-<h3 id="_other_quickstarter"><a class="anchor" href="#_other_quickstarter"></a>Other Quickstarter</h3>
+<h3 id="_e2e_test_quickstarter"><a class="anchor" href="#_e2e_test_quickstarter"></a>E2E Test Quickstarter</h3>
 <div class="ulist">
 <ul>
 <li>
 <p><a href="e2e-cypress.html" class="page">E2E test - Cypress</a></p>
 </li>
+<li>
+<p><a href="e2e-spock-geb.html" class="page">E2E test - Spock / Geb</a></p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_ods_contribution_quickstarter"><a class="anchor" href="#_ods_contribution_quickstarter"></a>ODS Contribution Quickstarter</h3>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="ods-document-gen-svc.html" class="page">ODS Fork - Document Generation Service</a></p>
+</li>
+<li>
+<p><a href="#:ods-provision-app.adoc" class="page unresolved">ODS Fork - Provisioning Applications</a></p>
+</li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Next to those, there is a <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/boilerplates/docker-plain/README.md">"blank" quickstarter</a> allowing to start from scratch, while still providing all the OCP resources / Jenkins / SonarQube conveniences described in the following sections.</p>
+<p>Next to those, there is a <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/boilerplates/docker-plain/README.md">"blank" quickstarter</a> (<a href="docker-plain.html" class="page">Backend - Docker/Plain</a>) allowing to start from scratch, while still providing all the OCP resources / Jenkins / SonarQube conveniences described in the following sections.</p>
 </div>
 <div class="paragraph">
 <p>All quickstarters are used by the <a href="https://github.com/opendevstack/ods-provisioning-app">Provisioning App</a> to create a new component which basically consists of resources in OpenShift (typically <code>BuildConfig</code>, <code>ImageStream</code>, <code>DeploymentConfig</code> and <code>Service</code>) and a BitBucket repository.</p>
@@ -410,8 +423,8 @@
 <div class="sectionbody">
 <div class="paragraph">
 <p>The quickstarters are not used directly, but triggered via the <a href="https://github.com/opendevstack/ods-provisioning-app">provisioning app</a>. Login there to pick
-a quickstarter, give it a name and provision it. The provisioning app delegates the executation to a
-job in Rundeck (defined in YML files in the rundeck folder), which then clones this repository and executes the files (e.g. <code>init.sh</code>) within.</p>
+a quickstarter, give it a name and provision it. The provisioning app delegates the execution to a jenkins job,
+located in each quickstarter folder</p>
 </div>
 </div>
 </div>
@@ -419,36 +432,7 @@ job in Rundeck (defined in YML files in the rundeck folder), which then clones t
 <h2 id="_changing_existing_quickstarters"><a class="anchor" href="#_changing_existing_quickstarters"></a>Changing existing quickstarters</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>As the quickstarters are triggered via Rundeck, the changes need to be on the <code>production</code> branch in order to be "live". As an alternative, you can copy the job in Rundeck and point it to the branch you
-are working on.</p>
-</div>
-<div class="paragraph">
-<p>To test out things locally, you can mimick what Rundeck. The general procedure is:</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Clone the repository</p>
-</li>
-<li>
-<p>Go into a quickstarter folder, e.g. <code>be-node-express</code></p>
-</li>
-<li>
-<p>Run <code>build.sh</code> (if it exists)</p>
-</li>
-<li>
-<p>Run <code>init.sh</code></p>
-</li>
-<li>
-<p>Run <code>renderJenkinsTemplate.sh</code> from the root of the repository</p>
-</li>
-<li>
-<p>Run <code>renderSonarqubeTemplate.sh</code> from the root of the repository</p>
-</li>
-</ol>
-</div>
-<div class="paragraph">
-<p>Note that those scripts might need parameters to work, and often need to be adjusted slightly to work (e.g. removing <code>chown</code>ing to <code>rundeck</code> user).</p>
+<p>tbd</p>
 </div>
 </div>
 </div>
@@ -465,36 +449,6 @@ are working on.</p>
 </li>
 <li>
 <p>for a <code>boilerplace</code>- the <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/ROOT/pages/__QS_BOILERPLATE_TEMPLATE_README.adoc"><code>boilerplate</code></a></p>
-</li>
-</ol>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_upgrade_an_existing_git_repository_to_opendevstack"><a class="anchor" href="#_upgrade_an_existing_git_repository_to_opendevstack"></a>Upgrade an existing Git repository to OpenDevStack</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Push your repository into the newly created bitbucket project (and note the name of the repo &amp; project)</p>
-</div>
-<div class="paragraph">
-<p>Logon to rundeck and pick the <code>common/prepare-continuous-integration</code> rundeck job</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>Pick the technology target thru <code>component type</code> - this will ensure you get the right jenkins file based on the technology you pick - and should fit the technology you have built your application with</p>
-</li>
-<li>
-<p>Provide <code>quickstarter_directory</code> - this can be any filesystem directory - usually in <code>/tmp/&lt;component name&gt;</code> where the git repository will be cloned to</p>
-</li>
-<li>
-<p>Provide <code>project_id</code> - this is the project name you noted in step (0)</p>
-</li>
-<li>
-<p>Provide <code>component_id</code>- this is the name of the component (from step 0) that will be rendered into the jenkins template, and also used as name for the openshift resources</p>
-</li>
-<li>
-<p>Provide <code>git_url_http/ssh</code> - this is the URL to clone and commit to for the job.</p>
 </li>
 </ol>
 </div>

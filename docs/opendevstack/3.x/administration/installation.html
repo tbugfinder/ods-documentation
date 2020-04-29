@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>OpenDevStack Setup :: OpenDevStack</title>
-    <meta name="generator" content="Antora 2.3.0">
+    <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/search.css">
   </head>
@@ -505,6 +505,14 @@ If you are on Linux, <code>oc cluster up</code> will do the trick.
 <pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">make install-nexus</code></pre>
 </div>
 </div>
+<div class="paragraph">
+<p>Afterwards, run the initial configuration:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">make configure-nexus</code></pre>
+</div>
+</div>
 <div class="admonitionblock warning">
 <table>
 <tr>
@@ -512,7 +520,7 @@ If you are on Linux, <code>oc cluster up</code> will do the trick.
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-Documentation for configuration is missing.
+The <code>configure-nexus</code> target is not idempotent yet, so it cannot be used for upgrading!
 </td>
 </tr>
 </table>
