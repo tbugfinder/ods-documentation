@@ -10,25 +10,12 @@ Antora has to be installed according to the https://docs.antora.org/antora/2.0/i
 #### OpenDevStack Repositories
 The following OpenDevStack Repositories have to be cloned and stored beside the _ods-documentation_ repository:
 
-- opendevstack.github.io
-- ods-core
-- ods-jenkins-shared-library
-- ods-provisioning-app
-- ods-project-quickstarters
-- ods-quickstarters
-- ods-docs-ui
-
-Take care that _../ods-docs-ui/build/ui-bundle.zip_ has been build before. If you are not already
-familar with _ods-docs-ui_ project, a closer look at the documentation at
-https://github.com/opendevstack/ods-docs-ui/blob/ods-docs-ui/README.adoc
-and the following hint may help to create the requiered zip-file:
-
-    cd ../ods-docs-ui
-    # compile
-    npm install
-    # create file ui-bundle.zip
-    gulp bundle
-
+- `opendevstack.github.io`
+- `ods-core`
+- `ods-jenkins-shared-library`
+- `ods-provisioning-app`
+- `ods-project-quickstarters`
+- `ods-quickstarters`
 
 #### PlantUML-Server
 
@@ -57,36 +44,51 @@ Since PlantUML is a simple web application, you can even go the classic way and 
 and deploy it to your java application server.
 
 
-### Run the build locally
-The documentation build is defined by a playbook.
-There are 3 different playbook versions with different behavior.
+### Run the documentation locally
 
-#### Fetch content from github
+The documentation build is defined by a playbook. There are 3 different playbook versions with different behavior:
+
+#### `site.yml`
+
+This fetches the different referenced repositories from GitHub.
+
   antora generate site.yml
 
-This fetches the different referenced repositories from github and caches them locally.
+#### `site-workspace.yml`
 
-#### Use local repositories
-If you want to preview your local changes, you can use
+To preview your local changes, just building documentation from `HEAD`.
 
    antora generate site-workspace.yml
 
-or
+The output will be written to `docs_local`, which is ignored by git. This directory is only for local preview and verification.
+
+#### `site-workspace-full.yml`
+
+To preview your local changes, taking into account all branches.
 
    antora generate site-workspace-full.yml
 
-The difference is that the latter will take into account all branches, the first option will only build the last branch.
-Both assume that all ods projects are located side-by-side.
+The output will be written to `docs_local`, which is ignored by git. This directory is only for local preview and verification.
 
-Both playbooks _site-workspace.yml_ and _site-workspace-full.yml_ are configured to write the outout
-in the local directory _docs_local_, which is ignored by git. This directory is only for local
-preview and verification.
+### Customize the UI
 
+By defualt, the playbooks reference a UI bundle from https://github.com/opendevstack/ods-docs-ui/releases. You can also clone that repo locally, customize the UI, build a new UI bundle and reference that when running `antora`.
 
+To build a UI bundle, read the documentation at
+https://github.com/opendevstack/ods-docs-ui/blob/ods-docs-ui/README.adoc. Example:
 
-## Building on travis
+    cd ../ods-docs-ui
+    # Compile
+    npm install
+    # Create file ui-bundle.zip
+    gulp bundle
+    # Reference it
+    cd ../ods-documentation
+    antora generate site-workspace.yml --ui-bundle-url ../ods-docs-ui/build/ui-bundle.zip
 
-Whenever this repository is pushed to github, it triggers a travis build,
+## Building on Travis
+
+Whenever this repository is pushed to GitHub, it triggers a travis build,
 that regenerates the antora documentation based on the `site.yml` playbook. The
 updated content in directory docs will be pushed back to the githup repository during the build.
 
