@@ -15,12 +15,6 @@ content:
     - url: ../ods-quickstarters
       start_path: docs
       branches: HEAD
-asciidoc:
-  extensions:
-    - asciidoctor-plantuml
-  attributes:
-    plantuml-server-url: 'http://localhost:9080'
-    plantuml-fetch-diagram: true
 output:
   dir: ./docs_local
 ui:

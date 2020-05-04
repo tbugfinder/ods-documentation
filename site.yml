@@ -32,12 +32,6 @@ content:
       branches:
       - master
       - 2.x
-asciidoc:
-  extensions:
-    - asciidoctor-plantuml
-  attributes:
-    plantuml-server-url: 'http://www.plantuml.com/plantuml'
-    plantuml-fetch-diagram: true
 output:
   dir: ./docs
 ui:
