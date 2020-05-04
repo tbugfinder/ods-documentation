@@ -109,6 +109,36 @@
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="release-manager.html">Release Manager</a>
   </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Jenkins Slave Images</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins/slave-base.html">Base Image</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-slaves/airflow.html">Airflow</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-slaves/golang.html">Go</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-slaves/maven.html">Maven</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-slaves/nodejs10-angular.html">Nodejs10 Angular</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-slaves/python.html">Python</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-slaves/scala.html">Scala</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="authoring-quickstarters.html">Authoring Quickstarters</a>
+  </li>
 </ul>
   </li>
 </ul>
@@ -280,7 +310,8 @@
 <div id="toc" class="toc">
 <div id="toctitle" class="title">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_overview">Overview</a>
+<li><a href="#_overview">Overview</a></li>
+<li><a href="#_available_official_quickstarters">Available, official quickstarters</a>
 <ul class="sectlevel2">
 <li><a href="#_backend_quickstarter">Backend Quickstarter</a></li>
 <li><a href="#_frontend_quickstarter">Frontend Quickstarter</a></li>
@@ -289,9 +320,7 @@
 <li><a href="#_ods_contribution_quickstarter">ODS Contribution Quickstarter</a></li>
 </ul>
 </li>
-<li><a href="#_usage">Usage</a></li>
-<li><a href="#_changing_existing_quickstarters">Changing existing quickstarters</a></li>
-<li><a href="#_contributing_new_quickstarters">Contributing new quickstarters</a></li>
+<li><a href="#_authoring_quickstarters">Authoring quickstarters</a></li>
 </ul>
 </div>
 </div>
@@ -300,23 +329,51 @@
 <h2 id="_overview"><a class="anchor" href="#_overview"></a>Overview</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This repository contains quickstarters, which are basically templates that help to start out with a component quickly. The available quickstarters are:</p>
+<p>Quickstarters are basically templates that help to start out with a component quickly.
+A quickstarter provides a specific technology, potentially with a framework setup already, such as Java with Springboot in the case of the <code>be-java-springboot</code> quickstarter. Compared to starting out from scratch, using a quickstarter typically helps by:</p>
 </div>
+<div class="ulist">
+<ul>
+<li>
+<p>setting up a repository in Bitbucket with webhooks to trigger Jenkins builds</p>
+</li>
+<li>
+<p>shipping a <code>Jenkinsfile</code> with a pipeline that build and deploys the component (delegating most of the work to the <a href="../jenkins-shared-library/component-pipeline.html" class="page">shared library</a>)</p>
+</li>
+<li>
+<p>integrating with SonarQube out-of-the-box</p>
+</li>
+<li>
+<p>setting up OpenShift resources to build and run the component</p>
+</li>
+<li>
+<p>creating a boilerplate application with one or more sample endpoints</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Quickstarters are used from the <a href="https://github.com/opendevstack/ods-provisioning-app">Provisioning App</a>, which allows to add a component to an existing project by running a quickstarter from the configured list of available quickstarters. This list can contain quickstarters from the official repository, <a href="https://github.com/opendevstack/ods-quickstarters">ods-quickstarters</a>, or from some other repository such as internally hosted ones in your Bitbucket instance.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_available_official_quickstarters"><a class="anchor" href="#_available_official_quickstarters"></a>Available, official quickstarters</h2>
+<div class="sectionbody">
 <div class="sect2">
 <h3 id="_backend_quickstarter"><a class="anchor" href="#_backend_quickstarter"></a>Backend Quickstarter</h3>
 <div class="ulist">
 <ul>
 <li>
-<p><a href="#:be-gateway-nginx.adoc" class="page unresolved">Backend - Gateway/nginx</a></p>
+<p><a href="#:be-gateway-nginx.adoc" class="page unresolved">Backend - Gateway/Nginx</a></p>
 </li>
 <li>
-<p><a href="be-golang-plain.html" class="page">Backend - Golang</a></p>
+<p><a href="be-golang-plain.html" class="page">Backend - Go</a></p>
 </li>
 <li>
-<p><a href="be-java-springboot.html" class="page">Backend - SpringBoot/Java</a></p>
+<p><a href="be-java-springboot.html" class="page">Backend - Java/SpringBoot</a></p>
 </li>
 <li>
-<p><a href="be-typescript-express.html" class="page">Backend - NodeJS/Express</a></p>
+<p><a href="be-typescript-express.html" class="page">Backend - TypeScript/Express</a></p>
 </li>
 <li>
 <p><a href="be-python-flask.html" class="page">Backend - Python/Flask</a></p>
@@ -386,71 +443,21 @@
 <p><a href="ods-document-gen-svc.html" class="page">ODS Fork - Document Generation Service</a></p>
 </li>
 <li>
-<p><a href="#:ods-provision-app.adoc" class="page unresolved">ODS Fork - Provisioning Applications</a></p>
+<p><a href="ods-provisioning-app.html" class="page">ODS Fork - Provisioning Application</a></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Next to those, there is a <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/boilerplates/docker-plain/README.md">"blank" quickstarter</a> (<a href="docker-plain.html" class="page">Backend - Docker/Plain</a>) allowing to start from scratch, while still providing all the OCP resources / Jenkins / SonarQube conveniences described in the following sections.</p>
-</div>
-<div class="paragraph">
-<p>All quickstarters are used by the <a href="https://github.com/opendevstack/ods-provisioning-app">Provisioning App</a> to create a new component which basically consists of resources in OpenShift (typically <code>BuildConfig</code>, <code>ImageStream</code>, <code>DeploymentConfig</code> and <code>Service</code>) and a BitBucket repository.</p>
-</div>
-<div class="paragraph">
-<p>This repository in BitBucket will contain:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>Some boilerplate code</p>
-</li>
-<li>
-<p>A <code>Jenkinsfile</code> describing how to build the component, delegating most of the work to the <a href="#ods-jenkins-shared-library:ROOT:index.adoc" class="page unresolved">shared library</a></p>
-</li>
-<li>
-<p>A <code>sonar-project.properties</code> file configuring how the source code is analyzed by SonarQube</p>
-</li>
-</ul>
-</div>
-<div class="paragraph">
-<p>Next to those, each quickstarter can also provide its own <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-slaves">Jenkins slave images</a>.</p>
+<p>Next to those, there is a <a href="docker-plain.html" class="page">"blank" quickstarter (Docker/Plain)</a> allowing to start from scratch, while still providing all the OCP resources / Jenkins / SonarQube conveniences.</p>
 </div>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_usage"><a class="anchor" href="#_usage"></a>Usage</h2>
+<h2 id="_authoring_quickstarters"><a class="anchor" href="#_authoring_quickstarters"></a>Authoring quickstarters</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The quickstarters are not used directly, but triggered via the <a href="https://github.com/opendevstack/ods-provisioning-app">provisioning app</a>. Login there to pick
-a quickstarter, give it a name and provision it. The provisioning app delegates the execution to a jenkins job,
-located in each quickstarter folder</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_changing_existing_quickstarters"><a class="anchor" href="#_changing_existing_quickstarters"></a>Changing existing quickstarters</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>tbd</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_contributing_new_quickstarters"><a class="anchor" href="#_contributing_new_quickstarters"></a>Contributing new quickstarters</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>If you contribute a new quickstarter / boilerplate - please use the provided <code>README.adoc</code> templates</p>
-</div>
-<div class="olist arabic">
-<ol class="arabic">
-<li>
-<p>for a <code>jenkins-slave</code> - the <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/ROOT/pages/__JENKINS_SLAVE_TEMPLATE_README.adoc"><code>slave template</code></a></p>
-</li>
-<li>
-<p>for a <code>boilerplace</code>- the <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/ROOT/pages/__QS_BOILERPLATE_TEMPLATE_README.adoc"><code>boilerplate</code></a></p>
-</li>
-</ol>
+<p>As mentioned above, it is possible to supply your own quickstarters. Pleasee see the <a href="authoring-quickstarters.html" class="page">authoring quickstarters</a> guide on how to make completely new quickstarters or how to adapt existing quickstarters to your needs.</p>
 </div>
 </div>
 </div>
