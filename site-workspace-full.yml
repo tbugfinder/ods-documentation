@@ -32,12 +32,6 @@ content:
         - 1.2.x
         - 2.x
         - master
-asciidoc:
-  extensions:
-    - asciidoctor-plantuml
-  attributes:
-    plantuml-server-url: 'http://localhost:9080'
-    plantuml-fetch-diagram: true
 output:
   dir: ./docs_local
 ui:
