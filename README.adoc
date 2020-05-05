@@ -17,14 +17,6 @@ The following OpenDevStack Repositories have to be cloned and stored beside the 
 
 ### Run the documentation locally
 
-The documentation build is defined by a playbook. There are 3 different playbook versions with different behavior:
-
-#### `site.yml`
-
-This fetches the different referenced repositories from GitHub.
-
-  antora generate site.yml
-
 #### `site-workspace.yml`
 
 To preview your local changes, just building documentation from `HEAD`.
@@ -48,7 +40,7 @@ Note that for this playbook, you will also need the following repositories local
 
 ### Customize the UI
 
-By defualt, the playbooks reference a UI bundle from https://github.com/opendevstack/ods-docs-ui/releases. You can also clone that repo locally, customize the UI, build a new UI bundle and reference that when running `antora`.
+By default, the playbooks reference a UI bundle from https://github.com/opendevstack/ods-docs-ui/releases. You can also clone that repo locally, customize the UI, build a new UI bundle and reference that when running `antora`.
 
 To build a UI bundle, read the documentation at
 https://github.com/opendevstack/ods-docs-ui/blob/ods-docs-ui/README.adoc. Example:
@@ -65,7 +57,7 @@ https://github.com/opendevstack/ods-docs-ui/blob/ods-docs-ui/README.adoc. Exampl
 ## Building on Travis
 
 Whenever this repository is pushed to GitHub, it triggers a travis build,
-that regenerates the antora documentation based on the `site.yml` playbook. The
-updated content in directory docs will be pushed back to the githup repository during the build.
+that regenerates the antora documentation based on the `site.yml` playbook (which fetches the different referenced repositories from GitHub). The
+updated content in directory `docs` will be pushed back to the githup repository during the build.
 
 See xref:.travis.yml[.travis.yml] for details.
