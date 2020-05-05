@@ -4,16 +4,8 @@
 
 ### Prerequisites
 
-#### Antora
-Antora (2.2) has to be installed according to the https://docs.antora.org/antora/2.2/install/install-antora/[Install Antora] guide.
-
-#### OpenDevStack Repositories
-The following OpenDevStack Repositories have to be cloned and stored beside the _ods-documentation_ repository:
-
-- `ods-core`
-- `ods-jenkins-shared-library`
-- `ods-provisioning-app`
-- `ods-quickstarters`
+- Antora (2.2) has to be installed according to the https://docs.antora.org/antora/2.2/install/install-antora/[Install Antora] guide.
+- The following OpenDevStack repositories have to be cloned and stored beside the _ods-documentation_ repository: `ods-core`, `ods-jenkins-shared-library`, `ods-provisioning-app` and `ods-quickstarters`.
 
 ### Run the documentation locally
 
