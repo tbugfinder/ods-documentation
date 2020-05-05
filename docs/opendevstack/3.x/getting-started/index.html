@@ -309,46 +309,29 @@
 <h2 id="_what_is_opendevstack"><a class="anchor" href="#_what_is_opendevstack"></a>What is OpenDevStack?</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>When we started with <a href="https://www.openshift.com/">Redhat&#8217;s OpenShift</a> we were blown away by the 100s of possibilities to use it, while there was not anything along "This is how you make it work for your org".</p>
+<p>When we started with <a href="https://www.openshift.com/">RedHat&#8217;s OpenShift</a> we were blown away by the 100s of possibilities to use it, but there was not anything along the lines of "This is how you make it work for your org". Its catalog provides items for almost everything - yet what we wanted is to enable people to quickly introduce Continous Delivery and standardized technology archetypes. We call this lean, empowered governance.</p>
 </div>
 <div class="paragraph">
-<p>Its catalog provides items for almost everything - yet what we wanted is to enable people to quickly introduce
-Continous delivery and standardized technology archetypes. We call this lean, empowered governance.</p>
-</div>
-<div class="paragraph">
-<p>So what does OpenDevStack now provide?</p>
+<p>So what does OpenDevStack provide?</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>A set of images to get the CI infrastructure running, called <a href="https://github.com/opendevstack/ods-core">ods-core</a>. It also contains <a href="https://github.com/opendevstack/ods-core/tree/master/infrastructure-setup">ansible runbooks</a> to get the atlassian suite going.</p>
+<p>Everyting you need for CI infrastructure (Jenkins images, SonarQube, Nexus).</p>
 </li>
 <li>
-<p>A shared <a href="https://github.com/opendevstack/ods-jenkins-shared-library">jenkins library</a> that harmonizes the way you build, test, govern and deploy.</p>
+<p>Ansible playbooks to install the Atlassian suite (Jira, Bitbucket, Confluence, Crowd).</p>
 </li>
 <li>
-<p>A set of <a href="https://github.com/opendevstack/ods-project-quickstarters">technology quickstarters</a> that already provide the complete CI/CD integration, w/o anything to worry about for the engineer</p>
+<p>A shared <a href="../jenkins-shared-library/index.html" class="page">jenkins library</a> that harmonizes the way you build, test, govern and deploy.</p>
 </li>
 <li>
-<p>A small <a href="https://github.com/opendevstack/ods-provisioning-app">provision application</a> that gives you one place to start, no matter if you want to start a new initiative, or enhance and existing one.</p>
+<p>A set of <a href="../quickstarters/index.html" class="page">technology quickstarters</a> that provide complete CI/CD integration, w/o anything to worry about for the engineer.</p>
+</li>
+<li>
+<p>A small <a href="../provisioning-app/index.html" class="page">provisioning application</a> that gives you one place to start, no matter if you want to start a new project, or enhance an existing one with a quickstarter.</p>
 </li>
 </ul>
-</div>
-<div class="sect2">
-<h3 id="_parts_of_opendevstack"><a class="anchor" href="#_parts_of_opendevstack"></a>Parts of OpenDevStack</h3>
-<div class="imageblock">
-<div class="content">
-<img src="_images/documentation/opendevstack/opendevstack_parts.png" alt="OpenDevStackParts">
-</div>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_journey_from_commit_to_deployment"><a class="anchor" href="#_journey_from_commit_to_deployment"></a>Journey: From Commit To Deployment</h3>
-<div class="imageblock">
-<div class="content">
-<img src="_images/documentation/opendevstack/from_commit_to_deployment.png" alt="OpenDevStack Journey From Commit to Deployment">
-</div>
-</div>
 </div>
 </div>
 </div>
@@ -356,36 +339,137 @@ Continous delivery and standardized technology archetypes. We call this lean, em
 <h2 id="_using_opendevstack"><a class="anchor" href="#_using_opendevstack"></a>Using OpenDevStack</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_create_an_integrated_opendevstack_project"><a class="anchor" href="#_create_an_integrated_opendevstack_project"></a>Create an integrated OpenDevStack project</h3>
+<h3 id="_create_a_new_project"><a class="anchor" href="#_create_a_new_project"></a>Create a new project</h3>
 <div class="paragraph">
-<p>Trigger project creation thru the <a href="https://github.com/opendevstack/ods-provisioning-app/">provisioning application</a> to get a new project. The web GUI of the provisioning app is located at <code><a href="https://prov-app-test.&lt;app-domain-of-your-openshift-cluster&gt" class="bare">https://prov-app-test.&lt;app-domain-of-your-openshift-cluster&gt</a>;</code>.</p>
+<p>Trigger project creation through the <a href="../provisioning-app/index.html" class="page">provisioning application</a> to get a new project. The web GUI of the provisioning app is located at <code><a href="https://prov-app-ods.example.com" class="bare">https://prov-app-ods.example.com</a></code>.</p>
 </div>
 <div class="paragraph">
-<p>When <code>openshiftproject == true</code>, this will also create OpenShift projects, namely <code>&lt;project-KEY&gt;-dev</code> and <code>&lt;project-KEY&gt;-test</code>.
-A <a href="https://github.com/opendevstack/ods-core">Jenkins deployment</a> will be created in the <code>&lt;project-KEY&gt;-cd</code> project to allow each project full freedom of build management. This deployment is based on <a href="https://github.com/opendevstack/ods-core">common jenkins images</a> from the <code>CD</code> namespace.</p>
+<p>When "Create Openshift Project" is checked, this will also create OpenShift projects, namely <code>&lt;project-key&gt;-dev</code> and <code>&lt;project-key&gt;-test</code>.
+A Jenkins deployment will be created in the <code>&lt;project-key&gt;-cd</code> project to allow each project full freedom of build management. This deployment is based on a common Jenkins image from the central ODS namespace.</p>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_pull_a_quickstarter_into_your_project"><a class="anchor" href="#_pull_a_quickstarter_into_your_project"></a>Pull a quickstarter into your project</h3>
+<h3 id="_create_a_new_component_within_a_project_using_a_quickstarter"><a class="anchor" href="#_create_a_new_component_within_a_project_using_a_quickstarter"></a>Create a new component within a project (using a quickstarter)</h3>
 <div class="paragraph">
-<p>Open the web GUI of the provisioning app <code><a href="https://prov-app-test.&lt;app-domain-of-your-openshift-cluster&gt" class="bare">https://prov-app-test.&lt;app-domain-of-your-openshift-cluster&gt</a>;</code>.
-This time, rather than <code>new initiative</code>, pick <code>modify</code> and select your project. Pick a matching <a href="https://github.com/opendevstack/ods-project-quickstarters">quickstarter</a>. If no framework fits to your needs, choose the
- <a href="https://github.com/opendevstack/ods-project-quickstarters/blob/master/boilerplates/be-docker-plain/README.md">be-plain-docker quickstarter</a>.</p>
+<p>Open the web GUI of the provisioning app <code><a href="https://prov-app-ods.example.com" class="bare">https://prov-app-ods.example.com</a></code>.
+Select your project, then choose a <a href="../quickstarters/index.html" class="page">quickstarter</a>. If no framework fits to your needs, choose the <a href="../quickstarters/docker-plain.html" class="page">docker-plain quickstarter</a>.</p>
+</div>
+<div class="paragraph">
+<p>After provisioning the quickstarter, you&#8217;ll have a new repository in your BitBucket project with the boilerplate of the component. From that, a Jenkins job is triggered automatically (via a webhook setup in Bitbucket) which builds and deploys the boilerplate application into the <code>&lt;project-key&gt;-dev</code> project.</p>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_parts_of_opendevstack"><a class="anchor" href="#_parts_of_opendevstack"></a>Parts of OpenDevStack</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/opendevstack/opendevstack_parts.png" alt="OpenDevStackParts">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_journey_from_commit_to_deployment"><a class="anchor" href="#_journey_from_commit_to_deployment"></a>Journey: From Commit To Deployment</h2>
+<div class="sectionbody">
+<div class="imageblock">
+<div class="content">
+<img src="_images/documentation/opendevstack/from_commit_to_deployment.png" alt="OpenDevStack Journey From Commit to Deployment">
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_versioning"><a class="anchor" href="#_versioning"></a>Versioning</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>OpenDevStack is released roughly every half year. Each release is identified by a "major version" such as <code>2</code>, <code>3</code>, <code>4</code> and so on. As a consumer of OpenDevStack, you can either:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>point to <code>master</code> to follow the cutting edge</p>
+</li>
+<li>
+<p>point to <code>2.x</code>, <code>3.x</code>, etc. to stay on a major version, but get bug fixes</p>
+</li>
+<li>
+<p>point to <code>v2.0</code>, <code>v3.0</code>, etc. to pin an exact version</p>
+</li>
+<li>
+<p>use a custom branch / tag such as <code>2.acme</code> or <code>3.custom</code> etc. to run ODS with customizations</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_roadmap"><a class="anchor" href="#_roadmap"></a>Roadmap</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Each version is tracked as a <a href="https://github.com/orgs/opendevstack/projects">GitHub project</a>. The current major version is 2, the next one will be 3.</p>
+</div>
+<div class="sect2">
+<h3 id="_3_to_be_released_june_2020"><a class="anchor" href="#_3_to_be_released_june_2020"></a><a href="https://github.com/orgs/opendevstack/projects/9">3</a> (to be released June 2020)</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Rename central namespace to <code>ODS</code>, and extend with running provisioning app</p>
+</li>
+<li>
+<p>Install provisioning app and document generation service from pre-built images</p>
+</li>
+<li>
+<p>Quickstarter pipeline</p>
+</li>
+<li>
+<p>Merge of MRO (now: orchestration) pipeline into general shared pipeline</p>
+</li>
+<li>
+<p>Automation of SonarQube and Nexus setup</p>
+</li>
+<li>
+<p>Decorate Bitbucket pull requests with SonarQube analysis</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_result_after_quickstarted"><a class="anchor" href="#_result_after_quickstarted"></a>Result after quickstarted</h3>
-<div class="paragraph">
-<p>Now you got the <a href="https://github.com/opendevstack/ods-project-quickstarters/tree/master/boilerplates">boilerplate</a> of the picked quickstarter in your BitBucket project in its own repository, which the <a href="https://github.com/opendevstack/ods-provisioning-app/">provisioning app</a> created. Also, CI/CD is already working - you can verify this as the boilerplate application runs in the <code>&lt;project-KEY&gt;-test</code> project. This was deployed through a <a href="https://github.com/opendevstack/ods-jenkins-shared-library">Jenkins pipeline</a>, which is triggered via <a href="https://github.com/opendevstack/ods-core/tree/master/jenkins/webhook-proxy">webhooks</a> from BitBucket.</p>
+<h3 id="_2_december_2019"><a class="anchor" href="#_2_december_2019"></a><a href="https://github.com/orgs/opendevstack/projects/6">2</a> (December 2019)</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>Removal of Rundeck (replace with Jenkins jobs)</p>
+</li>
+<li>
+<p>New quickstarter concept (multiple repo support)</p>
+</li>
+<li>
+<p>Project specific technical users</p>
+</li>
+<li>
+<p>CPU and memory quota support</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">
-<h3 id="_checking_in_my_app_code"><a class="anchor" href="#_checking_in_my_app_code"></a>Checking in my app code</h3>
+<h3 id="_1_2_october_2019_using_old_versioning_scheme"><a class="anchor" href="#_1_2_october_2019_using_old_versioning_scheme"></a><a href="https://github.com/orgs/opendevstack/projects/8">1.2</a> (October 2019, using old versioning scheme)</h3>
 <div class="paragraph">
-<p>Create a branch in the newly created repository - once pushed this will deploy your application to the <code>&lt;project-KEY&gt;-dev</code> project. After merging your branch to <code>master</code>, the update is avilable in the <code>&lt;project-KEY&gt;-test</code> project.</p>
+<p>Initial version of document generation service and MRO pipeline</p>
 </div>
+</div>
+<div class="sect2">
+<h3 id="_1_1_june_2019_using_old_versioning_scheme"><a class="anchor" href="#_1_1_june_2019_using_old_versioning_scheme"></a><a href="https://github.com/orgs/opendevstack/projects/4">1.1</a> (June 2019, using old versioning scheme)</h3>
 <div class="paragraph">
-<p>The branch-to-environment mapping is defined in the <code>Jenkinsfile</code>, used by the <a href="https://github.com/opendevstack/ods-jenkins-shared-library">jenkins shared library</a>, and can be tailored to your needs.</p>
+<p>Incremental improvements.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_0_november_2018_using_old_versioning_scheme"><a class="anchor" href="#_1_0_november_2018_using_old_versioning_scheme"></a><a href="https://github.com/orgs/opendevstack/projects/3">1.0</a> (November 2018, using old versioning scheme)</h3>
+<div class="paragraph">
+<p>Initial release.</p>
 </div>
 </div>
 </div>

@@ -715,7 +715,7 @@ determine whether this image should be refreshed on each build.</p>
 <div class="listingblock">
 <div class="content">
 <pre>odsComponentPipeline(
-  projectId: projectId,
+  branchToEnvironmentMapping: [:],
   podContainers: [
     containerTemplate(
       name: 'jnlp', // do not change, see https://github.com/jenkinsci/kubernetes-plugin#constraints
