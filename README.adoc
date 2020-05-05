@@ -5,11 +5,9 @@
 ### Prerequisites
 
 - Antora (2.2) has to be installed according to the https://docs.antora.org/antora/2.2/install/install-antora/[Install Antora] guide.
-- The following OpenDevStack repositories have to be cloned and stored beside the _ods-documentation_ repository: `ods-core`, `ods-jenkins-shared-library`, `ods-provisioning-app` and `ods-quickstarters`.
+- The following OpenDevStack repositories have to be cloned and stored beside the `ods-documentation` repository: `ods-core`, `ods-jenkins-shared-library`, `ods-provisioning-app` and `ods-quickstarters`.
 
-### Run the documentation locally
-
-#### `site-workspace.yml`
+### Generate docs using `site-workspace.yml`
 
 To preview your local changes, just building documentation from `HEAD`.
 
@@ -17,7 +15,7 @@ To preview your local changes, just building documentation from `HEAD`.
 
 The output will be written to `docs_local`, which is ignored by git. This directory is only for local preview and verification.
 
-#### `site-workspace-full.yml`
+### Generate docs using `site-workspace-full.yml`
 
 To preview your local changes, taking into account all branches.
 
