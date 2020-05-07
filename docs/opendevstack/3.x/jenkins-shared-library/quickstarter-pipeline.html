@@ -332,12 +332,13 @@ This pipeline is NOT for building components. It is only to be used when you are
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">def odsGitRef = env.ODS_GIT_REF ?: 'production'
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">def odsNamespace = env.ODS_NAMESPACE ?: 'ods'
+def odsGitRef = env.ODS_GIT_REF ?: 'master'
 def odsImageTag = env.ODS_IMAGE_TAG ?: 'latest'
 library("ods-jenkins-shared-library@${odsGitRef}")
 
 odsQuickstarterPipeline(
-  imageStreamTag: "cd/jenkins-slave-golang:${odsImageTag}",
+  imageStreamTag: "${odsNamespace}/jenkins-slave-golang:${odsImageTag}",
 ) { context -&gt;
 
   odsQuickstarterStageCopyFiles(context)
@@ -370,7 +371,7 @@ odsQuickstarterPipeline(
 <div class="listingblock">
 <div class="content">
 <pre>odsQuickstgarterPipeline(
-  imageStreamTag: 'cd/jenkins-slave-golang:2.x'
+  imageStreamTag: 'ods/jenkins-slave-golang:2.x'
 )</pre>
 </div>
 </div>
@@ -509,6 +510,10 @@ odsQuickstarterPipeline(
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">group</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Group, retrieved from <code>GROUP</code> build parameter.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">odsNamespace</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Central namespace where images are located, retrieved from <code>ODS_NAMESPACE</code> build parameter.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">odsImageTag</p></td>

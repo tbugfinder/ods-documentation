@@ -319,8 +319,7 @@ installation of it.</p>
 <div class="paragraph">
 <p>Updating repositories means that new refs from repositories under
 <code>github.com/opendevstack</code> are pushed into the repositories in your BitBucket
-instance. Note that only updates to the <code>production</code> branch in BitBucket will
-have any effect on the OpenDevStack installation.</p>
+instance.</p>
 </div>
 <div class="paragraph">
 <p>First, you need a clone of each repository in BitBucket which should be updated
@@ -355,8 +354,8 @@ git push origin 2.x</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>If your OpenDevStack installation is based on the <code>production</code> branch, then you
-need to create a pull request on BitBucket from <code>2.x</code> into <code>production</code> now.</p>
+<p>If your OpenDevStack installation is based on a custom branch (such as <code>2.acme</code>), then you
+need to create a pull request on BitBucket from <code>2.x</code> into that custom branch now.</p>
 </div>
 <div class="paragraph">
 <p>Now that the repositories are updated, you also need to modify the images and the
