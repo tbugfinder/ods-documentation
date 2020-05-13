@@ -464,12 +464,13 @@ azure.activedirectory.user-group.object-id-key=id
 azure.activedirectory.tenant-id=&lt;TENANT_ID&gt; <i class="conum" data-value="5"></i><b>(5)</b>
 
 oauth2.user.roles.jsonpointerexpression=/claims/roles <i class="conum" data-value="6"></i><b>(6)</b>
+oauth2.user.use-email-claim-as-username=true <i class="conum" data-value="7"></i><b>(7)</b>
 
-<i class="conum" data-value="7"></i><b>(7)</b>
+<i class="conum" data-value="8"></i><b>(8)</b>
 idmanager.url=https://login.microsoftonline.com
 idmanager.realm=${spring.security.oauth2.client.registration.azure.client-id}
 
-idmanager.disable-logout-from-idm=true <i class="conum" data-value="8"></i><b>(8)</b></code></pre>
+idmanager.disable-logout-from-idm=true <i class="conum" data-value="9"></i><b>(9)</b></code></pre>
 </div>
 </div>
 <div class="colist arabic">
@@ -500,10 +501,14 @@ idmanager.disable-logout-from-idm=true <i class="conum" data-value="8"></i><b>(8
 </tr>
 <tr>
 <td><i class="conum" data-value="7"></i><b>7</b></td>
-<td>configure name of the ProvApp realm</td>
+<td>configure to use email claim as username</td>
 </tr>
 <tr>
 <td><i class="conum" data-value="8"></i><b>8</b></td>
+<td>configure name of the ProvApp realm</td>
+</tr>
+<tr>
+<td><i class="conum" data-value="9"></i><b>9</b></td>
 <td>instruct ProvApp to not logout from identity management provider</td>
 </tr>
 </table>
