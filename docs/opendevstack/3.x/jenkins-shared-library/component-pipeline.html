@@ -995,6 +995,12 @@ set to the shortened Git SHA.</p>
 being built.</p>
 </div>
 <div class="paragraph">
+<p>The resulting image is tagged with <code>context.tagversion</code> (<code>&lt;JOB_NUMBER&gt;-&lt;GIT_SHA&gt;</code>).</p>
+</div>
+<div class="paragraph">
+<p>If the directory referenced by <code>openshiftDir</code> exists, the templates in there will be applied using <a href="https://github.com/opendevstack/tailor">Tailor</a>. In addition to the configuration options below, one can use e.g. a <code>Tailorfile</code> to adjust the behaviour of Tailor as needed.</p>
+</div>
+<div class="paragraph">
 <p>Available options:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -1010,6 +1016,10 @@ being built.</p>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">resourceName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of <code>BuildConfig</code>/<code>ImageStream</code> to use (defaults to <code>context.componentId</code>).</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">buildArgs</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pass build arguments to the image build process.</p></td>
 </tr>
@@ -1018,8 +1028,48 @@ being built.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Pass labels which should be aded on the image. Each label will be prefixed with <code>ext.</code>.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">extensionImageLabels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extra image labels added into <code>imageLabels</code></p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">buildTimeoutMinutes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adjust timeout of build (defaults to 15 minutes).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Timeout of build (defaults to 15 minutes).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">dockerDir</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Docker context directory (defaults to <code>docker</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">openshiftDir</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Directory with OpenShift templates (defaults to <code>openshift</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tailorPrivateKeyCredentialsId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Credentials name of the secret key used by Tailor (defaults to <code>&lt;PROJECT&gt;-cd-tailor-private-key</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tailorSelector</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Selector scope used by Tailor (defaults to <code>app=&lt;PROJECT&gt;-&lt;COMPONENT&gt;</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tailorVerify</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether Tailor verifies the live configuration against the desired state after application (defaults to <code>false</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tailorInclude</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Resource kind restriction used by Tailor (defaults to <code>bc,is</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tailorParamFile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to Tailor parameter file (defaults to none). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tailorPreserve</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Paths to preserve in the live configuration (defaults to <code>['bc:/spec/output/imageLabels', 'bc:/spec/output/to/name']</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tailorParams</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Additional parameters to pass to Tailor (defaults to <code>[]</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
 </tr>
 </tbody>
 </table>
@@ -1034,6 +1084,9 @@ being built.</p>
 <p>It achieves this by tagging the image built in <code>odsComponentStageBuildOpenShiftImage</code> with <code>latest</code>. This might already trigger a rollout based on an existing <code>ImageTrigger</code>. If none is set, the stage will start a manual rollout.</p>
 </div>
 <div class="paragraph">
+<p>If the directory referenced by <code>openshiftDir</code> exists, the templates in there will be applied using <a href="https://github.com/opendevstack/tailor">Tailor</a>. In this case, it is recommended to remove any image triggers to avoid duplicate rollouts (one when configuration changes due to a config trigger and one when the image is tagged to <code>latest</code>). In addition to the configuration options below, one can use e.g. a <code>Tailorfile</code> to adjust the behaviour of Tailor as needed.</p>
+</div>
+<div class="paragraph">
 <p>Available options:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
@@ -1049,8 +1102,44 @@ being built.</p>
 </thead>
 <tbody>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">resourceName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of <code>DeploymentConfig</code> to use (defaults to <code>context.componentId</code>).</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">deployTimeoutMinutes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Adjust timeout of rollout (defaults to 5 minutes).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">openshiftDir</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Directory with OpenShift templates (defaults to <code>openshift</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tailorPrivateKeyCredentialsId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Credentials name of the secret key used by Tailor (defaults to <code>&lt;PROJECT&gt;-cd-tailor-private-key</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tailorSelector</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Selector scope used by Tailor (defaults to <code>app=&lt;PROJECT&gt;-&lt;COMPONENT&gt;</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tailorVerify</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether Tailor verifies the live configuration against the desired state after application (defaults to <code>false</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tailorExclude</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Resource kind exclusion used by Tailor (defaults to <code>bc,is</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tailorParamFile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to Tailor parameter file (defaults to none). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tailorPreserve</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Paths to preserve in the live configuration (defaults to <code>[]</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tailorParams</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Additional parameters to pass to Tailor (defaults to <code>[]</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
 </tr>
 </tbody>
 </table>
