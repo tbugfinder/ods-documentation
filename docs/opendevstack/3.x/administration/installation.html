@@ -325,6 +325,24 @@ From now on we assume, you work from a Bash (Cygwin / Linux).
 </div>
 </div>
 <div class="sect1">
+<h2 id="_server_prerequisites"><a class="anchor" href="#_server_prerequisites"></a>Server prerequisites</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In order to run the Atlassian suite and OpenShift, your host must have:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>at least 16GB RAM</p>
+</li>
+<li>
+<p><code>vm.max_map_count=262144</code> to run SonarQube (which can be set via <code>sudo sysctl -w vm.max_map_count=262144</code>)</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_local_setup"><a class="anchor" href="#_local_setup"></a>Local Setup</h2>
 <div class="sectionbody">
 <div class="paragraph">
@@ -509,9 +527,9 @@ If you are on Linux, <code>oc cluster up</code> will do the trick.
 <h2 id="_opendevstack_environment_in_openshift"><a class="anchor" href="#_opendevstack_environment_in_openshift"></a>OpenDevStack environment in OpenShift</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_central_cd_project"><a class="anchor" href="#_central_cd_project"></a>Central CD project</h3>
+<h3 id="_central_ods_project"><a class="anchor" href="#_central_ods_project"></a>Central ODS project</h3>
 <div class="paragraph">
-<p>OpenDevStack needs one central <code>cd</code> project in OpenShift, which will hold all shared resources such as images or deployments.</p>
+<p>OpenDevStack needs one central <code>ods</code> project in OpenShift, which will hold all shared resources such as images or deployments.</p>
 </div>
 <div class="paragraph">
 <p>In <code>ods-core</code> run:</p>
