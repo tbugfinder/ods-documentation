@@ -770,9 +770,6 @@ If you are new to writing OpenShift templates, please read <a href="https://gith
 <p>Tagging means we are pointing to a concrete SHA of a Git repository. This enforces that no manual editing of exported config can happen between promotion to QA and promotion to PROD, which in effect forces everything to be parameterized properly.</p>
 </li>
 <li>
-<p>Every component must have exactly one <code>DeploymentConfig</code> with exactly one pod and one container. The <code>DeploymentConfig</code> name must match the component ID. Further, the <code>DeploymentConfig</code> must have an image trigger set on the <code>latest</code> tag of the corresonding <code>ImageStream</code>.</p>
-</li>
-<li>
 <p>JIRA always triggers the <code>master</code> branch of the release manager, which means the <code>Jenkinsfile</code> is always taken from <code>master</code> (and NOT from the correct release branch - only <code>metadata.yml</code> etc. are read from the release branch)</p>
 </li>
 <li>
