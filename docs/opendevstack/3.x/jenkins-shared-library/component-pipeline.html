@@ -768,6 +768,102 @@ you can follow the following steps:</p>
 </div>
 </div>
 <div class="sect2">
+<h3 id="_deploying_openshift_resources_from_source_code"><a class="anchor" href="#_deploying_openshift_resources_from_source_code"></a>Deploying OpenShift resources from source code</h3>
+<div class="paragraph">
+<p>By default, the component pipeline uses existing OpenShift resources, and just creates new images / deployments related to them. However, it is possible to control all OpenShift resources in code, following the infrastructure-as-code approach. This can be done by defining the resources as <a href="https://docs.openshift.com/container-platform/3.11/dev_guide/templates.html">OpenShift templates</a> in the directory <code>openshift</code> of the repository, which will then get applied by <a href="https://github.com/opendevstack/tailor">Tailor</a> when running the pipeline. The advantage of this approach:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>All changes to OpenShift resources are traceble: who did the change and when?</p>
+</li>
+<li>
+<p>Moving your application between OpenShift projects or even clusters is trivial</p>
+</li>
+<li>
+<p>Changes to your application code that require a change in configuration (e.g. a new environment variable) as well can be done together in one commit.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you have an existing component for which you want to enable this feature, you simply need to run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mkdir -p openshift
+tailor -n foo-dev export -l app=foo-bar &gt; openshift/template.yml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Commit the result and the component pipeline should show in the ouput whether there has been drift and how it was reconciled.</p>
+</div>
+<div class="paragraph">
+<p>When using this approach, you need to keep a few things in mind:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Any changes done in the OpenShift web console will effectively be reverted with each deploy. When you store templates in code, all changes must be applied to them.</p>
+</li>
+<li>
+<p>You can always preview the changes that will happen by running <code>tailor diff</code> from your local machine.</p>
+</li>
+<li>
+<p><code>DeploymentConfig</code> resources allow to specify config and image triggers (and ODS configures them by default like this). When deploying via Tailor, it is recommended to remove the image trigger, otherwise you might trigger two deployments: one when config (such as an environment variable) changes, and one when the image changes.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Controlling your OpenShift resources in source code enables a lot of other use cases as well. For example, you might want to preview changes to a component before merging the source code. By using Tailor to deploy your templates, you can create multiple running components from one repository, e.g. one per feature branch. Following are some steps how to achieve this:</p>
+</div>
+<div class="paragraph">
+<p>First, add <code>'feature/': 'dev'</code> to the <code>branchToEnvironmentMapping</code>. Then, create new variables in the pipeline block:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">def componentSuffix = context.issueId ? "-${context.issueId}" : ''
+def suffixedComponent = context.componentId + componentSuffix</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With this in place, you can adapt the rollout stage:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">odsComponentStageRolloutOpenShiftDeployment(
+  context,
+  [
+    resourceName: "${suffixedComponent}",
+    tailorSelector: "app=${context.projectId}-${suffixedComponent}",
+    tailorParams: ["COMPONENT_SUFFIX=${componentSuffix}"]
+  ]
+)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And finally, in your <code>openshift/template.yml</code>, you need to add the <code>COMPONENT_SUFFIX</code> parameter and append <code>${COMPONENT_SUFFIX}</code> everywhere the component ID is used in deployment relevant resources (such as <code>Service</code>, <code>DeploymentConfig</code>, <code>Route</code>). That&#8217;s all you need to have automatic previews!</p>
+</div>
+<div class="paragraph">
+<p>You might want to clean up when the code is merged, which can be achieved with something like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">stage('Cleanup preview resources') {
+  if (context.environment != 'dev') {
+    echo "Not performing cleanup outside dev environment"; return
+  }
+  def mergedIssueId = org.ods.services.GitService.mergedIssueId(context.projectId, context.repoName, context.gitCommitMessage)
+  if (mergedIssueId) {
+    echo "Perform cleanup of suffix '-${mergedIssueId}'"
+    sh("oc -n ${context.targetProject} delete all -l app=${context.projectId}-${context.componentId}-${mergedIssueId}")
+  } else {
+    echo "Nothing to cleanup"
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_automatically_cloning_environments_on_the_fly"><a class="anchor" href="#_automatically_cloning_environments_on_the_fly"></a>Automatically cloning environments on the fly</h3>
 <div class="paragraph">
 <p>Caution! Cloning environments on-the-fly is an advanced feature and should only be used if you understand OpenShift well, as there are many moving parts and things can go wrong in multiple places.</p>
