@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>The OpenDevStack documentation :: OpenDevStack</title>
+    <title>Backend - nginx  (be-gateway-nginx) :: OpenDevStack</title>
     <meta name="generator" content="Antora 2.3.1">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/search.css">
@@ -55,61 +55,61 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="../quickstarters/index.html">Quickstarters</a>
+    <a class="nav-link" href="index.html">Quickstarters</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/docker-plain.html">Docker Plain</a>
+    <a class="nav-link" href="docker-plain.html">Docker Plain</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="be-gateway-nginx.html">BE Gateway Nginx</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/be-gateway-nginx.html">BE Gateway Nginx</a>
+    <a class="nav-link" href="be-golang-plain.html">BE Golang</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/be-golang-plain.html">BE Golang</a>
+    <a class="nav-link" href="be-java-springboot.html">BE Java / Spring Boot</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/be-java-springboot.html">BE Java / Spring Boot</a>
+    <a class="nav-link" href="be-typescript-express.html">BE Node Express</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/be-typescript-express.html">BE Node Express</a>
+    <a class="nav-link" href="be-python-flask.html">BE Python Flask</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/be-python-flask.html">BE Python Flask</a>
+    <a class="nav-link" href="be-scala-akka.html">BE Scala Akka</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/be-scala-akka.html">BE Scala Akka</a>
+    <a class="nav-link" href="fe-angular.html">FE Angular</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/fe-angular.html">FE Angular</a>
+    <a class="nav-link" href="fe-ionic.html">FE Ionic</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/fe-ionic.html">FE Ionic</a>
+    <a class="nav-link" href="fe-react.html">FE React</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/fe-react.html">FE React</a>
+    <a class="nav-link" href="fe-vue.html">FE Vue</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/fe-vue.html">FE Vue</a>
+    <a class="nav-link" href="ds-ml-service.html">Data Science Machine Learning Service</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/ds-ml-service.html">Data Science Machine Learning Service</a>
+    <a class="nav-link" href="ds-jupyter-notebook.html">Data Science Jupyter Notebook</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/ds-jupyter-notebook.html">Data Science Jupyter Notebook</a>
+    <a class="nav-link" href="ds-rshiny.html">Data Science RShiny app</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/ds-rshiny.html">Data Science RShiny app</a>
+    <a class="nav-link" href="airflow-cluster.html">Airflow</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/airflow-cluster.html">Airflow</a>
+    <a class="nav-link" href="e2e-cypress.html">Cypress E2E testing</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/e2e-cypress.html">Cypress E2E testing</a>
+    <a class="nav-link" href="e2e-spock-geb.html">Spock, Geb and Unirest E2E testing</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/e2e-spock-geb.html">Spock, Geb and Unirest E2E testing</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/release-manager.html">Release Manager</a>
+    <a class="nav-link" href="release-manager.html">Release Manager</a>
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
@@ -139,7 +139,7 @@
 </ul>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/authoring-quickstarters.html">Authoring Quickstarters</a>
+    <a class="nav-link" href="authoring-quickstarters.html">Authoring Quickstarters</a>
   </li>
 </ul>
   </li>
@@ -247,10 +247,10 @@
     <span class="nav-text">Contributing to ODS</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="development.html">Development</a>
+    <a class="nav-link" href="../contributing/development.html">Development</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="documentation.html">Documentation</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contributing/documentation.html">Documentation</a>
   </li>
 </ul>
   </li>
@@ -291,89 +291,207 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../getting-started/index.html">OpenDevStack</a></li>
-    <li>Contributing to ODS</li>
-    <li><a href="documentation.html">Documentation</a></li>
+    <li><a href="index.html">Quickstarters</a></li>
+    <li><a href="be-gateway-nginx.html">BE Gateway Nginx</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">3.x Preview</button>
   <div class="version-menu">
-    <a class="version is-current" href="documentation.html">3.x Preview</a>
+    <a class="version is-current" href="be-gateway-nginx.html">3.x Preview</a>
     <a class="version is-missing" href="../../2.x/getting-started/index.html">2.x</a>
     <a class="version is-missing" href="../../1.x/getting-started/index.html">1.x</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-core/edit/master/docs/modules/contributing/pages/documentation.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-quickstarters/edit/master/docs/modules/quickstarters/pages/be-gateway-nginx.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">The OpenDevStack documentation</h1>
-<div id="preamble">
+<h1 class="page">Backend - nginx  (be-gateway-nginx)</h1>
+<div class="sect1">
+<h2 id="_purpose_of_this_quickstarter"><a class="anchor" href="#_purpose_of_this_quickstarter"></a>Purpose of this quickstarter</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>OpenDevStack documentation is build with <a href="https://antora.org">Antora</a>.</p>
+<p>Use this quickstarter when you want to use <a href="https://www.nginx.org">nginx</a> server wrapped within <a href="https://www.openresty.org">OpenResty</a> dynamic web platform. With this quickstarter you can run many different lightweight server implementations like API gateways and HTTP/TCP/UCP reverse proxys.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_why_we_chose_antora"><a class="anchor" href="#_why_we_chose_antora"></a>Why we chose Antora</h2>
+<h2 id="_what_files_which_architecture_is_generated"><a class="anchor" href="#_what_files_which_architecture_is_generated"></a>What files / which architecture is generated?</h2>
+<div class="sectionbody">
+<div class="listingblock">
+<div class="content">
+<pre>├── docker - Contains Dockerfile for the build
+│   ├── lua - Directory for custom Lua modules
+│   │   └── server-error.lua - Example of server error response module with Lua
+│   ├── Dockerfile - Definition of your nginx gateway container
+│   ├── entrypoint.sh - Enables runtime configurations and runs openresty
+│   └── nginx.conf - The nginx configuration
+├── Jenkinsfile - Contains Jenkins build configuration
+├── metadata.yml - Component metadata
+└── release-manager.yml - Configuration file for the Release Manager</pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_frameworks_used"><a class="anchor" href="#_frameworks_used"></a>Frameworks used</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://www.openresty.org">OpenResty</a></p>
+</li>
+<li>
+<p>ODS <a href="https://github.com/opendevstack/ods-jenkins-shared-library">Jenkins Shared Library</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_usage_how_do_you_start_after_you_provisioned_this_quickstarter"><a class="anchor" href="#_usage_how_do_you_start_after_you_provisioned_this_quickstarter"></a>Usage - how do you start after you provisioned this quickstarter</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>As we release new versions of OpenDevStack with new or changed functionality and configuration, it should always be clear which documentation applies to which release.
-Thus we follow the philosophy: manage documetation as code. This means:</p>
+<p>Simply start to configure your nginx.conf to fit your needs. Also, you can develop and/or use different Lua modules.</p>
+</div>
+<div class="sect2">
+<h3 id="_routing_to_your_services"><a class="anchor" href="#_routing_to_your_services"></a>Routing to your services</h3>
+<div class="paragraph">
+<p>In order to route/proxy to services in the same namespace you do not need to define environment variables for their ports and/or hosts.</p>
+</div>
+<div class="paragraph">
+<p>OpenShift already loads them into the container&#8217;s environment by following a convention like <code>&lt;DEPLOYMENT_CONFIG&gt;_SERVICE_HOST</code> and <code>&lt;DEPLOYMENT_CONFIG&gt;_SERVICE_PORT</code>. Please, follow the example provided and comments in the <code>nginx.conf</code> file.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_adding_offical_lua_modules"><a class="anchor" href="#_adding_offical_lua_modules"></a>Adding offical Lua modules</h3>
+<div class="paragraph">
+<p>One can add official Lua modules by using <a href="https://opm.openresty.org/">opm</a>.</p>
+</div>
+<div class="paragraph">
+<p>In the following code snipped one can see how to add an official Lua module through docker build stage. Inside your Dockerfile:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-docker hljs" data-lang="docker">RUN opm install zmartzone/lua-resty-openidc</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then, one can load such module dependency in new modules like:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-lua hljs" data-lang="lua">local http = require("resty.openidc")</code></pre>
+</div>
+</div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+<code>lua-resty-openidc</code> module is already provided with the default <code>Dockerfile</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_using_lua_modules"><a class="anchor" href="#_using_lua_modules"></a>Using Lua modules</h3>
+<div class="paragraph">
+<p>Lua integration in nginx requires following the <a href="https://openresty-reference.readthedocs.io/en/latest/Directives/">Directives</a> provided in its architecture. Notice the importance of the execution order of the directives.
+Most of the directives require being defined inside your server <strong>locations</strong>. See next some possibilities one can make use of</p>
+</div>
+<div class="paragraph">
+<p><code>1</code> - Managing access with <strong>access_by_lua_block</strong></p>
+</div>
+<div class="paragraph">
+<p>With this directive one can integrate with Identity Providers via different auth/z standars, such as simple HTTP Basic Auth, OAuth, OIDC:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-lua hljs" data-lang="lua">access_by_lua_block {
+    require("your-auth-module").authenticate()
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>2</code> - Managing content with <strong>content_by_lua_block</strong></p>
+</div>
+<div class="paragraph">
+<p>This directive handles content definition. See the provided <strong>server-error.lua</strong> module example; by loading the right <strong>ENV</strong> variables in <strong>nginx.conf</strong>, you can add in your error <strong>location</strong> block a custom server error handling:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-lua hljs" data-lang="lua">location = /50x.html {
+    content_by_lua_block {
+        require("server-error").make_error()
+    }
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>3</code> - Handle incoming requests with <strong>rewrite_by_lua_block</strong></p>
+</div>
+<div class="paragraph">
+<p>One can also make use of the rewrite directive, for example, for filtering/rewriting incoming requests coming from your clients:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-lua hljs" data-lang="lua">rewrite_by_lua_block {
+    require("filter-requests-headers").run_filter()
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p><code>4</code> - Handle body responses with <strong>body_filter_by_lua_block</strong></p>
+</div>
+<div class="paragraph">
+<p>Filter the body responses comming from your Backend services. For example, one could filter any error response, so to assure filtering stack traces from a JSON object response when running on production:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-lua hljs" data-lang="lua">body_filter_by_lua_block {
+    require("filter-error-response").filter_stack_traces()
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_this_quickstarter_is_built_through_jenkins"><a class="anchor" href="#_how_this_quickstarter_is_built_through_jenkins"></a>How this quickstarter is built through Jenkins</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>There are two steps:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Storing content in a version control system alongside with the code.</p>
+<p>Build the container image.</p>
 </li>
 <li>
-<p>Separating content, configuration, and presentation</p>
-</li>
-<li>
-<p>Reusing shared materials (Don&#8217;t repeat yourself)</p>
+<p>Deploy.</p>
 </li>
 </ul>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_builder_slave_used"><a class="anchor" href="#_builder_slave_used"></a>Builder Slave used</h2>
+<div class="sectionbody">
 <div class="paragraph">
-<p>Antora is a static site generator by the folks behind the <a href="https://asciidoctor.org">AsciiDoctor</a> project that follows this practices.
-The engine converts a collection of version controlled documentation written in AsciiDoc into an HTML site.</p>
+<p>This quickstarter uses <a href="https://github.com/opendevstack/ods-core/tree/master/jenkins/slave-base">jenkins-slave-base</a></p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_how_is_the_documentation_organized"><a class="anchor" href="#_how_is_the_documentation_organized"></a>How is the documentation organized?</h2>
+<h2 id="_known_limitations"><a class="anchor" href="#_known_limitations"></a>Known limitations</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Documentation is spread across multiple repositories. In each repository, there is a <code>docs</code> folder containing the documentation. We use one "distributed" component named <code>opendevstack</code> (see <a href="https://docs.antora.org/antora/2.2/component-structure/">Component structure documentation</a>), and each <code>docs</code> folder adds one or more named modules into that component. The navigation for the component is located in the <code>ods-core</code> repository.</p>
-</div>
-<div class="paragraph">
-<p>Additionally, we have the <code>ods-documentation</code> repository which contains the <a href="https://docs.antora.org/antora/2.2/playbook/">Playbook</a> and the <code>ods-docs-ui</code> repository containing UI customization.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_how_to_build_the_site_locally"><a class="anchor" href="#_how_to_build_the_site_locally"></a>How to build the site locally?</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>A guide for building the documentation locally is provided in the <a href="https://github.com/opendevstack/ods-documentation/blob/master/README.adoc">ods-documentation README</a>.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_how_to_contribute_documentation"><a class="anchor" href="#_how_to_contribute_documentation"></a>How to contribute documentation</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>Issue a pull request against the repository containing the documentation you add / modify. Once this is merged, the documentation website will get updated automatically (via a daily cronjob).</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_how_is_the_documentation_built_on_github"><a class="anchor" href="#_how_is_the_documentation_built_on_github"></a>How is the documentation built on Github?</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>The documentation will be build on Travis and pushed back to the ods-documentation repository.
-The <a href="https://github.com/opendevstack/ods-documentation/blob/master/.travis.yml">.travis.yml</a> file is located in the <code>ods-documentation</code> project.</p>
+<p>N/A</p>
 </div>
 </div>
 </div>
@@ -392,7 +510,7 @@ The <a href="https://github.com/opendevstack/ods-documentation/blob/master/.trav
 <script type="text/javascript">
   window.antora = window.antora || {}
   window.antora.basePath = '../../..'
-  window.antora.pagePath = '/opendevstack/3.x/contributing/documentation.html'
+  window.antora.pagePath = '/opendevstack/3.x/quickstarters/be-gateway-nginx.html'
 </script>
 <script src="../../../_/js/site.js"></script>
 <script src="../../../_/js/vendor/lunr.js"></script>
