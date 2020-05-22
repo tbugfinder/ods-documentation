@@ -455,6 +455,45 @@ repositories:
 <p>Instead of merely resolving repositories into a strictly sequential execution model, our library automatically understands which repositories form independent groups and can run in parallel for best time-to-feedback and time-to-delivery.</p>
 </div>
 </div>
+<div class="sect2">
+<h3 id="_building_of_components_partial_deployments"><a class="anchor" href="#_building_of_components_partial_deployments"></a>Building of components &amp; partial deployments</h3>
+<div class="paragraph">
+<p>By default the shared library will rebuild all type <code>ods</code> components, no matter which ones changed. In order to allow
+partial building, that is based on changes one has done to the components, the following needs to be configured
+in <code>metadata.yml</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>allowPartialRebuild : true</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If one repository should always be <strong>rebuilt</strong>, even if partial rebuild is configured on root level, <code>forceRebuild : true</code> can be set at repository level, e.g.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>id: PHOENIX
+name: Project Phoenix
+
+repositories:
+  - id: B
+    name: my-repo-B
+    forceRebuild : true</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_optimization_of_runtime_performance"><a class="anchor" href="#_optimization_of_runtime_performance"></a>Optimization of runtime performance</h3>
+<div class="paragraph">
+<p>By default the shared library will always pull the <strong>slave image</strong> from the internal docker repository. Depending on the
+cluster node setup, this may decrease execution performance. In order to re-use loaded images, a knob in the <code>Jenkinsfile</code> configuration of the stage <code>odsOrchestrationPipeline</code> can be turned on:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>alwaysPullImage: true</pre>
+</div>
+</div>
+</div>
 </div>
 </div>
 <div class="sect1">
