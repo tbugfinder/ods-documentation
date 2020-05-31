@@ -3,8 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Jenkins Webhook Proxy :: OpenDevStack</title>
-    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/2.x/jenkins/webhook-proxy.html">
+    <title>Update Guide to version 3.x for OpenDevStack users :: OpenDevStack</title>
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/search.css">
@@ -117,7 +116,7 @@
     <span class="nav-text">Jenkins Slave Images</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="slave-base.html">Base Image</a>
+    <a class="nav-link" href="../jenkins/slave-base.html">Base Image</a>
   </li>
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../jenkins-slaves/airflow.html">Airflow</a>
@@ -169,16 +168,16 @@
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
     <button class="nav-item-toggle"></button>
-    <a class="nav-link" href="index.html">Jenkins</a>
+    <a class="nav-link" href="../jenkins/index.html">Jenkins</a>
 <ul class="nav-list">
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="master.html">Jenkins Master</a>
+    <a class="nav-link" href="../jenkins/master.html">Jenkins Master</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="slave-base.html">Jenkins Slave Base</a>
+    <a class="nav-link" href="../jenkins/slave-base.html">Jenkins Slave Base</a>
   </li>
-  <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="webhook-proxy.html">Webhook Proxy</a>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/webhook-proxy.html">Webhook Proxy</a>
   </li>
 </ul>
   </li>
@@ -197,11 +196,11 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Update Guides</span>
 <ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../update-guides/3x.html">Migrate to 3.x</a>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="3x.html">Migrate to 3.x</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../update-guides/2x.html">Migrate to 2.x</a>
+    <a class="nav-link" href="2x.html">Migrate to 2.x</a>
   </li>
 </ul>
   </li>
@@ -238,7 +237,7 @@
     <a class="nav-link" href="../sonarqube/administration.html">SonarQube</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="administration.html">Jenkins</a>
+    <a class="nav-link" href="../jenkins/administration.html">Jenkins</a>
   </li>
 </ul>
   </li>
@@ -295,198 +294,184 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../getting-started/index.html">OpenDevStack</a></li>
-    <li><a href="index.html">Jenkins</a></li>
-    <li><a href="webhook-proxy.html">Webhook Proxy</a></li>
+    <li>Update Guides</li>
+    <li><a href="3x.html">Migrate to 3.x</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">3.x Preview</button>
   <div class="version-menu">
-    <a class="version is-current" href="webhook-proxy.html">3.x Preview</a>
-    <a class="version" href="../../2.x/jenkins/webhook-proxy.html">2.x</a>
-    <a class="version" href="../../1.x/jenkins/webhook-proxy.html">1.x</a>
+    <a class="version is-current" href="3x.html">3.x Preview</a>
+    <a class="version is-missing" href="../../2.x/getting-started/index.html">2.x</a>
+    <a class="version is-missing" href="../../1.x/getting-started/index.html">1.x</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-core/edit/master/docs/modules/jenkins/pages/webhook-proxy.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-core/edit/master/docs/modules/update-guides/pages/3x.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Jenkins Webhook Proxy</h1>
+<h1 class="page">Update Guide to version 3.x for OpenDevStack users</h1>
+<div id="toc" class="toc">
+<div id="toctitle">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_update_image_tags_of_jenkins_deployments">Update image tags of Jenkins deployments</a></li>
+<li><a href="#_jenkins_shared_library_changes">Jenkins Shared Library changes</a>
+<ul class="sectlevel2">
+<li><a href="#_renamed_pipelines_and_stages">Renamed pipelines and stages</a></li>
+<li><a href="#_reduced_boilerplate">Reduced boilerplate</a></li>
+<li><a href="#_changed_context_properties">Changed <code>context</code> properties</a></li>
+</ul>
+</li>
+</ul>
+</div>
 <div id="preamble">
 <div class="sectionbody">
 <div class="paragraph">
-<p>The webhook proxy service allows to trigger Jenkins pipelines. Further, it
-automatically creates pipelines that do not exist yet and can delete pipelines
-that are no longer needed.</p>
+<p>Learn all about how to update your OpenDevStack based project to ODS 3.x.</p>
 </div>
-<div class="paragraph">
-<p>One instance of the webhook proxy runs in every <code>&lt;project&gt;-cd</code> namespace next to
-the Jenkins instance.</p>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_endpoints"><a class="anchor" href="#_endpoints"></a>Endpoints</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_post"><a class="anchor" href="#_post"></a><code>POST /</code></h3>
-<div class="paragraph">
-<p>Accepts webhooks from BitBucket and forwards them to the corresponding Jenkins
-pipeline (which is determined based on the component param and the branch name).
-If there is no corresponding pipeline yet, it will be created on the fly (by
-creating a <code>BuildConfig</code> in OpenShift which is synced to Jenkins via the
-OpenShift plugin). Once a branch is deleted or a pull request declined/merged,
-the corresponding Jenkins pipeline is deleted.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_post_build"><a class="anchor" href="#_post_build"></a><code>POST /build</code></h3>
-<div class="paragraph">
-<p>Accepts a payload of the following form:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-json hljs" data-lang="json">{
-    "branch": "foo",
-    "repository": "repository",
-    "env": [
-       {
-          "name": "FOO_BAR",
-          "value": "baz"
-       }
-    ],
-    "project": "bar"
-}</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p><strong>Important</strong>: In order to avoid conflicts between pipelines created/triggered
-via BitBucket and pipelines created/triggered via <code>/build</code>, most likely you&#8217;d
-want to pass a component name to <code>/build</code>, like so: <code>/build?component=foo</code>, see
-the next section.</p>
-</div>
-<div class="paragraph">
-<p>Also note that the <code>project</code> field is optional, and restricted to the project of the webhook proxy and <code>opendevstack</code> by default (but can be customized via <code>ALLOWED_EXTERNAL_PROJECTS</code>).</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_parameters"><a class="anchor" href="#_parameters"></a>Parameters</h3>
-<div class="paragraph">
-<p>Both <code>/</code> and <code>/build</code> accept the following query parameters. They are offered
-as query parameters only because otherwise they could not be adjusted for
-BitBucket webhooks.</p>
-</div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
+<div class="admonitionblock note">
+<table>
 <tr>
-<th class="tableblock halign-left valign-top">Variable</th>
-<th class="tableblock halign-left valign-top">Description</th>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+It is assumed that you are updating from ODS 2.x.
+</td>
 </tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">jenkinsfile_path</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The path to the <code>Jenkinsfile</code>. By default, the <code>Jenkinsfile</code> is assumed to be in the root of the repository, therefore this value defaults to simply <code>Jenkinsfile</code>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">component</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The component part of the pipeline name. If not given, the pipeline name is created from the repository and the branch.</p></td>
-</tr>
-</tbody>
 </table>
 </div>
-<div class="sect2">
-<h3 id="_responses"><a class="anchor" href="#_responses"></a>Responses</h3>
-<div class="paragraph">
-<p>All endpoints return the <code>BuildConfig</code> response as-is from OpenShift, see <a href="https://docs.openshift.com/container-platform/3.11/rest_api/apis-build.openshift.io/v1.BuildConfig.html#object-schema" class="bare">https://docs.openshift.com/container-platform/3.11/rest_api/apis-build.openshift.io/v1.BuildConfig.html#object-schema</a>.</p>
 </div>
+</div>
+<div class="sect1">
+<h2 id="_update_image_tags_of_jenkins_deployments"><a class="anchor" href="#_update_image_tags_of_jenkins_deployments"></a>Update image tags of Jenkins deployments</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Go into your OpenShift <code>*-cd</code> namespace and edit (via "Actions" &gt; "Edit") the deployments (<code>jenkins</code> and
+<code>webhook-proxy</code>) to point to the new image tags (<code>3.x</code>), and trigger a deployment.</p>
 </div>
 </div>
 </div>
 <div class="sect1">
-<h2 id="_adding_a_webhook_in_bitbucket"><a class="anchor" href="#_adding_a_webhook_in_bitbucket"></a>Adding a webhook in BitBucket</h2>
+<h2 id="_jenkins_shared_library_changes"><a class="anchor" href="#_jenkins_shared_library_changes"></a>Jenkins Shared Library changes</h2>
 <div class="sectionbody">
+<div class="sect2">
+<h3 id="_renamed_pipelines_and_stages"><a class="anchor" href="#_renamed_pipelines_and_stages"></a>Renamed pipelines and stages</h3>
 <div class="paragraph">
-<p>The provisioning app sets up one webhook per repository by default. It is
-possible to create webhooks manually as well, e.g. to add more than one
-webhook (likely differentiated by the <code>component</code> param then).</p>
+<p>3.x ships with the three pipelines instead of just one. In 2.x, the shared
+library offered one pipeline to build components, named <code>odsPipeline</code>. This has
+been renamed to <code>odsComponentPipeline</code> to make its purpose clearer and to
+distinguish it from the other pipelines, <code>odsQuickstarterPipeline</code> (to
+provision quickstarters) and <code>odsOrchestrationPipeline</code> (to orchestrate
+multiple repositories using the release manager).</p>
 </div>
 <div class="paragraph">
-<p>To manually create a webhook, go to "Repository Settings &gt; Webhooks" and click on
-"Create webhook". Fill in the following:</p>
+<p>To provide backwards compatibility, <code>odsPipeline</code> is still available, but
+deprecated and will be removed in ODS 4.</p>
+</div>
+<div class="paragraph">
+<p>In line with this change, the stages have been renamed too, which also makes
+them easier to distinguish from custom stages written by yourself in the
+<code>Jenkinsfile</code>. As with the pipeline, the old stages are still available but
+slated for removal in ODS 4. Here&#8217;s a list of the changes:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>Name: <code>Jenkins</code> (or similar, value is only serves as a description)</p>
+<p><code>stageScanForSonarqube</code> is now <code>odsComponentStageScanWithSonar</code></p>
 </li>
 <li>
-<p>URL: route to the webhook proxy instance, followed by the <code>trigger_secret</code>, e.g. <code><a href="https://webhook-proxy-foo-cd.example.com?trigger_secret=s3cr3t" class="bare">https://webhook-proxy-foo-cd.example.com?trigger_secret=s3cr3t</a></code>. The secret can be retrieved in the OpenShift console in your <code>*-cd</code> namespace (in this example <code>foo-cd</code>) under "Resources &gt; Secrets &gt; webhook-proxy".</p>
+<p><code>stageScanForSnyk</code> is now <code>odsComponentStageScanWithSnyk</code></p>
 </li>
 <li>
-<p>Secret: leave blank</p>
+<p><code>stageStartOpenshiftBuild</code> is now <code>odsComponentStageBuildOpenShiftImage</code></p>
 </li>
 <li>
-<p>Under "Repository events", select <code>Push</code>. Under "Pull request events", select <code>Merged</code> and <code>Declined</code></p>
+<p><code>stageDeployToOpenshift</code> is now <code>odsComponentStageRolloutOpenShiftDeployment</code></p>
+</li>
+<li>
+<p><code>stageUploadToNexus</code> is now <code>odsComponentStageUploadToNexus</code></p>
 </li>
 </ul>
 </div>
 <div class="paragraph">
-<p>Now you can verify by clicking "Test connection". Afterwards, save your changes. The next pushed commit should automatically send a request to the webhook proxy and start a pipeline in Jenkins.</p>
+<p>Please note the new casing (e.g. <code>OpenShift</code> instead of <code>Openshift</code>). Further,
+the new stages all take the same two arguments: <code>IContext context</code> and
+<code>Map config = [:]</code>. Please see the
+<a href="../jenkins-shared-library/component-pipeline.html" class="page">documentation</a> for details.
+In particular, some options which would previously have been set on
+<code>odsPipeline</code> can and should be set on the stage where they are used (however
+all options have been kept for backwards compatibility).</p>
 </div>
 </div>
-</div>
-<div class="sect1">
-<h2 id="_customizing_the_behaviour_of_the_webhook_proxy"><a class="anchor" href="#_customizing_the_behaviour_of_the_webhook_proxy"></a>Customizing the behaviour of the webhook proxy</h2>
-<div class="sectionbody">
+<div class="sect2">
+<h3 id="_reduced_boilerplate"><a class="anchor" href="#_reduced_boilerplate"></a>Reduced boilerplate</h3>
 <div class="paragraph">
-<p>The following environment variables can be set on the <code>DeploymentConfig</code> and are read by the webhook proxy:</p>
+<p>A <code>Jenkinsfile</code> in 2.x looks roughly like this:</p>
 </div>
-<table class="tableblock frame-all grid-all stretch">
-<colgroup>
-<col style="width: 50%;">
-<col style="width: 50%;">
-</colgroup>
-<thead>
-<tr>
-<th class="tableblock halign-left valign-top">Variable</th>
-<th class="tableblock halign-left valign-top">Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PROTECTED_BRANCHES</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated list of branches which pipelines should not be removed after they have been merged. Use either exact branch names, branch prefixes (e.g. <code>feature/</code>) or <code>*</code> for all branches. Defaults to: <code>master,develop,production,staging,release/</code>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">OPENSHIFT_API_HOST</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Defaults to <code>openshift.default.svc.cluster.local</code>. Usually does not need to be modified.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">REPO_BASE</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The base URL of the repository (e.g. your BitBucket host). This variable is set by the OpenShift template from which the <code>DeploymentConfig</code> is created and usually does not need to be modified.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">TRIGGER_SECRET</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">The secret which protects the pipeline to be executed from outside. This variable is set by the OpenShift template from which the <code>DeploymentConfig</code> is created and usually does not need to be modified.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ALLOWED_EXTERNAL_PROJECTS</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated list of external projects which the Webhook Proxy can deal with. For security reasons, by default the webhook proxy allows only its own project and the <code>opendevstack</code> project to be passed as a <code>project</code> parameter.</p></td>
-</tr>
-</tbody>
-</table>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">def final projectId = 'foo'
+def final componentId = 'bar'
+def final credentialsId = "${projectId}-cd-cd-user-with-password"
+def dockerRegistry
+node {
+  dockerRegistry = env.DOCKER_REGISTRY
+}
+
+@Library('ods-jenkins-shared-library@2.x') _
+
+odsPipeline(
+  image: "${dockerRegistry}/cd/jenkins-slave-golang:2.x",
+  projectId: projectId,
+  componentId: componentId,
+  branchToEnvironmentMapping: ['master': 'dev']
+) { context -&gt;
+  stageScanForSonarqube(context)
+  stageStartOpenshiftBuild(context)
+  stageDeployToOpenshift(context)
+}</code></pre>
 </div>
 </div>
-<div class="sect1">
-<h2 id="_development"><a class="anchor" href="#_development"></a>Development</h2>
-<div class="sectionbody">
 <div class="paragraph">
-<p>See the <code>Makefile</code> targets.</p>
+<p>That is a lot of boilerplate. 3.x reduces this dramatically:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">@Library('ods-jenkins-shared-library@3.x') _
+
+odsComponentPipeline(
+  imageStreamTag: 'ods/jenkins-slave-golang:3.x',
+  branchToEnvironmentMapping: ['master': 'dev']
+) { context -&gt;
+  odsComponentStageScanWithSonar(context)
+  odsComponentStageBuildOpenShiftImage(context)
+  odsComponentStageRolloutOpenShiftDeployment(context)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that the new <code>Jenkinsfile</code> example already uses the new pipeline/stage
+names as outlined above. Apart from this, it makes use of a new config option,
+<code>imageStreamTag</code> which removes the need to read the <code>DOCKER_REGISTRY</code>
+environment variable. If you need it, the <code>image</code> config is still present (e.g.
+to reference images outside of OpenShift). <code>projectId</code> and <code>componentId</code> are
+now automatically configured, but can still be set if desired.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_changed_context_properties"><a class="anchor" href="#_changed_context_properties"></a>Changed <code>context</code> properties</h3>
+<div class="paragraph">
+<p>The <code>context</code> object available to use in stages has been slimmed down by
+removing properties unlikely to be useful to author stages (such as resource
+constraints of the Jenkins agent pod). Please review
+<a href="../jenkins-shared-library/component-pipeline.html#_pipeline_context" class="page">the documentation</a>
+in case your authored stages make heavy use of the <code>context</code> object.</p>
+</div>
+<div class="paragraph">
+<p>A notable addition to the <code>context</code> object is a new property <code>issueId</code>, which
+exposes the Jira issue ID (such as <code>123</code> from branch <code>feature/FOO-123-bar-baz</code>).</p>
+</div>
 </div>
 </div>
 </div>
@@ -505,7 +490,7 @@ webhook (likely differentiated by the <code>component</code> param then).</p>
 <script type="text/javascript">
   window.antora = window.antora || {}
   window.antora.basePath = '../../..'
-  window.antora.pagePath = '/opendevstack/3.x/jenkins/webhook-proxy.html'
+  window.antora.pagePath = '/opendevstack/3.x/update-guides/3x.html'
 </script>
 <script src="../../../_/js/site.js"></script>
 <script src="../../../_/js/vendor/lunr.js"></script>

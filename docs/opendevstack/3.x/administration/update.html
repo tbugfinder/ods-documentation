@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Update Guide for OpenDevStack administrators :: OpenDevStack</title>
-    <meta name="generator" content="Antora 2.3.1">
+    <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/search.css">
   </head>
@@ -196,6 +196,9 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Update Guides</span>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../update-guides/3x.html">Migrate to 3.x</a>
+  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../update-guides/2x.html">Migrate to 2.x</a>
   </li>
@@ -438,6 +441,27 @@ update notes below which apply to your version change.</p>
 </div>
 </div>
 <div class="sect2">
+<h3 id="_2_x_to_3_x"><a class="anchor" href="#_2_x_to_3_x"></a>2.x to 3.x</h3>
+<div class="paragraph">
+<p>3.x requires Tailor <a href="https://github.com/opendevstack/tailor/releases/tag/v1.0.0">1.0.0</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="_setup_secure_route_removal"><a class="anchor" href="#_setup_secure_route_removal"></a>Setup secure route removal</h4>
+<div class="paragraph">
+<p>As this is an optional step, the code has been removed, but is still available at <a href="https://github.com/BIX-Digital/ods-contrib" class="bare">https://github.com/BIX-Digital/ods-contrib</a>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_jenkins_base_image_changes"><a class="anchor" href="#_jenkins_base_image_changes"></a>Jenkins base image changes</h4>
+<div class="paragraph">
+<p>In 2.x, the Jenkins master base image was pulled from the <code>openshift</code> namespace. The slave base image could have been pulled from that namespace as well, or directly from a registry. In 3.x, the master can also be pulled directly from a registry. The advantage of this is that you do not need to worry about the import policy set in the <code>openshift</code> namespace, which can have suprising results (e.g. your base image never updating even though a fix has been released by RedHat). The behaviour is defined by a new configuration parameter, <code>JENKINS_MASTER_BASE_FROM_IMAGE</code>.</p>
+</div>
+<div class="paragraph">
+<p>Further, in 2.x you had to pick (via <code>JENKINS_AGENT_BASE_IMAGE</code>) whether you wanted to use <code>Dockerfile.centos7</code> or <code>Dockerfile.rhel7</code>. However, both files contained the same instructions. Therefore, those were combined into a single <code>Dockerfile</code> and you only need to choose which base image to use via <code>JENKINS_AGENT_BASE_FROM_IMAGE</code> (like before).</p>
+</div>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_1_2_x_to_2_x"><a class="anchor" href="#_1_2_x_to_2_x"></a>1.2.x to 2.x</h3>
 <div class="paragraph">
 <p>2.x requires Tailor <a href="https://github.com/opendevstack/tailor/releases/tag/v0.11.0">0.11.0</a>.</p>
@@ -496,7 +520,7 @@ oc adm policy add-role-to-group view system:authenticated -n cd</code></pre>
 <div class="sect3">
 <h4 id="_rollout_new_webhook_proxy_instances"><a class="anchor" href="#_rollout_new_webhook_proxy_instances"></a>Rollout new webhook proxy instances</h4>
 <div class="paragraph">
-<p>2.x allows the webhook proxy to build repositories in external projects if configured (see <a href="https://github.com/opendevstack/ods-core/issues/229" class="bare">https://github.com/opendevstack/ods-core/issues/229</a>). This feature is required for the new quickstarter provisioning approach to work. Therefore, it is recommended to tag a webhook proxy images built from the <code>2.x</code> branch or <code>v.2.0</code> tag with <code>latest</code> so that all webhook proxies in the cluster get updated.</p>
+<p>2.x allows the webhook proxy to build repositories in external projects if configured (see <a href="https://github.com/opendevstack/ods-core/issues/229" class="bare">https://github.com/opendevstack/ods-core/issues/229</a>). This feature is required for the new quickstarter provisioning approach to work. Therefore, it is recommended to tag a webhook proxy images built from the <code>2.x</code> branch or <code>v2.0</code> tag with <code>latest</code> so that all webhook proxies in the cluster get updated.</p>
 </div>
 </div>
 <div class="sect3">

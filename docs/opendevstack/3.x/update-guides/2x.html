@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>Update Guide to version 2.x for OpenDevStack users :: OpenDevStack</title>
-    <meta name="generator" content="Antora 2.3.1">
+    <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/search.css">
   </head>
@@ -196,6 +196,9 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Update Guides</span>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="3x.html">Migrate to 3.x</a>
+  </li>
   <li class="nav-item is-current-page" data-depth="2">
     <a class="nav-link" href="2x.html">Migrate to 2.x</a>
   </li>
@@ -361,8 +364,8 @@ It is assumed that you are updating from ODS 1.2.x.
 <div class="sect2">
 <h3 id="_update_image_tags_of_jenkins_deployments"><a class="anchor" href="#_update_image_tags_of_jenkins_deployments"></a>Update image tags of Jenkins deployments</h3>
 <div class="paragraph">
-<p>Go into your <code>*-cd</code> namespace and edit the deployments (<code>jenkins</code> and
-<code>webhook-proxy</code>) to point to the new tags (via "Actions" &gt; "Edit"), and trigger a deployment.</p>
+<p>Go into your OpenShift <code>*-cd</code> namespace and edit (via "Actions" &gt; "Edit") the deployments (<code>jenkins</code> and
+<code>webhook-proxy</code>) to point to the new image tags (<code>2.x</code>), and trigger a deployment.</p>
 </div>
 </div>
 <div class="sect2">

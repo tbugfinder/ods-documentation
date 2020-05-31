@@ -4,7 +4,7 @@
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
     <title>OpenDevStack Setup :: OpenDevStack</title>
-    <meta name="generator" content="Antora 2.3.1">
+    <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/search.css">
   </head>
@@ -196,6 +196,9 @@
     <button class="nav-item-toggle"></button>
     <span class="nav-text">Update Guides</span>
 <ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../update-guides/3x.html">Migrate to 3.x</a>
+  </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../update-guides/2x.html">Migrate to 2.x</a>
   </li>
@@ -470,7 +473,7 @@ Documentation for this is missing.
 </table>
 </div>
 <div class="paragraph">
-<p>After Bitbucket is running, create the <code>OPENDEVSTACK</code> project and create bare repositories for each OpenDevStack repository that you have setup locally.</p>
+<p>After Crowd is running, ensure that there is a user corresponding to the <code>CD_USER_ID_B64</code>/<code>CD_USER_PWD_B64</code> parameters in <code>ods-core.env</code>.</p>
 </div>
 </div>
 <div class="sect2">
@@ -509,7 +512,7 @@ If you are on Linux, <code>oc cluster up</code> will do the trick.
 <h2 id="_bitbucket_repoisitories"><a class="anchor" href="#_bitbucket_repoisitories"></a>Bitbucket Repoisitories</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>It is important that all repositories in BitBucket are up-to-date and ready to be used e.g. from <code>BuildConfig</code> resources in OpenShift.</p>
+<p>Ensure that there is an <code>OPENDEVSTACK</code> project in Bitbucket and that there is a corresponding OpenDevStack repository for each ODS repository that you have locally. In the next step, they will be filled / updated with the latest state so that they can be used e.g. from <code>BuildConfig</code> resources in OpenShift.</p>
 </div>
 <div class="paragraph">
 <p>In <code>ods-core</code> run:</p>
