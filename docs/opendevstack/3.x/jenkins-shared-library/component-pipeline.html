@@ -517,8 +517,12 @@ odsComponentPipeline(
 <td class="tableblock halign-left valign-top"><p class="tableblock">The tagversion is made up of the build number and the first 8 chars of the commit SHA.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nexusUrl</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nexus URL - value taken from <code>NEXUS_URL</code>. If <code>NEXUS_URL</code> is not present, it will default to <code>NEXUS_HOST</code> (which also includes the scheme).</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">nexusHost</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Nexus host (with scheme).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nexus host - value derived from <code>nexusUrl</code>. It does not include the scheme if <code>nexusUrl</code> was read from <code>NEXUS_URL</code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">nexusUsername</p></td>
@@ -529,8 +533,12 @@ odsComponentPipeline(
 <td class="tableblock halign-left valign-top"><p class="tableblock">Nexus password.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nexusUrlWithBasicAuth</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nexus URL, including username and password as BasicAuth.</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">nexusHostWithBasicAuth</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Nexus host (with scheme), including username and password as BasicAuth.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">DEPRECATED. Nexus host (with scheme), including username and password as BasicAuth.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">cloneSourceEnv</p></td>
@@ -594,11 +602,11 @@ odsComponentPipeline(
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">bitbucketUrl</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">BitBucket URL - value taken from <code>BITBUCKET_URL</code>. If BITBUCKET_URL is not present, it will default to <code><a href="https://&lt;BITBUCKET_HOST&gt;`" class="bare">https://&lt;BITBUCKET_HOST&gt;`</a></code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bitbucket URL - value taken from <code>BITBUCKET_URL</code>. If BITBUCKET_URL is not present, it will default to <code><a href="https://&lt;BITBUCKET_HOST&gt;`" class="bare">https://&lt;BITBUCKET_HOST&gt;`</a></code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">bitbucketHost</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">BitBucket host - value derived from <code>bitbucketUrl</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bitbucket host - value derived from <code>bitbucketUrl</code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">dockerDir</p></td>
@@ -764,7 +772,7 @@ you can follow the following steps:</p>
 <p>Track your large files in your local clone, as explained in previous step</p>
 </li>
 <li>
-<p>Enable Git LFS in your repository (if BitBucket: under repository&#8217;s settings main page you can enable it)</p>
+<p>Enable Git LFS in your repository (if Bitbucket: under repository&#8217;s settings main page you can enable it)</p>
 </li>
 </ul>
 </div>
