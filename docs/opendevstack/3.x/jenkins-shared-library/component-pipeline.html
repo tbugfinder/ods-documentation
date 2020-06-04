@@ -148,19 +148,7 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../provisioning-app/index.html">Provisioning App</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../provisioning-app/configuration.html">Configuration Guide</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../provisioning-app/architecture.html">Internal Architecture</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../provisioning-app/faq.html">FAQ</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -518,11 +506,7 @@ odsComponentPipeline(
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">nexusUrl</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Nexus URL - value taken from <code>NEXUS_URL</code>. If <code>NEXUS_URL</code> is not present, it will default to <code>NEXUS_HOST</code> (which also includes the scheme).</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">nexusHost</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Nexus host - value derived from <code>nexusUrl</code>. It does not include the scheme if <code>nexusUrl</code> was read from <code>NEXUS_URL</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nexus URL - value taken from <code>NEXUS_URL</code>. If <code>NEXUS_URL</code> is not present, it will default to <code>NEXUS_HOST</code> (which also includes the scheme). <code>nexusHost</code> is an alias for <code>nexusUrl</code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">nexusUsername</p></td>
@@ -534,11 +518,7 @@ odsComponentPipeline(
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">nexusUrlWithBasicAuth</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Nexus URL, including username and password as BasicAuth.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">nexusHostWithBasicAuth</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">DEPRECATED. Nexus host (with scheme), including username and password as BasicAuth.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nexus URL, including username and password as BasicAuth. <code>nexusHostWithBasicAuth</code> is an alias for <code>nexusUrlWithBasicAuth</code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">cloneSourceEnv</p></td>
@@ -602,11 +582,7 @@ odsComponentPipeline(
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">bitbucketUrl</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Bitbucket URL - value taken from <code>BITBUCKET_URL</code>. If BITBUCKET_URL is not present, it will default to <code><a href="https://&lt;BITBUCKET_HOST&gt;`" class="bare">https://&lt;BITBUCKET_HOST&gt;`</a></code>.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">bitbucketHost</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Bitbucket host - value derived from <code>bitbucketUrl</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bitbucket URL - value taken from <code>BITBUCKET_URL</code>. If BITBUCKET_URL is not present, it will default to <code><a href="https://&lt;BITBUCKET_HOST&gt;`" class="bare">https://&lt;BITBUCKET_HOST&gt;`</a></code>. <code>bitbucketHost</code> is an alias for <code>bitbucketUrl</code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">dockerDir</p></td>

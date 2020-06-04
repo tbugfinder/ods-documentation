@@ -148,19 +148,7 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../provisioning-app/index.html">Provisioning App</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../provisioning-app/configuration.html">Configuration Guide</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../provisioning-app/architecture.html">Internal Architecture</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../provisioning-app/faq.html">FAQ</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -528,6 +516,10 @@ odsQuickstarterPipeline(
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">odsGitRef</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Git ref, retrieved from <code>ODS_GIT_REF</code> build parameter.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bitbucketUrl</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bitbucket URL - value taken from <code>BITBUCKET_URL</code>. If BITBUCKET_URL is not present, it will default to <code><a href="https://&lt;BITBUCKET_HOST&gt;`" class="bare">https://&lt;BITBUCKET_HOST&gt;`</a></code>. <code>bitbucketHost</code> is an alias for <code>bitbucketUrl</code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">gitUrlHttp</p></td>

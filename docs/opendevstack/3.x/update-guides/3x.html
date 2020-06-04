@@ -148,19 +148,7 @@
   <li class="nav-item" data-depth="0">
 <ul class="nav-list">
   <li class="nav-item" data-depth="1">
-    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="../provisioning-app/index.html">Provisioning App</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../provisioning-app/configuration.html">Configuration Guide</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../provisioning-app/architecture.html">Internal Architecture</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../provisioning-app/faq.html">FAQ</a>
-  </li>
-</ul>
   </li>
 </ul>
   </li>
@@ -469,9 +457,35 @@ constraints of the Jenkins agent pod). Please review
 <a href="../jenkins-shared-library/component-pipeline.html#_pipeline_context" class="page">the documentation</a>
 in case your authored stages make heavy use of the <code>context</code> object.</p>
 </div>
-<div class="paragraph">
-<p>A notable addition to the <code>context</code> object is a new property <code>issueId</code>, which
-exposes the Jira issue ID (such as <code>123</code> from branch <code>feature/FOO-123-bar-baz</code>).</p>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+One notable change to the <code>context</code> object is that <code>bitbucketHost</code> did
+not include the scheme previously. Now, <code>bitbucketHost</code> is an alias for
+<code>bitbucketUrl</code> which does include the scheme. This change was made to align the
+property with <code>nexusHost</code> and <code>nexusUrl</code>, which both include the scheme as well.
+If you used <code>context.bitbucketHost</code> in one of your <code>Jenkinsfile`s, you may now
+use `context.bitbucketHostWithoutScheme</code>.
+</td>
+</tr>
+</table>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+A notable addition to the <code>context</code> object is a new property <code>issueId</code>, which
+exposes the Jira issue ID (such as <code>123</code> from branch <code>feature/FOO-123-bar-baz</code>).
+</td>
+</tr>
+</table>
 </div>
 </div>
 </div>
@@ -480,7 +494,7 @@ exposes the Jira issue ID (such as <code>123</code> from branch <code>feature/FO
 <h2 id="_changes_to_jenkins_slave_images"><a class="anchor" href="#_changes_to_jenkins_slave_images"></a>Changes to Jenkins Slave images</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Some slave images (<code>jenkins-slave-maven</code>, <code>jenkins-slave-nodejs10-angular</code>, <code>jenkins-slave-scala</code>) exposed the environment variables <code>NEXUS_HOST</code> and <code>NEXUS_USERNAME</code>/<code>NEXUS_PASSWORD</code>/<code>NEXUS_AUTH</code>. This was not done intentionally, but as a side effect of using those variables during image build time. In 3.x, that has been cleaned up. Now those variables are passed as build arguments to the image build, which means they are no longer accessible as environment variables in the running container. Nexus credentials can and should be accessed from the pipeline context (<code>context.nexusUrl</code>, <code>context.nexusUsername</code> and <code>context.nexusPassword</code>). As a consequence, if a <code>Jenkinsfile</code> relies on the presence of those environment variables without setting them explicitly using <code>withEnv</code>, it will fail to run in 3.x. That said, the <code>Jenkinsfile`s which shipped by default with the quickstarters did not rely on the environment variables - with the exception of `fe-ionic</code> which did not set <code>NEXUS_HOST</code> explicity in the <code>Build</code> stage.</p>
+<p>Some slave images (<code>jenkins-slave-maven</code>, <code>jenkins-slave-nodejs10-angular</code>, <code>jenkins-slave-scala</code>) exposed the environment variables <code>NEXUS_HOST</code> and <code>NEXUS_USERNAME</code>/<code>NEXUS_PASSWORD</code>/<code>NEXUS_AUTH</code>. This was not done intentionally, but as a side effect of using those variables during image build time. In 3.x, that has been cleaned up. Now those variables are passed as build arguments to the image build, which means they are no longer accessible as environment variables in the running container. Nexus credentials can and should be accessed from the pipeline context (<code>context.nexusUrl</code>, <code>context.nexusUsername</code> and <code>context.nexusPassword</code>). As a consequence, if a <code>Jenkinsfile</code> relies on the presence of those environment variables without setting them explicitly using <code>withEnv</code>, it will fail to run in 3.x. That said, the <code>Jenkinsfile</code> templates which shipped by default with the quickstarters did not rely on the environment variables - with the exception of <code>fe-ionic</code> which did not set <code>NEXUS_HOST</code> explicity in the <code>Build</code> stage.</p>
 </div>
 </div>
 </div>
