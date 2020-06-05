@@ -219,6 +219,9 @@
     <a class="nav-link" href="../administration/update.html">Upgrade</a>
   </li>
   <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-app/configuration.html">Provisioning App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../administration/keycloak.html">Keycloak</a>
   </li>
   <li class="nav-item" data-depth="2">
@@ -242,6 +245,9 @@
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../contributing/documentation.html">Documentation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-app/architecture.html">Provisioning App</a>
   </li>
 </ul>
   </li>
@@ -852,6 +858,49 @@ def suffixedComponent = context.componentId + componentSuffix</code></pre>
     sh("oc -n ${context.targetProject} delete all -l app=${context.projectId}-${context.componentId}-${mergedIssueId}")
   } else {
     echo "Nothing to cleanup"
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_interacting_with_bitbucket"><a class="anchor" href="#_interacting_with_bitbucket"></a>Interacting with Bitbucket</h3>
+<div class="paragraph">
+<p>The shared library already sets the build status of the built commit. It also
+provides three convenience methods on <code>BitbucketService</code> to interact with pull
+requests:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>String getPullRequests(String repo, String state = 'OPEN')</code> returns
+all open pull requests, which can be parsed using <code>readJSON</code>.</p>
+</li>
+<li>
+<p><code>Map findPullRequest(String repo, String branch, String state = 'OPEN')</code>
+tries to find a pull request for the given <code>branch</code>, and returns a map with
+its ID and target branch.</p>
+</li>
+<li>
+<p><code>void postComment(String repo, int pullRequestId, String comment)</code>
+allows to add <code>comment</code> to the PR identified by <code>pullRequestId</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To make use of these methods, you need to get an instance of the <code>BitbucketService</code>
+in your <code>Jenkinsfile</code> like this:</p>
+</div>
+<div class="listingblock">
+<div class="title">Jenkinsfile</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">import org.ods.services.ServiceRegistry
+import org.ods.services.BitbucketService
+
+def sayHello(def context) {
+  stage('Say Hello') {
+    def bitbucketService = ServiceRegistry.instance.get(BitbucketService)
+    bitbucketService.postComment(context.repoName, 1, "Hello world")
   }
 }</code></pre>
 </div>
