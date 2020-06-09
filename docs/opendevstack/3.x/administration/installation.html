@@ -201,19 +201,7 @@
     <span class="nav-text">Administration</span>
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="2">
-    <button class="nav-item-toggle"></button>
     <a class="nav-link" href="installation.html">Installation</a>
-<ul class="nav-list">
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="local-install-requirements.html">Local Installation Requirements</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="install-guide.html">Local Installation (outdated)</a>
-  </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="infrastructure-setup.html">Infrastructure Setup (outdated)</a>
-  </li>
-</ul>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="update.html">Upgrade</a>
@@ -333,13 +321,16 @@ From now on we assume, you work from a Bash (Cygwin / Linux).
 <div class="ulist">
 <ul>
 <li>
-<p>At least 16GB RAM</p>
+<p>At least 16GB RAM and 32GB of available disk space</p>
 </li>
 <li>
 <p><code>vm.max_map_count=262144</code> to run SonarQube (which can be set via <code>sudo sysctl -w vm.max_map_count=262144</code>)</p>
 </li>
 <li>
-<p>A recent Git version (&gt;= 2.7.0)</p>
+<p>A recent <code>git</code> version (&gt;= 2.7.0)</p>
+</li>
+<li>
+<p>A recent <code>jq</code> version (&gt;= 1.5, see <a href="https://stedolan.github.io/jq/" class="bare">https://stedolan.github.io/jq/</a>)</p>
 </li>
 </ul>
 </div>
@@ -510,10 +501,15 @@ If you are on Linux, <code>oc cluster up</code> will do the trick.
 <h2 id="_bitbucket_repoisitories"><a class="anchor" href="#_bitbucket_repoisitories"></a>Bitbucket Repoisitories</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Ensure that there is an <code>OPENDEVSTACK</code> project in Bitbucket and that there is a corresponding OpenDevStack repository for each ODS repository that you have locally. In the next step, they will be filled / updated with the latest state so that they can be used e.g. from <code>BuildConfig</code> resources in OpenShift.</p>
+<p>On Bitbucket, there must be an <code>OPENDEVSTACK</code> project filled with the necessary repositories such as <code>ods-core</code>. To set them up, use:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">make prepare-bitbucket-repos</code></pre>
+</div>
 </div>
 <div class="paragraph">
-<p>In <code>ods-core</code> run:</p>
+<p>Then, update them with the latest state so that they can be used e.g. from <code>BuildConfig</code> resources in OpenShift:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -521,11 +517,11 @@ If you are on Linux, <code>oc cluster up</code> will do the trick.
 </div>
 </div>
 <div class="paragraph">
-<p>Next, in <code>ods-configuration</code> run:</p>
+<p>You also need to update <code>ods-configuration</code>, which can be done via:</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">git push origin master</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">git push -u origin master</code></pre>
 </div>
 </div>
 </div>
