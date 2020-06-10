@@ -62,34 +62,28 @@
     <a class="nav-link" href="../quickstarters/docker-plain.html">Docker Plain</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/be-gateway-nginx.html">BE Gateway Nginx</a>
+    <a class="nav-link" href="../quickstarters/be-gateway-nginx.html">BE Gateway/Nginx</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../quickstarters/be-golang-plain.html">BE Golang</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/be-java-springboot.html">BE Java / Spring Boot</a>
+    <a class="nav-link" href="../quickstarters/be-java-springboot.html">BE Java/Spring Boot</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/be-typescript-express.html">BE Node Express</a>
+    <a class="nav-link" href="../quickstarters/be-typescript-express.html">BE TypeScript/Express</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/be-python-flask.html">BE Python Flask</a>
+    <a class="nav-link" href="../quickstarters/be-python-flask.html">BE Python/Flask</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/be-scala-akka.html">BE Scala Akka</a>
+    <a class="nav-link" href="../quickstarters/be-scala-play.html">BE Scala/Play</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../quickstarters/fe-angular.html">FE Angular</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../quickstarters/fe-ionic.html">FE Ionic</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/fe-react.html">FE React</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/fe-vue.html">FE Vue</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../quickstarters/ds-ml-service.html">Data Science Machine Learning Service</a>
@@ -300,6 +294,7 @@
 <div id="toctitle" class="title">Table of Contents</div>
 <ul class="sectlevel1">
 <li><a href="#_how_to_develop_locally">How to develop locally</a></li>
+<li><a href="#_how_to_deploy_to_openshift">How to deploy to OpenShift</a></li>
 <li><a href="#_frontend_code">Frontend Code</a></li>
 <li><a href="#_backend_code">Backend Code</a></li>
 <li><a href="#_authentication_implementation">Authentication Implementation</a></li>
@@ -434,6 +429,17 @@ The base configuration map as well as the deployment yamls can be found in <a hr
 <div class="content">
 <pre class="highlightjs highlight"><code>http://localhost:8080</code></pre>
 </div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_deploy_to_openshift"><a class="anchor" href="#_how_to_deploy_to_openshift"></a>How to deploy to OpenShift</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In order to test your changes in a real environment, you should deploy the provisioning app in OpenShift. To do so, you need to have an existing OpeDevStack project (consisting of <code>-dev</code>, <code>-test</code> and <code>-cd</code> namespaces). If you don&#8217;t have one yet, you can <a href="index.html#_basic_idea_usage" class="page">create one via the provisioning app in the central namespace</a>.</p>
+</div>
+<div class="paragraph">
+<p>Now you can make use of the <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/ods-provisioning-app">ods-provisioning-app quickstarter</a> in order to set up the Bitbucket repository in your Bitbucket space. The easiest way to provision that quickstarter is via <a href="https://github.com/BIX-Digital/ods-contrib/tree/master/quickstart-with-jenkins" class="bare">https://github.com/BIX-Digital/ods-contrib/tree/master/quickstart-with-jenkins</a>. Once you have provisioned the quickstarter, the first deployment of the prov app will run, but fail since you need to create the OpenShift resources manually. This step cannot be automated during the quickstart process at the moment as you need to supply configuration manually. Once the resources have been created, subsequent runs of the Jenkins pipeline should succeed and deploy the prov app in your own ODS project.</p>
 </div>
 </div>
 </div>

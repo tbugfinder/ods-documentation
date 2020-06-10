@@ -61,34 +61,28 @@
     <a class="nav-link" href="../quickstarters/docker-plain.html">Docker Plain</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/be-gateway-nginx.html">BE Gateway Nginx</a>
+    <a class="nav-link" href="../quickstarters/be-gateway-nginx.html">BE Gateway/Nginx</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../quickstarters/be-golang-plain.html">BE Golang</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/be-java-springboot.html">BE Java / Spring Boot</a>
+    <a class="nav-link" href="../quickstarters/be-java-springboot.html">BE Java/Spring Boot</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/be-typescript-express.html">BE Node Express</a>
+    <a class="nav-link" href="../quickstarters/be-typescript-express.html">BE TypeScript/Express</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/be-python-flask.html">BE Python Flask</a>
+    <a class="nav-link" href="../quickstarters/be-python-flask.html">BE Python/Flask</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/be-scala-akka.html">BE Scala Akka</a>
+    <a class="nav-link" href="../quickstarters/be-scala-play.html">BE Scala/Play</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../quickstarters/fe-angular.html">FE Angular</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../quickstarters/fe-ionic.html">FE Ionic</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/fe-react.html">FE React</a>
-  </li>
-  <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../quickstarters/fe-vue.html">FE Vue</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../quickstarters/ds-ml-service.html">Data Science Machine Learning Service</a>
@@ -452,10 +446,53 @@ update notes below which apply to your version change.</p>
 <p>The Provisioning App will make use of the Jenkins instance in <code>ods</code> to provision new ODS projects.</p>
 </div>
 <div class="paragraph">
-<p>When moving the instances, you may want to move the data as well. In general, you have to make a backup of the data in <code>cd</code>, and apply it to the new instance in <code>ods</code>.</p>
+<p>Apart from the instances, also all build configurations and image streams are moving from <code>cd</code> to <code>ods</code>, which means all users need to pull images from the new namespace.</p>
 </div>
 <div class="paragraph">
-<p>Apart from the instances, also all build configurations and image streams are moving from <code>cd</code> to <code>ods</code>, which means all users need to pull images from the new namespace.</p>
+<p>When moving the instances, you may want to move the data as well. In general, you have to make a backup of the data in <code>cd</code>, and apply it to the new instance in <code>ods</code>. The following outlines the procedure for SonarQube:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Create the SonarQube build resources in <code>ods</code> using <code>make apply-sonarqube-build</code></p>
+</li>
+<li>
+<p>Scale down the SonarQube pod in <code>cd</code></p>
+</li>
+<li>
+<p>Create a backup of the old data using <code>make NAMESPACE=cd backup-sonarqube</code></p>
+</li>
+<li>
+<p>Create the SonarQube deploy resources in <code>ods</code> using <code>make apply-sonarqube-deploy</code></p>
+</li>
+<li>
+<p>Scale down the SonarQube pod in <code>ods</code></p>
+</li>
+<li>
+<p>Upload backup to new Postgres pod: <code>oc -n ods cp sonarqube/sonarqube.sql pod/&lt;sonarqube-postgresql-pod&gt;:/var/lib/pgsql/</code></p>
+</li>
+<li>
+<p>Start a bash in the Postgres pod: <code>oc rsh -n ods pod/&lt;sonarqube-postgresql-pod&gt; bash</code> and start a <code>psql</code> session.</p>
+</li>
+<li>
+<p>Drop the <code>sonarqube</code> database (<code>DROP DATABASE sonarqube</code>) and create a new, empty one (<code>CREATE DATABASE sonarqube OWNER sonarqube</code>). Then quit from <code>psql</code>.</p>
+</li>
+<li>
+<p>Import the backup with <code>psql sonarqube &lt; sonarqube.sql</code></p>
+</li>
+<li>
+<p>Scale up the SonarQube pod in <code>ods</code>.</p>
+</li>
+<li>
+<p>At this stage, the new SonarQube instance is fully functional, but the Elasticsearch index is not correct and therefore no projects show on the dashboard initially. To fix this, log into SonarQube with an admin user and go to "Administration &gt; System". Then, start a bash in the SonarQube pod: <code>oc rsh -n ods pod/&lt;sonarqube-pod&gt; bash</code> and remove <code>/opt/sonarqube/data/es6</code>. Afterwards, restart the server from the UI (there&#8217;s a button on the "Administration &gt; System" page). Booting will take some time (depending on the amount of data to process) as a full re-index is performed.</p>
+</li>
+<li>
+<p>Now delete the old SonarQube route in <code>cd</code></p>
+</li>
+<li>
+<p>Create a new route in <code>ods</code> with the same host as the old route so that projects using the old URL don&#8217;t break.</p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect3">
