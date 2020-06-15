@@ -435,12 +435,24 @@ webhook (likely differentiated by the <code>component</code> param then).</p>
 </thead>
 <tbody>
 <tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">PROTECTED_BRANCHES</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated list of branches which pipelines should not be removed after they have been merged. Use either exact branch names, branch prefixes (e.g. <code>feature/</code>) or <code>*</code> for all branches. Defaults to: <code>master,develop,production,staging,release/</code>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ACCEPTED_EVENTS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated list of handled Bitbucket events. Defaults to <code>repo:refs_changed,pr:declined,pr:merged,pr:deleted</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ALLOWED_CHANGE_REF_TYPES</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated list of Bitbucket change refs. Defaults to <code>BRANCH</code>, which means tags do not create pipelines nor forward to them. If you want this to happen, specify e.g. <code>BRANCH,TAG</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ALLOWED_EXTERNAL_PROJECTS</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated list of external projects which the Webhook Proxy can deal with. For security reasons, by default the webhook proxy allows only its own project and the <code>opendevstack</code> project to be passed as a <code>project</code> parameter.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">OPENSHIFT_API_HOST</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Defaults to <code>openshift.default.svc.cluster.local</code>. Usually does not need to be modified.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">PROTECTED_BRANCHES</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated list of branches which pipelines should not be removed after they have been merged. Use either exact branch names, branch prefixes (e.g. <code>feature/</code>) or <code>*</code> for all branches. Defaults to: <code>master,develop,production,staging,release/</code>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">REPO_BASE</p></td>
@@ -449,10 +461,6 @@ webhook (likely differentiated by the <code>component</code> param then).</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">TRIGGER_SECRET</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The secret which protects the pipeline to be executed from outside. This variable is set by the OpenShift template from which the <code>DeploymentConfig</code> is created and usually does not need to be modified.</p></td>
-</tr>
-<tr>
-<td class="tableblock halign-left valign-top"><p class="tableblock">ALLOWED_EXTERNAL_PROJECTS</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Comma-separated list of external projects which the Webhook Proxy can deal with. For security reasons, by default the webhook proxy allows only its own project and the <code>opendevstack</code> project to be passed as a <code>project</code> parameter.</p></td>
 </tr>
 </tbody>
 </table>

@@ -393,21 +393,24 @@
 <h2 id="_how_this_quickstarter_is_built_through_jenkins"><a class="anchor" href="#_how_this_quickstarter_is_built_through_jenkins"></a>How this quickstarter is built through jenkins</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Jenkinsfile is provisioned with this quick starter to ease CI/CD process.
+<p>The Jenkinsfile is provisioned with this quickstarter to ease CI/CD process.
 In Jenkinsfile, there are various stages</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>stageBuild - Builds the application by running <code>yarn install</code>, <code>yarn build</code> command and copies output folder <code>dist</code> into <code>docker/dist</code> folder.</p>
+<p>stageBuild - Builds the application by running <code>npm install</code>, <code>npm run build</code> command and copies output folder <code>dist</code> into <code>docker/dist</code> folder.</p>
 </li>
 <li>
-<p>stageUnitTest - Runs unit test cases by executing command <code>yarn test</code>.</p>
+<p>stageUnitTest - Runs unit test cases by executing command <code>npm run test</code>.</p>
 </li>
 <li>
-<p>stageLint - Runs <code>ng lint</code> profiler by running command <code>yarn lint</code>.</p>
+<p>stageLint - Runs <code>ng lint</code> profiler by running command <code>npm run lint</code>.</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>Please note: By default the applciation is always build as full production build including all sorts of optimizations. In addition source maps will be added except for builds that are triggered from <code>master</code>. This can be changed by configuring (additional) build configurations within <code>angular.json</code> and by using them via stageBuild or <code>package.json</code>.</p>
 </div>
 </div>
 </div>
