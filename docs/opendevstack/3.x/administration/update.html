@@ -107,28 +107,28 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Jenkins Slave Images</span>
+    <span class="nav-text">Jenkins agent Images</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins/slave-base.html">Base Image</a>
+    <a class="nav-link" href="../jenkins/agent-base.html">Base Image</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-slaves/airflow.html">Airflow</a>
+    <a class="nav-link" href="#jenkins-agents:airflow.adoc">Airflow</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-slaves/golang.html">Go</a>
+    <a class="nav-link" href="#jenkins-agents:golang.adoc">Go</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-slaves/maven.html">Maven</a>
+    <a class="nav-link" href="#jenkins-agents:maven.adoc">Maven</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-slaves/nodejs10-angular.html">Nodejs10 Angular</a>
+    <a class="nav-link" href="#jenkins-agents:nodejs10-angular.adoc">Nodejs10 Angular</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-slaves/python.html">Python</a>
+    <a class="nav-link" href="#jenkins-agents:python.adoc">Python</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-slaves/scala.html">Scala</a>
+    <a class="nav-link" href="#jenkins-agents:scala.adoc">Scala</a>
   </li>
 </ul>
   </li>
@@ -156,7 +156,7 @@
     <a class="nav-link" href="../jenkins/master.html">Jenkins Master</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../jenkins/slave-base.html">Jenkins Slave Base</a>
+    <a class="nav-link" href="../jenkins/agent-base.html">Jenkins Agent Base</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../jenkins/webhook-proxy.html">Webhook Proxy</a>
@@ -504,7 +504,7 @@ update notes below which apply to your version change.</p>
 <div class="sect3">
 <h4 id="_jenkins_base_image_changes"><a class="anchor" href="#_jenkins_base_image_changes"></a>Jenkins base image changes</h4>
 <div class="paragraph">
-<p>In 2.x, the Jenkins master base image was pulled from the <code>openshift</code> namespace. The slave base image could have been pulled from that namespace as well, or directly from a registry. In 3.x, the master can also be pulled directly from a registry. The advantage of this is that you do not need to worry about the import policy set in the <code>openshift</code> namespace, which can have suprising results (e.g. your base image never updating even though a fix has been released by RedHat). The behaviour is defined by a new configuration parameter, <code>JENKINS_MASTER_BASE_FROM_IMAGE</code>.</p>
+<p>In 2.x, the Jenkins master base image was pulled from the <code>openshift</code> namespace. The agent base image could have been pulled from that namespace as well, or directly from a registry. In 3.x, the master can also be pulled directly from a registry. The advantage of this is that you do not need to worry about the import policy set in the <code>openshift</code> namespace, which can have suprising results (e.g. your base image never updating even though a fix has been released by RedHat). The behaviour is defined by a new configuration parameter, <code>JENKINS_MASTER_BASE_FROM_IMAGE</code>.</p>
 </div>
 <div class="paragraph">
 <p>Further, in 2.x you had to pick (via <code>JENKINS_AGENT_BASE_IMAGE</code>) whether you wanted to use <code>Dockerfile.centos7</code> or <code>Dockerfile.rhel7</code>. However, both files contained the same instructions. Therefore, those were combined into a single <code>Dockerfile</code> and you only need to choose which base image to use via <code>JENKINS_AGENT_BASE_FROM_IMAGE</code> (like before).</p>

@@ -108,28 +108,28 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Jenkins Slave Images</span>
+    <span class="nav-text">Jenkins agent Images</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins/slave-base.html">Base Image</a>
+    <a class="nav-link" href="../jenkins/agent-base.html">Base Image</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-slaves/airflow.html">Airflow</a>
+    <a class="nav-link" href="#jenkins-agents:airflow.adoc">Airflow</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-slaves/golang.html">Go</a>
+    <a class="nav-link" href="#jenkins-agents:golang.adoc">Go</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-slaves/maven.html">Maven</a>
+    <a class="nav-link" href="#jenkins-agents:maven.adoc">Maven</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-slaves/nodejs10-angular.html">Nodejs10 Angular</a>
+    <a class="nav-link" href="#jenkins-agents:nodejs10-angular.adoc">Nodejs10 Angular</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-slaves/python.html">Python</a>
+    <a class="nav-link" href="#jenkins-agents:python.adoc">Python</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-slaves/scala.html">Scala</a>
+    <a class="nav-link" href="#jenkins-agents:scala.adoc">Scala</a>
   </li>
 </ul>
   </li>
@@ -157,7 +157,7 @@
     <a class="nav-link" href="../jenkins/master.html">Jenkins Master</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../jenkins/slave-base.html">Jenkins Slave Base</a>
+    <a class="nav-link" href="../jenkins/agent-base.html">Jenkins Agent Base</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../jenkins/webhook-proxy.html">Webhook Proxy</a>
@@ -351,7 +351,7 @@ It delegates the tasks to create / update resources to several services such as 
 <li>
 <p>Why are three OpenShift projects created when I provision a new project?<br>
 The <code>&lt;project-key&gt;-dev</code> and <code>&lt;project-key&gt;-test</code> namespaces are <strong>runtime</strong> namespaces. Depending on which branch you merge / commit your code into, images will be built &amp; deployed in one of the two (further information on how this is done - can be found in the <a href="../jenkins-shared-library/component-pipeline.html" class="page">Component Pipeline</a><br>
-In contrast to this, the <code>&lt;project-key&gt;-cd</code> namespace hosts a project-specific instance of <a href="../jenkins/master.html" class="page">Jenkins Master</a> and <a href="../jenkins/webhook-proxy.html" class="page">Webhook Proxy</a>. When a build is triggered, builder pods (= deployments of <a href="../jenkins/slave-base.html" class="page">Jenkins slaves</a>) are created in this project.<br>
+In contrast to this, the <code>&lt;project-key&gt;-cd</code> namespace hosts a project-specific instance of <a href="../jenkins/master.html" class="page">Jenkins Master</a> and <a href="../jenkins/webhook-proxy.html" class="page">Webhook Proxy</a>. When a build is triggered, builder pods (= deployments of <a href="#jenkins:slave-base.adoc" class="page unresolved">Jenkins slaves</a>) are created in this project.<br>
 This was a cautious design choice to give a project team as much power as possible when it comes to configuration of Jenkins.</p>
 </li>
 </ol>

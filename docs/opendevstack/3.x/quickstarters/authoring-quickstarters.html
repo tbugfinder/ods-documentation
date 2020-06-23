@@ -107,28 +107,28 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Jenkins Slave Images</span>
+    <span class="nav-text">Jenkins agent Images</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins/slave-base.html">Base Image</a>
+    <a class="nav-link" href="../jenkins/agent-base.html">Base Image</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-slaves/airflow.html">Airflow</a>
+    <a class="nav-link" href="#jenkins-agents:airflow.adoc">Airflow</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-slaves/golang.html">Go</a>
+    <a class="nav-link" href="#jenkins-agents:golang.adoc">Go</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-slaves/maven.html">Maven</a>
+    <a class="nav-link" href="#jenkins-agents:maven.adoc">Maven</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-slaves/nodejs10-angular.html">Nodejs10 Angular</a>
+    <a class="nav-link" href="#jenkins-agents:nodejs10-angular.adoc">Nodejs10 Angular</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-slaves/python.html">Python</a>
+    <a class="nav-link" href="#jenkins-agents:python.adoc">Python</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-slaves/scala.html">Scala</a>
+    <a class="nav-link" href="#jenkins-agents:scala.adoc">Scala</a>
   </li>
 </ul>
   </li>
@@ -156,7 +156,7 @@
     <a class="nav-link" href="../jenkins/master.html">Jenkins Master</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../jenkins/slave-base.html">Jenkins Slave Base</a>
+    <a class="nav-link" href="../jenkins/agent-base.html">Jenkins Agent Base</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../jenkins/webhook-proxy.html">Webhook Proxy</a>
@@ -293,10 +293,10 @@
 <p>This document describes how you can create your own quickstarter. At the same time, you should be able to find all information required to make changes to an existing quickstarter.</p>
 </div>
 <div class="paragraph">
-<p>Technically speaking, a quickstarter is just a Jenkins pipeline that fills an existing repository with files. How this is done, and what exactly is run in the pipeline is up to the quickstarter author. Typically though, the pipeline makes use of the <a href="../jenkins-shared-library/quickstarter-pipeline.html" class="page">quickstarter pipeline</a> from the Jenkins shared library, which removes the need to write lots of boilerplate such as running a slave pod, cloning sources, copying files and pushing at the end to the component repository. The rest of the guide assumes that you are using this pipeline.</p>
+<p>Technically speaking, a quickstarter is just a Jenkins pipeline that fills an existing repository with files. How this is done, and what exactly is run in the pipeline is up to the quickstarter author. Typically though, the pipeline makes use of the <a href="../jenkins-shared-library/quickstarter-pipeline.html" class="page">quickstarter pipeline</a> from the Jenkins shared library, which removes the need to write lots of boilerplate such as running a agent pod, cloning sources, copying files and pushing at the end to the component repository. The rest of the guide assumes that you are using this pipeline.</p>
 </div>
 <div class="paragraph">
-<p>As the Jenkins pipeline runs on a Jenkins Slave image, you as the author need to pick either an existing slave image (see "Jenkins Slave Images" in the navigation on the left), or <a href="#_creating_modifying_a_jenkins_slave_image">create your own</a>.</p>
+<p>As the Jenkins pipeline runs on a Jenkins agent image, you as the author need to pick either an existing agent image (see "Jenkins agent Images" in the navigation on the left), or <a href="#_creating_modifying_a_jenkins_agent_image">create your own</a>.</p>
 </div>
 </div>
 </div>
@@ -327,7 +327,7 @@
 <p>HTTP proxy awareness</p>
 </li>
 <li>
-<p>Documentation. Both for the quickstarter itself (located at <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/quickstarters/pages" class="bare">https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/quickstarters/pages</a>, following the <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/quickstarters/pages/__QUICKSTARTER_TEMPLATE.adoc">quickstarter template</a>) and any Jenkins slave image (located at <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/jenkins-slaves/pages" class="bare">https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/jenkins-slaves/pages</a>, following the <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/jenkins-slaves/pages/__JENKINS_SLAVE_TEMPLATE.adoc">slave image template</a>).</p>
+<p>Documentation. Both for the quickstarter itself (located at <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/quickstarters/pages" class="bare">https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/quickstarters/pages</a>, following the <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/quickstarters/pages/__QUICKSTARTER_TEMPLATE.adoc">quickstarter template</a>) and any Jenkins agent image (located at <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/jenkins-agents/pages" class="bare">https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/jenkins-agents/pages</a>, following the <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/jenkins-agents/pages/__JENKINS_agent_TEMPLATE.adoc">agent image template</a>).</p>
 </li>
 </ul>
 </div>
@@ -340,15 +340,15 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_creating_modifying_a_jenkins_slave_image"><a class="anchor" href="#_creating_modifying_a_jenkins_slave_image"></a>Creating / Modifying a Jenkins Slave image</h2>
+<h2 id="_creating_modifying_a_jenkins_agent_image"><a class="anchor" href="#_creating_modifying_a_jenkins_agent_image"></a>Creating / Modifying a Jenkins agent image</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>It is highly recommended to use the <a href="../jenkins/slave-base.html" class="page">jenkins-slave-base</a> image as a base image. Otherwise it is likely that some features of the shared pipeline don&#8217;t work. The <code>jenkins-slave-base</code> image in turn is based on another base image, e.g. provided by RedHat. The easiest way to get started is to look ath other slave images, such as <a href="../jenkins-slaves/golang.html" class="page">Go</a> and see how that implements its requirements. If you are just building an image for yourself, do the following:</p>
+<p>It is highly recommended to use the <a href="../jenkins/agent-base.html" class="page">jenkins-agent-base</a> image as a base image. Otherwise it is likely that some features of the shared pipeline don&#8217;t work. The <code>jenkins-agent-base</code> image in turn is based on another base image, e.g. provided by RedHat. The easiest way to get started is to look ath other agent images, such as <a href="#jenkins-agents:golang.adoc" class="page unresolved">Go</a> and see how that implements its requirements. If you are just building an image for yourself, do the following:</p>
 </div>
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>Copy the folder from one of the Jenkins slaves to your local machine, and adjust as needed. For sure you&#8217;ll need to update the <code>Dockerfile</code>. Also, change the names in the <code>ocp-config</code> folder and delete the <code>Tailorfile</code> in there. Note that the <code>BuildConfig</code> points to a repository and a branch. You will need to push your sources to a matching location.</p>
+<p>Copy the folder from one of the Jenkins agents to your local machine, and adjust as needed. For sure you&#8217;ll need to update the <code>Dockerfile</code>. Also, change the names in the <code>ocp-config</code> folder and delete the <code>Tailorfile</code> in there. Note that the <code>BuildConfig</code> points to a repository and a branch. You will need to push your sources to a matching location.</p>
 </li>
 <li>
 <p>Create the OpenShift resources in your <code>*-cd</code> project via <a href="https://github.com/opendevstack/tailor">Tailor</a>, e.g. <code>tailor -n foo-cd --param REPO_BASE=https://bitbucket.example.com/scm --param ODS_IMAGE_TAG=2.x &#8230;&#8203;</code></p>
@@ -357,12 +357,12 @@
 <p>Start a build in the OpenShift web console.</p>
 </li>
 <li>
-<p>Reference the built image from your <code>Jenkinsfile</code> like this: <code>imageStreamTag: 'foo-cd/jenkins-slave-bar:latest'</code></p>
+<p>Reference the built image from your <code>Jenkinsfile</code> like this: <code>imageStreamTag: 'foo-cd/jenkins-agent-bar:latest'</code></p>
 </li>
 </ol>
 </div>
 <div class="paragraph">
-<p>If you want to contribute your Jenkins Slave image to OpenDevStack, make sure to add documentation according to the <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/jenkins-slaves/pages/__JENKINS_SLAVE_TEMPLATE_README.adoc">slave image template</a>.</p>
+<p>If you want to contribute your Jenkins agent image to OpenDevStack, make sure to add documentation according to the <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/jenkins-agents/pages/__JENKINS_agent_TEMPLATE_README.adoc">agent image template</a>.</p>
 </div>
 </div>
 </div>

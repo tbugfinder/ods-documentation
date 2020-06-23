@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Go Jenkins Slave :: OpenDevStack</title>
+    <title>Go Jenkins agent :: OpenDevStack</title>
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/search.css">
@@ -107,28 +107,28 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Jenkins Slave Images</span>
+    <span class="nav-text">Jenkins agent Images</span>
 <ul class="nav-list">
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins/slave-base.html">Base Image</a>
+    <a class="nav-link" href="../jenkins/agent-base.html">Base Image</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="airflow.html">Airflow</a>
-  </li>
-  <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="golang.html">Go</a>
+    <a class="nav-link" href="#jenkins-agents:airflow.adoc">Airflow</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="maven.html">Maven</a>
+    <a class="nav-link" href="#jenkins-agents:golang.adoc">Go</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="nodejs10-angular.html">Nodejs10 Angular</a>
+    <a class="nav-link" href="#jenkins-agents:maven.adoc">Maven</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="python.html">Python</a>
+    <a class="nav-link" href="#jenkins-agents:nodejs10-angular.adoc">Nodejs10 Angular</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="scala.html">Scala</a>
+    <a class="nav-link" href="#jenkins-agents:python.adoc">Python</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="#jenkins-agents:scala.adoc">Scala</a>
   </li>
 </ul>
   </li>
@@ -156,7 +156,7 @@
     <a class="nav-link" href="../jenkins/master.html">Jenkins Master</a>
   </li>
   <li class="nav-item" data-depth="2">
-    <a class="nav-link" href="../jenkins/slave-base.html">Jenkins Slave Base</a>
+    <a class="nav-link" href="../jenkins/agent-base.html">Jenkins Agent Base</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="../jenkins/webhook-proxy.html">Webhook Proxy</a>
@@ -270,9 +270,7 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../getting-started/index.html">OpenDevStack</a></li>
-    <li><a href="../quickstarters/index.html">Quickstarters</a></li>
-    <li>Jenkins Slave Images</li>
-    <li><a href="golang.html">Go</a></li>
+    <li><a href="golang.html">Go Jenkins agent</a></li>
   </ul>
 </nav>
 <div class="page-versions">
@@ -287,16 +285,16 @@
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Go Jenkins Slave</h1>
+<h1 class="page">Go Jenkins agent</h1>
 <div class="sect1">
 <h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This slave is used to build <a href="https://golang.org">Go</a> code.</p>
+<p>This agent is used to build <a href="https://golang.org">Go</a> code.</p>
 </div>
 <div class="paragraph">
-<p>The image is built in the global <code>cd</code> project and is named <code>jenkins-slave-golang</code>.
-It can be referenced in a <code>Jenkinsfile</code> with e.g. <code>ods/jenkins-slave-golang:latest</code>.</p>
+<p>The image is built in the global <code>cd</code> project and is named <code>jenkins-agent-golang</code>.
+It can be referenced in a <code>Jenkinsfile</code> with e.g. <code>ods/jenkins-agent-golang:latest</code>.</p>
 </div>
 </div>
 </div>

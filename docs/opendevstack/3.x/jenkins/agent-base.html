@@ -3,8 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>ODS Jenkins Slave base :: OpenDevStack</title>
-    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/2.x/jenkins/slave-base.html">
+    <title>ODS Jenkins Agent base :: OpenDevStack</title>
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/search.css">
@@ -108,28 +107,28 @@
   </li>
   <li class="nav-item" data-depth="2">
     <button class="nav-item-toggle"></button>
-    <span class="nav-text">Jenkins Slave Images</span>
+    <span class="nav-text">Jenkins agent Images</span>
 <ul class="nav-list">
   <li class="nav-item is-current-page" data-depth="3">
-    <a class="nav-link" href="slave-base.html">Base Image</a>
+    <a class="nav-link" href="agent-base.html">Base Image</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-slaves/airflow.html">Airflow</a>
+    <a class="nav-link" href="#jenkins-agents:airflow.adoc">Airflow</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-slaves/golang.html">Go</a>
+    <a class="nav-link" href="#jenkins-agents:golang.adoc">Go</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-slaves/maven.html">Maven</a>
+    <a class="nav-link" href="#jenkins-agents:maven.adoc">Maven</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-slaves/nodejs10-angular.html">Nodejs10 Angular</a>
+    <a class="nav-link" href="#jenkins-agents:nodejs10-angular.adoc">Nodejs10 Angular</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-slaves/python.html">Python</a>
+    <a class="nav-link" href="#jenkins-agents:python.adoc">Python</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="../jenkins-slaves/scala.html">Scala</a>
+    <a class="nav-link" href="#jenkins-agents:scala.adoc">Scala</a>
   </li>
 </ul>
   </li>
@@ -157,7 +156,7 @@
     <a class="nav-link" href="master.html">Jenkins Master</a>
   </li>
   <li class="nav-item is-current-page" data-depth="2">
-    <a class="nav-link" href="slave-base.html">Jenkins Slave Base</a>
+    <a class="nav-link" href="agent-base.html">Jenkins Agent Base</a>
   </li>
   <li class="nav-item" data-depth="2">
     <a class="nav-link" href="webhook-proxy.html">Webhook Proxy</a>
@@ -272,47 +271,52 @@
   <ul>
     <li><a href="../getting-started/index.html">OpenDevStack</a></li>
     <li><a href="../quickstarters/index.html">Quickstarters</a></li>
-    <li>Jenkins Slave Images</li>
-    <li><a href="slave-base.html">Base Image</a></li>
+    <li>Jenkins agent Images</li>
+    <li><a href="agent-base.html">Base Image</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">3.x Preview</button>
   <div class="version-menu">
-    <a class="version is-current" href="slave-base.html">3.x Preview</a>
-    <a class="version" href="../../2.x/jenkins/slave-base.html">2.x</a>
-    <a class="version" href="../../1.x/jenkins/slave-base.html">1.x</a>
+    <a class="version is-current" href="agent-base.html">3.x Preview</a>
+    <a class="version is-missing" href="../../2.x/getting-started/index.html">2.x</a>
+    <a class="version is-missing" href="../../1.x/getting-started/index.html">1.x</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-core/edit/master/docs/modules/jenkins/pages/slave-base.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-core/edit/master/docs/modules/jenkins/pages/agent-base.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">ODS Jenkins Slave base</h1>
+<h1 class="page">ODS Jenkins Agent base</h1>
 <div class="paragraph">
-<p>We have a base image for different jenkins slaves.
-The concrete slave images are then configured as part of the quickstarters.
-The base image contains the following customizations</p>
+<p>We have a base image for different jenkins agents.
+The concrete agent images are then configured as part of the quickstarters.</p>
+</div>
+<div class="paragraph">
+<p>The base image contains the following customizations:</p>
 </div>
 <div class="ulist">
 <ul>
 <li>
-<p>SonarQube Scanner</p>
+<p><a href="http://repo1.maven.org/maven2/org/sonarsource/scanner">SonarQube Scanner</a></p>
 </li>
 <li>
-<p>SonarQube CNES Report Plugin</p>
+<p><a href="https://github.com/lequal/sonar-cnes-report">SonarQube CNES Report Plugin</a></p>
 </li>
 <li>
 <p><a href="https://github.com/opendevstack/tailor">Tailor</a></p>
 </li>
 <li>
-<p>Skopeo</p>
+<p><a href="https://github.com/containers/skopeo">Skopeo</a></p>
 </li>
 <li>
-<p><a href="https://snyk.io">Snyk</a> - used to scan and monitor projects vulnerable third-party dependencies</p>
+<p><a href="https://snyk.io">Snyk</a> - used to scan and monitor projects vulnerable third-party dependencies (only installed if <code>SNYK_DISTRIBUTION_URL</code> is configured)</p>
 </li>
 <li>
-<p>Setting of Enterprise Proxy</p>
+<p>Setting of enterprise proxy (based on <code>HTTP_PROXY</code> presence)</p>
+</li>
+<li>
+<p>Support for custom certificates (based on <code>APP_DNS</code> presence)</p>
 </li>
 </ul>
 </div>
@@ -321,10 +325,10 @@ The base image contains the following customizations</p>
 can pick it up later and also adds the base domain wildcard certificate to the Java certificate store.</p>
 </div>
 <div class="paragraph">
-<p>The setting of the enterprise proxy takes care that Jenkins slave works also on OpenShift clusters in enterprises that use a web proxy.</p>
+<p>The setting of the enterprise proxy takes care that Jenkins agent works also on OpenShift clusters in enterprises that use a web proxy.</p>
 </div>
 <div class="paragraph">
-<p>The base jenkins slave used by all ODS <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-slaves">builder slaves</a></p>
+<p>The base jenkins agent is used by all ODS <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/common/jenkins-agents">builder agents</a></p>
 </div>
 </article>
 <aside class="toc sidebar" data-title="Contents" data-levels="2">
@@ -341,7 +345,7 @@ can pick it up later and also adds the base domain wildcard certificate to the J
 <script type="text/javascript">
   window.antora = window.antora || {}
   window.antora.basePath = '../../..'
-  window.antora.pagePath = '/opendevstack/3.x/jenkins/slave-base.html'
+  window.antora.pagePath = '/opendevstack/3.x/jenkins/agent-base.html'
 </script>
 <script src="../../../_/js/site.js"></script>
 <script src="../../../_/js/vendor/lunr.js"></script>
