@@ -295,6 +295,7 @@
 <ul class="sectlevel2">
 <li><a href="#_renamed_pipelines_and_stages">Renamed pipelines and stages</a></li>
 <li><a href="#_reduced_boilerplate">Reduced boilerplate</a></li>
+<li><a href="#_changed_agent_images">Changed agent images</a></li>
 <li><a href="#_changed_context_properties">Changed <code>context</code> properties</a></li>
 </ul>
 </li>
@@ -417,7 +418,7 @@ odsPipeline(
 <pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">@Library('ods-jenkins-shared-library@3.x') _
 
 odsComponentPipeline(
-  imageStreamTag: 'ods/jenkins-slave-golang:3.x',
+  imageStreamTag: 'ods/jenkins-agent-golang:3.x',
   branchToEnvironmentMapping: ['master': 'dev']
 ) { context -&gt;
   odsComponentStageScanWithSonar(context)
@@ -433,6 +434,37 @@ names as outlined above. Apart from this, it makes use of a new config option,
 environment variable. If you need it, the <code>image</code> config is still present (e.g.
 to reference images outside of OpenShift). <code>projectId</code> and <code>componentId</code> are
 now automatically configured, but can still be set if desired.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_changed_agent_images"><a class="anchor" href="#_changed_agent_images"></a>Changed agent images</h3>
+<div class="paragraph">
+<p>Up to and including 2.x, Jenkins used "slave images" to do its work. They have
+been renamed to "agent images" in 3.x. All new agent images are located in the
+new central namespace <code>ods</code>. Therefore, you need to update the references in
+your <code>Jenkinsfile</code> (as shown above):</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>cd/jenkins-slave-base</code> is now <code>ods/jenkins-agent-base</code></p>
+</li>
+<li>
+<p><code>cd/jenkins-slave-golang</code> is now <code>ods/jenkins-agent-golang</code></p>
+</li>
+<li>
+<p><code>cd/jenkins-slave-maven</code> is now <code>ods/jenkins-agent-maven</code></p>
+</li>
+<li>
+<p><code>cd/jenkins-slave-nodejs10-angular</code> is now <code>ods/jenkins-agent-nodejs10-angular</code></p>
+</li>
+<li>
+<p><code>cd/jenkins-slave-python</code> is now <code>ods/jenkins-agent-python</code></p>
+</li>
+<li>
+<p><code>cd/jenkins-slave-scala</code> is now <code>ods/jenkins-agent-scala</code></p>
+</li>
+</ul>
 </div>
 </div>
 <div class="sect2">

@@ -320,7 +320,7 @@ def odsImageTag = env.ODS_IMAGE_TAG ?: 'latest'
 library("ods-jenkins-shared-library@${odsGitRef}")
 
 odsQuickstarterPipeline(
-  imageStreamTag: "${odsNamespace}/jenkins-slave-golang:${odsImageTag}",
+  imageStreamTag: "${odsNamespace}/jenkins-agent-golang:${odsImageTag}",
 ) { context -&gt;
 
   odsQuickstarterStageCopyFiles(context)
@@ -353,7 +353,7 @@ odsQuickstarterPipeline(
 <div class="listingblock">
 <div class="content">
 <pre>odsQuickstgarterPipeline(
-  imageStreamTag: 'ods/jenkins-slave-golang:2.x'
+  imageStreamTag: 'ods/jenkins-agent-golang:3.x'
 )</pre>
 </div>
 </div>
@@ -406,7 +406,7 @@ odsQuickstarterPipeline(
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">podContainers</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Custom pod containers to use if the default, automatically configured container is not suitable for your use case (e.g. if you need multiple containers such as app and database). See <a href="#_slave_customization">Slave customization</a>.</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Custom pod containers to use if the default, automatically configured container is not suitable for your use case (e.g. if you need multiple containers such as app and database). See <a href="#_agent_customization">Agent customization</a>.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">podVolumes</p></td>
@@ -521,9 +521,9 @@ odsQuickstarterPipeline(
 <h2 id="_advanced"><a class="anchor" href="#_advanced"></a>Advanced</h2>
 <div class="sectionbody">
 <div class="sect2">
-<h3 id="_slave_customization"><a class="anchor" href="#_slave_customization"></a>Slave customization</h3>
+<h3 id="_agent_customization"><a class="anchor" href="#_agent_customization"></a>Agent customization</h3>
 <div class="paragraph">
-<p>The slave used in the pipeline can be customized by adjusting the <code>image</code> (or <code>imageStreamTag</code> to
+<p>The agent used in the pipeline can be customized by adjusting the <code>image</code> (or <code>imageStreamTag</code> to
 use. Further, <code>alwaysPullImage</code> (defaulting to <code>true</code>) can be used to
 determine whether this image should be refreshed on each build.</p>
 </div>
@@ -540,7 +540,7 @@ determine whether this image should be refreshed on each build.</p>
 (which is passed to the <code>podTemplate</code> call as <code>containers</code>).</p>
 </div>
 <div class="paragraph">
-<p>Configuring of a customized slave container in a <code>Jenkinsfile</code>:</p>
+<p>Configuring of a customized agent container in a <code>Jenkinsfile</code>:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -549,7 +549,7 @@ determine whether this image should be refreshed on each build.</p>
   podContainers: [
     containerTemplate(
       name: 'jnlp', // do not change, see https://github.com/jenkinsci/kubernetes-plugin#constraints
-      image: "${env.DOCKER_REGISTRY}/foo-cd/jenkins-slave-custom",
+      image: "${env.DOCKER_REGISTRY}/foo-cd/jenkins-agent-custom",
       workingDir: '/tmp',
       resourceRequestCpu: '100m',
       resourceLimitCpu: '500m',
