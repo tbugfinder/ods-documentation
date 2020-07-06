@@ -503,6 +503,10 @@ odsComponentPipeline(
 <td class="tableblock halign-left valign-top"><p class="tableblock">Nexus URL, including username and password as BasicAuth. <code>nexusHostWithBasicAuth</code> is an alias for <code>nexusUrlWithBasicAuth</code>.</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sonarQubeEdition</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Edition of SonarQube in use, determined by <code>SONARQUBE_EDITION</code> (defaults to <code>community</code>).</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">cloneSourceEnv</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">The environment which was chosen as the clone source.</p></td>
 </tr>
@@ -1222,7 +1226,7 @@ being built.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">deployTimeoutMinutes</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Adjust timeout of rollout (defaults to 5 minutes).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adjust timeout of rollout (defaults to 5 minutes). Caution: This needs to be aligned with the deployment strategy timeout (timeoutSeconds) and the readiness probe timeouts (initialDelaySeconds + failureThreshold * periodSeconds).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">openshiftDir</p></td>
@@ -1285,7 +1289,7 @@ being built.</p>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">distributionFile</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">default is <code>${projectId}-${componentId}.tar.gz</code></p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">default is <code>${componentId}-${tagversion}.tar.gz</code></p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">repository</p></td>
