@@ -291,6 +291,7 @@
 <li><a href="#_reduced_boilerplate">Reduced boilerplate</a></li>
 <li><a href="#_changed_agent_images">Changed agent images</a></li>
 <li><a href="#_changed_context_properties">Changed <code>context</code> properties</a></li>
+<li><a href="#_different_image_tags">Different image tags</a></li>
 </ul>
 </li>
 </ul>
@@ -499,6 +500,20 @@ exposes the Jira issue ID (such as <code>123</code> from branch <code>feature/FO
 </td>
 </tr>
 </table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_different_image_tags"><a class="anchor" href="#_different_image_tags"></a>Different image tags</h3>
+<div class="paragraph">
+<p>Previously, images produced by <code>odsComponentStageBuildOpenShiftImage</code> where
+tagged with <code>context.tagversion</code>, which consisted of the Jenkins build number
+and the (shortened) Git commit (e.g. <code>7-cd3e9082</code>). This made it difficult
+for other processes (unaware of the Jenkins build number) to find those images.</p>
+</div>
+<div class="paragraph">
+<p>The images are now tagged with just the (shortened) Git commit (e.g. <code>cd3e9082</code>).
+This change also has the huge benefit that it allows to promote images between
+environments (avoiding to rebuild them) using the new stage <a href="../jenkins-shared-library/component-pipeline.html#_odscomponentstageimportopenshiftimageorelse" class="page">odsComponentStageImportOpenShiftImageOrElse</a>.</p>
 </div>
 <div class="paragraph">
 <p>Unresolved include directive in modules/update-guides/pages/3x.adoc - include::jenkins-agents:partial$update-to-3x.adoc[]</p>
