@@ -1003,6 +1003,12 @@ SonarQube. The configuration of the scan happens via the
 <code>sonar-project.properties</code> file in the repository being built.</p>
 </div>
 <div class="paragraph">
+<p>If your SonarQube server edition allows to scan multiple branches (any
+commercial edition does), then this stage will automatically decorate pull
+requests in Bitbucket with feedback from SonarQube (if the PR already exists
+at the time of the Jenkins pipeline run).</p>
+</div>
+<div class="paragraph">
 <p>In debug mode, the <code>sonar-scanner</code> binary is started with the <code>-X</code> flag.</p>
 </div>
 <div class="paragraph">

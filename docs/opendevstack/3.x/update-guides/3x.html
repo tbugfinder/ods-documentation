@@ -284,6 +284,7 @@
 <div id="toc" class="toc">
 <div id="toctitle">Table of Contents</div>
 <ul class="sectlevel1">
+<li><a href="#_new_central_ods_namespace">New central <code>ods</code> namespace</a></li>
 <li><a href="#_update_image_tags_of_jenkins_deployments">Update image tags of Jenkins deployments</a></li>
 <li><a href="#_jenkins_shared_library_changes">Jenkins Shared Library changes</a>
 <ul class="sectlevel2">
@@ -316,11 +317,37 @@ It is assumed that you are updating from ODS 2.x.
 </div>
 </div>
 <div class="sect1">
+<h2 id="_new_central_ods_namespace"><a class="anchor" href="#_new_central_ods_namespace"></a>New central <code>ods</code> namespace</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>One of the biggest changes in ODS 3 is that there is a new central namespace,
+named <code>ods</code>. This namespace hosts the complete ODS installation, such as a
+provisioning app, Nexus, SonarQube, and images for Jenkins (master and agent).
+This central namespace replaces the previous namespaces <code>cd</code> (which hosted Nexus,
+SonarQube, etc.) as well as <code>prov-test</code>, <code>prov-dev</code> and <code>prov-cd</code> (which hosted
+the provisioning app).</p>
+</div>
+<div class="paragraph">
+<p>As a user, you will be affected by this change insofar as the images you use for
+the Jenkins master instance and Jenkins agent nodes will need to be retrieved
+from <code>ods</code> instead of <code>cd</code> (see next section). Further, depending on the
+migration done by the administrator, the URLs of Nexus, SonarQube and the
+provisioning app might have changed.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
 <h2 id="_update_image_tags_of_jenkins_deployments"><a class="anchor" href="#_update_image_tags_of_jenkins_deployments"></a>Update image tags of Jenkins deployments</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>Go into your OpenShift <code>*-cd</code> namespace and edit (via "Actions" &gt; "Edit") the deployments (<code>jenkins</code> and
-<code>webhook-proxy</code>) to point to the new image tags (<code>3.x</code>), and trigger a deployment.</p>
+<p>Go into your OpenShift <code>*-cd</code> namespace and edit (via "Actions" &gt; "Edit") the
+deployments (<code>jenkins</code> and <code>webhook-proxy</code>) to point to the new image tags
+(<code>3.x</code>), and trigger a deployment. Note that you also need to change the
+namespace of the images from <code>cd</code> to <code>ods</code> (see above). Since ODS 2, it is also
+recommended to remove any image triggers from <code>jenkins</code> and <code>webhook-proxy</code>, so
+that any image changes are only rolled out by yourself. If you choose to remove
+the image trigger, ensure that the <code>imagePullPolicy</code> is set to <code>Always</code> to
+always get the latest <code>3.x</code> image when you deploy.</p>
 </div>
 </div>
 </div>
