@@ -430,7 +430,7 @@
 <p>The <code>Jenkinsfile</code> contains the configuration that customizes the core pipeline implemented by <a href="https://github.com/opendevstack/ods-jenkins-shared-library">jenkins shared library</a>.</p>
 </div>
 <div class="paragraph">
-<p>When the code in your git repository is updated the <code>Jenkinsfile</code> comes into action with the following stages for this quickstarter:</p>
+<p>When the code in your git repository is updated the <code>Jenkinsfile</code> comes into action with the following main stages for this quickstarter:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -438,10 +438,13 @@
 <p><strong>Build</strong> - Installs the dependencies of your project with <code>yarn install</code>, generates the build by running <code>npm run ionic:build</code>, if the merged git branch is master it creates the production build with <code>npm run ionic:build --prod</code>. Finally, it copies the output folder <code>www</code> into <code>docker/dist</code>.</p>
 </li>
 <li>
-<p><strong>Unit Test</strong> - Runs unit test cases by executing <code>yarn test</code> command, if any test fails, the build is marked as failed.</p>
+<p><strong>Unit Test</strong> - Runs unit test cases by executing <code>yarn test</code> command. If any test fails, the build is marked as failed. This will also create test coverage analysis data which will then be transfered to SonarQube.</p>
 </li>
 <li>
 <p><strong>Lint</strong> - Profiler that ensures code best practices by running <code>npm run lint</code> command, if linting is not passing, the build is marked as failed also.</p>
+</li>
+<li>
+<p><strong>SonarQube Analysis</strong> - Triggers a code quality analysis by transfering code and test coverage analysis data to SonarQube. By default files like <code><strong>.spec.ts</code>, <code></strong>.modules.ts</code> and <code>src/environments/**</code> are excluded from the analysis, since they usually don&#8217;t contain logic. Please revisit <code>sonar-project.properties</code> to configure analysis inclusions and exclusions according to your project&#8217;s needs.</p>
 </li>
 </ul>
 </div>

@@ -384,11 +384,10 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_how_this_quickstarter_is_built_through_jenkins"><a class="anchor" href="#_how_this_quickstarter_is_built_through_jenkins"></a>How this quickstarter is built through jenkins</h2>
+<h2 id="_how_this_quickstarter_is_built_through_jenkins"><a class="anchor" href="#_how_this_quickstarter_is_built_through_jenkins"></a>How this quickstarter is built through Jenkins</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The Jenkinsfile is provisioned with this quickstarter to ease CI/CD process.
-In Jenkinsfile, there are various stages</p>
+<p>The build pipeline is defined in the <code>Jenkinsfile</code> in the project root. The main stages of the pipeline are:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -396,10 +395,13 @@ In Jenkinsfile, there are various stages</p>
 <p>stageBuild - Builds the application by running <code>npm install</code>, <code>npm run build</code> command and copies output folder <code>dist</code> into <code>docker/dist</code> folder.</p>
 </li>
 <li>
-<p>stageUnitTest - Runs unit test cases by executing command <code>npm run test</code>.</p>
+<p>stageUnitTest - Runs unit test cases by executing command <code>npm run test</code>. This will also create test coverage analysis data which will then be transfered to SonarQube during odsComponentStageScanWithSonar</p>
 </li>
 <li>
 <p>stageLint - Runs <code>ng lint</code> profiler by running command <code>npm run lint</code>.</p>
+</li>
+<li>
+<p>odsComponentStageScanWithSonar - Triggers a code quality analysis by transfering code and test coverage analysis data to SonarQube. By default files like <code><strong>.spec.ts</code>, <code></strong>.modules.ts</code> and <code>src/environments/**</code> are excluded from the analysis, since they usually don&#8217;t contain logic. Please revisit <code>sonar-project.properties</code> to configure analysis inclusions and exclusions according to your project&#8217;s needs.</p>
 </li>
 </ul>
 </div>
