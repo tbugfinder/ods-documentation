@@ -304,6 +304,7 @@
 <ul class="sectlevel2">
 <li><a href="#_authentication_crowd_configuration">Authentication Crowd Configuration</a></li>
 <li><a href="#_authentication_oauth2_configuration">Authentication OAUTH2 Configuration</a></li>
+<li><a href="#_basic_auth_authentication">Basic Auth authentication</a></li>
 <li><a href="#_authentication_to_third_party_apps_via_technical_users">Authentication to third party apps via technical users</a></li>
 </ul>
 </li>
@@ -483,6 +484,9 @@ project.template.key.names=default,&lt;name&gt;</pre>
 <li>
 <p>OAUTH2</p>
 </li>
+<li>
+<p>Basic Auth</p>
+</li>
 </ul>
 </div>
 <div class="admonitionblock tip">
@@ -520,13 +524,13 @@ spring.profiles.active=crowd <i class="conum" data-value="2"></i><b>(2)</b></cod
 </table>
 </div>
 <div class="paragraph">
-<p>The crowd specific configuration is done in the included profile <em>crowd</em>, see property documentation inside the profile file <em>application-crowd.properties</em>. The provided example configuration is appropriate for a locally installed OpenDevStack environment.</p>
+<p>The crowd specific configuration is done in the included profile <em>crowd</em>, see property documentation inside the profile file <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/test/resources/application-crowd.properties">application-crowd.properties</a>. The provided example configuration is appropriate for a locally installed OpenDevStack environment.</p>
 </div>
 </div>
 <div class="sect2">
 <h3 id="_authentication_oauth2_configuration"><a class="anchor" href="#_authentication_oauth2_configuration"></a>Authentication OAUTH2 Configuration</h3>
 <div class="paragraph">
-<p>An example of plain oauth2 configuration is given in spring boot profile <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/resources/application-outh2.properties">application-oauth2.properties</a>. The provided example configuration is appropriate for a locally installed OpenDevStack environment, when the <em>idmanager</em> vagrant box is used.</p>
+<p>An example of plain oauth2 configuration is given in spring boot profile <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/resources/application-oauth2.properties">application-oauth2.properties</a>. The provided example configuration is appropriate for a locally installed OpenDevStack environment, when the <em>idmanager</em> vagrant box is used.</p>
 </div>
 <div class="listingblock">
 <div class="title">application-oauth2.properties</div>
@@ -655,6 +659,37 @@ idmanager.disable-logout-from-idm=true <i class="conum" data-value="9"></i><b>(9
 <td>instruct ProvApp to not logout from identity management provider</td>
 </tr>
 </table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_basic_auth_authentication"><a class="anchor" href="#_basic_auth_authentication"></a>Basic Auth authentication</h3>
+<div class="paragraph">
+<p>This option can be enabled to activate basic auth as additional authentication when using <code>crowd</code> or <code>oauth2</code> as authentication provider.</p>
+</div>
+<div class="paragraph">
+<p>To enable basic auth this properties needs to be configured:</p>
+</div>
+<div class="listingblock">
+<div class="title">application-azure.properties</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash">provision.auth.basic-auth.enabled=true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The basic auth authentication needs to connect to an identity manager to authenticate users.
+Currently only <code>crowd</code> is supported for this purpouse.
+If you have&#8217;ve chosen to use <code>oauth2</code> as provider you can even enable basic auth to connect to crowd server.
+For that you will need to add these properties to your configuration:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-bash hljs" data-lang="bash"># crowd properties (needed for basic auth)
+crowd.local.directory=~/dev/temp
+crowd.application.name=&lt;APPLICATION_NAME&gt;
+crowd.application.password=&lt;PASSWORD&gt;
+crowd.server.url=&lt;CROWD_HOST&gt;
+crowd.cookie.domain=&lt;COOKIE_DOMAIN&gt;</code></pre>
+</div>
 </div>
 </div>
 <div class="sect2">
