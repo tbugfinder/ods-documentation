@@ -369,7 +369,7 @@ Select your project, then choose a <a href="../quickstarters/index.html" class="
 <h2 id="_versioning"><a class="anchor" href="#_versioning"></a>Versioning</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>OpenDevStack is released roughly every half year. Each release is identified by a "major version" such as <code>2</code>, <code>3</code>, <code>4</code> and so on. As a consumer of OpenDevStack, you can either:</p>
+<p>Major releases of OpenDevStack happen roughly every half year. Each major release is identified by a version such as <code>2</code>, <code>3</code>, <code>4</code> and so on. As a consumer of OpenDevStack, you can either:</p>
 </div>
 <div class="ulist">
 <ul>
@@ -377,7 +377,7 @@ Select your project, then choose a <a href="../quickstarters/index.html" class="
 <p>point to <code>master</code> to follow the cutting edge</p>
 </li>
 <li>
-<p>point to <code>2.x</code>, <code>3.x</code>, etc. to stay on a major version, but get bug fixes</p>
+<p>point to <code>2.x</code>, <code>3.x</code>, etc. to stay on a major version, but get bug fixes (minor versions)</p>
 </li>
 <li>
 <p>point to <code>v2.0</code>, <code>v3.0</code>, etc. to pin an exact version</p>
@@ -386,6 +386,12 @@ Select your project, then choose a <a href="../quickstarters/index.html" class="
 <p>use a custom branch / tag such as <code>2.acme</code> or <code>3.custom</code> etc. to run ODS with customizations</p>
 </li>
 </ul>
+</div>
+<div class="paragraph">
+<p>A major update (e.g. <code>2.x</code> to <code>3.x</code> or <code>3.x</code> to <code>4.x</code>) is, from a user perspective, an explicit update. This means that even if admins update the ODS installation in the cluster, users still have to adopt that change (e.g. by updating their Jenkins image reference and so on). Therefore, a major version change is accompanied by an update guide like <a href="../update-guides/3x.html" class="page">Update to 3.x</a>. For admins, a major update might mean that configuration options have to be changed or migration steps to be taken, as well as rebuilding and rolling out all images etc.</p>
+</div>
+<div class="paragraph">
+<p>A minor update (consuming changes/bugfixs on a release branch such as 3.x). From a user perspective, this is an implicit update. This means that only admins have to make a change to the ODS installation in the cluster. Users must get those changes automatically, without the need to explicitly adopt it. Therefore, there is no update guide for minor updates. For admins, a minor update should not require changing configuration options nor performing migration steps - only rebuilding and rolling out some (or all) images should be needed.</p>
 </div>
 </div>
 </div>

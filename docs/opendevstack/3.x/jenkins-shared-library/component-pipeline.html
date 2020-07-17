@@ -1273,6 +1273,19 @@ being built.</p>
 otherwise execute the given closure.</p>
 </div>
 <div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">odsComponentStageImportOpenShiftImageOrElse(context) {
+  stage('Build') {
+    // custom stage to build your application package
+  }
+  odsComponentStageBuildOpenShiftImage(context)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
 <p>The stage takes the exact same options as <code>odsComponentStageImportOpenShiftImage</code>.</p>
 </div>
 <div class="paragraph">
