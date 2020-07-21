@@ -810,7 +810,7 @@ tailor -n foo-dev export -l app=foo-bar &gt; openshift/template.yml</code></pre>
 <p>You can always preview the changes that will happen by running <code>tailor diff</code> from your local machine.</p>
 </li>
 <li>
-<p><code>DeploymentConfig</code> resources allow to specify config and image triggers (and ODS configures them by default like this). When deploying via Tailor, it is recommended to remove the image trigger, otherwise you might trigger two deployments: one when config (such as an environment variable) changes, and one when the image changes.</p>
+<p><code>DeploymentConfig</code> resources allow to specify config and image triggers (and ODS configures them by default like this). When deploying via Tailor, it is recommended to remove the image trigger, otherwise you might trigger two deployments: one when config (such as an environment variable) changes, and one when the image changes. When you remove the image trigger, it is crucial to configure <code>imagePullPolicy: Always</code> for the container, otherwise you might roll out old images.</p>
 </li>
 </ul>
 </div>
