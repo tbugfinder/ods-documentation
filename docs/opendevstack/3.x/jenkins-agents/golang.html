@@ -3,7 +3,7 @@
   <head>
     <meta charset="utf-8">
     <meta name="viewport" content="width=device-width,initial-scale=1">
-    <title>Scala Jenkins agent :: OpenDevStack</title>
+    <title>Go Jenkins agent :: OpenDevStack</title>
     <meta name="generator" content="Antora 2.3.3">
     <link rel="stylesheet" href="../../../_/css/site.css">
 <link rel="stylesheet" href="../../../_/css/search.css">
@@ -109,20 +109,20 @@
   <li class="nav-item" data-depth="3">
     <a class="nav-link" href="../jenkins/agent-base.html">Base Image</a>
   </li>
-  <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#jenkins-agents:golang.adoc">Go</a>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="golang.html">Go</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#jenkins-agents:maven.adoc">Maven</a>
+    <a class="nav-link" href="maven.html">Maven</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#jenkins-agents:nodejs10-angular.adoc">Nodejs10 Angular</a>
+    <a class="nav-link" href="nodejs10-angular.html">Nodejs10 Angular</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#jenkins-agents:python.adoc">Python</a>
+    <a class="nav-link" href="python.html">Python</a>
   </li>
   <li class="nav-item" data-depth="3">
-    <a class="nav-link" href="#jenkins-agents:scala.adoc">Scala</a>
+    <a class="nav-link" href="scala.html">Scala</a>
   </li>
 </ul>
   </li>
@@ -273,31 +273,33 @@
 <nav class="breadcrumbs" aria-label="breadcrumbs">
   <ul>
     <li><a href="../getting-started/index.html">OpenDevStack</a></li>
-    <li><a href="scala.html">Scala Jenkins agent</a></li>
+    <li><a href="../quickstarters/index.html">Quickstarters</a></li>
+    <li>Jenkins agent Images</li>
+    <li><a href="golang.html">Go</a></li>
   </ul>
 </nav>
 <div class="page-versions">
   <button class="version-menu-toggle" title="Show other versions of page">3.x Preview</button>
   <div class="version-menu">
-    <a class="version is-current" href="scala.html">3.x Preview</a>
+    <a class="version is-current" href="golang.html">3.x Preview</a>
     <a class="version is-missing" href="../../2.x/getting-started/index.html">2.x</a>
     <a class="version is-missing" href="../../1.x/getting-started/index.html">1.x</a>
   </div>
 </div>
-  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-quickstarters/edit/master/docs/modules/jenkins-slaves/pages/scala.adoc">Edit this Page</a></div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-quickstarters/edit/master/docs/modules/jenkins-agents/pages/golang.adoc">Edit this Page</a></div>
   </div>
   <div class="content">
 <article class="doc">
-<h1 class="page">Scala Jenkins agent</h1>
+<h1 class="page">Go Jenkins agent</h1>
 <div class="sect1">
 <h2 id="_introduction"><a class="anchor" href="#_introduction"></a>Introduction</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>This agent is used to build Scala code through SBT (Scala build tool).</p>
+<p>This agent is used to build <a href="https://golang.org">Go</a> code.</p>
 </div>
 <div class="paragraph">
-<p>The image is built in the global <code>cd</code> project and is named <code>jenkins-agent-scala</code>.
-It can be referenced in a <code>Jenkinsfile</code> with <code>ods/jenkins-agent-scala</code>.</p>
+<p>The image is built in the global <code>cd</code> project and is named <code>jenkins-agent-golang</code>.
+It can be referenced in a <code>Jenkinsfile</code> with e.g. <code>ods/jenkins-agent-golang:latest</code>.</p>
 </div>
 </div>
 </div>
@@ -307,13 +309,10 @@ It can be referenced in a <code>Jenkinsfile</code> with <code>ods/jenkins-agent-
 <div class="olist arabic">
 <ol class="arabic">
 <li>
-<p>SBT 1.1.6</p>
+<p>Go 1.14.2</p>
 </li>
 <li>
-<p>HTTP proxy aware</p>
-</li>
-<li>
-<p>Nexus aware</p>
+<p>golangci-lint 1.25.0</p>
 </li>
 </ol>
 </div>
@@ -323,7 +322,7 @@ It can be referenced in a <code>Jenkinsfile</code> with <code>ods/jenkins-agent-
 <h2 id="_known_limitations"><a class="anchor" href="#_known_limitations"></a>Known limitations</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In case HTTP Proxy config is injected through environment variables (including <code>NO_PROXY</code>), Nexus configuration is disabled because of an SBT bug.</p>
+<p>Not (yet) Nexus package manager aware and no special HTTP Proxy configuration.</p>
 </div>
 </div>
 </div>
@@ -342,7 +341,7 @@ It can be referenced in a <code>Jenkinsfile</code> with <code>ods/jenkins-agent-
 <script type="text/javascript">
   window.antora = window.antora || {}
   window.antora.basePath = '../../..'
-  window.antora.pagePath = '/opendevstack/3.x/jenkins-slaves/scala.html'
+  window.antora.pagePath = '/opendevstack/3.x/jenkins-agents/golang.html'
 </script>
 <script src="../../../_/js/site.js"></script>
 <script src="../../../_/js/vendor/lunr.js"></script>
