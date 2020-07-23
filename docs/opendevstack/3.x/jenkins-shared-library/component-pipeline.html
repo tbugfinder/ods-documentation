@@ -815,6 +815,16 @@ tailor -n foo-dev export -l app=foo-bar &gt; openshift/template.yml</code></pre>
 </ul>
 </div>
 <div class="paragraph">
+<p>If you want to use <a href="https://github.com/opendevstack/tailor#working-with-secrets">encrypted secrets with Tailor</a>, you have to create a keypair for Jenkins so that the pipeline can use it to decrypt the parameters. The easiest way to do this is to create an OpenShift secret named <code>tailor-private-key</code> and sync it with Jenkins as a credential. Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>tailor secrets generate-key jenkins@example.com
+oc -n foo-cd create secret generic tailor-private-key --from-file=ssh-privatekey=private.key
+oc -n foo-cd label secret tailor-private-key credential.sync.jenkins.openshift.io=true</code></pre>
+</div>
+</div>
+<div class="paragraph">
 <p>Controlling your OpenShift resources in source code enables a lot of other use cases as well. For example, you might want to preview changes to a component before merging the source code. By using Tailor to deploy your templates, you can create multiple running components from one repository, e.g. one per feature branch. Following are some steps how to achieve this:</p>
 </div>
 <div class="paragraph">

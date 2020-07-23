@@ -526,7 +526,7 @@ If you are on Linux, <code>oc cluster up</code> will do the trick.
 <div class="sect2">
 <h3 id="_central_ods_project"><a class="anchor" href="#_central_ods_project"></a>Central ODS project</h3>
 <div class="paragraph">
-<p>OpenDevStack needs one central <code>ods</code> project in OpenShift, which will hold all shared resources such as images or deployments.</p>
+<p>OpenDevStack needs one central project in OpenShift, which will hold all shared resources such as images or deployments. This project is typically called <code>ods</code>, but you can customize this in the configuration via <code>ODS_NAMESPACE</code>.</p>
 </div>
 <div class="paragraph">
 <p>In <code>ods-core</code> run:</p>
@@ -535,18 +535,6 @@ If you are on Linux, <code>oc cluster up</code> will do the trick.
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">make install-ods-project</code></pre>
 </div>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-In certain situations, you may want to pick a different name for the central namespace, e.g. for testing purposes or trying two versions of ODS next to each other. To do so, you need to run this and the following commands with <code>make NAMESPACE=foo &lt;target&gt;</code>.
-</td>
-</tr>
-</table>
 </div>
 </div>
 <div class="sect2">
