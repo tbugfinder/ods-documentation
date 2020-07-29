@@ -361,7 +361,7 @@ chmod +x repos.sh</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>If there is already an existing installation of OpenDevStack, run:</p>
+<p>If there is already an existing installation of OpenDevStack, run the following with a user that has write permission:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -386,7 +386,12 @@ chmod +x repos.sh</code></pre>
 <p>If you want to install OpenDevStack for the first time, leave the BitBucket URL empty.</p>
 </div>
 <div class="paragraph">
-<p>After the configuration is prepared (which means that a directory <code>ods-configuration</code> will be created if it does not exist yet), fill out all the parameters for your installation and commit the result. You don&#8217;t need to push yet, this will be done later.</p>
+<p>After the configuration is prepared (which means that a directory <code>ods-configuration</code> will be created if it does not exist yet),
+fill out all the parameters in <code>ods-core.env</code> in directory <code>ods-configuration</code> for your installation.
+Add all files of directory <code>ods-configuration</code> to git and commit the result. You don&#8217;t need to push yet, this will be done later.</p>
+</div>
+<div class="paragraph">
+<p>"Preparing" also updates the sample files and checks if any params are present in the sample files but missing from the real file.</p>
 </div>
 </div>
 <div class="sect2">
@@ -515,7 +520,8 @@ If you are on Linux, <code>oc cluster up</code> will do the trick.
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">git push -u origin master</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">git remote add origin &lt;bitbucket-ods-configuration-git-repo-url&gt;
+git push -u origin master</code></pre>
 </div>
 </div>
 </div>
@@ -529,7 +535,8 @@ If you are on Linux, <code>oc cluster up</code> will do the trick.
 <p>OpenDevStack needs one central project in OpenShift, which will hold all shared resources such as images or deployments. This project is typically called <code>ods</code>, but you can customize this in the configuration via <code>ODS_NAMESPACE</code>.</p>
 </div>
 <div class="paragraph">
-<p>In <code>ods-core</code> run:</p>
+<p>First, log into OpenShift with a user that has cluster-admin rights.
+In <code>ods-core</code> run:</p>
 </div>
 <div class="listingblock">
 <div class="content">
@@ -557,6 +564,9 @@ If you are on Linux, <code>oc cluster up</code> will do the trick.
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">make configure-nexus</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>In the course of this you will be prompted to set a new admin password.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -586,8 +596,11 @@ The <code>configure-nexus</code> target is not idempotent yet, so it cannot be u
 </div>
 <div class="paragraph">
 <p>This will launch an instance of SonarQube.
-The script will prompt for a new admin password, set it and create an auth token to be used by the Jenkins pipelines.
-Both values can be written into <code>ods-configuration/ods-core.env</code>, which you then need to commit and push before continuing.</p>
+The script will prompt for a new admin password. Once this has been set, an auth token for the Jenkins pipelines will be generated.
+Both values are automatically written into <code>ods-configuration/ods-core.env</code>, which you then need to commit and push.</p>
+</div>
+<div class="paragraph">
+<p>Also, you have to add the cd-user as a user in the project permissions of your Bitbucket OpenDevStack project. Read permission is sufficient.</p>
 </div>
 </div>
 <div class="sect2">
