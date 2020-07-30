@@ -470,7 +470,10 @@ The base configuration map as well as the deployment yamls can be found in <a hr
 <h2 id="_frontend_code"><a class="anchor" href="#_frontend_code"></a>Frontend Code</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>The frontend is based on jquery and thymeleaf. All <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/resources/static/js/client.js">posting to the API</a> happens out of java script (client.js)</p>
+<p>The frontend is based on jquery and thymeleaf. All <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/resources/static/js/client.js">posting to the API</a> happens out of java script (client.js).</p>
+</div>
+<div class="paragraph">
+<p>ODS 3.x contains a new single page app UI (based on Angular) as an experimental feature located in the <code>client</code> folder. In order to use the UI a feature flag <code>frontend.spa.enabled</code> must be set to <code>true</code> in <code>application.proprties</code>. Please refer to <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/client/README.md">client README</a> on how to setup local development for the frontend code.</p>
 </div>
 </div>
 </div>

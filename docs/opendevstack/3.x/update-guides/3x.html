@@ -305,6 +305,8 @@
 </ul>
 </li>
 <li><a href="#_changes_to_jenkins_agent_images">Changes to Jenkins agent images</a></li>
+<li><a href="#_general_upgrade_to_python_3_8">General upgrade to Python 3.8</a></li>
+<li><a href="#_airflow_cluster_jenkins_agent_no_longer_supported">Airflow Cluster Jenkins agent no longer supported</a></li>
 </ul>
 </div>
 <div id="preamble">
@@ -560,6 +562,22 @@ environments (avoiding to rebuild them) using the new stage <a href="../jenkins-
 <div class="sectionbody">
 <div class="paragraph">
 <p>Some agent images (<code>jenkins-agent-maven</code>, <code>jenkins-agent-nodejs10-angular</code>, <code>jenkins-agent-scala</code>) exposed the environment variables <code>NEXUS_HOST</code> and <code>NEXUS_USERNAME</code>/<code>NEXUS_PASSWORD</code>/<code>NEXUS_AUTH</code>. This was not done intentionally, but as a side effect of using those variables during image build time. In 3.x, that has been cleaned up. Now those variables are passed as build arguments to the image build, which means they are no longer accessible as environment variables in the running container. Nexus credentials can and should be accessed from the pipeline context (<code>context.nexusUrl</code>, <code>context.nexusUsername</code> and <code>context.nexusPassword</code>). As a consequence, if a <code>Jenkinsfile</code> relies on the presence of those environment variables without setting them explicitly using <code>withEnv</code>, it will fail to run in 3.x. That said, the <code>Jenkinsfile</code> templates which shipped by default with the quickstarters did not rely on the environment variables - with the exception of <code>fe-ionic</code> which did not set <code>NEXUS_HOST</code> explicitly in the <code>Build</code> stage.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_general_upgrade_to_python_3_8"><a class="anchor" href="#_general_upgrade_to_python_3_8"></a>General upgrade to Python 3.8</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Jenkins agent <code>jenkins-agent-python</code> as well as all python related quickstarters (<code>be-python-flask</code>, <code>ds-jupyter-notebook</code> and <code>ds-ml-service</code>) have been upgraded to python 3.8. This is not affecting default provisioned <code>Jenkinsfile</code> for <code>ds-jupyter-notebook</code> nor <code>be-python-flask</code> quickstarters that exist before ODS 3.x. But, <code>ds-ml-service</code> provisoned quickstarters before ODS 3.x need to slightly modify its <code>Jenkinsfile</code> before upgrading to ODS 3.x by just avoiding running any <code>pip install &lt;..dependencies..&gt; --user</code> (see new <code>Jenkinsfile.template</code> to get a <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/ds-ml-service/Jenkinsfile.template">suggested fix</a>, basically using <code>virutalenv</code>; which is the recommended way of working when requiring building python packages).</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_airflow_cluster_jenkins_agent_no_longer_supported"><a class="anchor" href="#_airflow_cluster_jenkins_agent_no_longer_supported"></a>Airflow Cluster Jenkins agent no longer supported</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>If you provisioned <code>airflow-cluster</code> quickstarter, please note that it has been moved out from the officially supported quickstarters (<code>ods-quickstarters</code>) repository and moved to <code>extra-quickstarters</code>. Therefore, the <code>jenkins-slave-airflow:2.x</code> can be shifted to <code>jenkins-agent-python:3.x</code> when upgrading to ODS 3.x.</p>
 </div>
 </div>
 </div>
