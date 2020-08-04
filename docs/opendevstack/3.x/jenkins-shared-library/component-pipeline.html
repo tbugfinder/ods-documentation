@@ -918,6 +918,12 @@ def sayHello(def context) {
 </div>
 </div>
 <div class="sect2">
+<h3 id="_skipping_pipeline_runs"><a class="anchor" href="#_skipping_pipeline_runs"></a>Skipping pipeline runs</h3>
+<div class="paragraph">
+<p>If the message of the built commit contains <code>[ci skip]</code>, the pipeline is skipped. The Jenkins build status will be set to <code>NOT_BUILT</code>, the Bitbucket build status to <code>SUCCESSFUL</code> (as there is no "skipped" state). The pipeline will start to execute initially, but abort before launching any agent nodes or starting any of the stages defined in the <code>Jenkinsfile</code>.</p>
+</div>
+</div>
+<div class="sect2">
 <h3 id="_automatically_cloning_environments_on_the_fly"><a class="anchor" href="#_automatically_cloning_environments_on_the_fly"></a>Automatically cloning environments on the fly</h3>
 <div class="paragraph">
 <p>Caution! Cloning environments on-the-fly is an advanced feature and should only be used if you understand OpenShift well, as there are many moving parts and things can go wrong in multiple places.</p>
