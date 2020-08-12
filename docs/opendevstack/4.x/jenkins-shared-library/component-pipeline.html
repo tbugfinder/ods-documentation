@@ -1,0 +1,1520 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Component Pipeline :: OpenDevStack</title>
+    <meta name="generator" content="Antora 2.3.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="stylesheet" href="../../../_/css/search.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">OpenDevStack</a>
+        <div class="navbar-item">
+          <input id="search-input" type="text" placeholder="Search docs">
+        </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="opendevstack" data-version="4.x">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../getting-started/index.html">OpenDevStack</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Jenkins Shared Library</a>
+<ul class="nav-list">
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="component-pipeline.html">Component Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="orchestration-pipeline.html">Orchestration Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="quickstarter-pipeline.html">Quickstarter Pipeline</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../quickstarters/index.html">Quickstarters</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/docker-plain.html">Docker Plain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-gateway-nginx.html">BE Gateway/Nginx</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-golang-plain.html">BE Golang</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-java-springboot.html">BE Java/Spring Boot</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-typescript-express.html">BE TypeScript/Express</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-python-flask.html">BE Python/Flask</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-scala-play.html">BE Scala/Play</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/fe-angular.html">FE Angular</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/fe-ionic.html">FE Ionic</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/ds-ml-service.html">Data Science Machine Learning Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/ds-jupyter-notebook.html">Data Science Jupyter Notebook</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/ds-rshiny.html">Data Science RShiny app</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/e2e-cypress.html">Cypress E2E testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/e2e-spock-geb.html">Spock, Geb and Unirest E2E testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/release-manager.html">Release Manager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Jenkins agent Images</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins/agent-base.html">Base Image</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/golang.html">Go</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/maven.html">Maven</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/nodejs10-angular.html">Nodejs10 Angular</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/python.html">Python</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/scala.html">Scala</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/authoring-quickstarters.html">Authoring Quickstarters</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../provisioning-app/index.html">Provisioning App</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../jenkins/index.html">Jenkins</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/master.html">Jenkins Master</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/agent-base.html">Jenkins Agent Base</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/webhook-proxy.html">Webhook Proxy</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../sonarqube/index.html">SonarQube</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Update Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../update-guides/3x.html">Migrate to 3.x</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../update-guides/2x.html">Migrate to 2.x</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Administration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../administration/installation.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Upgrade</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/update-2-to-3.html">2.x to 3.x</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/update-older.html">older</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-app/configuration.html">Provisioning App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../administration/keycloak.html">Keycloak</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../sonarqube/administration.html">SonarQube</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/administration.html">Jenkins</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Contributing to ODS</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contributing/development.html">Development</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contributing/documentation.html">Documentation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-app/architecture.html">Provisioning App</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">OpenDevStack</span>
+    <span class="version">4.x Preview</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">OpenDevStack</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="../getting-started/index.html">4.x Preview</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../2.x/getting-started/index.html">2.x</a>
+        </li>
+        <li class="version">
+          <a href="../../1.x/getting-started/index.html">1.x</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../2.x/getting-started/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../getting-started/index.html">OpenDevStack</a></li>
+    <li><a href="index.html">Jenkins Shared Library</a></li>
+    <li><a href="component-pipeline.html">Component Pipeline</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">4.x Preview</button>
+  <div class="version-menu">
+    <a class="version is-current" href="component-pipeline.html">4.x Preview</a>
+    <a class="version is-missing" href="../../2.x/getting-started/index.html">2.x</a>
+    <a class="version is-missing" href="../../1.x/getting-started/index.html">1.x</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-jenkins-shared-library/edit/master/docs/modules/jenkins-shared-library/pages/component-pipeline.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Component Pipeline</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This pipeline allows to have a minimal <code>Jenkinsfile</code> in each repository by providing all language-agnostic build aspects. The goal is to duplicate as little as possible between repositories and have an easy way to ship updates to all projects.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_usage"><a class="anchor" href="#_usage"></a>Usage</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Load the shared library in your <code>Jenkinsfile</code> like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">@Library('ods-jenkins-shared-library@3.x') _
+
+odsComponentPipeline(
+  imageStreamTag: 'ods/jenkins-agent-golang:3.x',
+  branchToEnvironmentMapping: [
+    'master': 'dev',
+    // 'release/*': 'test'
+  ]
+) { context -&gt;
+  odsComponentStageImportOpenShiftImageOrElse(context) {
+    stage('Build') {
+      // custom stage
+    }
+    odsComponentStageScanWithSonar(context)
+    odsComponentStageBuildOpenShiftImage(context)
+  }
+  odsComponentStageRolloutOpenShiftDeployment(context)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The version in <code>@Library</code> can be any Git revsison, such as a branch (e.g. <code>master</code> or <code>2.x</code>), a tag (e.g. <code>v2.0</code>) or even a specific commit.</p>
+</div>
+<div class="paragraph">
+<p>There are many built-in stages like <code>odsComponentStageScanWithSonar</code> that you can use, please see <a href="#_stages">Stages</a> for more details.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pipeline_options"><a class="anchor" href="#_pipeline_options"></a>Pipeline Options</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p><code>odsComponentPipeline</code> can be customized by passing configuration options like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">odsComponentPipeline(
+  imageStreamTag: 'ods/jenkins-agent-golang:3.x',
+  dockerDir: 'foo'
+)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Available options are:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">image</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Container image to use for the Jenkins agent container. This value is not used when <code>podContainers</code> is set.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">imageStreamTag</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Container image tag of an <code>ImageStream</code> in your OpenShift cluster to use for the Jenkins agent container. This value is not used when <code>podContainers</code> or <code>image</code> is set.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">alwaysPullImage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Determine whether to always pull the container image before each build run. Defaults to <code>true</code>. This value is not used when <code>podContainers</code> is set.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">resourceRequestMemory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How much memory the container requests - defaults to 1Gi. This value is not used when <code>podContainers</code> is set.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">resourceLimitMemory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum memory the container can use - defaults to 2Gi. This value is not used when <code>podContainers</code> is set.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">resourceRequestCpu</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">How much CPU the container requests - defaults to 10mi. This value is not used when <code>podContainers</code> is set.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">resourceLimitCpu</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Maximum CPU the container can use - defaults to 300mi. This value is not used when <code>podContainers</code> is set.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">podLabel</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pod label, set by default to a random label to avoid caching issues. Set to a stable label if you want to reuse pods across builds.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">podContainers</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Custom pod containers to use if the default, automatically configured container is not suitable for your use case (e.g. if you need multiple containers such as app and database). See <a href="#_agent_customization">Agent customization</a>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">podVolumes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Volumes to make available to the pod.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">podServiceAccount</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Serviceaccount to use when running the pod.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">notifyNotGreen</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to send notifications if the build is not successful.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">branchToEnvironmentMapping</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Define which branches are deployed to which environments, see <a href="#_git_workflow_branch_to_environment_mapping">Git Workflow / Branch to Environment Mapping</a></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">autoCloneEnvironmentsFromSourceMapping</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Define which environments are cloned from which source environments.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">projectId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Project ID, e.g. <code>foo</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">componentId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Component ID, e.g. <code>be-auth-service</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">environmentLimit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Number of environments to allow when auto-cloning environments.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">dockerDir</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The docker directory to use when building the image in openshift. Defaults to <code>docker</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">imagePromotionSequences</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sequence of environments between which images can be promoted in <code>odsComponentStageImportOpenShiftImageOrElse</code>. Defaults to <code>['dev&#8594;test', 'test&#8594;prod']</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sonarQubeBranch</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Please use option <code>branch</code> on <code>odsComponentStageScanWithSonar</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">failOnSnykScanVulnerabilities</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deprecated in 3.x! Please use option <code>failOnVulnerabilities</code> on <code>odsComponentStageScanWithSnyk</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">openshiftBuildTimeout</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Deprecated in 3.x! Please use option <code>buildTimeoutMinutes</code> on <code>odsComponentBuildOpenShiftImage</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_pipeline_context"><a class="anchor" href="#_pipeline_context"></a>Pipeline Context</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>When you write custom stages inside the closure passed to <code>odsComponentPipeline</code>, you have access to the <code>context</code>, which is assembled for you on the master node. The <code>context</code> can be influenced by changing the config map passed to <code>odsComponentPipeline</code>, see <a href="#_pipeline_options">Pipeline Options</a>.</p>
+</div>
+<div class="paragraph">
+<p>The <code>context</code> object contains the following properties:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Property</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">jobName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Value of JOB_NAME. It is the name of the project of the build.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">buildNumber</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Value of BUILD_NUMBER. The current build number, such as <code>153</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">buildUrl</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Value of BUILD_URL. The URL where the results of the build can be found (e.g. <code><a href="http://buildserver/jenkins/job/MyJobName/123/" class="bare">http://buildserver/jenkins/job/MyJobName/123/</a></code>)</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">buildTime</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Time of the build, collected when the odsComponentPipeline starts.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">credentialsId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Credentials identifier (Credentials are created and named automatically by the OpenShift Jenkins plugin).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tagversion</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The tagversion is made up of the build number and the first 8 chars of the commit SHA.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nexusUrl</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nexus URL - value taken from <code>NEXUS_URL</code>. If <code>NEXUS_URL</code> is not present, it will default to <code>NEXUS_HOST</code> (which also includes the scheme). <code>nexusHost</code> is an alias for <code>nexusUrl</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nexusUsername</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nexus username.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nexusPassword</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nexus password.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nexusUrlWithBasicAuth</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Nexus URL, including username and password as BasicAuth. <code>nexusHostWithBasicAuth</code> is an alias for <code>nexusUrlWithBasicAuth</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sonarQubeEdition</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Edition of SonarQube in use, determined by <code>SONARQUBE_EDITION</code> (defaults to <code>community</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">cloneSourceEnv</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The environment which was chosen as the clone source.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">environment</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The environment which was chosen as the deployment target, e.g. <code>dev</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">targetProject</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Target project, based on the environment. E.g. <code>foo-dev</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">groupId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Group ID, defaults to: org.opendevstack.<projectID>.</projectID></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">projectId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Project ID, e.g. <code>foo</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">componentId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Component ID, e.g. <code>be-auth-service</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">gitUrl</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Git URL of repository</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">gitBranch</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Git branch for which the build runs.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">gitCommit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Git commit SHA to build.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">shortGitCommit</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Short Git commit SHA (first 8 chars) to build.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">gitCommitAuthor</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Git commit author.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">gitCommitMessage</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Git commit message.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">gitCommitTime</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Git commit time in RFC 3399.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">issueId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Jira issue ID if any present in the branch name (e.g. <code>123</code> from branch <code>feature/FOO-123-bar-baz</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">openshiftHost</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OpenShift host - value taken from <code>OPENSHIFT_API_URL</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">odsSharedLibVersion</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">ODS Jenkins shared library version, taken from reference in <code>Jenkinsfile</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">bitbucketUrl</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Bitbucket URL - value taken from <code>BITBUCKET_URL</code>. If BITBUCKET_URL is not present, it will default to <code><a href="https://&lt;BITBUCKET_HOST&gt;`" class="bare">https://&lt;BITBUCKET_HOST&gt;`</a></code>. <code>bitbucketHost</code> is an alias for <code>bitbucketUrl</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">dockerDir</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">The docker directory to use when building the image in openshift. Defaults to <code>docker</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">imagePromotionSequences</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Sequence of environments between which images can be promoted. Used e.g. in <code>odsComponentStageImportOpenShiftImageOrElse</code>. Defaults to <code>['dev&#8594;test', 'test&#8594;prod']</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_git_workflow_branch_to_environment_mapping"><a class="anchor" href="#_git_workflow_branch_to_environment_mapping"></a>Git Workflow / Branch to Environment Mapping</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The shared library does not impose which Git workflow you use. Whether you use <a href="https://nvie.com/posts/a-successful-git-branching-model/">git-flow</a>, <a href="https://guides.github.com/introduction/flow/">GitHub flow</a> or a custom workflow, it is possible to configure the pipeline according to your needs by configuring the pipeline option <code>branchToEnvironmentMapping</code>. The setting could look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>branchToEnvironmentMapping: [
+  'master': 'prod',
+  'develop': 'dev',
+  'hotfix/': 'hotfix',
+  '*': 'review'
+]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>There are three ways to reference branches:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Fixed name (e.g. <code>master</code>)</p>
+</li>
+<li>
+<p>Prefix (ending with a slash, e.g. <code>hotfix/</code>)</p>
+</li>
+<li>
+<p>Any branch (<code>*</code>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Matches are made top-to-bottom. For prefixes / any branch, a more specific environment might be selected if:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>the branch contains a ticket ID and a corresponding env exists in OpenShift. E.g. for mapping <code>"feature/": "dev"</code> and branch <code>feature/foo-123-bar</code>, the env <code>dev-123</code> is selected instead of <code>dev</code> if it exists.</p>
+</li>
+<li>
+<p>the branch name corresponds to an existing env in OpenShift. E.g. for mapping <code>"release/": "rel"</code> and branch <code>release/1.0.0</code>, the env <code>rel-1.0.0</code> is selected instead of <code>rel</code> if it exists.</p>
+</li>
+</ul>
+</div>
+<div class="sect2">
+<h3 id="_examples"><a class="anchor" href="#_examples"></a>Examples</h3>
+<div class="paragraph">
+<p>If you use git-flow, the following config fits well:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>branchToEnvironmentMapping: [
+  'master': 'prod',
+  'develop': 'dev',
+  'release/': 'rel',
+  'hotfix/': 'hotfix',
+  '*': 'preview'
+]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you use GitHub Flow, the following config fits well:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>branchToEnvironmentMapping: [
+  'master': 'prod',
+  '*': 'preview'
+]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you use a custom workflow, the config could look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>branchToEnvironmentMapping: [
+  'production': 'prod',
+  'master': 'dev',
+  'staging': 'uat'
+]</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_advanced"><a class="anchor" href="#_advanced"></a>Advanced</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_agent_customization"><a class="anchor" href="#_agent_customization"></a>Agent customization</h3>
+<div class="paragraph">
+<p>The agent used in the pipeline can be customized by adjusting the <code>image</code> (or <code>imageStreamTag</code> to
+use. Further, <code>alwaysPullImage</code> (defaulting to <code>true</code>) can be used to
+determine whether this image should be refreshed on each build.</p>
+</div>
+<div class="paragraph">
+<p>Resource constraints of the container can be changed via <code>resourceRequestCpu</code>,
+<code>resourceLimitCpu</code>, <code>resourceRequestMemory</code> and <code>resourceLimitMemory</code>.</p>
+</div>
+<div class="paragraph">
+<p>The setting <code>podVolumes</code> allows to mount persistent volume claims to the pod
+(the value is passed to the <code>podTemplate</code> call as <code>volumes</code>).</p>
+</div>
+<div class="paragraph">
+<p>To completely control the container(s) within the pod, set <code>podContainers</code>
+(which is passed to the <code>podTemplate</code> call as <code>containers</code>).</p>
+</div>
+<div class="paragraph">
+<p>Configuring of a customized agent container in a <code>Jenkinsfile</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>odsComponentPipeline(
+  branchToEnvironmentMapping: [:],
+  podContainers: [
+    containerTemplate(
+      name: 'jnlp', // do not change, see https://github.com/jenkinsci/kubernetes-plugin#constraints
+      image: "${env.DOCKER_REGISTRY}/foo-cd/jenkins-agent-custom",
+      workingDir: '/tmp',
+      resourceRequestCpu: '100m',
+      resourceLimitCpu: '500m',
+      resourceRequestMemory: '2Gi',
+      resourceLimitMemory: '4Gi',
+      alwaysPullImage: true,
+      args: '${computer.jnlpmac} ${computer.name}'
+    )
+  ],
+  ...
+  ) { context -&gt;
+  stageBuild(context)
+  ...
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>See the <a href="https://github.com/jenkinsci/kubernetes-plugin#pod-and-container-template-configuration">kubernetes-plugin</a>
+documentation for possible configuration.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_git_lfs_git_large_file_storage_extension"><a class="anchor" href="#_git_lfs_git_large_file_storage_extension"></a>Git LFS (Git Large File Storage extension)</h3>
+<div class="paragraph">
+<p>If you are working with large files (e.g.: binary files, media files, files bigger than 5MB&#8230;&#8203;),
+you can follow the following steps:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Check this HOWTO about <a href="https://www.atlassian.com/git/tutorials/git-lfs">Git LFS</a></p>
+</li>
+<li>
+<p>Track your large files in your local clone, as explained in previous step</p>
+</li>
+<li>
+<p>Enable Git LFS in your repository (if Bitbucket: under repository&#8217;s settings main page you can enable it)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>NOTE</strong>: if already having a repository with large files and you want to migrate it to using git LFS:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">git lfs migrate</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_deploying_openshift_resources_from_source_code"><a class="anchor" href="#_deploying_openshift_resources_from_source_code"></a>Deploying OpenShift resources from source code</h3>
+<div class="paragraph">
+<p>By default, the component pipeline uses existing OpenShift resources, and just creates new images / deployments related to them. However, it is possible to control all OpenShift resources in code, following the infrastructure-as-code approach. This can be done by defining the resources as <a href="https://docs.openshift.com/container-platform/3.11/dev_guide/templates.html">OpenShift templates</a> in the directory <code>openshift</code> of the repository, which will then get applied by <a href="https://github.com/opendevstack/tailor">Tailor</a> when running the pipeline. The advantage of this approach:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>All changes to OpenShift resources are traceble: who did the change and when?</p>
+</li>
+<li>
+<p>Moving your application between OpenShift projects or even clusters is trivial</p>
+</li>
+<li>
+<p>Changes to your application code that require a change in configuration (e.g. a new environment variable) as well can be done together in one commit.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you have an existing component for which you want to enable this feature, you simply need to run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">mkdir -p openshift
+tailor -n foo-dev export -l app=foo-bar &gt; openshift/template.yml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Commit the result and the component pipeline should show in the ouput whether there has been drift and how it was reconciled.</p>
+</div>
+<div class="paragraph">
+<p>When using this approach, you need to keep a few things in mind:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Any changes done in the OpenShift web console will effectively be reverted with each deploy. When you store templates in code, all changes must be applied to them.</p>
+</li>
+<li>
+<p>You can always preview the changes that will happen by running <code>tailor diff</code> from your local machine.</p>
+</li>
+<li>
+<p><code>DeploymentConfig</code> resources allow to specify config and image triggers (and ODS configures them by default like this). When deploying via Tailor, it is recommended to remove the image trigger, otherwise you might trigger two deployments: one when config (such as an environment variable) changes, and one when the image changes. When you remove the image trigger, it is crucial to configure <code>imagePullPolicy: Always</code> for the container, otherwise you might roll out old images.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you want to use <a href="https://github.com/opendevstack/tailor#working-with-secrets">encrypted secrets with Tailor</a>, you have to create a keypair for Jenkins so that the pipeline can use it to decrypt the parameters. The easiest way to do this is to create an OpenShift secret named <code>tailor-private-key</code> and sync it with Jenkins as a credential. Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>tailor secrets generate-key jenkins@example.com
+oc -n foo-cd create secret generic tailor-private-key --from-file=ssh-privatekey=private.key
+oc -n foo-cd label secret tailor-private-key credential.sync.jenkins.openshift.io=true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Controlling your OpenShift resources in source code enables a lot of other use cases as well. For example, you might want to preview changes to a component before merging the source code. By using Tailor to deploy your templates, you can create multiple running components from one repository, e.g. one per feature branch. Following are some steps how to achieve this:</p>
+</div>
+<div class="paragraph">
+<p>First, add <code>'feature/': 'dev'</code> to the <code>branchToEnvironmentMapping</code>. Then, create new variables in the pipeline block:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">def componentSuffix = context.issueId ? "-${context.issueId}" : ''
+def suffixedComponent = context.componentId + componentSuffix</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>With this in place, you can adapt the rollout stage:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">odsComponentStageRolloutOpenShiftDeployment(
+  context,
+  [
+    resourceName: "${suffixedComponent}",
+    tailorSelector: "app=${context.projectId}-${suffixedComponent}",
+    tailorParams: ["COMPONENT_SUFFIX=${componentSuffix}"]
+  ]
+)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>And finally, in your <code>openshift/template.yml</code>, you need to add the <code>COMPONENT_SUFFIX</code> parameter and append <code>${COMPONENT_SUFFIX}</code> everywhere the component ID is used in deployment relevant resources (such as <code>Service</code>, <code>DeploymentConfig</code>, <code>Route</code>). That&#8217;s all you need to have automatic previews!</p>
+</div>
+<div class="paragraph">
+<p>You might want to clean up when the code is merged, which can be achieved with something like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">stage('Cleanup preview resources') {
+  if (context.environment != 'dev') {
+    echo "Not performing cleanup outside dev environment"; return
+  }
+  def mergedIssueId = org.ods.services.GitService.mergedIssueId(context.projectId, context.repoName, context.gitCommitMessage)
+  if (mergedIssueId) {
+    echo "Perform cleanup of suffix '-${mergedIssueId}'"
+    sh("oc -n ${context.targetProject} delete all -l app=${context.projectId}-${context.componentId}-${mergedIssueId}")
+  } else {
+    echo "Nothing to cleanup"
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_interacting_with_bitbucket"><a class="anchor" href="#_interacting_with_bitbucket"></a>Interacting with Bitbucket</h3>
+<div class="paragraph">
+<p>The shared library already sets the build status of the built commit. It also
+provides three convenience methods on <code>BitbucketService</code> to interact with pull
+requests:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>String getPullRequests(String repo, String state = 'OPEN')</code> returns
+all open pull requests, which can be parsed using <code>readJSON</code>.</p>
+</li>
+<li>
+<p><code>Map findPullRequest(String repo, String branch, String state = 'OPEN')</code>
+tries to find a pull request for the given <code>branch</code>, and returns a map with
+its ID and target branch.</p>
+</li>
+<li>
+<p><code>void postComment(String repo, int pullRequestId, String comment)</code>
+allows to add <code>comment</code> to the PR identified by <code>pullRequestId</code>.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To make use of these methods, you need to get an instance of the <code>BitbucketService</code>
+in your <code>Jenkinsfile</code> like this:</p>
+</div>
+<div class="listingblock">
+<div class="title">Jenkinsfile</div>
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">import org.ods.services.ServiceRegistry
+import org.ods.services.BitbucketService
+
+def sayHello(def context) {
+  stage('Say Hello') {
+    def bitbucketService = ServiceRegistry.instance.get(BitbucketService)
+    bitbucketService.postComment(context.repoName, 1, "Hello world")
+  }
+}</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_skipping_pipeline_runs"><a class="anchor" href="#_skipping_pipeline_runs"></a>Skipping pipeline runs</h3>
+<div class="paragraph">
+<p>If the message of the built commit contains <code>[ci skip]</code>, the pipeline is skipped. The Jenkins build status will be set to <code>NOT_BUILT</code>, the Bitbucket build status to <code>SUCCESSFUL</code> (as there is no "skipped" state). The pipeline will start to execute initially, but abort before launching any agent nodes or starting any of the stages defined in the <code>Jenkinsfile</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_automatically_cloning_environments_on_the_fly"><a class="anchor" href="#_automatically_cloning_environments_on_the_fly"></a>Automatically cloning environments on the fly</h3>
+<div class="paragraph">
+<p>Caution! Cloning environments on-the-fly is an advanced feature and should only be used if you understand OpenShift well, as there are many moving parts and things can go wrong in multiple places.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>autoCloneEnvironmentsFromSourceMapping: [
+  "hotfix": "prod",
+  "review": "dev"
+]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Instead of deploying multiple branches to the same environment, individual environments can be created on-the-fly. For example, the mapping <code>"*": "review"</code> deploys all branches to the <code>review</code> environment. To have one environment per branch / ticket ID, you can add the <code>review</code> environment to <code>autoCloneEnvironmentsFromSourceMapping</code>, e.g. like this: <code>"review": "dev"</code>. This will create individual environments (named e.g. <code>review-123</code> or <code>review-foobar</code>), each cloned from the <code>dev</code> environment.</p>
+</div>
+<div class="sect3">
+<h4 id="_examples_2"><a class="anchor" href="#_examples_2"></a>Examples</h4>
+<div class="paragraph">
+<p>If you use git-flow, the following config fits well:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>branchToEnvironmentMapping: [
+  'master': 'prod',
+  'develop': 'dev',
+  'release/': 'rel',
+  'hotfix/': 'hotfix',
+  '*': 'preview'
+]
+autoCloneEnvironmentsFromSourceMapping: [
+  'rel': 'dev',
+  'hotfix': 'prod',
+  'preview': 'dev'
+]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you use GitHub Flow, the following config fits well:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>branchToEnvironmentMapping: [
+  'master': 'prod',
+  '*': 'preview'
+]
+autoCloneEnvironmentsFromSourceMapping: [
+  'preview': 'prod'
+]</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you use a custom workflow, the config could look like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>branchToEnvironmentMapping: [
+  'production': 'prod',
+  'master': 'dev',
+  'staging': 'uat'
+]
+autoCloneEnvironmentsFromSourceMapping: [
+  'uat': 'prod'
+]</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_stages"><a class="anchor" href="#_stages"></a>Stages</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Each built-in stage (like <code>odsComponentStageScanWithSonar</code>) takes two arguments:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>context</code> (required, this is the <a href="#_pipeline_context">pipeline context</a>)</p>
+</li>
+<li>
+<p><code>config</code> (optional, a map of configuration options)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>odsComponentStageScanWithSonar(context, [branch: 'production'])</pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_odscomponentstagescanwithsonar"><a class="anchor" href="#_odscomponentstagescanwithsonar"></a>odsComponentStageScanWithSonar</h3>
+<div class="paragraph">
+<p>The "SonarQube Analysis" stage scans your source code and reports findings to
+SonarQube. The configuration of the scan happens via the
+<code>sonar-project.properties</code> file in the repository being built.</p>
+</div>
+<div class="paragraph">
+<p>If your SonarQube server edition allows to scan multiple branches (any
+commercial edition does), then this stage will automatically decorate pull
+requests in Bitbucket with feedback from SonarQube (if the PR already exists
+at the time of the Jenkins pipeline run).</p>
+</div>
+<div class="paragraph">
+<p>In debug mode, the <code>sonar-scanner</code> binary is started with the <code>-X</code> flag.</p>
+</div>
+<div class="paragraph">
+<p>If no <code>sonar.projectVersion</code> is specified in <code>sonar-project.properties</code>, it is
+set to the shortened Git SHA.</p>
+</div>
+<div class="paragraph">
+<p>Available options:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">branch</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Branch(es) to scan. This can be a comma separated list. Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code>*</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">requireQualityGatePass</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to fail the build if the quality gate defined in the SonarQube project is not reached. Defaults to <code>false</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">analyzePullRequests</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to analyze pull requests and decorate them in Bitbucket. Turned on by default, however a scan is only performed if the <code>branch</code> property allows it.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">longLivedBranches</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Branch(es) for which no PR analysis should be performed. If not set, it will be extracted from  <code>branchToEnvironmentMapping</code> of the <code>context</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_odscomponentstagescanwithsnyk"><a class="anchor" href="#_odscomponentstagescanwithsnyk"></a>odsComponentStageScanWithSnyk</h3>
+<div class="paragraph">
+<p>The "Snyk Security Scan" stage performs two tasks:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>It uploads your 3rd party dependencies including their licenses for monitoring. Snyk will then notify developers about new vulnerabilities per email once they are reported to the Snyk Vulnerability Database.</p>
+</li>
+<li>
+<p>It analyses your 3rd party dependencies including their licenses and breaks the build if vulnerable versions are found.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>To get started, setup an organisation in <a href="https://snyk.io">snyk.io</a> with exactly the same name as your ODS project name. Under "Settings", create a service account for this organisation and make a note of the displayed token. Edit your <code>Jenkinsfile</code> and add the Snyk stage:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>) { context -&gt;
+    ...
+    odsComponentStageScanWithSnyk(context, [snykAuthenticationCode: &lt;your token&gt;])
+    ...
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>It is recommended to read your authentication token dynamically, e.g. from an environment variable or a credential in your Jenkins master.</p>
+</div>
+<div class="paragraph">
+<p>Available options:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">snykAuthenticationCode</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Required! Authentication token of a service account within your organisation.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">failOnVulnerabilities</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether to fail the build when vulnerabilities are found. Defaults to <code>true</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">organisation</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the Snyk organisation. Default to <code>context.projectId</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">projectName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of the Snyk project name. Default to <code>context.componentId</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">buildFile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Build file from which to gather dependency information. Defaults to <code>build.gradle</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">branch</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Branch(es) to scan. This can be a comma separated list. Next to exact matches, it also supports prefixes (e.g. <code>feature/</code>) and all branches (<code><strong></code>). Defaults to <code></strong></code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">severityThreshold</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Severity threshold for failing. If any found vulnerability has a severity equal or higher to the threshold, the snyk test will return with a failure status. Possible values are <code>low</code>, <code>medium</code>, <code>high</code>. Defaults to <code>low</code>.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_odscomponentstagebuildopenshiftimage"><a class="anchor" href="#_odscomponentstagebuildopenshiftimage"></a>odsComponentStageBuildOpenShiftImage</h3>
+<div class="paragraph">
+<p>Triggers (and follows) a build in the <code>BuildConfig</code> related to the repository
+being built.</p>
+</div>
+<div class="paragraph">
+<p>The resulting image is tagged with <code>context.shortGitCommit</code>.</p>
+</div>
+<div class="paragraph">
+<p>If the directory referenced by <code>openshiftDir</code> exists, the templates in there will be applied using <a href="https://github.com/opendevstack/tailor">Tailor</a>. In addition to the configuration options below, one can use e.g. a <code>Tailorfile</code> to adjust the behaviour of Tailor as needed.</p>
+</div>
+<div class="paragraph">
+<p>Available options:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">resourceName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of <code>BuildConfig</code>/<code>ImageStream</code> to use (defaults to <code>context.componentId</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">imageTag</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Image tag to apply (defaults to <code>context.shortGitCommit</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">buildArgs</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pass build arguments to the image build process.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">imageLabels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Pass labels which should be aded on the image. Each label will be prefixed with <code>ext.</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">extensionImageLabels</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Extra image labels added into <code>imageLabels</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">buildTimeoutMinutes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Timeout of build (defaults to 15 minutes).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">dockerDir</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Docker context directory (defaults to <code>docker</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">openshiftDir</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Directory with OpenShift templates (defaults to <code>openshift</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tailorPrivateKeyCredentialsId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Credentials name of the secret key used by Tailor (defaults to <code>&lt;PROJECT&gt;-cd-tailor-private-key</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tailorSelector</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Selector scope used by Tailor (defaults to <code>app=&lt;PROJECT&gt;-&lt;COMPONENT&gt;</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tailorVerify</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether Tailor verifies the live configuration against the desired state after application (defaults to <code>false</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tailorInclude</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Resource kind restriction used by Tailor (defaults to <code>bc,is</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tailorParamFile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to Tailor parameter file (defaults to none). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tailorPreserve</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Paths to preserve in the live configuration (defaults to <code>['bc:/spec/output/imageLabels', 'bc:/spec/output/to/name']</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tailorParams</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Additional parameters to pass to Tailor (defaults to <code>[]</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_odscomponentstageimportopenshiftimage"><a class="anchor" href="#_odscomponentstageimportopenshiftimage"></a>odsComponentStageImportOpenShiftImage</h3>
+<div class="paragraph">
+<p>Imports an image from another namespace.</p>
+</div>
+<div class="paragraph">
+<p>By default, the source image is identified using the commit which triggered the pipeline run.</p>
+</div>
+<div class="paragraph">
+<p>Available options:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">resourceName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of <code>ImageStream</code> to use (defaults to <code>context.componentId</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sourceProject</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">OpenShift project from which to import the image identified by <code>resourceName</code>.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">sourceTag</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Image tag to look for in the <code>sourceProject</code> (defaults to <code>context.shortGitCommit</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">targetTag</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Image tag to apply to the imported image in the target project (defaults to <code>sourceTag</code>).</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_odscomponentstageimportopenshiftimageorelse"><a class="anchor" href="#_odscomponentstageimportopenshiftimageorelse"></a>odsComponentStageImportOpenShiftImageOrElse</h3>
+<div class="paragraph">
+<p>Imports an image from another namespace if possible,
+otherwise execute the given closure.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">odsComponentStageImportOpenShiftImageOrElse(context) {
+  stage('Build') {
+    // custom stage to build your application package
+  }
+  odsComponentStageBuildOpenShiftImage(context)
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The stage takes the exact same options as <code>odsComponentStageImportOpenShiftImage</code>.</p>
+</div>
+<div class="paragraph">
+<p>Before running the image import, it checks whether the image (identified by the
+<code>sourceTag</code>) is present in a suitable project. This is the current
+target project, and potentially one or more specified by the pipeline option
+<code>imagePromotionSequences</code>. For example, if <code>imagePromotionSequences</code> is
+<code>['dev&#8594;test', 'test&#8594;prod']</code> (which is the default setting), then, given the
+current target environment is <code>test</code>, suitable environments are <code>dev</code> (based on
+<code>dev&#8594;test</code>), and <code>test</code> itself.</p>
+</div>
+<div class="paragraph">
+<p>If the image is not present in a suitable project, the given closure is executed.</p>
+</div>
+<div class="paragraph">
+<p>Using this "stage" allows you to avoid building a container image for the same
+Git commit multiple times, reducing build times and increasing reliability as
+you can promote the exact same image from one environment to another. Keep in
+mind that image lookup works by finding an image tagged with the current Git
+commit. If you merge a branch into another using a merge commit, the current Git
+commit will differ from the previously built image tag, even if the actual
+contents of the repository are the same. To ensure image importing kicks in, use
+the <a href="https://git-scm.com/docs/git-merge#Documentation/git-merge.txt---ff">--ff-only</a> option on <code>git merge</code> (this can also be enabled for pull
+requests in Bitbucket under "Merge strategies"). There are a few consequences
+when doing so, which should be kept in mind:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>No merge commit is created, which has the downside that you do not see when
+a PR was merged, and that the merge commit is a convenient way to find the
+associated PR. However, it has the upside that your Git history is not
+polluted by merge commits.</p>
+</li>
+<li>
+<p>Enforcing a fast-forward merge prevents you from merging a branch which is
+not up-to-date with the target branch. This has the downside that before
+merging, you may need to rebase your branch or merge the target branch into
+your branch if someone else updated the target branch in the meantime. While
+this may cause extra work, it has the upside that you cannot accidentally
+break the target branch (e.g. tests on your branch may work based on the
+outdated target branch, but fail after the merge).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>In summary, using <code>git merge --ff-only</code> provides safety, a clean history and
+allows to promote the exact same image between environments.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_odscomponentstagerolloutopenshiftdeployment"><a class="anchor" href="#_odscomponentstagerolloutopenshiftdeployment"></a>odsComponentStageRolloutOpenShiftDeployment</h3>
+<div class="paragraph">
+<p>Triggers (and follows) a rollout of the <code>DeploymentConfig</code> related to the repository
+being built.</p>
+</div>
+<div class="paragraph">
+<p>It achieves this by tagging the image built in <code>odsComponentStageBuildOpenShiftImage</code> with <code>latest</code>. This might already trigger a rollout based on an existing <code>ImageTrigger</code>. If none is set, the stage will start a manual rollout.</p>
+</div>
+<div class="paragraph">
+<p>If the directory referenced by <code>openshiftDir</code> exists, the templates in there will be applied using <a href="https://github.com/opendevstack/tailor">Tailor</a>. In this case, it is recommended to remove any image triggers to avoid duplicate rollouts (one when configuration changes due to a config trigger and one when the image is tagged to <code>latest</code>). In addition to the configuration options below, one can use e.g. a <code>Tailorfile</code> to adjust the behaviour of Tailor as needed.</p>
+</div>
+<div class="paragraph">
+<p>Available options:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">resourceName</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Name of <code>DeploymentConfig</code> to use (defaults to <code>context.componentId</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">imageTag</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Image tag on which to apply the <code>latest</code> tag (defaults to <code>context.shortGitCommit</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">deployTimeoutMinutes</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adjust timeout of rollout (defaults to 5 minutes). Caution: This needs to be aligned with the deployment strategy timeout (timeoutSeconds) and the readiness probe timeouts (initialDelaySeconds + failureThreshold * periodSeconds).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">openshiftDir</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Directory with OpenShift templates (defaults to <code>openshift</code>).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tailorPrivateKeyCredentialsId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Credentials name of the secret key used by Tailor (defaults to <code>&lt;PROJECT&gt;-cd-tailor-private-key</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tailorSelector</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Selector scope used by Tailor (defaults to <code>app=&lt;PROJECT&gt;-&lt;COMPONENT&gt;</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tailorVerify</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Whether Tailor verifies the live configuration against the desired state after application (defaults to <code>false</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tailorExclude</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Resource kind exclusion used by Tailor (defaults to <code>bc,is</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tailorParamFile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Path to Tailor parameter file (defaults to none). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tailorPreserve</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Paths to preserve in the live configuration (defaults to <code>[]</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">tailorParams</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Additional parameters to pass to Tailor (defaults to <code>[]</code>). Only relevant if the directory referenced by <code>openshiftDir</code> exists.</p></td>
+</tr>
+</tbody>
+</table>
+</div>
+<div class="sect2">
+<h3 id="_odscomponentstageuploadtonexus"><a class="anchor" href="#_odscomponentstageuploadtonexus"></a>odsComponentStageUploadToNexus</h3>
+<div class="paragraph">
+<p>Triggers the upload of an artifact to Nexus. Implementation is based on <a href="https://help.sonatype.com/repomanager3/rest-and-integration-api/components-api" class="bare">https://help.sonatype.com/repomanager3/rest-and-integration-api/components-api</a></p>
+</div>
+<div class="paragraph">
+<p>Available options:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 33.3333%;">
+<col style="width: 66.6667%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Option</th>
+<th class="tableblock halign-left valign-top">Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">repositoryType</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">default is the <code>maven2</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">distributionFile</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">default is <code>${componentId}-${tagversion}.tar.gz</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">repository</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">the nexus repository name, default is <code>candidates</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">for 'maven2' groupId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">default is the <code>groupId</code> on project level, or in case not set at all <code>org.opendevstack.${projectId}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">for 'maven2' version</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">default is the <code>${tagVersion}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">for 'maven2' artifactId</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">default is the <code>${componentId}</code></p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">for 'raw' targetDirectory</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">default is the <code>${projectId}</code></p></td>
+</tr>
+</tbody>
+</table>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.1.1/tocbot.min.js"></script>
+<script type="text/javascript">
+  window.antora = window.antora || {}
+  window.antora.basePath = '../../..'
+  window.antora.pagePath = '/opendevstack/4.x/jenkins-shared-library/component-pipeline.html'
+</script>
+<script src="../../../_/js/site.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/search.js"></script>
+<script async src="../../../_/../search-index.js"></script>
+<script src="../../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+<script>
+  tocbot.init( {
+                  tocSelector: '#article-toc',
+                  contentSelector: 'article',
+                  headingSelector: 'h2, h3, h4, h5, h6',
+                  collapseDepth: 6,
+                  positionFixedSelector: '#article-toc',
+                  scrollSmooth: false
+                } );
+  var tocList = document.getElementById( 'article-toc' ).getElementsByClassName( 'toc-list' );
+  if ( tocList && tocList.length > 0 && tocList[0].childNodes.length > 0 ) {
+    document.getElementById( 'article-toc' ).parentNode.classList.remove( 'hidden' );
+  }
+</script>
+  </body>
+</html>

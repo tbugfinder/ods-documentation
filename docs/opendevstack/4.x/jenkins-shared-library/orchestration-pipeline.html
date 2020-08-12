@@ -1,0 +1,863 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Orchestration Pipeline :: OpenDevStack</title>
+    <meta name="generator" content="Antora 2.3.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="stylesheet" href="../../../_/css/search.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">OpenDevStack</a>
+        <div class="navbar-item">
+          <input id="search-input" type="text" placeholder="Search docs">
+        </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="opendevstack" data-version="4.x">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../getting-started/index.html">OpenDevStack</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Jenkins Shared Library</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="component-pipeline.html">Component Pipeline</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="orchestration-pipeline.html">Orchestration Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="quickstarter-pipeline.html">Quickstarter Pipeline</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../quickstarters/index.html">Quickstarters</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/docker-plain.html">Docker Plain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-gateway-nginx.html">BE Gateway/Nginx</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-golang-plain.html">BE Golang</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-java-springboot.html">BE Java/Spring Boot</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-typescript-express.html">BE TypeScript/Express</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-python-flask.html">BE Python/Flask</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-scala-play.html">BE Scala/Play</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/fe-angular.html">FE Angular</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/fe-ionic.html">FE Ionic</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/ds-ml-service.html">Data Science Machine Learning Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/ds-jupyter-notebook.html">Data Science Jupyter Notebook</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/ds-rshiny.html">Data Science RShiny app</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/e2e-cypress.html">Cypress E2E testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/e2e-spock-geb.html">Spock, Geb and Unirest E2E testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/release-manager.html">Release Manager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Jenkins agent Images</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins/agent-base.html">Base Image</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/golang.html">Go</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/maven.html">Maven</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/nodejs10-angular.html">Nodejs10 Angular</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/python.html">Python</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/scala.html">Scala</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/authoring-quickstarters.html">Authoring Quickstarters</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../provisioning-app/index.html">Provisioning App</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../jenkins/index.html">Jenkins</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/master.html">Jenkins Master</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/agent-base.html">Jenkins Agent Base</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/webhook-proxy.html">Webhook Proxy</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../sonarqube/index.html">SonarQube</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Update Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../update-guides/3x.html">Migrate to 3.x</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../update-guides/2x.html">Migrate to 2.x</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Administration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../administration/installation.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Upgrade</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/update-2-to-3.html">2.x to 3.x</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/update-older.html">older</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-app/configuration.html">Provisioning App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../administration/keycloak.html">Keycloak</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../sonarqube/administration.html">SonarQube</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/administration.html">Jenkins</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Contributing to ODS</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contributing/development.html">Development</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contributing/documentation.html">Documentation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-app/architecture.html">Provisioning App</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">OpenDevStack</span>
+    <span class="version">4.x Preview</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">OpenDevStack</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="../getting-started/index.html">4.x Preview</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../2.x/getting-started/index.html">2.x</a>
+        </li>
+        <li class="version">
+          <a href="../../1.x/getting-started/index.html">1.x</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../2.x/getting-started/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../getting-started/index.html">OpenDevStack</a></li>
+    <li><a href="index.html">Jenkins Shared Library</a></li>
+    <li><a href="orchestration-pipeline.html">Orchestration Pipeline</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">4.x Preview</button>
+  <div class="version-menu">
+    <a class="version is-current" href="orchestration-pipeline.html">4.x Preview</a>
+    <a class="version is-missing" href="../../2.x/getting-started/index.html">2.x</a>
+    <a class="version is-missing" href="../../1.x/getting-started/index.html">1.x</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-jenkins-shared-library/edit/master/docs/modules/jenkins-shared-library/pages/orchestration-pipeline.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Orchestration Pipeline</h1>
+<div class="sect1">
+<h2 id="_usage"><a class="anchor" href="#_usage"></a>Usage</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Load the shared library in your <code>Jenkinsfile</code> like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">@Library('ods-jenkins-shared-library@3.x') _
+
+odsOrchestrationPipeline(
+  debug: true,
+  odsImageTag: '3.x'
+)</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <a href="../quickstarters/release-manager.html" class="page">release manager quickstarter</a> comes with a <code>Jenkinsfile</code> that is already setup like this.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_configuration"><a class="anchor" href="#_configuration"></a>Configuration</h2>
+<div class="sectionbody">
+<div class="sect2">
+<h3 id="_automated_resolution_of_dependencies"><a class="anchor" href="#_automated_resolution_of_dependencies"></a>Automated Resolution of Dependencies</h3>
+<div class="paragraph">
+<p>The library automatically resolves dependencies between repositories to be orchestrated so that they can be delivered in the correct order. Currently, repositories that want to be orchestrated need to be added to the <code>repositories</code> list inside a release manager component&#8217;s <code>metadata.yml</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>id: PHOENIX
+name: Project Phoenix
+
+repositories:
+  - id: A
+    url: https://github.com/my-org/my-repo-A.git
+    branch: master
+  - id: B
+    name: my-repo-B
+    branch: master
+  - id: C</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If a named repository wants to announce a dependency on another repo, the dependency needs to be listed in that repository&#8217;s <code>release-manager.yml</code>, simply by referring to its <code>repo.id</code> as defined in <code>metadata.yml</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>dependencies:
+  - A</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The library supports the following repository types: <code>ods</code>, <code>ods-service</code>, and <code>ods-test</code>. Setting a repository type is required so the orchestrator can make correct assumptions based on the nature of the component at hand:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>id: PHOENIX
+name: Project Phoenix
+
+repositories:
+  - id: A
+    url: https://github.com/my-org/my-repo-A.git
+    branch: master
+    type: ods
+  - id: B
+    name: my-repo-B
+    branch: master
+    type: ods
+  - id: C
+    type: ods</code></pre>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_repository_type_ods"><a class="anchor" href="#_repository_type_ods"></a>Repository Type: ods</h4>
+<div class="paragraph">
+<p>This type designates ODS components designed for <em>code development</em>. Such repositories are based on quickstarters whose names start with <code>be-</code>, <code>ds-</code>, or <code>fe-</code>, for <em>backend</em>, <em>data science</em>, and <em>frontend</em>, respectively. This is the default type.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_repository_type_ods_service"><a class="anchor" href="#_repository_type_ods_service"></a>Repository Type: ods-service</h4>
+<div class="paragraph">
+<p>This type designates ODS components designed for <em>running some service</em>. Examples include repositories based on the <code>airflow-cluster</code> quickstarter.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_repository_type_ods_test"><a class="anchor" href="#_repository_type_ods_test"></a>Repository Type: ods-test</h4>
+<div class="paragraph">
+<p>This type designates ODS components designed for <em>running automated tests against a live application</em>. Such repositories are based on quickstarters whose names start with <code>e2e-</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_automated_resolution_of_repository_git_url"><a class="anchor" href="#_automated_resolution_of_repository_git_url"></a>Automated Resolution of Repository Git URL</h3>
+<div class="paragraph">
+<p>If no <code>url</code> parameter is provided for a repository configuration in a release manager component&#8217;s <code>metadata.yml</code>, the library will attempt to resolve it based on the component&#8217;s <strong>origin remote URL</strong> and one of the following:</p>
+</div>
+<div class="paragraph">
+<p>1) If the <code>name</code> parameter is provided, and not empty, the last path part of the URL is resolved to <code>${repo-name}.git</code>.
+2) If no <code>name</code> parameter is provided, the last path part of the URL is resolved to <code>${project-id}-${repo-id}.git</code> (which is the repository name pattern used with <strong>OpenDevStack</strong>). Here <code>${project-id}</code> refers to the lowercase value of the top-level <code>id</code> attribute in <code>metadata.yml</code>.</p>
+</div>
+<div class="sect3">
+<h4 id="_example_resolve_git_url_for_repository_b"><a class="anchor" href="#_example_resolve_git_url_for_repository_b"></a>Example: Resolve Git URL for Repository 'B'</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>id: PHOENIX
+name: Project Phoenix
+
+repositories:
+  - id: B
+    name: my-repo-B
+    branch: master</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Assuming your release manager component&#8217;s origin at <code><a href="https://github.com/my-org/my-pipeline.git" class="bare">https://github.com/my-org/my-pipeline.git</a></code> in this example, the Git URL for repository <code>B</code> will resolve to <code><a href="https://github.com/my-org/my-repo-B.git" class="bare">https://github.com/my-org/my-repo-B.git</a></code>, based on the value in <code>repositories[0].name</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_example_resolve_git_url_for_repository_c"><a class="anchor" href="#_example_resolve_git_url_for_repository_c"></a>Example: Resolve Git URL for Repository 'C'</h4>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>id: PHOENIX
+name: Project Phoenix
+
+repositories:
+  - id: C</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Assuming your release manager component&#8217;s origin at <code><a href="https://github.com/my-org/my-pipeline.git" class="bare">https://github.com/my-org/my-pipeline.git</a></code> in this example, the Git URL for repository <code>C</code> will resolve to <code><a href="https://github.com/my-org/phoenix-C.git" class="bare">https://github.com/my-org/phoenix-C.git</a></code>, based on the values in <code>id</code> and <code>repositories[0].name</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_automated_resolution_of_repository_branch"><a class="anchor" href="#_automated_resolution_of_repository_branch"></a>Automated Resolution of Repository Branch</h3>
+<div class="paragraph">
+<p>If no <code>branch</code> parameter is provided for a repository, <code>master</code> will be assumed.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_automated_parallelization_of_repositories"><a class="anchor" href="#_automated_parallelization_of_repositories"></a>Automated Parallelization of Repositories</h3>
+<div class="paragraph">
+<p>Instead of merely resolving repositories into a strictly sequential execution model, our library automatically understands which repositories form independent groups and can run in parallel for best time-to-feedback and time-to-delivery.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_building_of_components_partial_deployments"><a class="anchor" href="#_building_of_components_partial_deployments"></a>Building of components &amp; partial deployments</h3>
+<div class="paragraph">
+<p>By default the shared library will rebuild all type <code>ods</code> components, no matter which ones changed. In order to allow
+partial building, that is based on changes one has done to the components, the following needs to be configured
+in <code>metadata.yml</code></p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>allowPartialRebuild : true</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If one repository should always be <strong>rebuilt</strong>, even if partial rebuild is configured on root level, <code>forceRebuild : true</code> can be set at repository level, e.g.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>id: PHOENIX
+name: Project Phoenix
+
+repositories:
+  - id: B
+    name: my-repo-B
+    forceRebuild : true</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_optimization_of_runtime_performance"><a class="anchor" href="#_optimization_of_runtime_performance"></a>Optimization of runtime performance</h3>
+<div class="paragraph">
+<p>By default the shared library will always pull the <strong>agent image</strong> from the internal docker repository. Depending on the
+cluster node setup, this may decrease execution performance. In order to re-use loaded images, a knob in the <code>Jenkinsfile</code> configuration of the stage <code>odsOrchestrationPipeline</code> can be turned on:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>alwaysPullImage: true</pre>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_automated_generation_of_compliance_documents"><a class="anchor" href="#_automated_generation_of_compliance_documents"></a>Automated Generation of Compliance Documents</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The library automatically generates Lean Validation (LeVA) compliance reports based on data in your Jira project, as well as data generated along the automated build, deploy, test, and release process by the release manager component.</p>
+</div>
+<div class="paragraph">
+<p><strong>Note:</strong> when you configure a Jira service in the release manager component&#8217;s <code>metadata.yml</code>, our library expects your Jira project (identified by <code>id</code>) to follow a specific structure. If your Jira project has not been set up by <strong>OpenDevStack</strong> lately, your structure will most likely be different. While we plan to support custom Jira setups in the future, you may disable the dependency on the Jira service entirely, as shown in the following example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>services:
+  bitbucket:
+    credentials:
+      id: my-bitbucket-credentials
+#  jira:
+#    credentials:
+#      id: my-jira-credentials
+  nexus:
+    repository:
+      name: leva-documentation</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In this case, the library will fall back to the document chapter templates located in your release manager component&#8217;s <code>docs</code> folder. Therein, you can provide chapter data to be loaded into the supported compliance documents.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_additional_capabilities"><a class="anchor" href="#_additional_capabilities"></a>Additional Capabilities</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The library supports the activation of various capabilities through the <code>capabilities:</code> field in <code>metadata.yml</code>.</p>
+</div>
+<div class="sect2">
+<h3 id="_zephyr_for_jira"><a class="anchor" href="#_zephyr_for_jira"></a>Zephyr for Jira</h3>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>capabilities:
+  - Zephyr</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The Zephyr for Jira capability currently supports:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Reporting the result of a test execution to Zephyr for Jira</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_environment_promotion"><a class="anchor" href="#_environment_promotion"></a>Environment Promotion</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>This section will guide you through the "environment promotion" feature of the orchestration pipeline.
+It is assumed have the release manager quickstarter already provisioned and configured in your project.</p>
+</div>
+<div class="sect2">
+<h3 id="_what_is_the_environment_promotion_feature"><a class="anchor" href="#_what_is_the_environment_promotion_feature"></a>What is the "environment promotion" feature?</h3>
+<div class="paragraph">
+<p>Typically, software is running in different environments, such as one environment for development (DEV), one for quality assurance (QA), and one for production (PROD - this is what end-users of the software consume). Developers work on on the software in the development environment, and once they finish one version (a state) of the software, they bring that version to the QA environment, and once this version is deemed production-ready it is brought to the production environment so that users can consume the new version.</p>
+</div>
+<div class="paragraph">
+<p>The environment promotion feature of the orchestration pipeline automates moving a certain version of the software from one environment to the next. Developers only have to tell the orchestration pipeline if a new version should be built (in DEV) and packaged as an installable "release bundle", or if an existing "release bundle" should be promoted to either the QA or the production environment.</p>
+</div>
+<div class="paragraph">
+<p>The environment promotion feature is part of the regular orchestration pipeline. Therefore, the promotion is executed from various Jenkins stages. It is not possible to change the process itself, but you can customize how the promotion happens exactly for each of your software components.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_source_code_organisation"><a class="anchor" href="#_source_code_organisation"></a>Source Code Organisation</h3>
+<div class="paragraph">
+<p>The components of your software are defined in the <code>repositories</code> section of the <code>metadata.yml</code> file in the release manager repository. In order for the orchestration pipeline to know which state of each component should be promoted, it needs to have some knowledge about how version control in your repositories is organised. Everything depends on a user-supplied build parameter named <code>version</code> to the Jenkins pipeline. Other input parameters do not have any impact on source code lookup.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>When no <code>version</code> is given, the orchestration pipeline will default to <code>WIP</code> (work in progress). In this scenario, source code for each repository is taken from the configured branch in the <code>metadata.yml</code> file (defaulting to <code>master</code> if no branch is specified there).</p>
+</li>
+<li>
+<p>When a <code>version</code> is given, source code will be taken from a branch <code>release/$VERSION</code> in each repository. When this branch does not exist yet, it will be created (based on the configured branch in <code>metadata.yml</code>) by the pipeline. Subsequent runs with the same <code>version</code> input will take the source code from the created release branch - changes to the configured branch will have no effect on this version! This is by design: it allows some developers to work on new features on the mainline branch (typically <code>master</code>) while others polish the release branch. To this end, the orchestration pipeline allows to enable separate development environments per version to isolate changes in OpenShift resources (see section "Environments" further down).</p>
+</li>
+<li>
+<p>The orchestration pipeline applies the same branching rules to the release manager repository - it will create a release branch per version. There is one small caveat here: Jenkins only considers the <code>Jenkinsfile</code> from the branch which is configured for a pipeline. That means that for a pipeline setup against <code>master</code>, Jenkins will always execute the latest <code>Jenkinsfile</code> from <code>master</code>, even when you pass an  explicit <code>version</code> to the pipeline. The orchestration pipeline will read e.g. the <code>metadata.yml</code> file from the matching release branch, but the <code>Jenkinsfile</code> itself will be from <code>master</code>. Usually, this should not be an issue as you should not make changes to the <code>Jenkinsfile</code> of the release manager repository anyway.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_release_bundles"><a class="anchor" href="#_release_bundles"></a>Release bundles</h3>
+<div class="paragraph">
+<p>A specific "release bundle" is identified by four data points: a <code>version</code> (as outlined above), a <code>changeId</code>, a build number and an environment. The <code>version</code>, <code>changeId</code> and <code>environment</code> are user-supplied input parameters to the release manager pipeline, the build number is calculated automatically. The <code>changeId</code> can be any string meaningful to the user, its value does not have any effect on the operation of the orchestration pipeline. The environment input variable (such as <code>DEV</code>) will be shortened to a single-letter token (e.g. <code>D</code>).</p>
+</div>
+<div class="paragraph">
+<p>Technically speaking, a release bundle is a certain state of the release manager repository and the state of each linked repository at that time. This state is identified by a Git tag. For example, a release bundle with <code>version=1</code>, <code>changeId=1234</code>, <code>buildNumber=0</code> and <code>environment=DEV</code> is identified by the Git tag <code>v1-1234-0-D</code>. This tag is set on the release manager repository, and all repositories the <code>metadata.yml</code> refers to at this time.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_environments"><a class="anchor" href="#_environments"></a>Environments</h3>
+<div class="paragraph">
+<p>The orchestration pipeline assumes three "conceptual" environments: DEV, QA and PROD (with short token forms D, Q and P). Those environments are strictly ordered - a state should go from DEV to QA, and then from QA to PROD.</p>
+</div>
+<div class="paragraph">
+<p>To ensure that software progresses along the DEV &#8594; QA &#8594; PROD path, release bundles from environment DEV can only be installed into QA, and only a release bundle from QA can be installed into PROD. Installing a release bundle from DEV into PROD is not allowed.</p>
+</div>
+<div class="paragraph">
+<p>Each "conceptual" environment is mapped to an OpenShift namespace:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>DEV to <code>$PROJECT-dev</code> (e.g. <code>foo-dev</code>)</p>
+</li>
+<li>
+<p>QA to <code>$PROJECT-test</code> (e.g. <code>foo-test</code>. Note that it is NOT <code>-qa</code>!)</p>
+</li>
+<li>
+<p>PROD to <code>$PROJECT-prod</code> (e.g. <code>foo-prod</code>)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>Keep in mind that when you create a new project with OpenDevStack, you get three OpenShift namespaces:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><code>foo-dev</code> (your DEV environment)</p>
+</li>
+<li>
+<p><code>foo-test</code> (your QA environment - unfortunately not named <code>-qa</code> for historical reasons)</p>
+</li>
+<li>
+<p><code>foo-cd</code> (where Jenkins runs and the pipelines such as the orchestration pipeline are executed)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>So while there is a corresponding namespace for DEV and QA, there is no namespace corresponding to the PROD environment out-of-the-box. This is because it is assumed that your PROD environment is likely on another cluster altogether. To create <code>foo-prod</code> on another cluster, you (or someone with appropriate rights) can run the script located at <a href="https://github.com/opendevstack/ods-core/blob/master/ocp-scripts/create-target-project.sh" class="bare">https://github.com/opendevstack/ods-core/blob/master/ocp-scripts/create-target-project.sh</a>. Then you need to tell orchestration pipeline two things: where the API of the external cluster is, and the credentials with which to access it. A typical configuration is:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>id: foo
+...
+repositories: [ ... ]
+environments:
+  prod:
+    apiUrl: https://api.example.com
+    credentialsId: foo-cd-foo-prod</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>This assumes you have the API token credentials stored in a secret of type <code>kubernetes.io/basic-auth</code> named <code>foo-prod</code> in the <code>foo-cd</code> namespace. This secret needs to be synced with Jenkins (which is achieved by labeling it with <code>credential.sync.jenkins.openshift.io=true</code>). The stored credentials need to belong to a serviceaccount with rights to admin the <code>foo-prod</code> namespace. The easiest way to setup all of this is by running the script located at <a href="https://github.com/opendevstack/ods-core/blob/master/ocp-scripts/create-target-sa-secret.sh" class="bare">https://github.com/opendevstack/ods-core/blob/master/ocp-scripts/create-target-sa-secret.sh</a>, which makes use of the output of the <code>create-target-project.sh</code> ran earlier.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+It is also possible to have the PROD environment on the same cluster, then you simply create a <code>foo-prod</code> namespace next to <code>foo-dev</code> and <code>foo-test</code>, and allow the <code>foo-cd:jenkins</code> account to admin that project. In that case, you do not need to configure anything in <code>metadata.yml</code> as the default configuration assumes the same cluster. The opposite is also possible: you can configure the QA environment to be on a different cluster than the DEV environment - simply follow the instructions above to create a <code>foo-test</code> namespace.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>As mentioned in the "Source Code Organisation" section, the orchestration pipeline allows to enable separate development environments to isolate different versions. When this mode is enabled, pipeline runs with <code>version=WIP</code> will deploy into the <code>$PROJECT-dev</code> as usual, but pipeline runs with <code>version=X</code> will deploy into <code>$PROJECT-dev-X</code>. If <code>$PROJECT-dev-X</code> does not exist yet, it will be created on the fly (by cloning <code>$PROJECT-dev</code> with its serviceaccounts and rolebindings). For the creation to work, the <code>jenkins</code> serviceaccount running the pipeline needs to have <code>self-provisioner</code> permissions (which need to be granted by a cluster admin). To enable (up to three) separate development environments, you can set <code>versionedDevEnvs</code> to <code>true</code> in the config map of your <code>Jenkinsfile</code>, like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>def config = [debug: true, odsImageTag: 'x.x', versionedDevEnvs: true]</code></pre>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_walkthrough"><a class="anchor" href="#_walkthrough"></a>Walkthrough</h3>
+<div class="paragraph">
+<p>Let&#8217;s start by assuming you have a project FOO with two components, X and Y. These components are defined under the <code>repositories</code> section in the <code>metadata.yml</code> file of the release manager repository. When you want to create a new release, you start the orchestration pipeline with input parameters - we will use version <code>1</code> and change ID <code>1234</code> in this example. The environment should be <code>DEV</code>. At the end of the pipeline run, you&#8217;ll have a release bundle identified by the tag <code>v1-1234-0-D</code>. This release can later be promoted as-is to QA. Once it is installed there, the same release bundle will be tagged with <code>v1-1234-0-Q</code> which can then be promoted to PROD (where it will be tagged with <code>v1-1234-0-P</code>).</p>
+</div>
+<div class="paragraph">
+<p>To create a release bundle, the orchestration pipeline will first trigger the build of each component. Then, it will export all resources in your OpenShift namespace (<code>$PROJECT-$ENVIRONMENT</code>, here <code>foo-dev</code>) belonging to the component. By convention, this means all resources labeled with <code>app=$PROJECT-$COMPONENT</code> (e.g. <code>app=foo-x</code>). Any resources without such a label will NOT be part of the release bundle. The exported resources are stored in a <code>template.yml</code> file (an OpenShift template) located in the <code>openshift-exported</code> folder within each component repository. Further, the container image SHA of the running pod is retrieved and stored in the file <code>image-sha</code> in the same folder. Once done, the orchestration pipeline will commit the two files, tag the commit with <code>v1-1234-0-D</code> and push to the remote. After this process has been done for all repositories, the same tag is also applied to the release manager repository. At this stage, the "dev release bundle" is complete and can be installed into QA.</p>
+</div>
+<div class="paragraph">
+<p>To trigger the installation of an existing release bundle, the user needs to supply a <code>version</code> and <code>changeId</code> which has previously been used to create a release bundle. In our example, supplying <code>version=1</code>, <code>changeId=1234</code> and <code>environment=QA</code> will promote the release bundle identified by <code>v1-1234-0-D</code> to the QA environment and tag it with <code>v1-1234-0-Q</code>. Now that we have a "QA release bundle", we can promote it to PROD by supplying <code>version=1</code>, <code>changeId=1234</code> and <code>environment=PROD</code>.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_customizing_release_bundle_creation"><a class="anchor" href="#_customizing_release_bundle_creation"></a>Customizing release bundle creation</h3>
+<div class="paragraph">
+<p>As outlined above, a release bundle is essentially a state of all involved Git repositories. Each component repository contains two artifacts:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>a container image SHA</p>
+</li>
+<li>
+<p>OpenShift resource configuration (expressed in an OpenShift template)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>You cannot modify the image SHA (it is the result of what the component pipeline builds), but you can influence the OpenShift template. One reason to do so is that e.g. routes or <code>ConfigMap</code> values will need to differ between environments, and you need to tell the orchestration pipeline to parametrize the templates, and to supply the right values when the templates are applied in the target environment.</p>
+</div>
+<div class="paragraph">
+<p>When the orchestration pipeline exports configuration, it has no way to tell which values should actually be parameters. For example, you might have a route <code>x.foo-dev.dev-cluster.com</code> in DEV, and want this to be <code>x.foo-test.dev-cluster.com</code> in QA and <code>x.foo-prod.prod-cluster.com</code> in PROD. In the exported template, the value <code>x.foo-dev.dev-cluster.com</code> will be hardcoded. To fix this, you can create three files in the release manager repository, <code>dev.env</code>, <code>qa.env</code> and <code>prod.env</code>. These files may contain <code>PARAM=value</code> lines, like this:</p>
+</div>
+<div class="paragraph">
+<p>dev.env</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>X_ROUTE=x.foo-dev.dev-cluster.com</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>qa.env</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>X_ROUTE=x.foo-test.dev-cluster.com</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>prod.env</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>X_ROUTE=x.foo-prod.prod-cluster.com</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>All three files need to list the exact same parameters - otherwise applying the templates will fail. Once those param files are present, the orchestration pipeline will pick them up automatically. When you create a release bundle (in DEV), the param file is applied "in reverse", meaning that any concrete param value (on the right) will be substituted with the param key (on the left) in the template. Later when the template is applied in e.g. QA, the param keys are replaced with the concrete values from <code>qa.env</code>.</p>
+</div>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+It is necessary to have all the param files completed before you create a release bundle - if you want to change e.g. the value of a parameter in the <code>prod.env</code> file afterwards, you will need to create a new release bundle (as they are identified by Git tags, which do not move when you make new commits on the release branch).
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Next to parametrizing templates, you can also adjust how the export is done. As the export is using <a href="https://github.com/opendevstack/tailor">Tailor</a>, the best way to customize is to supply a <code>Tailorfile</code> in the <code>openshift-exported</code> folder, in which you can define the options you want to set, such as excluding certain labels or resource types, or preserving specific fields in the live configuration. Please see Tailor&#8217;s documentation for more information. It is also possible to have different configuration files per environment if you suffix with the <code>$PROJECT</code>, e.g. <code>Tailorfile.foo-dev</code>.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If you have component-specific parameters that differ between environments, a lightweight way to add these is via parameter files located in the <code>openshift-exported</code> folder matching the target project such as <code>foo-dev.env</code>, <code>foo-test.env</code> and <code>foo-prod.env</code>. These files are picked up automatically without special setup in a <code>Tailorfile</code>.
+</td>
+</tr>
+</table>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_authoring_openshift_configuration"><a class="anchor" href="#_authoring_openshift_configuration"></a>Authoring OpenShift configuration</h3>
+<div class="paragraph">
+<p>In the process described above, the OpenShift configuration is exported and stored in the repositories in <code>openshift-exported</code>. This approach is easy to get started with, but it does have limitations:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>There is no defined state: whatever gets exported is what will be promoted, even if a certain configuration was meant to be only temporary or is specific to e.g. only the DEV environment.</p>
+</li>
+<li>
+<p>There is little traceability: as configuration is done through the OpenShift web interface, it is not known who did the change and when, and no chance for other team members to review that change.</p>
+</li>
+<li>
+<p>The parametrization of the exported template might produce incorrect results as it is just a string search-and-replace operation without further knowledge of the meaning of your configuration values.</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>To overcome these issues, it is possible to author the OpenShift templates yourself instead of exporting them. The fastest way to start with this is by renaming the folder <code>openshift-exported</code> (containing the exported template) to <code>openshift.</code> From this point on, the orchestration pipeline will skip the export, and apply whatever is defined in the <code>openshift</code> folder.</p>
+</div>
+<div class="admonitionblock tip">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-tip" title="Tip"></i>
+</td>
+<td class="content">
+If you are new to writing OpenShift templates, please read <a href="https://github.com/opendevstack/tailor#template-authoring" class="bare">https://github.com/opendevstack/tailor#template-authoring</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>When you author templates, you can also store the secrets in the param files GPG encrypted (<code>.env.enc</code> files). To achieve this, you need to create a private/public keypair for Jenkins, store the private key in a secret called <code>tailor-private-key</code> in your <code>foo-cd</code> namespace, and sync it as a Jenkins credentials item. Once the <code>.env.enc</code> files are encrypted against the public key, the orchestration pipeline will automatically use the private key to decrypt the params on-the-fly. Please see <a href="https://github.com/opendevstack/tailor#working-with-secrets">Working with Secrets</a> for more information.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_known_limitations"><a class="anchor" href="#_known_limitations"></a>Known Limitations</h3>
+<div class="ulist">
+<ul>
+<li>
+<p>For versioned, separate DEV environments, pulling images from the <code>foo-cd</code> namespace is not possible (because the <code>foo-cd:jenkins</code> serviceaccount does not have admin rights in <code>foo-cd</code> and therefore can&#8217;t grant access to it)</p>
+</li>
+<li>
+<p>Tagging means we are pointing to a concrete SHA of a Git repository. This enforces that no manual editing of exported config can happen between promotion to QA and promotion to PROD, which in effect forces everything to be parameterized properly.</p>
+</li>
+<li>
+<p>JIRA always triggers the <code>master</code> branch of the release manager, which means the <code>Jenkinsfile</code> is always taken from <code>master</code> (and NOT from the correct release branch - only <code>metadata.yml</code> etc. are read from the release branch)</p>
+</li>
+<li>
+<p>There is only one QA namespace, preventing to test multiple releases at the same time.</p>
+</li>
+<li>
+<p>The secret of the serviceaccount in the target cluster is known to the orchestration pipeline (as a Jenkins credential synced from OpenShift), therefore developers with edit/admin rights in the CD namespace have access to that secret</p>
+</li>
+<li>
+<p>Tags could manually be set / moved (this can be prevented in Bitbucket by administrators)</p>
+</li>
+<li>
+<p>Passwords etc. in the OpenShift configuration are stored in clear text in the export (this can be prevented by authoring templates and using a private key for encryption of param files)</p>
+</li>
+<li>
+<p>During export, the templates are parameterized automatically, but this is done using string search-and-replace and unwanted replacements might occur (this can be prevented by authoring the templates manually).</p>
+</li>
+<li>
+<p>By default, SonarQube scans (and reports) are only generated for the <code>master</code> branch of each component. As the orchestration pipeline automatically creates release branches for each version, no scans and reports are created on those. This can be changed by configuring <code>sonarQubeBranch: '*'`</code> in each component&#8217;s <code>Jenkinsfile</code>, however keep in mind that quality trends etc. will be mixed up if you use the free version of SonarQube as that version does not have support for multiple branches.</p>
+</li>
+<li>
+<p>An existing QA-tag cannot be deployed again in PROD. This has been intentionally designed that way as any change to PROD needs its unique change ID, which results in a new tag.</p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.1.1/tocbot.min.js"></script>
+<script type="text/javascript">
+  window.antora = window.antora || {}
+  window.antora.basePath = '../../..'
+  window.antora.pagePath = '/opendevstack/4.x/jenkins-shared-library/orchestration-pipeline.html'
+</script>
+<script src="../../../_/js/site.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/search.js"></script>
+<script async src="../../../_/../search-index.js"></script>
+<script src="../../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+<script>
+  tocbot.init( {
+                  tocSelector: '#article-toc',
+                  contentSelector: 'article',
+                  headingSelector: 'h2, h3, h4, h5, h6',
+                  collapseDepth: 6,
+                  positionFixedSelector: '#article-toc',
+                  scrollSmooth: false
+                } );
+  var tocList = document.getElementById( 'article-toc' ).getElementsByClassName( 'toc-list' );
+  if ( tocList && tocList.length > 0 && tocList[0].childNodes.length > 0 ) {
+    document.getElementById( 'article-toc' ).parentNode.classList.remove( 'hidden' );
+  }
+</script>
+  </body>
+</html>

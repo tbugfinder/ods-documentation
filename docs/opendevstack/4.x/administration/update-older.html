@@ -1,0 +1,760 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Update Guide for OpenDevStack administrators :: OpenDevStack</title>
+    <meta name="generator" content="Antora 2.3.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="stylesheet" href="../../../_/css/search.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">OpenDevStack</a>
+        <div class="navbar-item">
+          <input id="search-input" type="text" placeholder="Search docs">
+        </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="opendevstack" data-version="4.x">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../getting-started/index.html">OpenDevStack</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../jenkins-shared-library/index.html">Jenkins Shared Library</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins-shared-library/component-pipeline.html">Component Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins-shared-library/orchestration-pipeline.html">Orchestration Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins-shared-library/quickstarter-pipeline.html">Quickstarter Pipeline</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../quickstarters/index.html">Quickstarters</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/docker-plain.html">Docker Plain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-gateway-nginx.html">BE Gateway/Nginx</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-golang-plain.html">BE Golang</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-java-springboot.html">BE Java/Spring Boot</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-typescript-express.html">BE TypeScript/Express</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-python-flask.html">BE Python/Flask</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-scala-play.html">BE Scala/Play</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/fe-angular.html">FE Angular</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/fe-ionic.html">FE Ionic</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/ds-ml-service.html">Data Science Machine Learning Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/ds-jupyter-notebook.html">Data Science Jupyter Notebook</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/ds-rshiny.html">Data Science RShiny app</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/e2e-cypress.html">Cypress E2E testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/e2e-spock-geb.html">Spock, Geb and Unirest E2E testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/release-manager.html">Release Manager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Jenkins agent Images</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins/agent-base.html">Base Image</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/golang.html">Go</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/maven.html">Maven</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/nodejs10-angular.html">Nodejs10 Angular</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/python.html">Python</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/scala.html">Scala</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/authoring-quickstarters.html">Authoring Quickstarters</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../provisioning-app/index.html">Provisioning App</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../jenkins/index.html">Jenkins</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/master.html">Jenkins Master</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/agent-base.html">Jenkins Agent Base</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/webhook-proxy.html">Webhook Proxy</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../sonarqube/index.html">SonarQube</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Update Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../update-guides/3x.html">Migrate to 3.x</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../update-guides/2x.html">Migrate to 2.x</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Administration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="installation.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Upgrade</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="update-2-to-3.html">2.x to 3.x</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="3">
+    <a class="nav-link" href="update-older.html">older</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-app/configuration.html">Provisioning App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="keycloak.html">Keycloak</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../sonarqube/administration.html">SonarQube</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/administration.html">Jenkins</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Contributing to ODS</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contributing/development.html">Development</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contributing/documentation.html">Documentation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-app/architecture.html">Provisioning App</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">OpenDevStack</span>
+    <span class="version">4.x Preview</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">OpenDevStack</span>
+      <ul class="versions">
+        <li class="version is-current">
+          <a href="../getting-started/index.html">4.x Preview</a>
+        </li>
+        <li class="version is-latest">
+          <a href="../../2.x/getting-started/index.html">2.x</a>
+        </li>
+        <li class="version">
+          <a href="../../1.x/getting-started/index.html">1.x</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../../2.x/getting-started/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../getting-started/index.html">OpenDevStack</a></li>
+    <li>Administration</li>
+    <li>Upgrade</li>
+    <li><a href="update-older.html">older</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">4.x Preview</button>
+  <div class="version-menu">
+    <a class="version is-current" href="update-older.html">4.x Preview</a>
+    <a class="version is-missing" href="../../2.x/getting-started/index.html">2.x</a>
+    <a class="version is-missing" href="../../1.x/getting-started/index.html">1.x</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-core/edit/master/docs/modules/administration/pages/update-older.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Update Guide for OpenDevStack administrators</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>Learn all about how to update your OpenDevStack repositories and the running
+installation of it.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_update_your_opendevstack_repositories"><a class="anchor" href="#_how_to_update_your_opendevstack_repositories"></a>How to update your OpenDevStack repositories</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Updating repositories means that new refs from repositories under
+<code>github.com/opendevstack</code> are pushed into the repositories in your BitBucket
+instance.</p>
+</div>
+<div class="paragraph">
+<p>First, you need a clone of each repository in BitBucket which should be updated
+on your local machine.</p>
+</div>
+<div class="paragraph">
+<p>Once this has been done, you need to fetch new refs from
+<code>github.com/opendevstack</code>. To do so, add a remote pointing to it like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">git remote add ods https://github.com/opendevstack/&lt;REPO_NAME&gt;.git</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Now you are ready to update the refs. It is recommended to update both the
+<code>master</code> branch and, unless you want to live off the bleeding edge, a release
+branch such as <code>2.x</code>. Use the steps shown below:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh"># Ensure you have the latest refs from ODS locally
+git fetch ods
+# Update master
+git checkout master
+git reset --hard ods/master
+git push origin master
+# Update 2.x
+git checkout 2.x
+git reset --hard ods/2.x
+git push origin 2.x</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If your OpenDevStack installation is based on a custom branch (such as <code>2.acme</code>), then you
+need to create a pull request on BitBucket from <code>2.x</code> into that custom branch now.</p>
+</div>
+<div class="paragraph">
+<p>Now that the repositories are updated, you also need to modify the images and the
+running instances in OpenShift.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_update_your_opendevstack_installation"><a class="anchor" href="#_how_to_update_your_opendevstack_installation"></a>How to update your OpenDevStack installation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Updating consists of two parts: following the general update procedure
+(applicable to all version updates) and a version specific update procedure.</p>
+</div>
+<div class="sect2">
+<h3 id="_general_update_procedure"><a class="anchor" href="#_general_update_procedure"></a>General update procedure</h3>
+<div class="sect3">
+<h4 id="_backup"><a class="anchor" href="#_backup"></a>Backup</h4>
+<div class="paragraph">
+<p>Before proceeding, it is advisable to make a backup of the existing OpenShift
+configuration. This can be done easily with Tailor:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh"># Backup CD project
+tailor export -n cd &gt; backup_CD.yml
+
+# Backup provision app namespaces
+tailor export -n prov-cd &gt; backup_PROV_CD.yml
+tailor export -n prov-dev &gt; backup_PROV_DEV.yml
+tailor export -n prov-test &gt; backup_PROV_TEST.yml</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that the executing user needs to have permissions to access all resources
+in the <code>cd</code> namespaces for this to work properly.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_tailor"><a class="anchor" href="#_tailor"></a>Tailor</h4>
+<div class="paragraph">
+<p>Next, update Tailor to the version corresponding to your new OpenDevStack
+version, which is noted at the start of each version specific update procedure.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_configuration"><a class="anchor" href="#_configuration"></a>Configuration</h4>
+<div class="paragraph">
+<p>Then, update/add/remove the configuration parameters (located in <code>ods-configuration</code>).
+To do this, use the <code>./update</code> script located in <code>ods-core/configuration-sample</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_ocp_resources"><a class="anchor" href="#_ocp_resources"></a>OCP resources</h4>
+<div class="paragraph">
+<p>Next, run <code>tailor update</code> in <code>ods-core</code> and <code>ods-quickstarters</code> to bring all OCP resources (such as DC or BC) into sync. Review the diff produced by Tailor carefully, especially around changes to PVCs.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_images"><a class="anchor" href="#_images"></a>Images</h4>
+<div class="paragraph">
+<p>After all OCP resources have been updated, you need to start a build for all build configs
+in the <code>cd</code> namespace to create new images.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_provisioning_app"><a class="anchor" href="#_provisioning_app"></a>Provisioning App</h4>
+<div class="paragraph">
+<p>Also, the provisioning app should be updated. To do that, run <code>tailor update</code>
+in each <code>ocp-config</code> folder, and then trigger a build in Jenkins to redeploy the
+service.</p>
+</div>
+<div class="paragraph">
+<p>Now that the general procedure has been completed, you need to apply all the
+update notes below which apply to your version change.</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_2_x_to_2_x"><a class="anchor" href="#_1_2_x_to_2_x"></a>1.2.x to 2.x</h3>
+<div class="paragraph">
+<p>2.x requires Tailor <a href="https://github.com/opendevstack/tailor/releases/tag/v0.11.0">0.11.0</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="_setup_secure_route_checking"><a class="anchor" href="#_setup_secure_route_checking"></a>Setup secure route checking</h4>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+Secure route checking has been removed for version 3.x as this is an optional step. The code now is available at <a href="https://github.com/BIX-Digital/ods-contrib" class="bare">https://github.com/BIX-Digital/ods-contrib</a>.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>Go to <code>ods-core/check-ocp-secure-routes/ocp-config</code> and run <code>tailor update</code> to setup a cron job that will check exposed routes once a day (see <a href="https://github.com/opendevstack/ods-core/pull/280" class="bare">https://github.com/opendevstack/ods-core/pull/280</a>).</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_project_specific_cd_users"><a class="anchor" href="#_project_specific_cd_users"></a>Project specific CD users</h4>
+<div class="paragraph">
+<p>As each project may use a specific CD user now, you have to configure the username of the global CD user. To do so, add <code>username: Y2RfdXNlcg==</code> to secret <code>cd/cd-user-token</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_deprecation_of_shared_images_namespace"><a class="anchor" href="#_deprecation_of_shared_images_namespace"></a>Deprecation of <code>shared-images</code> namespace</h4>
+<div class="paragraph">
+<p>The <code>shared-images</code> namespace is no longer part of OpenDevStack. If you do not have any users that use images from that namespace, you may simply delete it via <code>oc delete project shared-images</code>. Otherwise, you can leave it in place and remote it when you see fit.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_rundeck_removal"><a class="anchor" href="#_rundeck_removal"></a>Rundeck removal</h4>
+<div class="paragraph">
+<p>Rundeck is longer part of OpenDevStack and can simply be removed.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_image_puller_rights"><a class="anchor" href="#_image_puller_rights"></a>Image puller rights</h4>
+<div class="paragraph">
+<p>Images in the <code>cd</code> namespaces should be pullable from all authenticated users. This permission is required for the new project provisioning approach to work:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">oc adm policy add-cluster-role-to-group system:image-puller system:authenticated -n cd
+oc adm policy add-role-to-group view system:authenticated -n cd</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Further, <code><strong>-dev</code> and <code></strong>-test</code> namespaces should be able to pull images from the corresponding <code>*-cd</code> namespaces to make it easy to shared base images within a project (see <a href="https://github.com/opendevstack/ods-core/issues/293" class="bare">https://github.com/opendevstack/ods-core/issues/293</a>). It is recommended to grant these rights for every project in your cluster. If you don&#8217;t do this, users will have to add the permissions manually if they want to use this flow.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_rollout_new_webhook_proxy_instances"><a class="anchor" href="#_rollout_new_webhook_proxy_instances"></a>Rollout new webhook proxy instances</h4>
+<div class="paragraph">
+<p>2.x allows the webhook proxy to build repositories in external projects if configured (see <a href="https://github.com/opendevstack/ods-core/issues/229" class="bare">https://github.com/opendevstack/ods-core/issues/229</a>). This feature is required for the new quickstarter provisioning approach to work. Therefore, it is recommended to tag a webhook proxy images built from the <code>2.x</code> branch or <code>v2.0</code> tag with <code>latest</code> so that all webhook proxies in the cluster get updated.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_configure_the_provisioning_app"><a class="anchor" href="#_configure_the_provisioning_app"></a>Configure the provisioning app</h4>
+<div class="paragraph">
+<p>Review the <code>ConfigMap</code> of the provisioning app in <code>prov-dev</code> and <code>prov-test</code>. Depending on your requirements, you might want to configure additional quickstarters (<code>jenkinspipeline.quickstarter&#8230;&#8203;</code>) and/or change the readable repositories of the project specific users (<code>scm.global.readablerepos.opendevstack[x]</code>)</p>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_1_x_to_1_2_x"><a class="anchor" href="#_1_1_x_to_1_2_x"></a>1.1.x to 1.2.x</h3>
+<div class="paragraph">
+<p>1.2.x requires Tailor <a href="https://github.com/opendevstack/tailor/releases/tag/v0.10.2">0.10.2</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="_prepare_installation_for_release_manager_quickstarter"><a class="anchor" href="#_prepare_installation_for_release_manager_quickstarter"></a>Prepare installation for release manager quickstarter</h4>
+<div class="paragraph">
+<p>The new functionality to create documents via Jenkins requires the presence of an image for the DocGen service. In an upcoming release, this will be integrated nicely. For <code>1.2.x</code>, the image needs to be built once during the update procedure. The recommended way to do this is to build the image in the <code>prov</code> namespaces and then move the image tag into the <code>cd</code> namespace. The first step is to create a pipeline <code>oc -n prov-cd process -f pipeline.yml --param REPO_BASE=&lt;YOUR-REPO-BASE-HERE&gt; --param TRIGGER_SECRET=&lt;YOUR-SECERET-HERE&gt; | oc -n prov-cd create -f -</code>, where <code>pipeline.yml</code> looks like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yml hljs" data-lang="yml">apiVersion: v1
+kind: Template
+objects:
+- apiVersion: build.openshift.io/v1
+  kind: BuildConfig
+  metadata:
+    name: docgen-production
+  spec:
+    nodeSelector: {}
+    output: {}
+    postCommit: {}
+    resources: {}
+    runPolicy: Serial
+    source:
+      git:
+        ref: production
+        uri: ${REPO_BASE}/opendevstack/ods-document-generation-svc.git
+      sourceSecret:
+        name: cd-user-with-password
+        type: Git
+    strategy:
+      jenkinsPipelineStrategy:
+        jenkinsfilePath: Jenkinsfile
+        type: JenkinsPipeline
+    triggers:
+    - generic:
+        secret: ${TRIGGER_SECRET}
+        type: Generic
+parameters:
+- name: TRIGGER_SECRET
+  required: true
+- name: REPO_BASE
+  required: true
+  description: Path to repository, e.g. https://cd_user@bitbucket.domain.com/scm</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then, create the <code>BuildConfig</code> and <code>ImageStream</code> in <code>prov-dev</code> using <code>oc -n prov-dev process -f bc-is.yml | oc -n prov-dev create -f -</code>, where <code>bc-is.yml</code> looks like this:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-yml hljs" data-lang="yml">apiVersion: v1
+kind: Template
+objects:
+- apiVersion: v1
+  kind: BuildConfig
+  metadata:
+    creationTimestamp: null
+    labels:
+      app: prov-docgen
+    name: docgen
+  spec:
+    failedBuildsHistoryLimit: 5
+    successfulBuildsHistoryLimit: 5
+    nodeSelector: null
+    output:
+      to:
+        kind: ImageStreamTag
+        name: docgen:latest
+    postCommit: {}
+    resources: {}
+    runPolicy: Serial
+    source:
+      binary: {}
+      type: Binary
+    strategy:
+      dockerStrategy: {}
+      type: Docker
+    triggers: []
+- apiVersion: v1
+  kind: ImageStream
+  metadata:
+    labels:
+      app: prov-docgen
+    name: docgen
+  spec:
+    dockerImageRepository: docgen
+    lookupPolicy:
+      local: false</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Note that this points to the <code>production</code> branch of <code>ods-document-generation-svc</code> - ensure this branch is present.</p>
+</div>
+<div class="paragraph">
+<p>After all is setup, start a build in Jenkins, and then move the built image to the cd namespace:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">oc tag prov-dev/docgen:latest cd/docgen:latest</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_1_0_x_to_1_1_x"><a class="anchor" href="#_1_0_x_to_1_1_x"></a>1.0.x to 1.1.x</h3>
+<div class="paragraph">
+<p>1.1.x requires Tailor <a href="https://github.com/opendevstack/tailor/releases/tag/v0.9.4">0.9.4</a>.</p>
+</div>
+<div class="paragraph">
+<p>There are no further mandatory changes apart from the general procedure
+described above when updating from 1.0.x.</p>
+</div>
+<div class="paragraph">
+<p>Users are highly recommended to take a look at the updates done to the
+boilerplates, especially the <code>Jenkinsfile</code> and <code>Dockerfile</code>. E.g. the Python
+quickstarter is now building an image containing all dependencies instead of
+installing them during runtime.</p>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_0_1_0_to_1_0_x"><a class="anchor" href="#_0_1_0_to_1_0_x"></a>0.1.0 to 1.0.x</h3>
+<div class="paragraph">
+<p>1.0.x requires Tailor <a href="https://github.com/opendevstack/tailor/releases/tag/v0.9.3">0.9.3</a>.</p>
+</div>
+<div class="sect3">
+<h4 id="_update_xyz_cd_projects"><a class="anchor" href="#_update_xyz_cd_projects"></a>Update <code>xyz-cd</code> projects</h4>
+<div class="paragraph">
+<p>There is a new webhook proxy now, which proxies webhooks sent from BitBucket to
+Jenkins. As well as proxying, this service creates and deletes pipelines on the
+fly, allowing to have one pipeline per branch. To update:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Setup the image in the <code>cd</code> project by running <code>tailor update</code> in
+<code>ods-core/jenkins/ocp-config</code>.</p>
+</li>
+<li>
+<p>Build the image.</p>
+</li>
+<li>
+<p>Setup the  webhook proxy next to each Jenkins instance. E.g., go to
+<code>ods-project-quickstarters/ocp-templates/templates</code> and run
+<code>oc process cd//cd-jenkins-webhook-proxy | oc create -f- -n xyz-cd</code>. Repeat for
+each project.</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_update_components_information_for_ods_users"><a class="anchor" href="#_update_components_information_for_ods_users"></a>Update components (information for ODS users)</h4>
+<div class="paragraph">
+<p>For each component, follow the following steps:</p>
+</div>
+<div class="paragraph">
+<p>In <code>Jenkinsfile</code>:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Set the shared library version to <code>1.0.x</code>.</p>
+</li>
+<li>
+<p>Replace <code>stageUpdateOpenshiftBuild</code> with <code>stageStartOpenshiftBuild</code>.</p>
+</li>
+<li>
+<p>Remove <code>stageCreateOpenshiftEnvironment</code> and <code>stageTriggerAllBuilds</code>.</p>
+</li>
+<li>
+<p>Adapt the build logic to match the latest state of the quickstarter
+boilerplates.</p>
+</li>
+<li>
+<p>Remove <code>verbose: true</code> config (replace with <code>debug: true</code> if you want debug
+output).</p>
+</li>
+<li>
+<p>Configure <code>branchToEnvironmentMapping</code>, see README.md. If you used
+environment cloning, also apply the instructions for that.</p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>In <code>docker/Dockerfile</code>:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Adapt the content to match the latest state of the quickstarter boilerplates.</p>
+</li>
+<li>
+<p>No Nexus upload build artifact is required anymore, use a copy in Jenkins shell
+command to docker folder (see in any boilerplate how it is done now).</p>
+</li>
+<li>
+<p>In BitBucket, remove the existing "Post Webhooks" and create a new "Webhook",
+pointing to the new webhook proxy. The URL has to be of the form
+<code>https://webhook-proxy-$PROJECT_ID-cd.$DOMAIN?trigger_secret=$SECRET</code>. As
+events, select "Repository Push" and "Pull request Merged + Declined".</p>
+</li>
+</ul>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_update_provisioning_app"><a class="anchor" href="#_update_provisioning_app"></a>Update provisioning app</h4>
+<div class="paragraph">
+<p>If you want to build the provisioning app automatically when commits are pushed
+to BitBucket, add a webhook as described in the previous section.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_fix_jenkins_master_build_url"><a class="anchor" href="#_fix_jenkins_master_build_url"></a>Fix Jenkins master BUILD_URL</h4>
+<div class="paragraph">
+<p>1.0.x makes use of the <code>BUILD_URL</code> env variable automatically set by Jenkins. This
+env variable might be <code>null</code> in your Jenkins master. To fix this, copy
+<a href="https://github.com/opendevstack/ods-core/blob/1.0.x/jenkins/master/configuration/init.groovy.d/url.groovy" class="bare">https://github.com/opendevstack/ods-core/blob/1.0.x/jenkins/master/configuration/init.groovy.d/url.groovy</a> into each Jenins master to <code>/var/lib/jenkins/init.groovy.d/url.groovy</code>.</p>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_fix_json_patch_replace_error_in_jenkins_build"><a class="anchor" href="#_fix_json_patch_replace_error_in_jenkins_build"></a>Fix JSON patch replace error in Jenkins build</h4>
+<div class="paragraph">
+<p>1.0.x sets image labels on the <code>BuildConfig</code> in Jenkins. It does this by issuing a JSON patch <code>replace</code> request to <code>/spec/output/imageLabels</code>. This path was not present in prior versions, which can lead to the following error: <code>Error from server: jsonpatch replace operation does not apply: doc is missing key: /spec/output/imageLabels</code>. For newly provisioned components, this has been fixed with <a href="https://github.com/opendevstack/ods-project-quickstarters/pull/188" class="bare">https://github.com/opendevstack/ods-project-quickstarters/pull/188</a>. For existing components, add the path to the <code>BuildConfig</code> manually by editing the YAML in OpenShift.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.1.1/tocbot.min.js"></script>
+<script type="text/javascript">
+  window.antora = window.antora || {}
+  window.antora.basePath = '../../..'
+  window.antora.pagePath = '/opendevstack/4.x/administration/update-older.html'
+</script>
+<script src="../../../_/js/site.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/search.js"></script>
+<script async src="../../../_/../search-index.js"></script>
+<script src="../../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+<script>
+  tocbot.init( {
+                  tocSelector: '#article-toc',
+                  contentSelector: 'article',
+                  headingSelector: 'h2, h3, h4, h5, h6',
+                  collapseDepth: 6,
+                  positionFixedSelector: '#article-toc',
+                  scrollSmooth: false
+                } );
+  var tocList = document.getElementById( 'article-toc' ).getElementsByClassName( 'toc-list' );
+  if ( tocList && tocList.length > 0 && tocList[0].childNodes.length > 0 ) {
+    document.getElementById( 'article-toc' ).parentNode.classList.remove( 'hidden' );
+  }
+</script>
+  </body>
+</html>
