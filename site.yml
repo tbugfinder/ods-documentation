@@ -3,25 +3,28 @@ site:
   start_page: opendevstack:getting-started:index.adoc
   url: https://www.opendevstack.org/ods-documentation
 content:
-  branches: master,1.*,2.*
+  branches: master,1.*,2.*,3.*
   sources:
     - url: https://github.com/opendevstack/ods-core.git
       start_path: docs
       branches:
       - 1.2.x
       - 2.x
+      - 3.x
       - master
     - url: https://github.com/opendevstack/ods-jenkins-shared-library.git
       start_path: docs
       branches:
       - 1.2.x
       - 2.x
+      - 3.x
       - master
     - url: https://github.com/opendevstack/ods-provisioning-app.git
       start_path: docs
       branches:
       - 1.2.x
       - 2.x
+      - 3.x
       - master
     - url: https://github.com/opendevstack/ods-project-quickstarters.git
       start_path: docs
@@ -32,6 +35,7 @@ content:
       branches:
       - master
       - 2.x
+      - 3.x
 output:
   dir: ./docs
 ui:

@@ -2,25 +2,28 @@ site:
   title: OpenDevStack
   start_page: opendevstack:getting-started:index.adoc
 content:
-  branches: master,1.*,2.*
+  branches: master,1.*,2.*,3.*
   sources:
     - url: ../ods-core
       start_path: docs
       branches:
         - 1.2.x
         - 2.x
+        - 3.x
         - master
     - url: ../ods-jenkins-shared-library
       start_path: docs
       branches:
         - 1.2.x
         - 2.x
+        - 3.x
         - master
     - url: ../ods-provisioning-app
       start_path: docs
       branches:
         - 1.2.x
         - 2.x
+        - 3.x
         - master
     - url: ../ods-project-quickstarters
       start_path: docs
@@ -31,6 +34,7 @@ content:
       branches:
         - 1.2.x
         - 2.x
+        - 3.x
         - master
 output:
   dir: ./docs_local
