@@ -1,0 +1,876 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Provisioning App: Internal architecture / Development :: OpenDevStack</title>
+    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/3.x/provisioning-app/architecture.html">
+    <meta name="generator" content="Antora 2.3.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="stylesheet" href="../../../_/css/search.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">OpenDevStack</a>
+        <div class="navbar-item">
+          <input id="search-input" type="text" placeholder="Search docs">
+        </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="opendevstack" data-version="3.x">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../getting-started/index.html">OpenDevStack</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../jenkins-shared-library/index.html">Jenkins Shared Library</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins-shared-library/component-pipeline.html">Component Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins-shared-library/orchestration-pipeline.html">Orchestration Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins-shared-library/quickstarter-pipeline.html">Quickstarter Pipeline</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../quickstarters/index.html">Quickstarters</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/docker-plain.html">Docker Plain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-gateway-nginx.html">BE Gateway/Nginx</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-golang-plain.html">BE Golang</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-java-springboot.html">BE Java/Spring Boot</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-typescript-express.html">BE TypeScript/Express</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-python-flask.html">BE Python/Flask</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/be-scala-play.html">BE Scala/Play</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/fe-angular.html">FE Angular</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/fe-ionic.html">FE Ionic</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/ds-ml-service.html">Data Science Machine Learning Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/ds-jupyter-notebook.html">Data Science Jupyter Notebook</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/ds-rshiny.html">Data Science RShiny app</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/e2e-cypress.html">Cypress E2E testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/e2e-spock-geb.html">Spock, Geb and Unirest E2E testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/release-manager.html">Release Manager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Jenkins agent Images</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins/agent-base.html">Base Image</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/golang.html">Go</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/maven.html">Maven</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/nodejs10-angular.html">Nodejs10 Angular</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/python.html">Python</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/scala.html">Scala</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../quickstarters/authoring-quickstarters.html">Authoring Quickstarters</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="index.html">Provisioning App</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../jenkins/index.html">Jenkins</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/master.html">Jenkins Master</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/agent-base.html">Jenkins Agent Base</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/webhook-proxy.html">Webhook Proxy</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../sonarqube/index.html">SonarQube</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Update Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../update-guides/3x.html">Migrate to 3.x</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../update-guides/2x.html">Migrate to 2.x</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Administration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../administration/installation.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Upgrade</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/update-2-to-3.html">2.x to 3.x</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/update-older.html">older</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="configuration.html">Provisioning App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../administration/keycloak.html">Keycloak</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../sonarqube/administration.html">SonarQube</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/administration.html">Jenkins</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Contributing to ODS</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contributing/development.html">Development</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contributing/documentation.html">Documentation</a>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="architecture.html">Provisioning App</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">OpenDevStack</span>
+    <span class="version">3.x</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">OpenDevStack</span>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../4.x/getting-started/index.html">4.x Preview</a>
+        </li>
+        <li class="version is-current is-latest">
+          <a href="../getting-started/index.html">3.x</a>
+        </li>
+        <li class="version">
+          <a href="../../2.x/getting-started/index.html">2.x</a>
+        </li>
+        <li class="version">
+          <a href="../../1.x/getting-started/index.html">1.x</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../getting-started/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../getting-started/index.html">OpenDevStack</a></li>
+    <li>Contributing to ODS</li>
+    <li><a href="architecture.html">Provisioning App</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">3.x</button>
+  <div class="version-menu">
+    <a class="version" href="../../4.x/provisioning-app/architecture.html">4.x Preview</a>
+    <a class="version is-current" href="architecture.html">3.x</a>
+    <a class="version" href="../../2.x/provisioning-app/architecture.html">2.x</a>
+    <a class="version" href="../../1.x/provisioning-app/architecture.html">1.x</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-provisioning-app/edit/3.x/docs/modules/provisioning-app/pages/architecture.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Provisioning App: Internal architecture / Development</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div id="toc" class="toc">
+<div id="toctitle" class="title">Table of Contents</div>
+<ul class="sectlevel1">
+<li><a href="#_how_to_develop_locally">How to develop locally</a></li>
+<li><a href="#_how_to_deploy_to_openshift">How to deploy to OpenShift</a></li>
+<li><a href="#_frontend_code">Frontend Code</a></li>
+<li><a href="#_backend_code">Backend Code</a></li>
+<li><a href="#_authentication_implementation">Authentication Implementation</a></li>
+<li><a href="#_consuming_rest_apis_in_java">Consuming REST APIs in Java</a></li>
+<li><a href="#_consuming_rest_apis_via_curl">Consuming REST APIs via curl</a>
+<ul class="sectlevel2">
+<li><a href="#_pre_flight_checks">Pre Flight Checks</a></li>
+</ul>
+</li>
+<li><a href="#_link_collection">Link collection</a></li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The Project is based on Spring Boot, using several technologies which can be seen in the <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/build.gradle">build.gradle</a>.</p>
+</div>
+<div class="paragraph">
+<p>The provision app is merely an orchestrator that does HTTP REST calls to Atlassian Crowd, Jira, Confluence, Bitbucket and
+Jenkins (for openshift interaction).</p>
+</div>
+<div class="paragraph">
+<p>The APIs exposed for direct usage, and also for the UI are in the <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/java/org/opendevstack/provision/controller">controller package</a>.
+The connectors to the various tools to create resources are in the <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/java/org/opendevstack/provision/services">services package</a></p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_develop_locally"><a class="anchor" href="#_how_to_develop_locally"></a>How to develop locally</h2>
+<div class="sectionbody">
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Make sure that you have installed GIT and JAVA ( &gt;= 11 ).</p>
+</li>
+<li>
+<p>Clone the project out of Github</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>$ git clone https://github.com/opendevstack/ods-provisioning-app.git</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="3">
+<li>
+<p>Change directory into ods-provisioning-app</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>$ cd ods-provisioning-app</code></pre>
+</div>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="4">
+<li>
+<p>If you want to build / run locally - create <code>gradle.properties</code> in the project&#8217;s root to configure connectivity to OpenDevStack NEXUS</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">nexus_url=&lt;NEXUS HOST&gt;
+nexus_user=&lt;NEXUS USER&gt;
+nexus_pw=&lt;NEXUS_PW&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>If you want to build / run locally without NEXUS, you can disable NEXUS by adding the following property to <code>gradle.properties</code>:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-properties hljs" data-lang="properties">no_nexus=true</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Alternatively, you can also configure the build using environment variables:</p>
+</div>
+<table class="tableblock frame-all grid-all stretch">
+<colgroup>
+<col style="width: 50%;">
+<col style="width: 50%;">
+</colgroup>
+<thead>
+<tr>
+<th class="tableblock halign-left valign-top">Gradle property</th>
+<th class="tableblock halign-left valign-top">Environment variable</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nexus_url</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NEXUS_HOST</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nexus_user</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NEXUS_USERNAME</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">nexus_pw</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NEXUS_PASSWORD</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">no_nexus</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">NO_NEXUS</p></td>
+</tr>
+</tbody>
+</table>
+<div class="olist arabic">
+<ol class="arabic" start="5">
+<li>
+<p>You can start the application with the following command:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash"># to run the server execute
+./gradlew bootRun</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To overwrite the provided <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/resources/application.properties">application.properties</a> a configmap is created out of them and injected into /config/application.properties within the container.
+The base configuration map as well as the deployment yamls can be found in <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/ocp-config/prov-app/cm.yml">ocp-config</a>, and overwrite parameters from application.</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic" start="6">
+<li>
+<p>After started the server it can be reached in the browser under</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>http://localhost:8080</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_how_to_deploy_to_openshift"><a class="anchor" href="#_how_to_deploy_to_openshift"></a>How to deploy to OpenShift</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>In order to test your changes in a real environment, you should deploy the provisioning app in OpenShift. To do so, you need to have an existing OpeDevStack project (consisting of <code>-dev</code>, <code>-test</code> and <code>-cd</code> namespaces). If you don&#8217;t have one yet, you can <a href="index.html#_basic_idea_usage" class="page">create one via the provisioning app in the central namespace</a>.</p>
+</div>
+<div class="paragraph">
+<p>Now you can make use of the <a href="https://github.com/opendevstack/ods-quickstarters/tree/master/ods-provisioning-app">ods-provisioning-app quickstarter</a> to set up the Bitbucket repository in your Bitbucket space. You can either <a href="configuration.html#_quickstarters" class="page">register the quickstarter in the provisiong app in the central namespace</a>, and then provision it from there; or use the script in <a href="https://github.com/BIX-Digital/ods-contrib/tree/master/quickstart-with-jenkins" class="bare">https://github.com/BIX-Digital/ods-contrib/tree/master/quickstart-with-jenkins</a>. Once you have provisioned the quickstarter, the first build will create a container image and place it in the <code>ImageStream</code>, using the commit SHA as image tag.</p>
+</div>
+<div class="paragraph">
+<p>To deploy this image in the central namespace, you have to tag that image into the central namespace. From your local machine, run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>oc tag &lt;PROJECT&gt;-dev/&lt;COMPONENT&gt;:&lt;GIT SHA&gt; ods/ods-provisioning-app:&lt;GIT SHA&gt;</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Then, in <code>ods-configuration/ods-core.env</code>, set <code>PROV_APP_FROM_IMAGE</code> to <code>ods/ods-provisioning-app:&lt;GIT SHA&gt;</code> and run the deployment using:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>make install-provisioning-app</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_frontend_code"><a class="anchor" href="#_frontend_code"></a>Frontend Code</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The frontend is based on jquery and thymeleaf. All <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/resources/static/js/client.js">posting to the API</a> happens out of java script (client.js).</p>
+</div>
+<div class="paragraph">
+<p>ODS 3.x contains a new single page app UI (based on Angular) as an experimental feature located in the <code>client</code> folder. In order to use the UI a feature flag <code>frontend.spa.enabled</code> must be set to <code>true</code> in <code>application.proprties</code>. Please refer to <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/client/README.md">client README</a> on how to setup local development for the frontend code.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_backend_code"><a class="anchor" href="#_backend_code"></a>Backend Code</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The backend is based on Spring Boot, authenticates against Atlassian Crowd (Using property <code>provision.auth.provider=crowd</code>) or OAUTH2/OpenID Connect provider (Using property <code>provision.auth.provider=oauth2</code>) and exposes consumable APIs (<code>api/v2/project</code>).
+Storage of created projects happens on the filesystem thru the <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/java/org/opendevstack/provision/storage/LocalStorage.java">StorageAdapter</a>.
+Both frontend (html) and backend are tested thru Junit &amp; Mockito</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_authentication_implementation"><a class="anchor" href="#_authentication_implementation"></a>Authentication Implementation</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>By using the property <code>provision.auth.provider=crowd</code> or <code>provision.auth.provider=oauth2</code>, the application uses eigher CROWD or OAUTH2 authentication. Dependent of the property used, different spring beans are used for configuration.
+The switch between the two options is implemented via Spring&#8217;s <em>ConditionalOnProperty</em> annotation.</p>
+</div>
+<div class="paragraph">
+<p>CROWD - specific configuration classes are located in the java package <em>org.opendevstack.provision.authentication.crowd</em>.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="title">org.opendevstack.provision.authentication.crowd.CrowdSecurityConfiguration.java</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-java hljs" data-lang="java">@Configuration
+@EnableWebSecurity
+@EnableCaching
+@EnableEncryptableProperties
+@ConditionalOnProperty(name = "provision.auth.provider", havingValue = "crowd")
+public class CrowdSecurityConfiguration extends WebSecurityConfigurerAdapter {
+//...
+}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>OAUTH2 - specific configuration classes are located in the java package <em>org.opendevstack.provision.authentication.oauth2</em>.</p>
+</div>
+<div class="paragraph">
+<p>Example:</p>
+</div>
+<div class="listingblock">
+<div class="title">org.opendevstack.provision.authentication.oauth2.Oauth2SecurityConfiguration.java</div>
+<div class="content">
+<pre class="highlightjs highlight nowrap"><code class="language-java hljs" data-lang="java">@Configuration
+@Order(Ordered.HIGHEST_PRECEDENCE)
+@ConditionalOnProperty(name = "provision.auth.provider", havingValue = "oauth2")
+@EnableWebSecurity
+@EnableOAuth2Client
+public class Oauth2SecurityConfiguration extends WebSecurityConfigurerAdapter {
+//...
+}</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_consuming_rest_apis_in_java"><a class="anchor" href="#_consuming_rest_apis_in_java"></a>Consuming REST APIs in Java</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Generally this is a pain. To ease development, a few tools are in use:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Jackson (see link below)</p>
+</li>
+<li>
+<p>OKTTP3 Client (see link below)</p>
+</li>
+<li>
+<p>jsonschema2pojo generator (see link below)</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>The process for new operations to be called is:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Look up the API call that you intend to make</p>
+</li>
+<li>
+<p>see if there is a JSON Schema available</p>
+</li>
+<li>
+<p>Generate (a) Pojo('s) for the Endpoint</p>
+</li>
+<li>
+<p>Use the pojo to build your request, convert it to JSON with Jackson and send it via OKHTTP3, and the Provision Application&#8217;s <a href="https://github.com/opendevstack/ods-provisioning-app/blob/master/src/main/java/org/opendevstack/provision/util/rest/RestClient.java">RestClient</a></p>
+</li>
+</ol>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_consuming_rest_apis_via_curl"><a class="anchor" href="#_consuming_rest_apis_via_curl"></a>Consuming REST APIs via curl</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Basic Auth authentication is the recommended way to consume REST API. How to enable Basic Auth authentication is explained <a href="#provisioning-app:configuration.adoc:Authentication Crowd Configuration">here</a>.</p>
+</div>
+<div class="paragraph">
+<p>The following sample script could be used to provision a new project, add a quickstarter to a project or remove a project.
+It uses Basic Auth to authenticate the request.</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-bash hljs" data-lang="bash">#!/usr/bin/env bash
+
+set -eu
+
+# Setup these variables
+# PROVISION_API_HOST=&lt;protocol&gt;://&lt;hostname&gt;:&lt;port&gt;
+# BASIC_AUTH_CREDENTIAL=&lt;USERNAME&gt;:&lt;PASSWORD&gt;
+# PROVISION_FILE=provision-new-project-payload.json
+
+PROV_APP_CONFIG_FILE="${PROV_APP_CONFIG_FILE:-prov-app-config.txt}"
+
+if [ -f $PROV_APP_CONFIG_FILE ]; then
+	cat $PROV_APP_CONFIG_FILE
+	source $PROV_APP_CONFIG_FILE
+else
+	echo "No config file found, assuming defaults, current dir: $(pwd)"
+fi
+
+# not set - use post as operation, create new project
+COMMAND="${1:-POST}"
+
+echo
+echo "Started provision project script with command (${COMMAND})!"
+echo
+echo "... encoding basic auth credentials in base64 format"
+BASE64_CREDENTIALS=$(echo -n $BASIC_AUTH_CREDENTIAL | base64)
+echo
+echo "... sending request to '"$PROVISION_API_HOST"' (output will be saved in file './response.txt' and headers in file './headers.txt')"
+echo
+RESPONSE_FILE=response.txt
+
+if [ -f $RESPONSE_FILE ]; then
+	rm -f $RESPONSE_FILE
+fi
+
+if [ ${COMMAND^^} == "POST" ] || [ ${COMMAND^^} == "PUT" ]; then
+echo
+	echo "create or update project - ${COMMAND^^}"
+	if [ ! -f $PROVISION_FILE ]; then
+		echo "Input for provision api (${PROVISION_FILE}) does not EXIST, aborting\ncurrent: $(pwd)"
+		exit 1
+	fi
+	echo "... ${COMMAND} project request payload loaded from '"$PROVISION_FILE"'"´
+	echo
+	echo "... displaying payload file content:"
+	cat $PROVISION_FILE
+	echo
+
+	http_resp_code=$(curl --insecure --request ${COMMAND} "${PROVISION_API_HOST}/api/v2/project" \
+	--header "Authorization: Basic ${BASE64_CREDENTIALS}" \
+	--header 'Accept: application/json' \
+	--header 'Content-Type: application/json' \
+	--data @"$PROVISION_FILE" \
+	--dump-header headers.txt -o ${RESPONSE_FILE} -w "%{http_code}" )
+elif [ ${COMMAND^^} == "DELETE" ] || [ ${COMMAND^^} == "GET" ]; then
+	echo "delete / get project - ${COMMAND^^}"
+	if [ -z $2 ]; then
+		echo "Project Key must be passed as second param in case of command == delete or get!!"
+		exit 1
+	fi
+
+	http_resp_code=$(curl -vvv --insecure --request ${COMMAND} "${PROVISION_API_HOST}/api/v2/project/$2" \
+	--header "Authorization: Basic ${BASE64_CREDENTIALS}" \
+	--header 'Accept: application/json' \
+	--header 'Content-Type: application/json' \
+	--dump-header headers.txt -o ${RESPONSE_FILE} -w "%{http_code}" )
+else
+	echo "ERROR: Command ${COMMAND} not supported, only GET, POST, PUT or DELETE"
+	exit 1
+fi
+
+echo "curl request successful..."
+echo
+echo "... displaying HTTP response body (content from './response.txt'):"
+if [ -f ${RESPONSE_FILE} ]; then
+	cat ${RESPONSE_FILE}
+else
+	echo "No request (body) response recorded"
+fi
+
+echo
+echo "... displaying HTTP response code"
+echo "http_resp_code=${http_resp_code}"
+echo
+if [ $http_resp_code != 200 ]
+  then
+    echo "something went wrong... endpoint responded with error code [HTTP CODE="$http_resp_code"] (expected was 200)"
+    exit 1
+fi
+echo "provision project request (${COMMAND}) completed successfully!!!"</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>The <code>PROVISION_FILE</code> should point to a json file that defines the payload for the provision of a new project. This is an example:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>{
+    "projectName": "&lt;PROJECT_NAME&gt;",
+    "projectKey": "&lt;PROJECT_NAME&gt;",
+    "description": "project description",
+    "projectType": "default",
+    "cdUser": "project_cd_user",
+    "projectAdminUser": "&lt;ADMIN_USER&gt;",
+    "projectAdminGroup": "&lt;ADMIN_GROUP&gt;",
+    "projectUserGroup": "&lt;USER_GROUP&gt;",
+    "projectReadonlyGroup": "&lt;READ_ONLY_GROUP&gt;",
+    "bugtrackerSpace": true,
+    "platformRuntime": true,
+    "specialPermissionSet": true,
+    "quickstarters": []
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For the provisioning of a quickstarter set the command from <code>POST</code> to value <code>PUT</code> instead. Following an example of the <code>PROVISION_FILE</code> for quickstarter provisioning:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>{
+    "projectKey":"&lt;PROJECT-NAME&gt;",
+    "quickstarters":[{
+        "component_type":"docker-plain",
+        "component_id":"be-docker-example"
+    }]
+}</pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_pre_flight_checks"><a class="anchor" href="#_pre_flight_checks"></a>Pre Flight Checks</h3>
+<div class="paragraph">
+<p>The provisioning of new project requires the creation of project in different servers (jira, bitbucket, confluence, openshift, etc&#8230;&#8203;)
+In case of an exception happens this process will be interrupted.
+This will leave the provision of a new project as incomplete.
+To avoid this situation a series of checks called "Pre Flight Checks" were implemented.
+These checks verify that all required conditions are given in the target system (jira, bitbucket, confluence) before provision a new project.</p>
+</div>
+<div class="sect3">
+<h4 id="_response_examples"><a class="anchor" href="#_response_examples"></a>Response examples:</h4>
+<div class="paragraph">
+<p>Following some samples of response of the provision new project endpoint <code>POST api/v2/project</code></p>
+</div>
+<div class="paragraph">
+<p>Pre Flight Check failed:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>HTTP CODE: 503 Service Unavailable
+{"endpoint":"ADD_PROJECT","stage":"CHECK_PRECONDITIONS","status":"FAILED","errors":[{"error-code":"UNEXISTANT_USER","error-message":"user 'cd_user_wrong_cd_user' does not exists in bitbucket!"}]}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Pre Flight Check due an exception:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>HTTP CODE: 503 Service Unavailable
+{"endpoint":"ADD_PROJECT","stage":"CHECK_PRECONDITIONS","status":"FAILED","errors":[{"error-code":"EXCEPTION","error-message":"Unexpected error when checking precondition for creation of project 'PROJECTNAME'"}]}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Pre Flight Check successfully passed and project was created:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>HTTP CODE: 200 OK
+{
+    "projectName": "MYPROJECT",
+    "description": "My new project",
+    "projectKey": "MYPROJECT",
+    ...
+}</pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Failed Response due to exception after Pre Flight Checks succesfully passed:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre>HTTP CODE: 500 Internal Server Error
+
+An error occured while creating project [PROJECTNAME
+], reason [component_id 'ods-myproject-component106' is not valid name (only alpha chars are allowed with dashes (-) allowed in between.
+] - but all cleaned up!</pre>
+</div>
+</div>
+</div>
+<div class="sect3">
+<h4 id="_option_onlycheckpreconditionstrue"><a class="anchor" href="#_option_onlycheckpreconditionstrue"></a>Option "onlyCheckPreconditions=TRUE":</h4>
+<div class="paragraph">
+<p>The provision new project endpoint <code>POST api/v2/project</code> accepts a url parameter called <code>onlyCheckPreconditions</code>.
+By setting this parameter to true (<code>POST api/v2/project?onlyCheckPreconditions=TRUE</code>) only the Pre Flight Checks will be executed.
+This could be usefull for the development of new Pre Flight Checks or for integration scenarios.
+In this later case one could imagine to set this parameter to TRUE to verify all preconditions before creating a project.</p>
+</div>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_link_collection"><a class="anchor" href="#_link_collection"></a>Link collection</h2>
+<div class="sectionbody">
+<div class="ulist">
+<ul>
+<li>
+<p><a href="http://www.mkyong.com/spring-boot/spring-boot-spring-security-thymeleaf-example/">Mkyong spring boot + security + thymeleaf example</a></p>
+</li>
+<li>
+<p><a href="http://www.webjars.org/">Getting more Webjars</a></p>
+</li>
+<li>
+<p><a href="http://www.jsonschema2pojo.org/">Generating POJOs from JSON Schemas</a> very helpful for the Atlassian API Docs</p>
+</li>
+<li>
+<p><a href="https://square.github.io/okhttp">OKHttp3</a></p>
+</li>
+<li>
+<p><a href="https://site.mockito.org">Mockito</a></p>
+</li>
+<li>
+<p><a href="https://github.com/FasterXML/jackson">Jackson</a></p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p><strong>Atlassian API&#8217;s</strong></p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p><a href="https://docs.atlassian.com/jira/REST/server/#api/2/fullJiraProject-createProject">Jira API</a></p>
+</li>
+<li>
+<p><a href="https://docs.atlassian.com/ConfluenceServer/rest/6.12.1/">Confluence API</a></p>
+</li>
+<li>
+<p><a href="https://developer.atlassian.com/server/bitbucket/reference/rest-api/">Bitbucket API</a></p>
+</li>
+<li>
+<p><a href="https://developer.atlassian.com/server/crowd/crowd-rest-apis/">Crowd API</a></p>
+</li>
+</ul>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.1.1/tocbot.min.js"></script>
+<script type="text/javascript">
+  window.antora = window.antora || {}
+  window.antora.basePath = '../../..'
+  window.antora.pagePath = '/opendevstack/3.x/provisioning-app/architecture.html'
+</script>
+<script src="../../../_/js/site.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/search.js"></script>
+<script async src="../../../_/../search-index.js"></script>
+<script src="../../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+<script>
+  tocbot.init( {
+                  tocSelector: '#article-toc',
+                  contentSelector: 'article',
+                  headingSelector: 'h2, h3, h4, h5, h6',
+                  collapseDepth: 6,
+                  positionFixedSelector: '#article-toc',
+                  scrollSmooth: false
+                } );
+  var tocList = document.getElementById( 'article-toc' ).getElementsByClassName( 'toc-list' );
+  if ( tocList && tocList.length > 0 && tocList[0].childNodes.length > 0 ) {
+    document.getElementById( 'article-toc' ).parentNode.classList.remove( 'hidden' );
+  }
+</script>
+  </body>
+</html>

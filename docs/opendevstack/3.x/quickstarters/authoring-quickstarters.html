@@ -1,0 +1,415 @@
+<!DOCTYPE html>
+<html lang="en">
+  <head>
+    <meta charset="utf-8">
+    <meta name="viewport" content="width=device-width,initial-scale=1">
+    <title>Authoring Quickstarters :: OpenDevStack</title>
+    <link rel="canonical" href="https://www.opendevstack.org/ods-documentation/opendevstack/3.x/quickstarters/authoring-quickstarters.html">
+    <meta name="generator" content="Antora 2.3.3">
+    <link rel="stylesheet" href="../../../_/css/site.css">
+<link rel="stylesheet" href="../../../_/css/search.css">
+  </head>
+  <body class="article">
+<header class="header" role="banner">
+  <nav class="navbar">
+    <div class="navbar-brand">
+      <a class="navbar-item" href="https://www.opendevstack.org/ods-documentation">OpenDevStack</a>
+        <div class="navbar-item">
+          <input id="search-input" type="text" placeholder="Search docs">
+        </div>
+      <button class="navbar-burger" data-target="topbar-nav">
+        <span></span>
+        <span></span>
+        <span></span>
+      </button>
+    </div>
+  </nav>
+</header>
+<div class="body">
+<div class="nav-container" data-component="opendevstack" data-version="3.x">
+  <aside class="nav">
+    <div class="panels">
+<div class="nav-panel-menu is-active" data-panel="menu">
+  <nav class="nav-menu">
+    <h3 class="title"><a href="../getting-started/index.html">OpenDevStack</a></h3>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../jenkins-shared-library/index.html">Jenkins Shared Library</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins-shared-library/component-pipeline.html">Component Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins-shared-library/orchestration-pipeline.html">Orchestration Pipeline</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins-shared-library/quickstarter-pipeline.html">Quickstarter Pipeline</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="index.html">Quickstarters</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="docker-plain.html">Docker Plain</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="be-gateway-nginx.html">BE Gateway/Nginx</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="be-golang-plain.html">BE Golang</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="be-java-springboot.html">BE Java/Spring Boot</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="be-typescript-express.html">BE TypeScript/Express</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="be-python-flask.html">BE Python/Flask</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="be-scala-play.html">BE Scala/Play</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="fe-angular.html">FE Angular</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="fe-ionic.html">FE Ionic</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ds-ml-service.html">Data Science Machine Learning Service</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ds-jupyter-notebook.html">Data Science Jupyter Notebook</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="ds-rshiny.html">Data Science RShiny app</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="e2e-cypress.html">Cypress E2E testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="e2e-spock-geb.html">Spock, Geb and Unirest E2E testing</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="release-manager.html">Release Manager</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Jenkins agent Images</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins/agent-base.html">Base Image</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/golang.html">Go</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/maven.html">Maven</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/nodejs10-angular.html">Nodejs10 Angular</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/python.html">Python</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../jenkins-agents/scala.html">Scala</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item is-current-page" data-depth="2">
+    <a class="nav-link" href="authoring-quickstarters.html">Authoring Quickstarters</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../provisioning-app/index.html">Provisioning App</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <a class="nav-link" href="../jenkins/index.html">Jenkins</a>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/master.html">Jenkins Master</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/agent-base.html">Jenkins Agent Base</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/webhook-proxy.html">Webhook Proxy</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <a class="nav-link" href="../sonarqube/index.html">SonarQube</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Update Guides</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../update-guides/3x.html">Migrate to 3.x</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../update-guides/2x.html">Migrate to 2.x</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Administration</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../administration/installation.html">Installation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Upgrade</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/update-2-to-3.html">2.x to 3.x</a>
+  </li>
+  <li class="nav-item" data-depth="3">
+    <a class="nav-link" href="../administration/update-older.html">older</a>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-app/configuration.html">Provisioning App</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../administration/keycloak.html">Keycloak</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../sonarqube/administration.html">SonarQube</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../jenkins/administration.html">Jenkins</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+  <li class="nav-item" data-depth="0">
+<ul class="nav-list">
+  <li class="nav-item" data-depth="1">
+    <button class="nav-item-toggle"></button>
+    <span class="nav-text">Contributing to ODS</span>
+<ul class="nav-list">
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contributing/development.html">Development</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../contributing/documentation.html">Documentation</a>
+  </li>
+  <li class="nav-item" data-depth="2">
+    <a class="nav-link" href="../provisioning-app/architecture.html">Provisioning App</a>
+  </li>
+</ul>
+  </li>
+</ul>
+  </li>
+</ul>
+  </nav>
+</div>
+<div class="nav-panel-explore" data-panel="explore">
+  <div class="context">
+    <span class="title">OpenDevStack</span>
+    <span class="version">3.x</span>
+  </div>
+  <ul class="components">
+    <li class="component is-current">
+      <span class="title">OpenDevStack</span>
+      <ul class="versions">
+        <li class="version">
+          <a href="../../4.x/getting-started/index.html">4.x Preview</a>
+        </li>
+        <li class="version is-current is-latest">
+          <a href="../getting-started/index.html">3.x</a>
+        </li>
+        <li class="version">
+          <a href="../../2.x/getting-started/index.html">2.x</a>
+        </li>
+        <li class="version">
+          <a href="../../1.x/getting-started/index.html">1.x</a>
+        </li>
+      </ul>
+    </li>
+  </ul>
+</div>
+    </div>
+  </aside>
+</div>
+<main class="article">
+<div class="toolbar" role="navigation">
+<button class="nav-toggle"></button>
+  <a href="../getting-started/index.html" class="home-link"></a>
+<nav class="breadcrumbs" aria-label="breadcrumbs">
+  <ul>
+    <li><a href="../getting-started/index.html">OpenDevStack</a></li>
+    <li><a href="index.html">Quickstarters</a></li>
+    <li><a href="authoring-quickstarters.html">Authoring Quickstarters</a></li>
+  </ul>
+</nav>
+<div class="page-versions">
+  <button class="version-menu-toggle" title="Show other versions of page">3.x</button>
+  <div class="version-menu">
+    <a class="version" href="../../4.x/quickstarters/authoring-quickstarters.html">4.x Preview</a>
+    <a class="version is-current" href="authoring-quickstarters.html">3.x</a>
+    <a class="version is-missing" href="../../2.x/getting-started/index.html">2.x</a>
+    <a class="version is-missing" href="../../1.x/getting-started/index.html">1.x</a>
+  </div>
+</div>
+  <div class="edit-this-page"><a href="https://github.com/opendevstack/ods-quickstarters/edit/3.x/docs/modules/quickstarters/pages/authoring-quickstarters.adoc">Edit this Page</a></div>
+  </div>
+  <div class="content">
+<article class="doc">
+<h1 class="page">Authoring Quickstarters</h1>
+<div id="preamble">
+<div class="sectionbody">
+<div class="paragraph">
+<p>This document describes how you can create your own quickstarter. At the same time, you should be able to find all information required to make changes to an existing quickstarter.</p>
+</div>
+<div class="paragraph">
+<p>Technically speaking, a quickstarter is just a Jenkins pipeline that fills an existing repository with files. How this is done, and what exactly is run in the pipeline is up to the quickstarter author. Typically though, the pipeline makes use of the <a href="../jenkins-shared-library/quickstarter-pipeline.html" class="page">quickstarter pipeline</a> from the Jenkins shared library, which removes the need to write lots of boilerplate such as running a agent pod, cloning sources, copying files and pushing at the end to the component repository. The rest of the guide assumes that you are using this pipeline.</p>
+</div>
+<div class="paragraph">
+<p>As the Jenkins pipeline runs on a Jenkins agent image, you as the author need to pick either an existing agent image (see "Jenkins agent Images" in the navigation on the left), or <a href="#_creating_modifying_a_jenkins_agent_image">create your own</a>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_modifying_a_quickstarter"><a class="anchor" href="#_creating_modifying_a_quickstarter"></a>Creating / Modifying a quickstarter</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>The only technical requirement is to have a <code>Jenkinsfile</code>, but depending on the purpose of the quickstarter, a quickstarter should provide the following:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>A <code>Jenkinsfile</code> in the resulting repository. The best way to do this is by placing a <code>Jenkinsfile.template</code> file into the quickstarter repository, and render it via <a href="../jenkins-shared-library/quickstarter-pipeline.html#_odsquickstarterstagerenderjenkinsfile" class="page">odsQuickstarterStageRenderJenkinsfile</a>.</p>
+</li>
+<li>
+<p>A <code>sonar-project.properties</code> file in the resulting repository. The best way to do this is by placing a <code>sonar-project.properties.template</code> file into the quickstarter repository, and render it via <a href="../jenkins-shared-library/quickstarter-pipeline.html#_odsquickstarterstagerendersonarproperties" class="page">odsQuickstarterStageRenderSonarProperties</a>.</p>
+</li>
+<li>
+<p>Test setup, e.g. a framework such as JUnit. Test results need to be published in <a href="https://llg.cubic.org/docs/junit/">JUnit XML reporting file format</a>. The results need to be stored at <code>build/test-results/test</code> or be configured to a different location.</p>
+</li>
+<li>
+<p>Code Coverage: tests should determine code coverage, and report this to SonarQube.</p>
+</li>
+<li>
+<p>Support for Nexus (pulling dependencies from there)</p>
+</li>
+<li>
+<p>HTTP proxy awareness</p>
+</li>
+<li>
+<p>Documentation. Both for the quickstarter itself (located at <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/quickstarters/pages" class="bare">https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/quickstarters/pages</a>, following the <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/quickstarters/pages/__QUICKSTARTER_TEMPLATE.adoc">quickstarter template</a>) and any Jenkins agent image (located at <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/jenkins-agents/pages" class="bare">https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/jenkins-agents/pages</a>, following the <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/jenkins-agents/pages/__JENKINS_AGENT_TEMPLATE.adoc">agent image template</a>).</p>
+</li>
+</ul>
+</div>
+<div class="paragraph">
+<p>If you write any custom stages in the quickstarter pipeline, you have access to the <a href="../jenkins-shared-library/quickstarter-pipeline.html#_pipeline_context" class="page">pipeline context</a>.</p>
+</div>
+<div class="paragraph">
+<p>Usually, quickstarters are triggered through the provisioning app. However, in order to try a new quickstarter, or to try changes to an existing quickstarter which are made in a branch, you can use the <code>quickstart-with-jenkins/run.sh</code> script in the <a href="https://github.com/BIX-Digital/ods-contrib">BIX-Digital/ods-contrib</a> repository to provision a quickstarter without registering it with the provisioning app. See its help for usage.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_creating_modifying_a_jenkins_agent_image"><a class="anchor" href="#_creating_modifying_a_jenkins_agent_image"></a>Creating / Modifying a Jenkins agent image</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>It is highly recommended to use the <a href="../jenkins/agent-base.html" class="page">jenkins-agent-base</a> image as a base image. Otherwise it is likely that some features of the shared pipeline don&#8217;t work. The <code>jenkins-agent-base</code> image in turn is based on another base image, e.g. provided by RedHat. The easiest way to get started is to look ath other agent images, such as <a href="../jenkins-agents/golang.html" class="page">Go</a> and see how that implements its requirements. If you are just building an image for yourself, do the following:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>Copy the folder from one of the Jenkins agents to your local machine, and adjust as needed. For sure you&#8217;ll need to update the <code>Dockerfile</code>. Also, change the names in the <code>ocp-config</code> folder and delete the <code>Tailorfile</code> in there. Note that the <code>BuildConfig</code> points to a repository and a branch. You will need to push your sources to a matching location.</p>
+</li>
+<li>
+<p>Create the OpenShift resources in your <code>*-cd</code> project via <a href="https://github.com/opendevstack/tailor">Tailor</a>, e.g. <code>tailor -n foo-cd --param REPO_BASE=https://bitbucket.example.com/scm --param ODS_IMAGE_TAG=2.x &#8230;&#8203;</code></p>
+</li>
+<li>
+<p>Start a build in the OpenShift web console.</p>
+</li>
+<li>
+<p>Reference the built image from your <code>Jenkinsfile</code> like this: <code>imageStreamTag: 'foo-cd/jenkins-agent-bar:latest'</code></p>
+</li>
+</ol>
+</div>
+<div class="paragraph">
+<p>If you want to contribute your Jenkins agent image to OpenDevStack, make sure to add documentation according to the <a href="https://github.com/opendevstack/ods-quickstarters/blob/master/docs/modules/jenkins-agents/pages/__JENKINS_agent_TEMPLATE_README.adoc">agent image template</a>.</p>
+</div>
+</div>
+</div>
+</article>
+<aside class="toc sidebar" data-title="Contents" data-levels="2">
+  <div class="toc-menu"></div>
+</aside>
+  </div>
+</main>
+</div>
+<footer class="footer">
+  <p>This page was built using the Antora default UI.</p>
+  <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
+</footer>
+<script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.1.1/tocbot.min.js"></script>
+<script type="text/javascript">
+  window.antora = window.antora || {}
+  window.antora.basePath = '../../..'
+  window.antora.pagePath = '/opendevstack/3.x/quickstarters/authoring-quickstarters.html'
+</script>
+<script src="../../../_/js/site.js"></script>
+<script src="../../../_/js/vendor/lunr.js"></script>
+<script src="../../../_/js/vendor/search.js"></script>
+<script async src="../../../_/../search-index.js"></script>
+<script src="../../../_/js/vendor/highlight.js"></script>
+<script>hljs.initHighlighting()</script>
+<script>
+  tocbot.init( {
+                  tocSelector: '#article-toc',
+                  contentSelector: 'article',
+                  headingSelector: 'h2, h3, h4, h5, h6',
+                  collapseDepth: 6,
+                  positionFixedSelector: '#article-toc',
+                  scrollSmooth: false
+                } );
+  var tocList = document.getElementById( 'article-toc' ).getElementsByClassName( 'toc-list' );
+  if ( tocList && tocList.length > 0 && tocList[0].childNodes.length > 0 ) {
+    document.getElementById( 'article-toc' ).parentNode.classList.remove( 'hidden' );
+  }
+</script>
+  </body>
+</html>
