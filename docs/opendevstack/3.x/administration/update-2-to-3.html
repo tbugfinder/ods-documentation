@@ -416,12 +416,23 @@ commit and push the result.</p>
 <div class="paragraph">
 <p>Next you need to update all OpenShift resources (such as DC or BC). Review the diff produced by Tailor carefully before applying changes.</p>
 </div>
+<div class="paragraph">
+<p>In <code>ods-core</code>, run:</p>
+</div>
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">make install-ods-project
 make install-jenkins
 make install-nexus
 make install-doc-gen</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>In <code>ods-quickstarters</code>, run:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">make install-jenkins-agent</code></pre>
 </div>
 </div>
 </div>
@@ -481,10 +492,13 @@ The following outlines the procedure for SonarQube:</p>
 <p>Create the SonarQube build resources in <code>ods</code> using <code>make apply-sonarqube-build</code></p>
 </li>
 <li>
+<p>Start build of SonarQube image in <code>ods</code> using <code>make start-sonarqube-build</code></p>
+</li>
+<li>
 <p>Scale down the SonarQube pod in <code>cd</code></p>
 </li>
 <li>
-<p>Create a backup of the old data using <code>make NAMESPACE=cd backup-sonarqube</code></p>
+<p>Create a backup of the old data using <code>make ODS_NAMESPACE=cd backup-sonarqube</code></p>
 </li>
 <li>
 <p>Create the SonarQube deploy resources in <code>ods</code> using <code>make apply-sonarqube-deploy</code></p>
@@ -493,7 +507,7 @@ The following outlines the procedure for SonarQube:</p>
 <p>Scale down the SonarQube pod in <code>ods</code></p>
 </li>
 <li>
-<p>Upload backup to new Postgres pod: <code>oc -n ods cp sonarqube/sonarqube.sql pod/&lt;sonarqube-postgresql-pod&gt;:/var/lib/pgsql/</code></p>
+<p>Upload backup to new Postgres pod: <code>oc -n ods cp sonarqube/sonarqube.sql &lt;sonarqube-postgresql-pod&gt;:/var/lib/pgsql/</code></p>
 </li>
 <li>
 <p>Start a bash in the Postgres pod: <code>oc rsh -n ods pod/&lt;sonarqube-postgresql-pod&gt; bash</code> and start a <code>psql</code> session.</p>
@@ -511,7 +525,10 @@ The following outlines the procedure for SonarQube:</p>
 <p>At this stage, the new SonarQube instance is fully functional, but the Elasticsearch index is not correct and therefore no projects show on the dashboard initially. To fix this, log into SonarQube with an admin user and go to "Administration &gt; System". Then, start a bash in the SonarQube pod: <code>oc rsh -n ods pod/&lt;sonarqube-pod&gt; bash</code> and remove <code>/opt/sonarqube/data/es6</code>. Afterwards, restart the server from the UI (there&#8217;s a button on the "Administration &gt; System" page). Booting will take some time (depending on the amount of data to process) as a full re-index is performed.</p>
 </li>
 <li>
-<p>Now delete the old SonarQube route in <code>cd</code></p>
+<p>Call <code>make configure-sonarqube</code> to verify the new installation is correctly configured.</p>
+</li>
+<li>
+<p>Now delete the old SonarQube route in <code>cd</code>.</p>
 </li>
 <li>
 <p>Create a new route in <code>ods</code> with the same host as the old route so that projects using the old URL don&#8217;t break.</p>
