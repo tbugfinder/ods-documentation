@@ -300,7 +300,7 @@
 <div id="toc" class="toc">
 <div id="toctitle" class="title">Table of Contents</div>
 <ul class="sectlevel1">
-<li><a href="#_how_to_develop_locally">How to develop locally</a></li>
+<li><a href="#_how_to_develop_and_run_it_locally">How to develop and run it locally</a></li>
 <li><a href="#_how_to_deploy_to_openshift">How to deploy to OpenShift</a></li>
 <li><a href="#_frontend_code">Frontend Code</a></li>
 <li><a href="#_backend_code">Backend Code</a></li>
@@ -328,7 +328,7 @@ The connectors to the various tools to create resources are in the <a href="http
 </div>
 </div>
 <div class="sect1">
-<h2 id="_how_to_develop_locally"><a class="anchor" href="#_how_to_develop_locally"></a>How to develop locally</h2>
+<h2 id="_how_to_develop_and_run_it_locally"><a class="anchor" href="#_how_to_develop_and_run_it_locally"></a>How to develop and run it locally</h2>
 <div class="sectionbody">
 <div class="olist arabic">
 <ol class="arabic">
@@ -343,6 +343,17 @@ The connectors to the various tools to create resources are in the <a href="http
 <div class="listingblock">
 <div class="content">
 <pre class="highlightjs highlight"><code>$ git clone https://github.com/opendevstack/ods-provisioning-app.git</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>To run it locally two spring profiles are provided: <code>odsbox</code> and odsbox_quickstarters`. The profile <code>odsbox</code> configures the application to connect to the ODS development environment (ODSBOX).</p>
+</div>
+<div class="paragraph">
+<p>Use this command to start it from the command-line:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>./gradlew bootRun --args='--spring.profiles.active=odsbox,odsbox_quickstarters'</code></pre>
 </div>
 </div>
 <div class="olist arabic">
