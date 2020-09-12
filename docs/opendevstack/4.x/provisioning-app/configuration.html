@@ -302,7 +302,11 @@
 <ul class="sectlevel1">
 <li><a href="#_quickstarters">Quickstarters</a></li>
 <li><a href="#_permissions">Permissions</a></li>
-<li><a href="#_projectspace_types_based_on_templates">Project/Space types based on templates</a></li>
+<li><a href="#_projectspace_types_based_on_templates">Project/Space types based on templates</a>
+<ul class="sectlevel2">
+<li><a href="#_add_webhook_proxy_url_to_jira_project_properties_based_on_project_type">Add Webhook Proxy URL to jira project properties based on project type</a></li>
+</ul>
+</li>
 <li><a href="#_error_handling">Error Handling</a></li>
 <li><a href="#_authentication_configuration">Authentication Configuration</a>
 <ul class="sectlevel2">
@@ -461,6 +465,59 @@ confluence.blueprint.key.&lt;name&gt;=com.atlassian.confluence.plugins.confluenc
 <div class="content">
 <pre># list of templates surfaced to the UI and API
 project.template.key.names=default,&lt;name&gt;</pre>
+</div>
+</div>
+<div class="sect2">
+<h3 id="_add_webhook_proxy_url_to_jira_project_properties_based_on_project_type"><a class="anchor" href="#_add_webhook_proxy_url_to_jira_project_properties_based_on_project_type"></a>Add Webhook Proxy URL to jira project properties based on project type</h3>
+<div class="paragraph">
+<p>It is possible to configure the Provisioning App to add to jira project the Webhook Proxy URL as project property.
+Jira provides an REST API for this purpose (<a href="https://docs.atlassian.com/software/jira/docs/api/REST/8.5.3/#api/2/project/{projectIdOrKey}/properties-setProperty)">Jira Properties API</a></p>
+</div>
+<div class="paragraph">
+<p>This functionality can be configured for each project type.
+To enable this you will need to:</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Enable this capability for a given project type add the a property like:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>jira.project.template.add-webhook-proxy-url-as-project-property.&lt;name&gt;=true</code></pre>
+</div>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Define the jira endpoint as template by adding this property:</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>jira.project.template.webhook-proxy-url-endpoint-template.&lt;name&gt;=/api/2/project/%PROJECT_KEY%/properties/WEBHOOK_PROXY.URL</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>These 2 template keys <code>%PROJECT_KEY%</code> and <code>%PROPERTY_VALUE%</code> can be defined and will be replaced will real values.</p>
+</div>
+<div class="ulist">
+<ul>
+<li>
+<p>Define the jira endpoint payload as template that will be added to the set jira property endpoint call</p>
+</li>
+</ul>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code>jira.project.template.webhook-proxy-url-payload-template.&lt;name&gt;={\"WEBHOOK_PROXY.URL\", \"%PROPERTY_VALUE%\"}</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>For the payload template also these 2 template keys <code>%PROJECT_KEY%</code> and <code>%PROPERTY_VALUE%</code> can be defined and will be replaced will real values.</p>
 </div>
 </div>
 </div>
