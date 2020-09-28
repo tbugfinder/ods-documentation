@@ -366,6 +366,21 @@ that any image changes are only rolled out by yourself. If you choose to remove
 the image trigger, ensure that the <code>imagePullPolicy</code> is set to <code>Always</code> to
 always get the latest <code>3.x</code> image when you deploy.</p>
 </div>
+<div class="admonitionblock caution">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-caution" title="Caution"></i>
+</td>
+<td class="content">
+If the administrator of your ODS cluster chose to use a custom Bitbucket
+project for the 3.x installation, then you&#8217;ll need to set the environment variable
+<code>ALLOWED_EXTERNAL_PROJECTS=&lt;ods-bitbucket-project&gt;</code> for the <code>webhook-proxy</code>
+DeploymentConfig. Otherwise you will not be able to provision quickstarters.
+</td>
+</tr>
+</table>
+</div>
 </div>
 </div>
 <div class="sect1">

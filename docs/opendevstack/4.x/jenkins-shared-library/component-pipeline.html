@@ -582,7 +582,7 @@ odsComponentPipeline(
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">issueId</p></td>
-<td class="tableblock halign-left valign-top"><p class="tableblock">Jira issue ID if any present in the branch name (e.g. <code>123</code> from branch <code>feature/FOO-123-bar-baz</code>).</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Jira issue ID if any present in either commit message or branch name (e.g. <code>123</code> from commit message <code>FOO-123: Bar</code> or branch <code>feature/FOO-123-bar</code>). If the issue ID is present in both, the branch name has precedence.</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">openshiftHost</p></td>
