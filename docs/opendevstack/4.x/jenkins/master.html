@@ -401,10 +401,39 @@
 </div>
 </div>
 <div class="sect1">
-<h2 id="_mail_sending"><a class="anchor" href="#_mail_sending"></a>Mail Sending</h2>
+<h2 id="_email_notifications"><a class="anchor" href="#_email_notifications"></a>Email notifications</h2>
 <div class="sectionbody">
 <div class="paragraph">
-<p>In the Dockerfile, sending of mails to unknown users and users without read rights is enabled.</p>
+<p>Jenkins email notifications need manual configuration:</p>
+</div>
+<div class="olist arabic">
+<ol class="arabic">
+<li>
+<p>The <code>SMTP server parameters</code> that need to be defined are found under menu option:
+<code>Jenkins</code> &#8594; <code>Manage Jenkins</code> &#8594; <code>Configure System</code> &#8594; <code>Extended E-mail Notification</code></p>
+</li>
+<li>
+<p>It is also mandatory to define the <code>System Admin e-mail address</code>, this is defined under menu option: <code>Jenkins</code> &#8594; <code>Manage Jenkins</code> &#8594; <code>Configure System</code> &#8594; <code>Jenkins Location</code></p>
+</li>
+<li>
+<p>Once Jenkins is configured, you will also need to define the recipients of the email notifications by definining <code>emailextRecipients</code> parameter in your <code>odsComponentPipeline</code> context, in your components' <code>Jenkinsfile</code>, like:</p>
+</li>
+</ol>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-groovy hljs" data-lang="groovy">...
+
+odsComponentPipeline(
+  ...
+
+  emailextRecipients: ['email1@foo.bar', 'email2@foo.bar'],
+
+  ...
+) { context -&gt;
+
+...</code></pre>
+</div>
 </div>
 </div>
 </div>
