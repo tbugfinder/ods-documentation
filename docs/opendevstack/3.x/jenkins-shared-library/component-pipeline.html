@@ -726,12 +726,16 @@ determine whether this image should be refreshed on each build.</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre>odsComponentPipeline(
+<pre>node {
+  dockerRegistry = env.DOCKER_REGISTRY
+}
+// ...
+odsComponentPipeline(
   branchToEnvironmentMapping: [:],
   podContainers: [
     containerTemplate(
       name: 'jnlp', // do not change, see https://github.com/jenkinsci/kubernetes-plugin#constraints
-      image: "${env.DOCKER_REGISTRY}/foo-cd/jenkins-agent-custom",
+      image: "${dockerRegistry}/foo-cd/jenkins-agent-custom",
       workingDir: '/tmp',
       resourceRequestCpu: '100m',
       resourceLimitCpu: '500m',
