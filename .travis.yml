@@ -18,8 +18,8 @@ before_script:
 script:
   - rm -rf docs/*
   - DOCSEARCH_ENABLED=true DOCSEARCH_ENGINE=lunr $(npm bin)/antora generate --silent --clean --fetch site.yml --generator antora-site-generator-lunr
-  - head -c 100 docs/search-index.js
-  - tail -c 100 docs/search-index.js
+  - head -c 2000 docs/search-index.js
+  - tail -c 2000 docs/search-index.js
 
 after_success:
   - ./.travis/push.sh
