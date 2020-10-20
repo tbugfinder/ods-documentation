@@ -1,5 +1,8 @@
 /* eslint-env browser */
 window.antoraLunr = (function (lunr) {
+  const scriptAttrs = document.getElementById('search-script').dataset
+  const basePath = scriptAttrs.basePath
+  const pagePath = scriptAttrs.pagePath
   var searchInput = document.getElementById('search-input')
   var searchResult = document.createElement('div')
   searchResult.classList.add('search-result-dropdown-menu')
@@ -112,7 +115,8 @@ window.antoraLunr = (function (lunr) {
     var documentHit = document.createElement('div')
     documentHit.classList.add('search-result-document-hit')
     var documentHitLink = document.createElement('a')
-    documentHitLink.href = item.ref
+    var rootPath = basePath
+    documentHitLink.href = rootPath + item.ref
     documentHit.appendChild(documentHitLink)
     hits.forEach(function (hit) {
       documentHitLink.appendChild(hit)
