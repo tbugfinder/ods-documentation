@@ -126,6 +126,7 @@ window.antoraLunr = (function (lunr) {
     })
     var searchResultItem = document.createElement('div')
     searchResultItem.classList.add('search-result-item')
+    searchResultItem.appendChild(documentVersion)
     searchResultItem.appendChild(documentTitle)
     searchResultItem.appendChild(documentHit)
     searchResultItem.addEventListener('mousedown', function (e) {
