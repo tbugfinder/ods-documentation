@@ -895,11 +895,24 @@ def suffixedComponent = context.componentId + componentSuffix</code></pre>
 <h3 id="_interacting_with_bitbucket"><a class="anchor" href="#_interacting_with_bitbucket"></a>Interacting with Bitbucket</h3>
 <div class="paragraph">
 <p>The shared library already sets the build status of the built commit. It also
-provides three convenience methods on <code>BitbucketService</code> to interact with pull
+provides convenience methods on <code>BitbucketService</code> to interact with pull
 requests:</p>
 </div>
 <div class="ulist">
 <ul>
+<li>
+<p><code>String createPullRequest(String repo, String fromRef, String toRef, String title, String description, List&lt;String&gt; reviewers)</code>
+creates a pull request in <code>repo</code> from branch <code>fromRef</code> to <code>toRef</code>.
+<code>reviewers</code> is a list of bitbucket user names.</p>
+</li>
+<li>
+<p><code>List&lt;String&gt; getDefaultReviewers(String repo)</code> returns a list of bitbucket
+user names (not display names) that are listed as the default reviewers of the given <code>repo</code>.</p>
+</li>
+<li>
+<p><code>String getDefaultReviewerConditions(String repo)</code> returns all default
+reviewer conditions of the given <code>repo</code>, which can be parsed using <code>readJSON</code>.</p>
+</li>
 <li>
 <p><code>String getPullRequests(String repo, String state = 'OPEN')</code> returns
 all open pull requests, which can be parsed using <code>readJSON</code>.</p>

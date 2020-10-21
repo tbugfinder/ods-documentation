@@ -463,6 +463,10 @@ odsComponentPipeline(
 <td class="tableblock halign-left valign-top"><p class="tableblock">openshiftRolloutTimeout</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Deprecated in 3.x! Please use option <code>deployTimeoutMinutes</code> on <code>odsComponentStageRolloutOpenShiftDeployment</code>.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">testResults</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configurable location for xunit test results, in case the build does not put them into <code>build/test-results/test</code>.</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -1407,6 +1411,10 @@ being built.</p>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">deployTimeoutMinutes</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Adjust timeout of rollout (defaults to 5 minutes). Caution: This needs to be aligned with the deployment strategy timeout (timeoutSeconds) and the readiness probe timeouts (initialDelaySeconds + failureThreshold * periodSeconds).</p></td>
+</tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">deployTimeoutRetries</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adjust retries to wait for the pod during a rollout (defaults to 5).</p></td>
 </tr>
 <tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">openshiftDir</p></td>
