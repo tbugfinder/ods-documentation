@@ -110,8 +110,11 @@ window.antoraLunr = (function (lunr) {
 
   function createSearchResultItem (doc, item, hits) {
     var documentTitle = document.createElement('div')
+    documentTitle.classList.add('search-result-document-version')
+    documentTitle.innerText = doc.version
+    var documentTitle = document.createElement('div')
     documentTitle.classList.add('search-result-document-title')
-    documentTitle.innerText = doc.version+' ## '+doc.title
+    documentTitle.innerText = doc.title
     var documentHit = document.createElement('div')
     documentHit.classList.add('search-result-document-hit')
     var documentHitLink = document.createElement('a')
