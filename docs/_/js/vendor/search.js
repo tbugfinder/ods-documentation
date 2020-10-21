@@ -109,9 +109,9 @@ window.antoraLunr = (function (lunr) {
   }
 
   function createSearchResultItem (doc, item, hits) {
-    var documentTitle = document.createElement('div')
-    documentTitle.classList.add('search-result-document-version')
-    documentTitle.innerText = doc.version
+    var documentVersion = document.createElement('div')
+    documentVersion.classList.add('search-result-document-version')
+    documentVersion.innerText = doc.version
     var documentTitle = document.createElement('div')
     documentTitle.classList.add('search-result-document-title')
     documentTitle.innerText = doc.title
