@@ -109,6 +109,9 @@ window.antoraLunr = (function (lunr) {
   }
 
   function createSearchResultItem (doc, item, hits) {
+    var documentVersion = document.createElement('div')
+    documentVersion.classList.add('search-result-document-version')
+    documentVersion.innerText = doc.version
     var documentTitle = document.createElement('div')
     documentTitle.classList.add('search-result-document-title')
     documentTitle.innerText = doc.title
@@ -123,6 +126,7 @@ window.antoraLunr = (function (lunr) {
     })
     var searchResultItem = document.createElement('div')
     searchResultItem.classList.add('search-result-item')
+    searchResultItem.appendChild(documentVersion)
     searchResultItem.appendChild(documentTitle)
     searchResultItem.appendChild(documentHit)
     searchResultItem.addEventListener('mousedown', function (e) {
