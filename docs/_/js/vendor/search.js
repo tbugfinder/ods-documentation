@@ -114,7 +114,7 @@ window.antoraLunr = (function (lunr) {
     documentVersion.innerText = doc.version
     var documentTitle = document.createElement('div')
     documentTitle.classList.add('search-result-document-title')
-    documentTitle.innerText = doc.title
+    documentTitle.innerText = 'ODSv'+doc.version+' '+doc.title
     var documentHit = document.createElement('div')
     documentHit.classList.add('search-result-document-hit')
     var documentHitLink = document.createElement('a')
