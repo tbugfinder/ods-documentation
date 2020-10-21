@@ -463,6 +463,10 @@ odsComponentPipeline(
 <td class="tableblock halign-left valign-top"><p class="tableblock">openshiftRolloutTimeout</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Deprecated in 3.x! Please use option <code>deployTimeoutMinutes</code> on <code>odsComponentStageRolloutOpenShiftDeployment</code>.</p></td>
 </tr>
+<tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">testResults</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Configurable location for xunit test results, in case the build does not put them into <code>build/test-results/test</code>.</p></td>
+</tr>
 </tbody>
 </table>
 </div>
@@ -1405,6 +1409,10 @@ being built.</p>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Adjust timeout of rollout (defaults to 5 minutes). Caution: This needs to be aligned with the deployment strategy timeout (timeoutSeconds) and the readiness probe timeouts (initialDelaySeconds + failureThreshold * periodSeconds).</p></td>
 </tr>
 <tr>
+<td class="tableblock halign-left valign-top"><p class="tableblock">deployTimeoutRetries</p></td>
+<td class="tableblock halign-left valign-top"><p class="tableblock">Adjust retries to wait for the pod during a rollout (defaults to 5).</p></td>
+</tr>
+<tr>
 <td class="tableblock halign-left valign-top"><p class="tableblock">openshiftDir</p></td>
 <td class="tableblock halign-left valign-top"><p class="tableblock">Directory with OpenShift templates (defaults to <code>openshift</code>).</p></td>
 </tr>
@@ -1504,17 +1512,11 @@ being built.</p>
   <p>The source code for this UI is licensed under the terms of the MPL-2.0 license.</p>
 </footer>
 <script src="https://cdnjs.cloudflare.com/ajax/libs/tocbot/4.1.1/tocbot.min.js"></script>
-<script type="text/javascript">
-  window.antora = window.antora || {}
-  window.antora.basePath = '../../..'
-  window.antora.pagePath = '/opendevstack/4.x/jenkins-shared-library/component-pipeline.html'
-</script>
 <script src="../../../_/js/site.js"></script>
 <script src="../../../_/js/vendor/lunr.js"></script>
-<script src="../../../_/js/vendor/search.js"></script>
+<script src="../../../_/js/vendor/search.js" id="search-script" data-base-path="../../.." data-page-path="/opendevstack/4.x/jenkins-shared-library/component-pipeline.html"></script>
 <script async src="../../../_/../search-index.js"></script>
-<script src="../../../_/js/vendor/highlight.js"></script>
-<script>hljs.initHighlighting()</script>
+<script async src="../../../_/js/vendor/highlight.js"></script>
 <script>
   tocbot.init( {
                   tocSelector: '#article-toc',
