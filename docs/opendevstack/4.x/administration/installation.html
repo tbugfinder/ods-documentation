@@ -463,7 +463,7 @@ If you are using windows <strong>Cygwin</strong> or <strong>WSL</strong> remembe
 <div class="sect2">
 <h3 id="_atlassian_tools"><a class="anchor" href="#_atlassian_tools"></a>Atlassian Tools</h3>
 <div class="paragraph">
-<p>At this stage you can setup the Atlassian tools if they do not exist yet, or modify them as needed.</p>
+<p>At this stage the Atlassian suite is required prior to the ODS installation. OpenDevStack provides Ansible playbooks to install the Atlassian suite (Jira, Bitbucket, Confluence, Crowd). On the other hand, if you already have your own instances running, you can tell OpenDevStack to use those in <code>ods-configuration/ods-core.env</code>.</p>
 </div>
 <div class="admonitionblock warning">
 <table>
@@ -472,7 +472,7 @@ If you are using windows <strong>Cygwin</strong> or <strong>WSL</strong> remembe
 <i class="fa icon-warning" title="Warning"></i>
 </td>
 <td class="content">
-Documentation for this is missing.
+Past this point you need to have the aforementioned elements that compose the Atlassian suite up and running, otherwise the ODS installation will just fail.
 </td>
 </tr>
 </table>
@@ -523,6 +523,9 @@ If you are on Linux, <code>oc cluster up</code> will do the trick.
 <div class="content">
 <pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">make prepare-bitbucket-repos</code></pre>
 </div>
+</div>
+<div class="paragraph">
+<p>Notice that <code>prepare-bitbucket-repos</code> expects a running Atlassian suite (it will <strong>not</strong> spin up a new Bitbucket instance).</p>
 </div>
 <div class="paragraph">
 <p>Then, update them with the latest state so that they can be used e.g. from <code>BuildConfig</code> resources in OpenShift:</p>
