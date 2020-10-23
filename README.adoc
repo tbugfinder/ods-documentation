@@ -48,6 +48,6 @@ https://github.com/opendevstack/ods-docs-ui/blob/ods-docs-ui/README.adoc. Exampl
 
 Whenever this repository is pushed to GitHub, it triggers a travis build,
 that regenerates the antora documentation based on the `site.yml` playbook (which fetches the different referenced repositories from GitHub). The
-updated content in directory `docs` will be pushed back to the githup repository during the build.
+updated content in directory `docs` will be pushed back to the GitHub repository during the build.
 
 See xref:.travis.yml[.travis.yml] for details.
