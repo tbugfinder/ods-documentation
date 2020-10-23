@@ -46,7 +46,7 @@ https://github.com/opendevstack/ods-docs-ui/blob/ods-docs-ui/README.adoc. Exampl
 
 ### Search Function
 
-A search index is created by integrating https://github.com/Mogztter/antora-lunr. The argument `--generator antora-site-generator-lunr` has to be passed to antora when running the build. Customizations to the search UI can be made to files in `supplemental-ui`.
+A search index is created by integration of https://github.com/Mogztter/antora-lunr. The argument `--generator antora-site-generator-lunr` has to be passed to antora when running the build. Search UI can be customized by changing files in `supplemental-ui`. Initially those files are copies of https://github.com/Mogztter/antora-lunr/tree/master/supplemental_ui.
 
 ## Building on Travis
 
