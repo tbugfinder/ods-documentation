@@ -44,10 +44,14 @@ https://github.com/opendevstack/ods-docs-ui/blob/ods-docs-ui/README.adoc. Exampl
     cd ../ods-documentation
     antora generate site-workspace.yml --ui-bundle-url ../ods-docs-ui/build/ui-bundle.zip
 
+### Search Function
+
+A search index is created by integration of https://github.com/Mogztter/antora-lunr. The argument `--generator antora-site-generator-lunr` has to be passed to antora when running the build. Search UI can be customized by changing files in `supplemental-ui`. Initially those files are copies of https://github.com/Mogztter/antora-lunr/tree/master/supplemental_ui.
+
 ## Building on Travis
 
 Whenever this repository is pushed to GitHub, it triggers a travis build,
 that regenerates the antora documentation based on the `site.yml` playbook (which fetches the different referenced repositories from GitHub). The
-updated content in directory `docs` will be pushed back to the githup repository during the build.
+updated content in directory `docs` will be pushed back to the GitHub repository during the build.
 
 See xref:.travis.yml[.travis.yml] for details.
