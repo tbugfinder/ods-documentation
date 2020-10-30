@@ -1,5 +1,7 @@
 {
   "dependencies": {
+    "@antora/cli": "^2.3.4",
+    "antora-site-generator-lunr": "^0.5.0",
     "asciidoctor.js": "^1.5.9"
   }
 }
