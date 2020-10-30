@@ -9,13 +9,13 @@ setup_git() {
 commit_website_files() {
   sudo touch docs/.nojekyll
   git add -A . 
-  git commit --message "GitHub Actions Build: $GITHUB_RUN_ID [ci skip]"
+  git commit --message "GitHub Actions Build: $GITHUB_RUN_NUMBER [ci skip]"
   git branch temp-changes
   git checkout $GITHUB_REF_SLUG
   git merge --no-commit --no-ff temp-changes
   git reset HEAD -- package.json
   git reset HEAD -- package-lock.json
-  git commit --message "GitHub Actions Build: $GITHUB_RUN_ID [ci skip]"
+  git commit --message "GitHub Actions Build: $GITHUB_RUN_NUMBER [ci skip]"
 }
 
 upload_files() {
