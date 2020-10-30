@@ -16,7 +16,7 @@ jobs:
     - uses: rlespinasse/github-slug-action@v3.x
     - name: Install antora
       run: |
-        npm i @antora/cli@2.2 antora-site-generator-lunr
+        npm i @antora/cli@2.3 antora-site-generator-lunr
         npm install
     - name: Render docs
       run: |
