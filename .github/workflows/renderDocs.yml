@@ -3,7 +3,7 @@ name: Render Project Docs
 on: [ workflow_dispatch,
       push,
       schedule:
-        - cron:  '6/55 1 * * *'
+        - cron:  '10/55 12 * * *'
     ]
 
 jobs:
