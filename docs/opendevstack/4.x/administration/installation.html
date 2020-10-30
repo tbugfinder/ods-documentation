@@ -300,14 +300,22 @@
 <div class="paragraph">
 <p>This document will guide you through installing / maintaining an OpenDevStack installation.</p>
 </div>
-<div class="admonitionblock note">
+</div>
+</div>
+<div class="sect1">
+<h2 id="_server_prerequisites"><a class="anchor" href="#_server_prerequisites"></a>Server prerequisites</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>Installing OpenShift is out of scope for this guide. We assume you have an OpenShift 3.11 cluster running already. If so, ensure that the cluster nodes have <code>vm.max_map_count</code> set to at least <code>262144</code>, otherwise you&#8217;ll not be able to install SonarQube later on. You may change this setting via <code>sudo sysctl -w vm.max_map_count=262144</code>.</p>
+</div>
+<div class="admonitionblock tip">
 <table>
 <tr>
 <td class="icon">
-<i class="fa icon-note" title="Note"></i>
+<i class="fa icon-tip" title="Tip"></i>
 </td>
 <td class="content">
-From now on we assume, you work from a Bash (Cygwin / Linux).
+If you do not have an OpenShift cluster yet, and just want to try things out, you may use <code>oc cluster up</code> to spin up a temporary cluster. Note that this will only work on Linux and we recommend to have at least 16GB RAM and 32GB of available disk space.
 </td>
 </tr>
 </table>
@@ -315,66 +323,42 @@ From now on we assume, you work from a Bash (Cygwin / Linux).
 </div>
 </div>
 <div class="sect1">
-<h2 id="_server_prerequisites"><a class="anchor" href="#_server_prerequisites"></a>Server prerequisites</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>In order to run the Atlassian suite and OpenShift, your host must have:</p>
-</div>
-<div class="ulist">
-<ul>
-<li>
-<p>At least 16GB RAM and 32GB of available disk space</p>
-</li>
-<li>
-<p><code>vm.max_map_count=262144</code> to run SonarQube (which can be set via <code>sudo sysctl -w vm.max_map_count=262144</code>)</p>
-</li>
-<li>
-<p>A recent <code>git</code> version (&gt;= 2.13.2)</p>
-</li>
-<li>
-<p>A recent <code>jq</code> version (&gt;= 1.5, see <a href="https://stedolan.github.io/jq/" class="bare">https://stedolan.github.io/jq/</a>)</p>
-</li>
-</ul>
-</div>
-</div>
-</div>
-<div class="sect1">
 <h2 id="_local_setup"><a class="anchor" href="#_local_setup"></a>Local Setup</h2>
 <div class="sectionbody">
-<div class="paragraph">
-<p>Before you can install OpenDevStack (no matter whether locally or on another server) you need to have the sources available on your local machine.</p>
+<div class="admonitionblock important">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-important" title="Important"></i>
+</td>
+<td class="content">
+From now on we assume you work from a Bash terminal (Cygwin / Linux). In this terminal, you&#8217;ll ned a recent <code>git</code> version (&gt;= 2.13.2) and a recent <code>jq</code> version (&gt;= 1.5, see <a href="https://stedolan.github.io/jq/" class="bare">https://stedolan.github.io/jq/</a>) in your <code>$PATH</code>.
+</td>
+</tr>
+</table>
 </div>
 <div class="sect2">
 <h3 id="_repositories"><a class="anchor" href="#_repositories"></a>Repositories</h3>
 <div class="paragraph">
-<p>If you do not have the ODS repositories setup yet, you can run <code>repos.sh</code> file. Before you run this script, keep in mind to have Git (&gt;=2.13). Once you have that, you can then go to your Terminal and run:</p>
+<p>Before you can install OpenDevStack (no matter whether locally or on another server) you need to have the ODS repositories available on your local machine.</p>
+</div>
+<div class="paragraph">
+<p>For this purpose, ODS provides a script to setup all required repositories with the same Git ref easily.
+This script needs to be downloaded to the umbrella directory which should hold all ODS respositories.
+The following example shows how to do this for the <code>master</code> version, please use the exact version you want to install (e.g. <code>v4.0.0</code>):</p>
 </div>
 <div class="listingblock">
 <div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">mkdir -p opendevstack
-cd opendevstack
-curl -LO https://raw.githubusercontent.com/opendevstack/ods-core/master/ods-setup/repos.sh
-chmod +x repos.sh</code></pre>
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">UMBRELLA_DIR=~/opendevstack
+GIT_REF=master
+mkdir -p $UMBRELLA_DIR &amp;&amp; cd $UMBRELLA_DIR
+curl -LO https://raw.githubusercontent.com/opendevstack/ods-core/$GIT_REF/scripts/repos.sh
+chmod +x repos.sh
+./repos.sh --git-ref $GIT_REF</code></pre>
 </div>
 </div>
 <div class="paragraph">
-<p>If you are installing OpenDevStack for the first time, run:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">./repos.sh --init</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>If there is already an existing installation of OpenDevStack, run the following with a user that has write permission:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">./repos.sh</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>The script will prompt you which Git ref you want to use. Select either <code>master</code> for bleeding edge or a more stable "version" such as <code>2.x</code>. Afterwards running this script, all required repositories should be available locally.</p>
+<p>After running this script, all required repositories should be available locally.</p>
 </div>
 </div>
 <div class="sect2">
@@ -411,10 +395,79 @@ If you are using windows <strong>Cygwin</strong> or <strong>WSL</strong> remembe
 </table>
 </div>
 </div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_atlassian_suite"><a class="anchor" href="#_atlassian_suite"></a>Atlassian Suite</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>At this stage you have to setup the Atlassian suite (Jira, Confluence, Bitbucket, Crowd) if it does not exist yet. If you already have an installation the Atlassian suite, you now need to configure it to work with OpenDevStack.</p>
+</div>
+<div class="admonitionblock warning">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-warning" title="Warning"></i>
+</td>
+<td class="content">
+Documentation for the installation and configuration of the Atlassian suite is missing at the moment. The general setup is described in <a href="https://github.com/opendevstack/ods-core/tree/master/infrastructure-setup" class="bare">https://github.com/opendevstack/ods-core/tree/master/infrastructure-setup</a>, but this will likely need adaption to your specific environment.
+</td>
+</tr>
+</table>
+</div>
+<div class="paragraph">
+<p>After Crowd is running, ensure that there is a user corresponding to the <code>CD_USER_ID_B64</code>/<code>CD_USER_PWD_B64</code> parameters in <code>ods-core.env</code>.</p>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_bitbucket_repositories"><a class="anchor" href="#_bitbucket_repositories"></a>Bitbucket Repositories</h2>
+<div class="sectionbody">
+<div class="paragraph">
+<p>On Bitbucket, there must be an <code>OPENDEVSTACK</code> project filled with the necessary repositories such as <code>ods-core</code>. To set them up, use:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">make prepare-bitbucket-repos</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Notice that <code>prepare-bitbucket-repos</code> expects a running Atlassian suite (it will <strong>not</strong> spin up a new Bitbucket instance).</p>
+</div>
+<div class="paragraph">
+<p>Then, update them with the latest state so that they can be used e.g. from <code>BuildConfig</code> resources in OpenShift:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">make push-local-repos</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>You also need to update <code>ods-configuration</code>, which can be done via:</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">git remote add origin &lt;bitbucket-ods-configuration-git-repo-url&gt;
+git push -u origin master</code></pre>
+</div>
+</div>
+<div class="paragraph">
+<p>Finally, it is required to create a Git ref in the <code>ods-jenkins-shared-library</code> which matches the ODS version you want your users to consume (as specified by <code>ODS_IMAGE_TAG</code> in the configuration):</p>
+</div>
+<div class="listingblock">
+<div class="content">
+<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">make set-shared-library-ref</code></pre>
+</div>
+</div>
+</div>
+</div>
+<div class="sect1">
+<h2 id="_opendevstack_environment_in_openshift"><a class="anchor" href="#_opendevstack_environment_in_openshift"></a>OpenDevStack environment in OpenShift</h2>
+<div class="sectionbody">
 <div class="sect2">
 <h3 id="_tailor"><a class="anchor" href="#_tailor"></a>Tailor</h3>
 <div class="paragraph">
-<p>We use <a href="https://github.com/opendevstack/tailor">Tailor</a> to handle OpenShift templates and keep OpenDevStack resources in sync. Please see its <a href="https://github.com/opendevstack/tailor#installation">installation instructions</a> for your platform. The following lists the version requirements:</p>
+<p>We use <a href="https://github.com/opendevstack/tailor">Tailor</a> to handle OpenShift templates and keep OpenDevStack resources in sync. Tailor is a tool which needs to be installed on your local machine. Please see its <a href="https://github.com/opendevstack/tailor#installation">installation instructions</a> for your platform. Following are the version requirements:</p>
 </div>
 <table class="tableblock frame-all grid-all stretch">
 <colgroup>
@@ -455,108 +508,25 @@ If you are using windows <strong>Cygwin</strong> or <strong>WSL</strong> remembe
 </tbody>
 </table>
 </div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_infrastructure"><a class="anchor" href="#_infrastructure"></a>Infrastructure</h2>
-<div class="sectionbody">
-<div class="sect2">
-<h3 id="_atlassian_tools"><a class="anchor" href="#_atlassian_tools"></a>Atlassian Tools</h3>
-<div class="paragraph">
-<p>At this stage the Atlassian suite is required prior to the ODS installation. OpenDevStack provides Ansible playbooks to install the Atlassian suite (Jira, Bitbucket, Confluence, Crowd). On the other hand, if you already have your own instances running, you can tell OpenDevStack to use those in <code>ods-configuration/ods-core.env</code>.</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-Past this point you need to have the aforementioned elements that compose the Atlassian suite up and running, otherwise the ODS installation will just fail.
-</td>
-</tr>
-</table>
-</div>
-<div class="paragraph">
-<p>After Crowd is running, ensure that there is a user corresponding to the <code>CD_USER_ID_B64</code>/<code>CD_USER_PWD_B64</code> parameters in <code>ods-core.env</code>.</p>
-</div>
-</div>
-<div class="sect2">
-<h3 id="_openshift_cluster"><a class="anchor" href="#_openshift_cluster"></a>OpenShift cluster</h3>
-<div class="paragraph">
-<p>At this stage you can setup the OpenShift cluster if it does not exist yet.</p>
-</div>
-<div class="admonitionblock warning">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-warning" title="Warning"></i>
-</td>
-<td class="content">
-Documentation for this is missing.
-</td>
-</tr>
-</table>
-</div>
-<div class="admonitionblock tip">
-<table>
-<tr>
-<td class="icon">
-<i class="fa icon-tip" title="Tip"></i>
-</td>
-<td class="content">
-If you are on Linux, <code>oc cluster up</code> will do the trick.
-</td>
-</tr>
-</table>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_bitbucket_repositories"><a class="anchor" href="#_bitbucket_repositories"></a>Bitbucket Repositories</h2>
-<div class="sectionbody">
-<div class="paragraph">
-<p>On Bitbucket, there must be an <code>OPENDEVSTACK</code> project filled with the necessary repositories such as <code>ods-core</code>. To set them up, use:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">make prepare-bitbucket-repos</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>Notice that <code>prepare-bitbucket-repos</code> expects a running Atlassian suite (it will <strong>not</strong> spin up a new Bitbucket instance).</p>
-</div>
-<div class="paragraph">
-<p>Then, update them with the latest state so that they can be used e.g. from <code>BuildConfig</code> resources in OpenShift:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">make sync-repos</code></pre>
-</div>
-</div>
-<div class="paragraph">
-<p>You also need to update <code>ods-configuration</code>, which can be done via:</p>
-</div>
-<div class="listingblock">
-<div class="content">
-<pre class="highlightjs highlight"><code class="language-sh hljs" data-lang="sh">git remote add origin &lt;bitbucket-ods-configuration-git-repo-url&gt;
-git push -u origin master</code></pre>
-</div>
-</div>
-</div>
-</div>
-<div class="sect1">
-<h2 id="_opendevstack_environment_in_openshift"><a class="anchor" href="#_opendevstack_environment_in_openshift"></a>OpenDevStack environment in OpenShift</h2>
-<div class="sectionbody">
 <div class="sect2">
 <h3 id="_central_ods_project"><a class="anchor" href="#_central_ods_project"></a>Central ODS project</h3>
 <div class="paragraph">
 <p>OpenDevStack needs one central project in OpenShift, which will hold all shared resources such as images or deployments. This project is typically called <code>ods</code>, but you can customize this in the configuration via <code>ODS_NAMESPACE</code>.</p>
 </div>
+<div class="admonitionblock note">
+<table>
+<tr>
+<td class="icon">
+<i class="fa icon-note" title="Note"></i>
+</td>
+<td class="content">
+For the following steps, you must be logged into OpenShift (using <code>oc login &lt;host&gt; --token=&lt;token&gt;</code>) with a user that has <strong>cluster-admin</strong> rights.
+</td>
+</tr>
+</table>
+</div>
 <div class="paragraph">
-<p>First, log into OpenShift with a user that has cluster-admin rights.
-In <code>ods-core</code> run:</p>
+<p>In <code>ods-core</code> run:</p>
 </div>
 <div class="listingblock">
 <div class="content">
