@@ -4,7 +4,7 @@ on:
     workflow_dispatch:
     push:
     schedule:
-      - cron:  '20/55 12 * * *'
+      - cron:  '10-30/55 * * * *'
 
 jobs:
   build:
@@ -24,6 +24,7 @@ jobs:
         npm install
     - name: Render docs
       run: |
+        date
         rm -rf docs/*
         DOCSEARCH_ENABLED=true DOCSEARCH_ENGINE=lunr $(npm bin)/antora generate --silent --clean --fetch site.yml --generator antora-site-generator-lunr
     - name: Publish docs
