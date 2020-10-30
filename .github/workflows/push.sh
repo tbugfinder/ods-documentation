@@ -7,7 +7,7 @@ setup_git() {
 }
 
 commit_website_files() {
-  sudo touch .nojekyll
+  sudo touch docs/.nojekyll
   git add -A . 
   git commit --message "GitHub Actions Build: $GITHUB_RUN_ID [ci skip]"
   git branch temp-changes
